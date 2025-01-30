@@ -2,7 +2,8 @@
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F70204&width=435&lines=fast+username+osint+search" alt="Typing SVG">
 </p>
 
-![png](./README.png)
+![png](./1.png)
+![png](./2.png)
 ```bash
 
 How To install: git clone https://github.com/biskit069/uf
