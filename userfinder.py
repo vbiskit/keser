@@ -65,7 +65,7 @@ def check_username_on_website(url, username):
     try:
         response = requests.get(url.format(username))  
         if response.status_code == 429:
-            print(f"\033[38;2;255;69;0mToo many requests on Server {url.format(username)}. Found Link ✅\033[0m")
+            print(f"\033[38;2;255;165;0m429 Too many requests on Server 🟠 {url.format(username)} (Found Link ✅\033[0m")
         elif response.status_code == 404:
             print(f"\033[38;2;255;0;0m404 Not Found ❌ {url.format(username)}\033[0m")
         elif response.status_code == 200:
