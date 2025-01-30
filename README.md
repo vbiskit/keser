@@ -6,7 +6,7 @@
 
 How To install: git clone https://github.com/biskit069/uf
 
-cd kraken
+cd uf
 
 pip3 install -r requirements.txt
 
