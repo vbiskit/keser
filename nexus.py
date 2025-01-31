@@ -58,7 +58,7 @@ def loading_screen():
     sys.stdout.flush()
     for _ in range(1):
         time.sleep(0.6)
-        sys.stdout.write(Fore.LIGHTWHITE_EX+"biskit V 0.1")
+        sys.stdout.write(Fore.LIGHTWHITE_EX+"@biskit")
         sys.stdout.flush()
     print("\n")
 
@@ -144,10 +144,8 @@ websites = {
     "minecraft":"https://namemc.com/search?q={} ",
     "airbit":"https://airbit.com/{}",
     "freesound":"https://freesound.org/people/{}",
-    "7Cups": "https://www.7cups.com/@{}",
     "8tracks": "https://8tracks.com/{}",
     "9GAG": "https://www.9gag.com/u/{}",
-    "About.me": "https://about.me/{}",
     "Academia.edu": "https://independent.academia.edu/{}",
     "Air Pilot Life": "https://airlinepilot.life/u/{}",
     "Airbit": "https://airbit.com/{}",
@@ -157,15 +155,12 @@ websites = {
     "Apple Discussions": "https://discussions.apple.com/profile/{}",
     "Archive of Our Own": "https://archiveofourown.org/users/{}",
     "Atcoder": "https://atcoder.jp/users/{}",
-    "Audiojungle": "https://audiojungle.net/user/{}",
-    "Bandcamp": "https://www.bandcamp.com/{}",
     "Behance": "https://www.behance.net/{}",
     "BiggerPockets": "https://www.biggerpockets.com/users/{}",
     "Blogger": "https://tyrell.blogspot.com",
     "BoardGameGeek": "https://boardgamegeek.com/user/{}",
     "Bookcrossing": "https://www.bookcrossing.com/mybookshelf/{}",
     "BuyMeACoffee": "https://buymeacoff.ee/{}",
-    "BuzzFeed": "https://buzzfeed.com/{}",
     "CGTrader": "https://www.cgtrader.com/{}",
     "Carbonmade": "https://{}.carbonmade.com",
     "Championat": "https://www.championat.com/user/{}",
@@ -180,18 +175,14 @@ websites = {
     "DMOJ": "https://dmoj.ca/user/tyrell",
     "DailyMotion": "https://www.dailymotion.com/{}",
     "Dealabs": "https://www.dealabs.com/profile/{}",
-    "DeviantART": "https://{}.deviantart.com",
     "Disqus": "https://disqus.com/{}",
     "Docker Hub": "https://hub.docker.com/u/{}/",
-    "Duolingo": "https://www.duolingo.com/profile/{}",
     "EyeEm": "https://www.eyeem.com/u/{}",
     "Fanpop": "https://www.fanpop.com/fans/{}",
     "Fiverr": "https://www.fiverr.com/{}",
     "Flickr": "https://www.flickr.com/people/{}",
     "Flightradar24": "https://my.flightradar24.com/{}",
-    "Flipboard": "https://flipboard.com/@{}",
     "Freelancer": "https://www.freelancer.com/u/{}",
-    "Freesound": "https://freesound.org/people/{}",
     "GaiaOnline": "https://www.gaiaonline.com/profiles/{}",
     "Gamespot": "https://www.gamespot.com/profile/{}",
     "Genius (Artists)": "https://genius.com/artists/{}",
