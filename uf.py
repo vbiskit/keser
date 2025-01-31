@@ -47,7 +47,7 @@ def scrape_duckduckgo_links(query):
 
 def loading_screen():
     sys.stdout.write("\033c")  
-    print("""\033[38;2;255;69;0m
+    print("""\033[38;2;0;255;255m
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣄⣠⣀⡀⣀⣠⣤⣤⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣄⢠⣠⣼⣿⣿⣿⣟⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⢠⣤⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⢦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣟⣾⣿⣽⣿⣿⣅⠈⠉⠻⣿⣿⣿⣿⣿⡿⠇⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⢀⡶⠒⢉⡀⢠⣤⣶⣶⣿⣷⣆⣀⡀⠀⢲⣖⠒⠀⠀⠀⠀⠀⠀⠀
@@ -70,7 +70,7 @@ def loading_screen():
     sys.stdout.flush()
     for _ in range(1):
         time.sleep(0.6)
-        sys.stdout.write(Fore.LIGHTWHITE_EX+"@biskit V 0.1")
+        sys.stdout.write(Fore.LIGHTWHITE_EX "@biskit V 0.1")
         sys.stdout.flush()
     print("\n")
 
@@ -78,7 +78,7 @@ def check_username_on_website(url, username):
     try:
         response = requests.get(url.format(username))  
         if response.status_code == 429:
-            print(f"\033[38;2;255;165;0m[+] 429 Too many requests on Server 🟠 {url.format(username)} [+] Found Link \033[0m")
+            print(f"\033[38;2;255;165;0m[+] Error Status Code 429 🟠  {url.format(username)} \033[38;2;0;255;255m[+] Can't Check If Link Is Found \033[0m")
         elif response.status_code == 404:
             print(f"\033[38;2;255;0;0m[+] Not Found {url.format(username)}\033[0m")
         elif response.status_code == 200:
@@ -122,7 +122,6 @@ websites = {
     "mastodon": "https://mastodon.social/api/v2/search?q={}&type=accounts",
     "knowyourmeme": "https://knowyourmeme.com/users/{}",
     "archive": "https://archive.org/search?query={} ",
-    "imgur": "https://imgur.com/user/{}/about",
     "huggingface": "https://huggingface.co/{}",
     "hudsonrock": "https://cavalier.hudsonrock.com/api/json/v2/osint-tools/search-by-username?username={} ",
     "hackerrank": "https://www.hackerrank.com/profile/{}",
@@ -241,6 +240,6 @@ def search_username(username, threads=10):
 
 if __name__ == "__main__":
     loading_screen()
-    username = input("\033[38;2;255;69;0m[+] Enter Persons Name \033[0m")  
-    threads = int(input("\033[38;2;255;69;0m[+] Enter Number of Threads (10-100) \033[0m"))
+    username = input("\033[38;2;0;255;255m[+] Enter Persons Name \033[0m")  
+    threads = int(input("\033[38;2;0;255;255m[+] Enter Number of Threads (10-100) \033[0m"))
     search_username(username, threads)
