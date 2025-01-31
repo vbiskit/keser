@@ -58,7 +58,7 @@ def loading_screen():
     sys.stdout.flush()
     for _ in range(1):
         time.sleep(0.6)
-        sys.stdout.write(Fore.LIGHTWHITE_EX+"biskit V 0.1")
+        sys.stdout.write(Fore.LIGHTWHITE_EX+"biskit")
         sys.stdout.flush()
     print("\n")
 
@@ -187,6 +187,9 @@ websites = {
     "Gamespot": "https://www.gamespot.com/profile/{}",
     "Genius (Artists)": "https://genius.com/artists/{}",
     "Genius (Users)": "https://genius.com/{}",
+    "Fortnite": "https://fortnitetracker.com/profile/all/{}",
+    "dribble" : "https://dribbble.com/{}",
+    "wordpress users ": "https://profiles.wordpress.org/{}",
 }
 
 def search_username(username, threads=500,):
