@@ -229,5 +229,5 @@ def search_username(username, threads=500,):
 if __name__ == "__main__":
     loading_screen()
     username = input("\033[38;2;139;0;255m[*]\033[38;2;255;255;255m Enter Persons Name \033[0m")  
-    threads = int(input("\033[38;2;139;0;255m[*]\033[38;2;255;255;255m Enter Number of Threads (10-500) \033[0m"))
+    threads = int(input("\033[38;2;139;0;255m[*]\033[38;2;255;255;255m Enter Number of Threads (1-500) \033[0m"))
     search_username(username, threads)
