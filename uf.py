@@ -210,7 +210,7 @@ websites = {
     "Genius (Users)": "https://genius.com/{}",
 }
 
-def search_username(username, threads=10):
+def search_username(username, threads=500,):
     
     print(f"\033[38;2;0;255;0m[*] Searching {username} \033[0m\n")
 
@@ -241,5 +241,5 @@ def search_username(username, threads=10):
 if __name__ == "__main__":
     loading_screen()
     username = input("\033[38;2;0;255;255m[+] Enter Persons Name \033[0m")  
-    threads = int(input("\033[38;2;0;255;255m[+] Enter Number of Threads (10-100) \033[0m"))
+    threads = int(input("\033[38;2;0;255;255m[+] Enter Number of Threads (10-500) \033[0m"))
     search_username(username, threads)
