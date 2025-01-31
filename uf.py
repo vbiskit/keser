@@ -212,7 +212,7 @@ websites = {
 
 def search_username(username, threads=10):
     
-    print(f"\033[38;2;0;255;0m[+] Searching {username} \033[0m\n")
+    print(f"\033[38;2;0;255;0m[*] Searching {username} \033[0m\n")
 
     found = set()  
 
@@ -227,12 +227,12 @@ def search_username(username, threads=10):
     duckduckgo_results = scrape_duckduckgo_links(username)
 
     if found or duckduckgo_results:
-        print("\033[38;2;255;69;0mFound the username on the following websites:\033[0m")
+        print("\033[38;2;255;69;0m[*]Found the username on the following websites:\033[0m")
         for result in found:
             print(f"\033[38;2;0;255;0m{result}\033[0m")  
 
         if duckduckgo_results:
-            print("\n\033[38;2;0;255;0mFound the username in DuckDuckGo search results:\033[0m")
+            print("\n\033[38;2;0;255;0m[*]Found the username in DuckDuckGo search results:\033[0m")
             for duckduckgo_result in duckduckgo_results:
                 print(f"\033[38;2;0;255;0m{duckduckgo_result}\033[0m") 
     else:
