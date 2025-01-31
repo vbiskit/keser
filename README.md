@@ -5,12 +5,12 @@
 ![png](./showcase.png)
 ```bash
 
-How To install: git clone https://github.com/biskit069/uf
+How To install: git clone https://github.com/biskit069/Nexus
 
 cd uf
 
 pip3 install -r requirements.txt
 
-How To Run: python3 uf.py
+How To Run: python3 nexus.py
 
 if you are running 8.8.8.8 or 1.1.1.1 dns it will block the duckduckgo links
