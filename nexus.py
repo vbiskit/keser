@@ -195,7 +195,7 @@ websites = {
 
 def search_username(username, threads=500,):
     
-    print(f"\033[38;2;0;255;0m[*] Searching {username} \033[0m\n")
+    print(f"\033[38;2;0;255;0m[*] Searching [ON] {username} \033[0m\n")
 
     found = set()  
 
