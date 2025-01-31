@@ -52,13 +52,12 @@ def loading_screen():
    / | / /__  _  ____  _______
   /  |/ / _ \| |/_/ / / / ___/
  / /|  /  __/>  </ /_/ (__  ) 
-/_/ |_/\___/_/|_|\__,_/____/  
-                                                                             
+/_/ |_/\___/_/|_|\__,_/____/                                                                            
 \033[0m""")  
     sys.stdout.flush()
     for _ in range(1):
         time.sleep(0.6)
-        sys.stdout.write(Fore.LIGHTWHITE_EX+"biskit")
+        sys.stdout.write(Fore.LIGHTWHITE_EX+"@biskit")
         sys.stdout.flush()
     print("\n")
 
