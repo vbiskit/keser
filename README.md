@@ -11,6 +11,6 @@ cd uf
 
 pip3 install -r requirements.txt
 
-How To Run: python3 userfinder.py
+How To Run: python3 uf.py
 
 if you are running 8.8.8.8 or 1.1.1.1 dns it will block the duckduckgo links
