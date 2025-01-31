@@ -70,7 +70,7 @@ def loading_screen():
     sys.stdout.flush()
     for _ in range(1):
         time.sleep(0.6)
-        sys.stdout.write(Fore.LIGHTWHITE_EX "@biskit V 0.1")
+        sys.stdout.write(Fore.LIGHTWHITE_EX + "@biskit V 0.1")
         sys.stdout.flush()
     print("\n")
 
