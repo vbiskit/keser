@@ -69,7 +69,7 @@ def check_username_on_website(url, username):
         elif response.status_code == 404:
             print(f"\033[38;2;255;0;0m[-] Not Found {url.format(username)}\033[0m")
         elif response.status_code == 410:
-            print(f"\033[38;2;255;0;255m[x] Gone (410) {url.format(username)}\033[0m")  # Added 410 handling
+            print(f"\033[38;2;255;0;255m[x] Name Doesn't Exist {url.format(username)}\033[0m")  # Added 410 handling
         elif response.status_code == 200:
             if username.lower() in response.text.lower():
                 print(f"\033[38;2;0;255;0m[+] Found {url.format(username)}\033[0m")
