@@ -7,7 +7,7 @@
 
 How To install: git clone https://github.com/biskit069/Nexus
 
-cd uf
+cd Nexus
 
 pip3 install -r requirements.txt
 
