@@ -142,7 +142,7 @@ websites = {
     "hoobe":"https://hoo.be/{}",
     "devinart": "https://www.deviantart.com/{}",
     "rblxtrade":"https://rblx.trade/p/{}",
-    "kick":"https://kick.com/{}",
+    "kick":"https://www.kick.com/{}",
     "steam":"https://steamcommunity.com/id/{}",
     "Shopify":"https://{}.myshopify.com",
     "steamgifts":"https://www.steamgifts.com/user/{}",
