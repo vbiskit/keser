@@ -48,16 +48,20 @@ def scrape_duckduckgo_links(query):
 def loading_screen():
     sys.stdout.write("\033c")  
     print("""\033[38;2;0;0;255m                                
-    _   __                    
-   / | / /__  _  ____  _______
-  /  |/ / _ \| |/_/ / / / ___/
- / /|  /  __/>  </ /_/ (__  ) 
-/_/ |_/\___/_/|_|\__,_/____/                                                                            
+ ███▄    █ ▓█████ ▒██   ██▒ █    ██   ██████ 
+ ██ ▀█   █ ▓█   ▀ ▒▒ █ █ ▒░ ██  ▓██▒▒██    ▒ 
+▓██  ▀█ ██▒▒███   ░░  █   ░▓██  ▒██░░ ▓██▄   
+▓██▒  ▐▌██▒▒▓█  ▄  ░ █ █ ▒ ▓▓█  ░██░  ▒   ██▒
+▒██░   ▓██░░▒████▒▒██▒ ▒██▒▒▒█████▓ ▒██████▒▒
+░ ▒░   ▒ ▒ ░░ ▒░ ░▒▒ ░ ░▓ ░░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░
+░ ░░   ░ ▒░ ░ ░  ░░░   ░▒ ░░░▒░ ░ ░ ░ ░▒  ░ ░
+   ░   ░ ░    ░    ░    ░   ░░░ ░ ░ ░  ░  ░  
+         ░    ░  ░ ░    ░     ░           ░                                                                                                                                                                        
 \033[0m""")  
     sys.stdout.flush()
     for _ in range(1):
         time.sleep(0.6)
-        sys.stdout.write(Fore.LIGHTWHITE_EX+"@biskit")
+        sys.stdout.write("\033[38;2;0;255;255m@biskit")
         sys.stdout.flush()
     print("\n")
 
@@ -223,6 +227,6 @@ def search_username(username, threads=500,):
 
 if __name__ == "__main__":
     loading_screen()
-    username = input("\033[38;2;0;0;255m[*] Enter Persons Name \033[0m")  
-    threads = int(input("\033[38;2;0;0;255m[*] Enter Number of Threads (10-500) \033[0m"))
+    username = input("\033[38;2;139;0;255m[*]\033[38;2;255;255;255m Enter Persons Name \033[0m")  
+    threads = int(input("\033[38;2;139;0;255m[*]\033[38;2;255;255;255m Enter Number of Threads (10-500) \033[0m"))
     search_username(username, threads)
