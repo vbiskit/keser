@@ -143,7 +143,6 @@ websites = {
     "buzzfeed":"https://www.buzzfeed.com/{}",
     "minecraft":"https://namemc.com/search?q={} ",
     "airbit":"https://airbit.com/{}",
-    "Gihpy":"https://giphy.com/{}",
     "freesound":"https://freesound.org/people/{}",
     "7Cups": "https://www.7cups.com/@{}",
     "8tracks": "https://8tracks.com/{}",
@@ -197,7 +196,6 @@ websites = {
     "Gamespot": "https://www.gamespot.com/profile/{}",
     "Genius (Artists)": "https://genius.com/artists/{}",
     "Genius (Users)": "https://genius.com/{}",
-    "Gihpy": "https://giphy.com/{}",
 }
 
 def search_username(username, threads=10):
