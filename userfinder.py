@@ -78,12 +78,12 @@ def check_username_on_website(url, username):
     try:
         response = requests.get(url.format(username))  
         if response.status_code == 429:
-            print(f"\033[38;2;255;165;0m429 Too many requests on Server 🟠  {url.format(username)} (Found Link ✅\033[0m")
+            print(f"\033[38;2;255;165;0m[+] 429 Too many requests on Server 🟠{url.format(username)} [+] Found Link ✅\033[0m")
         elif response.status_code == 404:
-            print(f"\033[38;2;255;0;0mNot Found ❌ {url.format(username)}\033[0m")
+            print(f"\033[38;2;255;0;0m[+] Not Found ❌ {url.format(username)}\033[0m")
         elif response.status_code == 200:
             if username.lower() in response.text.lower():
-                print(f"\033[38;2;0;255;0mFound ✅ {url.format(username)}\033[0m")
+                print(f"\033[38;2;0;255;0m[+] Found ✅ {url.format(username)}\033[0m")
     except requests.exceptions.RequestException as e:
         print(f"Error checking {url.format(username)}: {e}")
 
@@ -212,7 +212,7 @@ websites = {
 }
 
 def search_username(username, threads=10):
-    print(f"\033[38;2;255;69;0mSearching Username '{username}' with {threads} threads...\033[0m\n")
+    print(f"\033[38;2;255;69;0m[+] Searching {username} \033[0m\n")
 
     found = set()  
 
@@ -240,6 +240,6 @@ def search_username(username, threads=10):
 
 if __name__ == "__main__":
     loading_screen()
-    username = input("\033[38;2;255;69;0mEnter Username \033[0m")  
-    threads = int(input("\033[38;2;255;69;0mEnter number of threads (10-100) \033[0m"))
+    username = input("\033[38;2;255;69;0m[+] Enter Persons Name \033[0m")  
+    threads = int(input("\033[38;2;255;69;0m[+] Enter Number of Threads (10-100) \033[0m"))
     search_username(username, threads)
