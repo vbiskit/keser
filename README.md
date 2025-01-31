@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=1ADCF7&width=435&lines=fast+osint+name+search" alt="Typing SVG">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=0C07F7&width=435&lines=fast+osint+name+search" alt="Typing SVG">
 </p>
 
 ![png](./Nexus.png)
