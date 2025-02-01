@@ -66,18 +66,23 @@ def check_username_on_website(url, username):
 
 websites = {
     "GitHub": "https://github.com/{}",
+    "Twitter": "https://x.com/{}",
+    "Instagram": "https://www.instagram.com/{}",
     "YouTube": "https://www.youtube.com/@{}",
+    "Reddit": "https://www.reddit.com/user/{}",
     "Duolingo": "https://www.duolingo.com/profile/{}",
     "Chess": "https://www.chess.com/member/{}",
     "SoundCloud": "https://soundcloud.com/{}",
     "Twitch": "https://www.twitch.com/{}",
     "LinkedIn": "https://www.linkedin.com/in/{}",
     "AU LinkedIn": "https://au.linkedin.com/in/{}",
+    "Facebook": "https://www.facebook.com/{}",
     "Smule": "https://www.smule.com/{}",
     "Snapchat": "https://www.snapchat.com/add/{}",
     "21buttons": "https://www.21buttons.com/buttoner/{}",
     "public": "https://public.com/@{}",
     "gtainside": "https://www.gtainside.com/user/{}",
+    "bodybuilder": "http://bodyspace.bodybuilding.com/{}",
     "aboutme": "https://about.me/{}",
     "35photo": "https://35photo.pro/@{}",
     "7dach": "https://7dach.ru/profile/{}",
@@ -98,6 +103,7 @@ websites = {
     "hackerrank": "https://www.hackerrank.com/profile/{}",
     "hackaday": "https://hackaday.io/{}",
     "XboxGamerTag": "https://www.xboxgamertag.com/search/{}",
+    "younow": "https://www.younow.com/{}",
     "wordpress": "https://wordpress.org/support/users/{}",
     "vimeo": "https://vimeo.com/{}",
     "tiktok": "https://www.tiktok.com/@{}",
@@ -113,7 +119,7 @@ websites = {
     "devinart": "https://www.deviantart.com/{}",
     "rblxtrade":"https://rblx.trade/p/{}",
     "kick":"https://www.kick.com/{}",
-    "Steam":"https://www.steamidfinder.com/lookup/{}",
+    "steam":"https://steamcommunity.com/id/{}/",
     "Shopify":"https://{}.myshopify.com",
     "steamgifts":"https://www.steamgifts.com/user/{}",
     "venmo":"https://account.venmo.com/u/{}",
@@ -147,6 +153,7 @@ websites = {
     "Championat": "https://www.championat.com/user/{}",
     "Clapper": "https://clapperapp.com/{}",
     "Clubhouse": "https://www.clubhouse.com/@{}",
+    "Codecademy": "https://www.codecademy.com/profiles/{}",
     "Codeforces": "https://codeforces.com/profile/{}",
     "Codewars": "https://www.codewars.com/users/{}",
     "ColourLovers": "https://www.colourlovers.com/lover/{}",
@@ -163,6 +170,7 @@ websites = {
     "Flickr": "https://www.flickr.com/people/{}",
     "Flightradar24": "https://my.flightradar24.com/{}",
     "Freelancer": "https://www.freelancer.com/u/{}",
+    "GaiaOnline": "https://www.gaiaonline.com/profiles/{}",
     "Gamespot": "https://www.gamespot.com/profile/{}",
     "Genius (Artists)": "https://genius.com/artists/{}",
     "Genius (Users)": "https://genius.com/{}",
@@ -205,6 +213,7 @@ websites = {
     "discuss_elastic": "https://discuss.elastic.co/u/{}",
     "disqus": "https://disqus.com/{}",
     "eintracht": "https://community.eintracht.de/fans/{}",
+    "empretienda": "https://{}.empretienda.com.ar",
     "exophase": "https://www.exophase.com/user/{}",
     "fanpop": "https://www.fanpop.com/fans/{}",
     "fosstodon": "https://fosstodon.org/@{}",
@@ -218,9 +227,11 @@ websites = {
     "hackernews": "https://news.ycombinator.com/user?id={}",
     "hackerone": "https://hackerone.com/{}",
     "hashnode": "https://hashnode.com/@{}",
+    "holopin": "https://holopin.io/@{}",
     "ifttt": "https://www.ifttt.com/p/{}",
     "issuu": "https://issuu.com/{}",
     "itch": "https://{}.itch.io/",
+    "itemfix": "https://www.itemfix.com/c/{}",
     "joplin": "https://discourse.joplinapp.org/u/{}/",
     "kaskus": "https://www.kaskus.co.id/@{}",
     "keybase": "https://keybase.io/{}",
@@ -243,8 +254,11 @@ websites = {
     "nintendolife": "https://www.nintendolife.com/users/{}",
     "nitrotype": "https://www.nitrotype.com/racer/{}",
     "openstreetmap": "https://www.openstreetmap.org/user/{}",
+    "packagist": "https://packagist.org/packages/{}/",
     "twitterstatus":"https://web.archive.org/web/*/https://twitter.com/{}/status/*",
     "paypal": "https://www.paypal.com/paypalme/{},",
+    "kik":"https://kik.me/{}",
+    "Fanfix":"https://app.fanfix.io/@{}",
 }
 def search_username(username, threads=500):
     print(f"\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Checking username {username} on: \033[0m\n")
@@ -288,7 +302,7 @@ if __name__ == "__main__":
     print("""\033[38;2;255;255;255m                             
                                    
   ____   ____ ___  _____ __  ______
- /    \_/ __ \   \/  /  |  \/  ___/
+ /    \_/ __ \\  \/  /  |  \/  ___/
 |   |  \  ___/ >    <|  |  /\___ \ 
 |___|  /\___  >__/\_ \____//____  >
      \/     \/      \/          \/                                                                                                                                                                        
