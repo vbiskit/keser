@@ -65,24 +65,71 @@ def loading_screen():
         sys.stdout.flush()
     print("\n")
 
-def check_username_on_website(url, username):
+def check_username_on_website(url, username, website_name):
     try:
-        response = requests.get(url.format(username))  
+        headers = {
+            "User-Agent": get_random_user_agent()
+        }
+        response = requests.get(url.format(username), headers=headers, allow_redirects=True)
+        final_url = response.url
+
+        # Check if the final URL is different (redirected)
+        if final_url != url.format(username):
+            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;255m~\033[38;2;255;255;255m]\033[38;2;255;0;255m Redirected to {final_url} \033[38;2;255;255;255m(Username may not exist)\033[0m")
+            return None
+
         if response.status_code == 429:
-            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;255m~\033[38;2;255;255;255m]\033[38;2;255;0;255m To Many Request (429) {url.format(username)} \033[38;2;255;255;255mCan't Check If Link Is Found \033[0m")
+            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;255m~\033[38;2;255;255;255m]\033[38;2;255;0;255m Too Many Requests (429) {url.format(username)} \033[38;2;255;255;255mCan't Check If Link Is Found \033[0m")
         elif response.status_code == 404:
-            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0m-\033[38;2;255;255;255m]\033[\033[38;2;255;0;0m Not Found\033[38;2;255;255;255m {url.format(username)}\033[0m")
+            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0m-\033[38;2;255;255;255m]\033[38;2;255;0;0m Not Found\033[38;2;255;255;255m {url.format(username)}\033[0m")
         elif response.status_code == 410:
             print(f"\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;2;255;255;0m Name Doesn't Exist\033[38;2;255;255;255m {url.format(username)}\033[0m")  
         elif response.status_code == 200:
-            if username.lower() in response.text.lower():
-                print(f"\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m]\033[38;2;0;255;0m Found\033[38;2;255;255;255m {url.format(username)}\033[0m")
+            # Platform-specific checks
+            if "instagram.com" in url:
+                if "Sorry, this page isn't available" in response.text or "The link you followed may be broken" in response.text:
+                    print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0m-\033[38;2;255;255;255m]\033[38;2;255;0;0m Not Found\033[38;2;255;255;255m {url.format(username)}\033[0m")
+                    return None
+                elif username.lower() in response.text.lower():
+                    print(f"\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m]\033[38;2;0;255;0m Found\033[38;2;255;255;255m {website_name}: {url.format(username)}\033[0m")
+                    return website_name, url.format(username)
+
+            elif "twitter.com" in url:
+                if "This account doesn’t exist" in response.text or "Sorry, that page doesn’t exist!" in response.text:
+                    print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0m-\033[38;2;255;255;255m]\033[38;2;255;0;0m Not Found\033[38;2;255;255;255m {url.format(username)}\033[0m")
+                    return None
+                elif username.lower() in response.text.lower():
+                    print(f"\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m]\033[38;2;0;255;0m Found\033[38;2;255;255;255m {website_name}: {url.format(username)}\033[0m")
+                    return website_name, url.format(username)
+
+            elif "reddit.com" in url:
+                if "Sorry, nobody on Reddit goes by that name" in response.text:
+                    print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0m-\033[38;2;255;255;255m]\033[38;2;255;0;0m Not Found\033[38;2;255;255;255m {url.format(username)}\033[0m")
+                    return None
+                elif username.lower() in response.text.lower():
+                    print(f"\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m]\033[38;2;0;255;0m Found\033[38;2;255;255;255m {website_name}: {url.format(username)}\033[0m")
+                    return website_name, url.format(username)
+
+            elif "tiktok.com" in url:
+                if "Couldn't find this account" in response.text or "This account cannot be found" in response.text:
+                    print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0m-\033[38;2;255;255;255m]\033[38;2;255;0;0m Not Found\033[38;2;255;255;255m {url.format(username)}\033[0m")
+                    return None
+                elif username.lower() in response.text.lower():
+                    print(f"\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m]\033[38;2;0;255;0m Found\033[38;2;255;255;255m {website_name}: {url.format(username)}\033[0m")
+                    return website_name, url.format(username)
+
+            # Default behavior for other websites
+            elif username.lower() in response.text.lower():
+                print(f"\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m]\033[38;2;0;255;0m Found\033[38;2;255;255;255m {website_name}: {url.format(username)}\033[0m")
+                return website_name, url.format(username)
+
     except requests.exceptions.RequestException as e:
         print(f"Error checking {url.format(username)}: {e}")
+    return None
 
 websites = {
     "GitHub": "https://github.com/{}",
-    "Twitter": "https://twitter.com/{}",
+    "Twitter": "https://x.com/{}",
     "Instagram": "https://www.instagram.com/{}",
     "YouTube": "https://www.youtube.com/{}",
     "Reddit": "https://www.reddit.com/user/{}",
