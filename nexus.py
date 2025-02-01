@@ -67,7 +67,6 @@ def check_username_on_website(url, username):
 websites = {
     "GitHub": "https://github.com/{}",
     "YouTube": "https://www.youtube.com/@{}",
-    "Reddit": "https://www.reddit.com/user/{}",
     "Duolingo": "https://www.duolingo.com/profile/{}",
     "Chess": "https://www.chess.com/member/{}",
     "SoundCloud": "https://soundcloud.com/{}",
