@@ -65,7 +65,7 @@ def check_username_on_website(url, username):
     return None  
 
 websites = {
-"GitHub": "https://github.com/{}",
+    "GitHub": "https://github.com/{}",
     "Twitter": "https://x.com/{}",
     "Instagram": "https://www.instagram.com/{}",
     "YouTube": "https://www.youtube.com/@{}",
@@ -313,7 +313,9 @@ if __name__ == "__main__":
     sys.stdout.flush()
     for _ in range(1):
         time.sleep(0.6)
-        sys.stdout.write("\033[38;2;0;255;255m@biskit")
+        sys.stdout.write("\033[38;2;0;255;255m[>] Created By BisKit")
+        sys.stdout.write("\033[38;2;0;255;255m[|--> Version 1.0.0")
+        sys.stdout.write("\033[38;2;0;255;255m[>] Running Public Dns Will Block Duckduckgo")
         sys.stdout.flush()
     print("\n")
     username = input("\033[38;2;0;0;255m[\033[38;2;255;255;255m*\033[38;2;0;0;255m]\033[\033[38;2;255;255;255m Enter Person's Name \033[0m")  
