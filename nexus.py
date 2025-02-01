@@ -167,7 +167,6 @@ websites = {
     "Flickr": "https://www.flickr.com/people/{}",
     "Flightradar24": "https://my.flightradar24.com/{}",
     "Freelancer": "https://www.freelancer.com/u/{}",
-    "GaiaOnline": "https://www.gaiaonline.com/profiles/{}",
     "Gamespot": "https://www.gamespot.com/profile/{}",
     "Genius (Artists)": "https://genius.com/artists/{}",
     "Genius (Users)": "https://genius.com/{}",
@@ -223,7 +222,6 @@ websites = {
     "hackernews": "https://news.ycombinator.com/user?id={}",
     "hackerone": "https://hackerone.com/{}",
     "hashnode": "https://hashnode.com/@{}",
-    "holopin": "https://holopin.io/@{}",
     "ifttt": "https://www.ifttt.com/p/{}",
     "issuu": "https://issuu.com/{}",
     "itch": "https://{}.itch.io/",
@@ -249,7 +247,6 @@ websites = {
     "nintendolife": "https://www.nintendolife.com/users/{}",
     "nitrotype": "https://www.nitrotype.com/racer/{}",
     "openstreetmap": "https://www.openstreetmap.org/user/{}",
-    "packagist": "https://packagist.org/packages/{}/",
     "twitterstatus":"https://web.archive.org/web/*/https://twitter.com/{}/status/*",
     "paypal": "https://www.paypal.com/paypalme/{},",
 }
