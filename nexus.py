@@ -58,7 +58,7 @@ def check_username_on_website(url, username):
         elif response.status_code == 200:
             if username.lower() in response.text.lower():
                 print(f"\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m]\033[38;2;0;255;0m Found\033[38;2;255;255;255m {url.format(username)}\033[0m")
-                return url.format(username)  # Return the URL if the username is found
+                return url.format(username)  
     except requests.exceptions.RequestException as e:
         print(f"Error checking {url.format(username)}: {e}")
         return None
@@ -136,7 +136,6 @@ websites = {
     "9GAG": "https://www.9gag.com/u/{}",
     "Academia.edu": "https://independent.academia.edu/{}",
     "Air Pilot Life": "https://airlinepilot.life/u/{}",
-    "Airbit": "https://airbit.com/{}",
     "AllMyLinks": "https://allmylinks.com/{}",
     "Anilist": "https://anilist.co/user/{}",
     "Apple Developer": "https://developer.apple.com/forums/profile/{}",
@@ -270,18 +269,18 @@ def search_username(username, threads=500):
         
         for future in as_completed(futures):
             result = future.result()
-            if result:  # Ensure result is valid
+            if result:  
                 found.add(result)
 
     duckduckgo_results = scrape_duckduckgo_links(username)
 
-    found_count = len(found)  # Count of main website results (excluding DuckDuckGo)
+    found_count = len(found)  
     duckduckgo_count = len(duckduckgo_results)
     total_found_links = found_count + duckduckgo_count
 
     if found or duckduckgo_results:
         if found:
-            print(f"\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Found the username on {found_count} websites:\033[0m")
+            print(f"\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Found Username Links:\033[0m")
             for result in found:
                 print(f"\033[38;2;255;255;255mLinks: {result}\033[0m")  
 
@@ -290,7 +289,7 @@ def search_username(username, threads=500):
             for duckduckgo_result in duckduckgo_results:
                 print(f"\033[38;2;255;255;255m{duckduckgo_result}\033[0m")
 
-        print(f"\n\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;255;255;255m Total website links found: {found_count}\033[0m")
+        print(f"\n\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;255;255;255m Website Found: {found_count}\033[0m")
 
     else:
         print(f"\n\033[38;2;255;69;0mNo exact matches for '{username}' were found on the listed websites or DuckDuckGo.\033[0m")
