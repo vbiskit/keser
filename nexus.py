@@ -86,7 +86,7 @@ websites = {
     "Instagram": "https://www.instagram.com/{}",
     "YouTube": "https://www.youtube.com/{}",
     "Reddit": "https://www.reddit.com/user/{}",
-    "Duolingo": "https://www.duolingo.com/{}",
+    "Duolingo": "https://www.duolingo.com/profile/{}",
     "Chess": "https://www.chess.com/member/{}",
     "SoundCloud": "https://soundcloud.com/{}",
     "Twitch": "https://www.twitch.com/{}",
