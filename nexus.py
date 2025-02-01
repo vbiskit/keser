@@ -66,8 +66,6 @@ def check_username_on_website(url, username):
 
 websites = {
     "GitHub": "https://github.com/{}",
-    "Twitter": "https://x.com/{}",
-    "Instagram": "https://www.instagram.com/{}",
     "YouTube": "https://www.youtube.com/@{}",
     "Reddit": "https://www.reddit.com/user/{}",
     "Duolingo": "https://www.duolingo.com/profile/{}",
@@ -76,7 +74,6 @@ websites = {
     "Twitch": "https://www.twitch.com/{}",
     "LinkedIn": "https://www.linkedin.com/in/{}",
     "AU LinkedIn": "https://au.linkedin.com/in/{}",
-    "Facebook": "https://www.facebook.com/{}",
     "Smule": "https://www.smule.com/{}",
     "Snapchat": "https://www.snapchat.com/add/{}",
     "21buttons": "https://www.21buttons.com/buttoner/{}",
