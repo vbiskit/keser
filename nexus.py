@@ -15,7 +15,7 @@ user_agents = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0) Gecko/20100101 Firefox/91.0",
     "Mozilla/5.0 (Linux; Android 10; SM-G973F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36",
-    "Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Mobile Safari/537.36"
+    "Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Mobile Safari/537.36",
 ]
 
 def get_random_user_agent():
@@ -69,14 +69,14 @@ def check_username_on_website(url, username):
     try:
         response = requests.get(url.format(username))  
         if response.status_code == 429:
-            print(f"\033[38;2;255;0;255m[~] To Many Request (429)  {url.format(username)} \033[38;2;0;255;255m[+] Can't Check If Link Is Found \033[0m")
+            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;255m~\033[38;2;255;255;255m]\033[38;2;255;0;255m To Many Request (429) {url.format(username)} \033[38;2;255;255;255mCan't Check If Link Is Found \033[0m")
         elif response.status_code == 404:
-            print(f"\033[38;2;255;0;0m[-] Not Found {url.format(username)}\033[0m")
+            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0m-\033[38;2;255;255;255m]\033[\033[38;2;255;0;0m Not Found\033[38;2;255;255;255m {url.format(username)}\033[0m")
         elif response.status_code == 410:
-            print(f"\033[38;2;255;255;0m[!] Name Doesn't Exist {url.format(username)}\033[0m")  
+            print(f"\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;2;255;255;0m Name Doesn't Exist\033[38;2;255;255;255m {url.format(username)}\033[0m")  
         elif response.status_code == 200:
             if username.lower() in response.text.lower():
-                print(f"\033[38;2;0;255;0m[+] Found {url.format(username)}\033[0m")
+                print(f"\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m]\033[38;2;0;255;0m Found\033[38;2;255;255;255m {url.format(username)}\033[0m")
     except requests.exceptions.RequestException as e:
         print(f"Error checking {url.format(username)}: {e}")
 
@@ -111,7 +111,6 @@ websites = {
     "patreon": "https://www.patreon.com/search?q={} ",
     "pastebin": "https://pastebin.com/u/{}",
     "periscope": "https://www.periscope.tv/{}",
-    "linktree": "https://linktr.ee/{}",
     "mastodon": "https://mastodon.social/api/v2/search?q={}&type=accounts",
     "knowyourmeme": "https://knowyourmeme.com/users/{}",
     "archive": "https://archive.org/search?query={} ",
@@ -195,11 +194,12 @@ websites = {
     "Fortnite": "https://fortnitetracker.com/profile/all/{}",
     "dribble" : "https://dribbble.com/{}",
     "wordpress users ": "https://profiles.wordpress.org/{}",
+    "linktree": "https://linktr.ee/{}",
 }
 
 def search_username(username, threads=500,):
     
-    print(f"\033[38;2;139;0;255m[*]\033[38;2;0;255;0m Searching [ON] {username} \033[0m\n")
+    print(f"\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;255;255;255m Checking username {username} \033[0m\n")
 
     found = set()  
 
@@ -215,19 +215,19 @@ def search_username(username, threads=500,):
 
     if found or duckduckgo_results:
         
-        print("\033[38;2;139;0;255m[*]\033[38;2;255;255;255m Found the username on the following websites:\033[0m")
+        print("\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Found the username on the following websites:\033[0m")
         for result in found:
-            print(f"\033[38;2;0;255;0m{result}\033[0m")  
+            print(f"\033[38;2;255;0;255m{result}\033[0m")  
 
         if duckduckgo_results:
-            print("\n\033[38;2;139;0;255m[*]\033[38;2;255;255;255m Found the username in DuckDuckGo search results:\033[0m")
+            print("\n\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;255;255;255m Found the username in DuckDuckGo search results:\033[0m")
             for duckduckgo_result in duckduckgo_results:
-                print(f"\033[38;2;0;255;0m{duckduckgo_result}\033[0m") 
+                print(f"\033[\033[38;2;255;255;0m{duckduckgo_result}\033[0m") 
     else:
         print(f"\n\033[38;2;255;69;0mNo exact matches for '{username}' were found on the listed websites or DuckDuckGo.\033[0m")
 
 if __name__ == "__main__":
     loading_screen()
-    username = input("\033[38;2;139;0;255m[*]\033[38;2;255;255;255m Enter Persons Name \033[0m")  
-    threads = int(input("\033[38;2;139;0;255m[*]\033[38;2;255;255;255m Enter Number of Threads (1-500) \033[0m"))
+    username = input("\033[38;2;0;0;255m[\033[38;2;255;255;255m*\033[38;2;0;0;255m]\033[\033[38;2;255;255;255m Enter Persons Name \033[0m")  
+    threads = int(input("\033[38;2;0;0;255m[\033[38;2;255;255;255m*\033[38;2;0;0;255m]\033[\033[38;2;255;255;255m Enter Number of Threads (1-500) \033[0m"))
     search_username(username, threads)
