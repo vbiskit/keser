@@ -311,7 +311,7 @@ if __name__ == "__main__":
     for _ in range(1):
         time.sleep(0.6)
         print("\033[38;2;255;255;255m[>] \033[38;2;139;69;19mCreated By BisKit")
-        print("\033[38;2;255;255;255m|==> \033[38;2;139;69;19mVersion 1.0.0")
+        print("\033[38;2;255;255;255m|--> \033[38;2;139;69;19mVersion 1.0.0")
         print("\033[38;2;255;255;255m[>] \033[38;2;139;69;19mRunning Public Dns Will Block Duckduckgo")
         sys.stdout.flush()
     print("\n")
