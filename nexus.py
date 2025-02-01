@@ -259,7 +259,7 @@ websites = {
     "packagist": "https://packagist.org/packages/{}/",
 }
 def search_username(username, threads=500):
-    print(f"\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;255;255;255m Checking username {username} \033[0m\n")
+    print(f"\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Checking username {username} on: \033[0m\n")
 
     found = set()  
 
@@ -283,15 +283,14 @@ def search_username(username, threads=500):
         if found:
             print(f"\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Found the username on {found_count} websites:\033[0m")
             for result in found:
-                print(f"\033[38;2;255;255;0m{result}\033[0m")  
+                print(f"\033[38;2;255;255;255m*{result}\033[0m")  
 
         if duckduckgo_results:
-            print(f"\n\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Found the username in DuckDuckGo search results ({duckduckgo_count} links):\033[0m")
+            print(f"\n\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Duckduckgo Found {duckduckgo_count} Links\033[0m")
             for duckduckgo_result in duckduckgo_results:
                 print(f"\033[38;2;255;255;255m{duckduckgo_result}\033[0m")
 
         print(f"\n\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;255;255;255m Total website links found: {found_count}\033[0m")
-        print(f"\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;255;255;255m Total links found including DuckDuckGo: {total_found_links}\033[0m")
 
     else:
         print(f"\n\033[38;2;255;69;0mNo exact matches for '{username}' were found on the listed websites or DuckDuckGo.\033[0m")
