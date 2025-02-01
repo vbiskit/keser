@@ -257,6 +257,7 @@ websites = {
     "packagist": "https://packagist.org/packages/{}/",
     "twitterstatus":"https://web.archive.org/web/*/https://twitter.com/{}/status/*",
     "paypal": "https://www.paypal.com/paypalme/{},",
+    "kik":"https://kik.me/{}",
 }
 def search_username(username, threads=500):
     print(f"\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Checking username {username} on: \033[0m\n")
