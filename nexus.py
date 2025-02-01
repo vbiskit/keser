@@ -113,7 +113,7 @@ websites = {
     "devinart": "https://www.deviantart.com/{}",
     "rblxtrade":"https://rblx.trade/p/{}",
     "kick":"https://www.kick.com/{}",
-    "https://www.steamidfinder.com/lookup/{}",
+    "Steam":"https://www.steamidfinder.com/lookup/{}",
     "Shopify":"https://{}.myshopify.com",
     "steamgifts":"https://www.steamgifts.com/user/{}",
     "venmo":"https://account.venmo.com/u/{}",
