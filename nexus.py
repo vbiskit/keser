@@ -285,7 +285,7 @@ def search_username(username, threads=500):
         if found:
             print(f"\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Found Username Links:\033[0m")
             for result in found:
-                print(f"\033[38;2;255;255;255mLinks: {result}\033[0m")  
+                print(f"\033[38;2;255;255;255mLinks: \033[38;2;255;255;0m{result}\033[0m")  
 
         if duckduckgo_results:
             print(f"\n\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Duckduckgo Found {duckduckgo_count} Links\033[0m")
