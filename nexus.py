@@ -47,17 +47,17 @@ def check_username_on_website(url, username):
     try:
         response = requests.get(url.format(username))  
         if response.status_code == 429:
-            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;255m~\033[38;2;255;255;255m]\033[38;2;255;0;255m To Many Request (429) {url.format(username)} \033[38;2;255;255;255mCan't Check If Link Is Found \033[0m")
+            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;255m~\033[38;2;255;255;255m]\033[38;2;255;0;255m To Many Request (429) {url.format(username)} \033[38;2;255;255;255m\033[0m")
             return None
         elif response.status_code == 404:
-            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0m-\033[38;2;255;255;255m]\033[\033[38;2;255;0;0m Not Found\033[38;2;255;255;255m {url.format(username)}\033[0m")
+            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0m-\033[38;2;255;255;255m]\033[\033[38;2;255;0;0m\033[38;2;255;255;255m {url.format(username)}\033[0m")
             return None
         elif response.status_code == 410:
-            print(f"\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;2;255;255;0m Name Doesn't Exist\033[38;2;255;255;255m {url.format(username)}\033[0m")  
+            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0m-\033[38;2;255;255;255m]\033[\033[38;2;255;0;0m\033[38;2;255;255;255m {url.format(username)}\033[0m")  
             return None
         elif response.status_code == 200:
             if username.lower() in response.text.lower():
-                print(f"\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m]\033[38;2;0;255;0m Found\033[38;2;255;255;255m {url.format(username)}\033[0m")
+                print(f"\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m]\033[38;2;0;255;0m\033[38;2;255;255;255m {url.format(username)}\033[0m")
                 return url.format(username)  
     except requests.exceptions.RequestException as e:
         print(f"Error checking {url.format(username)}: {e}")
@@ -187,7 +187,6 @@ websites = {
     "airbit": "https://airbit.com/{}",
     "airliners": "https://www.airliners.net/user/{}/profile/photos",
     "anilist": "https://anilist.co/user/{}/",
-    "asciinema": "https://asciinema.org/~{}",
     "atcoder": "https://atcoder.jp/users/{}",
     "bandcamp": "https://www.bandcamp.com/{}",
     "behance": "https://www.behance.net/{}",
@@ -213,7 +212,6 @@ websites = {
     "discuss_elastic": "https://discuss.elastic.co/u/{}",
     "disqus": "https://disqus.com/{}",
     "eintracht": "https://community.eintracht.de/fans/{}",
-    "empretienda": "https://{}.empretienda.com.ar",
     "exophase": "https://www.exophase.com/user/{}",
     "fanpop": "https://www.fanpop.com/fans/{}",
     "fosstodon": "https://fosstodon.org/@{}",
@@ -228,7 +226,6 @@ websites = {
     "hackerone": "https://hackerone.com/{}",
     "hashnode": "https://hashnode.com/@{}",
     "holopin": "https://holopin.io/@{}",
-    "ifttt": "https://www.ifttt.com/p/{}",
     "issuu": "https://issuu.com/{}",
     "itch": "https://{}.itch.io/",
     "itemfix": "https://www.itemfix.com/c/{}",
@@ -261,7 +258,7 @@ websites = {
     "Fanfix":"https://app.fanfix.io/@{}",
 }
 def search_username(username, threads=500):
-    print(f"\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Checking username {username} on: \033[0m\n")
+    print(f"\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Checking username \033[38;2;255;255;255m{username}\033[38;2;0;255;0m on: \033[0m\n")
 
     found = set()  
 
@@ -274,7 +271,6 @@ def search_username(username, threads=500):
             result = future.result()
             if result:  
                 found.add(result)
-
     duckduckgo_results = scrape_duckduckgo_links(username)
 
     found_count = len(found)  
@@ -313,6 +309,28 @@ if __name__ == "__main__":
         print("\033[38;2;255;255;255m[>] \033[38;2;139;69;19mCreated By BisKit")
         print("\033[38;2;255;255;255m|--> \033[38;2;139;69;19mVersion 1.0.0")
         print("\033[38;2;255;255;255m[>] \033[38;2;139;69;19mRunning Public Dns Will Block Duckduckgo")
+        print("\033[38;2;255;255;255m****************************")
+        print("""\033[38;2;255;255;0mAllways False Positve Links: \033[38;2;0;255;0m
+****************************************************************
+\033[38;2;255;255;255mhttps://app.fanfix.io/@LinkThatHaveFalsePositves\033[38;2;0;255;0m ***************
+\033[38;2;255;255;255mhttps://www.itemfix.com/c/LinkThatHaveFalsePositves\033[38;2;0;255;0m ************
+\033[38;2;255;255;255mhttps://www.facebook.com/LinkThatHaveFalsePositves\033[38;2;0;255;0m *************
+\033[38;2;255;255;255mhttps://tryhackme.com/r/p/LinkThatHaveFalsePositves\033[38;2;0;255;0m ************
+\033[38;2;255;255;255mhttps://profile.codersrank.io/user/LinkThatHaveFalsePositves\033[38;2;0;255;0m ***
+\033[38;2;255;255;255mhttps://www.instagram.com/LinkThatHaveFalsePositves\033[38;2;0;255;0m ************
+\033[38;2;255;255;255mhttps://www.eyeem.com/u/LinkThatHaveFalsePositves\033[38;2;0;255;0m **************
+\033[38;2;255;255;255mhttps://kik.me/LinkThatHaveFalsePositves\033[38;2;0;255;0m ***********************
+\033[38;2;255;255;255mhttps://tinder.com/@LinkThatHaveFalsePositves\033[38;2;0;255;0m ******************
+\033[38;2;255;255;255mhttps://archive.org/search?query=LinkThatHaveFalsePositves\033[38;2;0;255;0m *****
+\033[38;2;255;255;255mhttps://medium.com/@LinkThatHaveFalsePositves\033[38;2;0;255;0m ******************
+\033[38;2;255;255;255mhttps://my.flightradar24.com/LinkThatHaveFalsePositves\033[38;2;0;255;0m *********
+\033[38;2;255;255;255mhttps://www.patreon.com/search?q=LinkThatHaveFalsePositves\033[38;2;0;255;0m *****
+\033[38;2;255;255;255mhttps://holopin.io/@LinkThatHaveFalsePositves\033[38;2;0;255;0m ******************
+\033[38;2;255;255;255mhttps://www.younow.com/LinkThatHaveFalsePositves\033[38;2;0;255;0m ***************
+\033[38;2;255;255;255mhttps://au.pinterest.com/LinkThatHaveFalsePositves\033[38;2;0;255;0m *************
+\033[38;2;255;255;255mhttps://www.gaiaonline.com/profiles/LinkThatHaveFalsePositves\033[38;2;0;255;0m **
+\033[38;2;255;255;255mhttps://www.codecademy.com/profiles/LinkThatHaveFalsePositves\033[38;2;0;255;0m **
+              """)
         sys.stdout.flush()
     print("\n")
     username = input("\033[38;2;255;255;255m[\033[38;2;139;69;19m*\033[38;2;255;255;255m]\033[\033[38;2;255;255;255m Enter Person's Name \033[0m")  
