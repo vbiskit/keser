@@ -229,7 +229,6 @@ websites = {
     "hashnode": "https://hashnode.com/@{}",
     "holopin": "https://holopin.io/@{}",
     "ifttt": "https://www.ifttt.com/p/{}",
-    "imgur": "https://imgur.com/user/{}",
     "issuu": "https://issuu.com/{}",
     "itch": "https://{}.itch.io/",
     "itemfix": "https://www.itemfix.com/c/{}",
