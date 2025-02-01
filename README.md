@@ -1,7 +1,4 @@
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&duration=3000&pause=1000&color=3713F7&width=435&lines=tool+for+osint..." alt="Typing SVG">
-</p>
-<p align="center">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=0BF700&width=435&lines=More+Websites+Coming+Soon" alt="Typing SVG">
 </p>
 
