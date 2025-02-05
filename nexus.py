@@ -80,21 +80,16 @@ def check_username_on_website(url, username):
     try:
         response = requests.get(url.format(username))
         if response.status_code == 429:
-            print(blue_to_white_gradient("FINDING LINKS PLEASE WAIT..."))
             return None
         elif response.status_code == 404:
-            print(blue_to_white_gradient("FINDING LINKS PLEASE WAIT..."))
             return None
         elif response.status_code == 410:
-            print(blue_to_white_gradient("FINDING LINKS PLEASE WAIT..."))
             return None
         elif response.status_code == 200:
             if username.lower() in response.text.lower():
-                print(blue_to_white_gradient("FINDING LINKS PLEASE WAIT..."))
                 return url.format(username)
     except requests.exceptions.RequestException as e:
         return None
-    return None
 websites = {
 "GitHub": "https://github.com/{}",
     "Twitter": "https://x.com/{}",
