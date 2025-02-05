@@ -2,7 +2,7 @@
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=0BF700&width=435&lines=More+Websites+Coming+Soon" alt="Typing SVG">
 </p>
 
-![Screenshot](https://github.com/biskit069/g2l/blob/main/Nexus.png)
+![Screenshot](https://github.com/biskit069/Nexus/blob/main/Nexus.png)
 ```bash
 
 How To install: git clone https://github.com/biskit069/Nexus
