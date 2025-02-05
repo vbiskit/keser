@@ -1,4 +1,4 @@
-mport requests
+import requests
 from bs4 import BeautifulSoup
 import time
 import sys
@@ -45,24 +45,24 @@ def scrape_duckduckgo_links(query):
         return []
 def check_username_on_website(url, username):
     try:
-        response = requests.get(url.format(username))  
+        response = requests.get(url.format(username))
         if response.status_code == 429:
-            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;255m~\033[38;2;255;255;255m]\033[38;2;255;0;255m To Many Request (429) {url.format(username)} \033[38;2;255;255;255mCan't Check If Link Is Found \033[0m")
+            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;255m~\033[38;2;255;255;255m] To Many Request (429) {url.format(username)} \033[38;2;255;255;255m\033[0m")
             return None
         elif response.status_code == 404:
-            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0m-\033[38;2;255;255;255m]\033[\033[38;2;255;0;0m Not Found\033[38;2;255;255;255m {url.format(username)}\033[0m")
+            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0m-\033[38;2;255;255;255m]\033[38;2;255;0;0m {url.format(username)}\033[0m")
             return None
         elif response.status_code == 410:
-            print(f"\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;2;255;255;0m Name Doesn't Exist\033[38;2;255;255;255m {url.format(username)}\033[0m")  
+            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0m-\033[38;2;255;255;255m]\033[38;2;255;0;0m {url.format(username)}\033[0m")
             return None
         elif response.status_code == 200:
             if username.lower() in response.text.lower():
-                print(f"\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m]\033[38;2;0;255;0m Found\033[38;2;255;255;255m {url.format(username)}\033[0m")
-                return url.format(username)  
+                print(f"\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m]\033[38;2;0;255;0m\033[38;5;120m {url.format(username)}\033[0m")
+                return url.format(username)
     except requests.exceptions.RequestException as e:
         print(f"Error checking {url.format(username)}: {e}")
         return None
-    return None  
+    return None
 
 websites = {
 "GitHub": "https://github.com/{}",
@@ -229,7 +229,6 @@ websites = {
     "hashnode": "https://hashnode.com/@{}",
     "holopin": "https://holopin.io/@{}",
     "ifttt": "https://www.ifttt.com/p/{}",
-    "imgur": "https://imgur.com/user/{}",
     "issuu": "https://issuu.com/{}",
     "itch": "https://{}.itch.io/",
     "itemfix": "https://www.itemfix.com/c/{}",
@@ -282,12 +281,12 @@ def search_username(username, threads=500):
         if found:
             print(f"\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Found Username Links:\033[0m")
             for result in found:
-                print(f"\033[38;2;255;255;255mLinks: {result}\033[0m")  
+                print(f"\033[38;5;171mLinks: \033[38;5;120m {result}\033[0m")  
 
         if duckduckgo_results:
             print(f"\n\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Duckduckgo Found {duckduckgo_count} Links\033[0m")
             for duckduckgo_result in duckduckgo_results:
-                print(f"\033[38;2;255;255;255m{duckduckgo_result}\033[0m")
+                print(f"\033[38;5;171m{duckduckgo_result}\033[0m")
 
         print(f"\n\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;255;255;255m Website Found: {found_count}\033[0m")
 
@@ -296,23 +295,22 @@ def search_username(username, threads=500):
 
 if __name__ == "__main__":
     sys.stdout.write("\033c")
-    print("""\033[38;2;0;0;255m                                
- ███▄    █ ▓█████ ▒██   ██▒ █    ██   ██████ 
- ██ ▀█   █ ▓█   ▀ ▒▒ █ █ ▒░ ██  ▓██▒▒██    ▒ 
-▓██  ▀█ ██▒▒███   ░░  █   ░▓██  ▒██░░ ▓██▄   
-▓██▒  ▐▌██▒▒▓█  ▄  ░ █ █ ▒ ▓▓█  ░██░  ▒   ██▒
-▒██░   ▓██░░▒████▒▒██▒ ▒██▒▒▒█████▓ ▒██████▒▒
-░ ▒░   ▒ ▒ ░░ ▒░ ░▒▒ ░ ░▓ ░░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░
-░ ░░   ░ ▒░ ░ ░  ░░░   ░▒ ░░░▒░ ░ ░ ░ ░▒  ░ ░
-   ░   ░ ░    ░    ░    ░   ░░░ ░ ░ ░  ░  ░  
-         ░    ░  ░ ░    ░     ░           ░                                                                                                                                                                        
-\033[0m""")  
+    print("""\033[38;5;171m
+███╗   ██╗███████╗██╗  ██╗██╗   ██╗███████╗
+████╗  ██║██╔════╝╚██╗██╔╝██║   ██║██╔════╝
+██╔██╗ ██║█████╗   ╚███╔╝ ██║   ██║███████╗
+██║╚██╗██║██╔══╝   ██╔██╗ ██║   ██║╚════██║
+██║ ╚████║███████╗██╔╝ ██╗╚██████╔╝███████║
+╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝                                      
+\033[0m""")
     sys.stdout.flush()
     for _ in range(1):
         time.sleep(0.6)
-        sys.stdout.write("\033[38;2;0;255;255m@biskit")
+        print("\033[38;5;120m[>] \033[38;5;171mCreated By BisKit")
+        print("\033[38;5;120m|--> \033[38;5;171mVersion 1.0.0")
+        print("\033[38;5;120m[>] \033[38;5;171mRunning Public Dns Will Block Duckduckgo")
         sys.stdout.flush()
     print("\n")
-    username = input("\033[38;2;0;0;255m[\033[38;2;255;255;255m*\033[38;2;0;0;255m]\033[\033[38;2;255;255;255m Enter Person's Name \033[0m")  
-    threads = int(input("\033[38;2;0;0;255m[\033[38;2;255;255;255m*\033[38;2;0;0;255m]\033[\033[38;2;255;255;255m Enter Number of Threads (1-500) \033[0m"))
+    username = input("\033[38;2;255;255;255m[\033[38;5;120m*\033[38;2;255;255;255m]\033[38;5;171m Enter Person's Name \033[0m")
+    threads = int(input("\033[38;2;255;255;255m[\033[38;5;171m*\033[38;2;255;255;255m]\033[38;5;120m Enter Number of Threads (1-500) \033[0m"))
     search_username(username, threads)
