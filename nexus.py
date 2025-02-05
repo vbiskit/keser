@@ -7027,12 +7027,11 @@ def rgb(r, g, b, text):
 def apply_gradient(text):
     """Apply a gradient effect to the text."""
     gradient_colors = [
-        (0, 0, 255),    # Pure blue
-        (100, 100, 255), # Light blue
-        (200, 200, 255), # Very light blue
-        (255, 255, 255)  # White
+        (0, 0, 255),    
+        (100, 100, 255), 
+        (200, 200, 255), 
+        (255, 255, 255) 
     ]
-    
     gradient_text = ""
     text_length = len(text)
     
@@ -7173,8 +7172,7 @@ def check_username_on_website(site, username):
         url = site["uri_check"].replace("{account}", username)
         headers = {"User-Agent": get_random_user_agent()}
         response = requests.get(url, headers=headers, timeout=10)
-        
-        # Check if the response matches the expected criteria
+	    
         if (response.status_code == site["e_code"] and 
             site["e_string"] in response.text):
             return (site["name"], url)
