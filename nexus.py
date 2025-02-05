@@ -154,7 +154,6 @@ websites = {
     "Shopify":"https://{}.myshopify.com",
     "steamgifts":"https://www.steamgifts.com/user/{}",
     "venmo":"https://account.venmo.com/u/{}",
-    "tryhackme":"https://tryhackme.com/r/p/{}",
     "telegram":"https://t.me/{}",
     "allmylinks":"https://allmylinks.com/{}",
     "bandlab":"https://www.bandlab.com/{}",
