@@ -93,10 +93,8 @@ def check_username_on_website(url, username):
                 print(blue_to_white_gradient("FINDING LINKS PLEASE WAIT..."))
                 return url.format(username)
     except requests.exceptions.RequestException as e:
-        print(f"Error checking {url.format(username)}: {e}")
         return None
     return None
-
 websites = {
 "GitHub": "https://github.com/{}",
     "Twitter": "https://x.com/{}",
@@ -327,7 +325,7 @@ def search_username(username, threads=500):
 \n\033[38;2;255;255;255m[\033[38;2;0;0;255m*\033[38;2;255;255;255m] {blue_to_white_gradient('Duckduckgo Found')} \033[38;2;255;255;255m{duckduckgo_count} Links\033[0m""")
             for duckduckgo_result in duckduckgo_results:
                 
-                print(f"\033[38;2;255;255;255m{blue_to_white_gradient('Duck')}]\033[38;2;255;255;255m {duckduckgo_result} \033[0m")
+                print(f"\033[38;2;255;255;255m{blue_to_white_gradient('Duck')}\033[38;2;255;255;255m]\033[38;2;255;255;255m {duckduckgo_result} \033[0m")
 
         print(f"\n\033[38;2;255;255;255m[\033[38;2;0;0;255m*\033[38;2;255;255;255m] {blue_to_white_gradient('Websites Found:')} \033[38;2;255;255;255m{found_count}/ Scroll Up To See Sites\033[0m")
     else:
