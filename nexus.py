@@ -6,6 +6,39 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import random
 import os
 from colorama import Fore
+def rgb(r, g, b, text):
+    return f"\033[38;2;{r};{g};{b}m{text}\033[0m"
+
+def clear_screen():
+    os.system("clear" if os.name == "posix" else "cls")
+
+def apply_gradient(text):
+    gradient_colors = [
+        (139, 0, 255),   # Purple
+        (170, 85, 255),  # Lighter Purple
+        (216, 150, 255), # Soft Pinkish Purple
+        (255, 255, 255)  # White
+    ]
+
+    gradient_text = ""
+    text_length = len(text)
+    
+    for i, char in enumerate(text):
+        color_index = int((i / text_length) * (len(gradient_colors) - 1))
+        r, g, b = gradient_colors[color_index]
+        gradient_text += rgb(r, g, b, char)
+    
+    return gradient_text
+
+def blue_to_white_gradient(text):
+    # Generate a gradient from blue to white (using RGB)
+    gradient = ''
+    for i in range(len(text)):
+        r = int((i * 255) / len(text))  # Red component increases
+        g = int((i * 255) / len(text))  # Green component increases
+        b = 255  # Blue stays constant
+        gradient += f"\033[38;2;{r};{g};{b}m{text[i]}"
+    return gradient
 user_agents = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Version/14.1.2 Safari/537.36",
@@ -47,17 +80,17 @@ def check_username_on_website(url, username):
     try:
         response = requests.get(url.format(username))
         if response.status_code == 429:
-            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;255m~\033[38;2;255;255;255m] To Many Request (429) {url.format(username)} \033[38;2;255;255;255m\033[0m")
+            print(blue_to_white_gradient("FINDING LINKS PLEASE WAIT..."))
             return None
         elif response.status_code == 404:
-            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0m-\033[38;2;255;255;255m]\033[38;2;255;0;0m {url.format(username)}\033[0m")
+            print(blue_to_white_gradient("FINDING LINKS PLEASE WAIT..."))
             return None
         elif response.status_code == 410:
-            print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0m-\033[38;2;255;255;255m]\033[38;2;255;0;0m {url.format(username)}\033[0m")
+            print(blue_to_white_gradient("FINDING LINKS PLEASE WAIT..."))
             return None
         elif response.status_code == 200:
             if username.lower() in response.text.lower():
-                print(f"\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m]\033[38;2;0;255;0m\033[38;5;120m {url.format(username)}\033[0m")
+                print(blue_to_white_gradient("FINDING LINKS PLEASE WAIT..."))
                 return url.format(username)
     except requests.exceptions.RequestException as e:
         print(f"Error checking {url.format(username)}: {e}")
@@ -257,7 +290,7 @@ websites = {
     "packagist": "https://packagist.org/packages/{}/",
 }
 def search_username(username, threads=500):
-    print(f"\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Checking username {username} on: \033[0m\n")
+    print(f"\033[38;2;255;255;255m[\033[38;2;0;0;255m*\033[38;2;255;255;255m] \033[38;2;0;0;255mChecking username {blue_to_white_gradient(username)} on: \033[0m\n")
 
     found = set()  
 
@@ -279,38 +312,47 @@ def search_username(username, threads=500):
 
     if found or duckduckgo_results:
         if found:
-            print(f"\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Found Username Links:\033[0m")
+            
+            print("""
+\033[38;2;255;255;255m[\033[38;2;0;0;255m*\033[38;2;255;255;255m] Found Username Links:""")
+            
             for result in found:
-                print(f"\033[38;5;171mLinks: \033[38;5;120m {result}\033[0m")  
+                
+                print(f"""
+\033[38;2;255;255;255mSites: \033[38;5;120m {blue_to_white_gradient(result)}\033[0m""")  
 
         if duckduckgo_results:
-            print(f"\n\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;0;255;0m Duckduckgo Found {duckduckgo_count} Links\033[0m")
+            
+            print(f"""
+\n\033[38;2;255;255;255m[\033[38;2;0;0;255m*\033[38;2;255;255;255m] {blue_to_white_gradient('Duckduckgo Found')} \033[38;2;255;255;255m{duckduckgo_count} Links\033[0m""")
             for duckduckgo_result in duckduckgo_results:
-                print(f"\033[38;5;171m{duckduckgo_result}\033[0m")
+                
+                print(f"\033[38;2;255;255;255m{blue_to_white_gradient('Duck')}]\033[38;2;255;255;255m {duckduckgo_result} \033[0m")
 
-        print(f"\n\033[38;2;0;255;0m[\033[38;2;255;255;0m*\033[38;2;0;255;0m]\033[38;2;255;255;255m Website Found: {found_count}\033[0m")
-
+        print(f"\n\033[38;2;255;255;255m[\033[38;2;0;0;255m*\033[38;2;255;255;255m] {blue_to_white_gradient('Websites Found:')} \033[38;2;255;255;255m{found_count}/ Scroll Up To See Sites\033[0m")
     else:
         print(f"\n\033[38;2;255;69;0mNo exact matches for '{username}' were found on the listed websites or DuckDuckGo.\033[0m")
 
 if __name__ == "__main__":
     sys.stdout.write("\033c")
-    print("""\033[38;5;171m
-███╗   ██╗███████╗██╗  ██╗██╗   ██╗███████╗
-████╗  ██║██╔════╝╚██╗██╔╝██║   ██║██╔════╝
-██╔██╗ ██║█████╗   ╚███╔╝ ██║   ██║███████╗
-██║╚██╗██║██╔══╝   ██╔██╗ ██║   ██║╚════██║
-██║ ╚████║███████╗██╔╝ ██╗╚██████╔╝███████║
-╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝                                      
-\033[0m""")
+    logo = """
+_____   ______________  ______  _________
+___  | / /__  ____/_  |/ /_  / / /_  ___/
+__   |/ /__  __/  __    /_  / / /_____ \ 
+_  /|  / _  /___  _    | / /_/ / ____/ / 
+/_/ |_/  /_____/  /_/|_| \____/  /____/  
+"""
+    print(blue_to_white_gradient(logo))
     sys.stdout.flush()
+    
     for _ in range(1):
         time.sleep(0.6)
-        print("\033[38;5;120m[>] \033[38;5;171mCreated By BisKit")
-        print("\033[38;5;120m|--> \033[38;5;171mVersion 1.0.0")
-        print("\033[38;5;120m[>] \033[38;5;171mRunning Public Dns Will Block Duckduckgo")
+        print(blue_to_white_gradient("[>]  Created By BisKit"))
+        print(blue_to_white_gradient("|-->  Version 1.0.2"))
+        print(blue_to_white_gradient("[>]  Running Public Dns Will Block Duckduckgo"))
         sys.stdout.flush()
+    
     print("\n")
-    username = input("\033[38;2;255;255;255m[\033[38;5;120m*\033[38;2;255;255;255m]\033[38;5;171m Enter Person's Name \033[0m")
-    threads = int(input("\033[38;2;255;255;255m[\033[38;5;171m*\033[38;2;255;255;255m]\033[38;5;120m Enter Number of Threads (1-500) \033[0m"))
+    username = input(f"\033[38;2;255;255;255m[\033[38;2;0;0;255m+\033[38;2;255;255;255m] {blue_to_white_gradient('Enter Person\'s Name ')}")
+    threads = int(input(f"\033[38;2;255;255;255m[\033[38;2;0;0;255m+\033[38;2;255;255;255m] {blue_to_white_gradient('Enter Number of Threads (1-500) ')}"))
     search_username(username, threads)
