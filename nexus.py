@@ -93,7 +93,7 @@ def check_username_on_website(url, username):
 websites = {
 "GitHub": "https://github.com/{}",
     "Twitter": "https://x.com/{}",
-    "Instagram": "https://www.instagram.com/{}",
+    "Instagram": "https://archive.org/wayback/available?url=https://instagram.com/{}",
     "YouTube": "https://www.youtube.com/@{}",
     "Reddit": "https://www.reddit.com/user/{}",
     "Duolingo": "https://www.duolingo.com/profile/{}",
@@ -279,7 +279,22 @@ websites = {
     "nintendolife": "https://www.nintendolife.com/users/{}",
     "nitrotype": "https://www.nitrotype.com/racer/{}",
     "openstreetmap": "https://www.openstreetmap.org/user/{}",
+    "mastodon.social" : "https://mastodon.social/@{}",
     "packagist": "https://packagist.org/packages/{}/",
+    "archive.search": "https://archive.org/advancedsearch.php?q={}&output=json",
+    "Redit":"https://www.reddit.com/user/{}/about/.json",
+    "tryhackme":"https://tryhackme.com/api/user/exist/{}",
+    "pornhub":"https://www.pornhub.com/users/{}",
+    "picsart":"https://picsart.com/u/{}",
+    "tiktok":"https://www.tiktok.com/oembed?url=https://www.tiktok.com/@{}",
+    "pinterest US":"https://www.pinterest.com/rachelbrockmann/{}",
+    "random":"https://gw-napi.zepeto.io/profiles/{}",
+    "kawi":"https://www.kwai.com/@{}",
+    "Twitter":"https://nitter.privacydev.net/{}",
+    "Tumblr":"https://{}.tumblr.com",
+    "vsco":"https://vsco.co/{}/gallery",
+    "wattpad":"https://www.wattpad.com/api/v3/users/{}",
+    "twitter archive":"http://archive.org/wayback/available?url=https://twitter.com/{}/status/*",
 }
 def search_username(username, threads=500):
     print(f"\033[38;2;255;255;255m[\033[38;2;0;0;255m*\033[38;2;255;255;255m] \033[38;2;0;0;255mChecking username {blue_to_white_gradient(username)} on: \033[0m\n")
