@@ -7213,7 +7213,7 @@ def scrape_duckduckgo_links(query):
         return []
 
 # ======== SEARCH FUNCTIONALITY ========
-def search_username(username, threads=2):
+def search_username(username, threads=1000):
     start_time = time.time()  # Start timing
     print(f"\n{apply_gradient('Checking username')} {blue_to_white_gradient(username)}on:\n")
     
@@ -7264,8 +7264,8 @@ if __name__ == "__main__":
 
     """))
     print("??? @biskit")
-    
+
     username = input(f"{apply_gradient('Username:')} ")
-    threads = int(input(f"{apply_gradient('Threads (1-500):')} "))
+    threads = int(input(f"{apply_gradient('Threads (1-1000):')} "))
     
     search_username(username, threads)
