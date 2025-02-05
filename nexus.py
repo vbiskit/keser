@@ -178,7 +178,6 @@ websites = {
     "Championat": "https://www.championat.com/user/{}",
     "Clapper": "https://clapperapp.com/{}",
     "Clubhouse": "https://www.clubhouse.com/@{}",
-    "Codecademy": "https://www.codecademy.com/profiles/{}",
     "Codeforces": "https://codeforces.com/profile/{}",
     "Codewars": "https://www.codewars.com/users/{}",
     "ColourLovers": "https://www.colourlovers.com/lover/{}",
