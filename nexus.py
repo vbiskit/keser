@@ -7215,7 +7215,7 @@ def scrape_duckduckgo_links(query):
 # ======== SEARCH FUNCTIONALITY ========
 def search_username(username, threads=1000):
     start_time = time.time()  # Start timing
-    print(f"\n{apply_gradient('Checking username')} {blue_to_white_gradient(username)}on:\n")
+    print(f"\n{apply_gradient('Checking username')} {blue_to_white_gradient(username)} on:\n")
     
     # Check metadata sites
     found = []
