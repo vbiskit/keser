@@ -287,7 +287,7 @@ websites = {
     "pornhub":"https://www.pornhub.com/users/{}",
     "picsart":"https://picsart.com/u/{}",
     "tiktok":"https://www.tiktok.com/oembed?url=https://www.tiktok.com/@{}",
-    "pinterest US":"https://www.pinterest.com/rachelbrockmann/{}",
+    "pinterest US":"https://www.pinterest.com/{}",
     "random":"https://gw-napi.zepeto.io/profiles/{}",
     "kawi":"https://www.kwai.com/@{}",
     "Twitter":"https://nitter.privacydev.net/{}",
