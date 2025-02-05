@@ -353,6 +353,6 @@ _  /|  / _  /___  _    | / /_/ / ____/ /
         sys.stdout.flush()
     
     print("\n")
-    username = input(f"\033[38;2;255;255;255m[\033[38;2;0;0;255m+\033[38;2;255;255;255m] {blue_to_white_gradient('Enter Person\'s Name ')}")
+    username = input(f"\033[38;2;255;255;255m[\033[38;2;0;0;255m+\033[38;2;255;255;255m] {blue_to_white_gradient('Enter Name ')}")
     threads = int(input(f"\033[38;2;255;255;255m[\033[38;2;0;0;255m+\033[38;2;255;255;255m] {blue_to_white_gradient('Enter Number of Threads (1-500) ')}"))
     search_username(username, threads)
