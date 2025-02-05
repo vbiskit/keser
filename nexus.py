@@ -295,7 +295,7 @@ def search_username(username, threads=500):
 
 if __name__ == "__main__":
     sys.stdout.write("\033c")
-    print("""\033[38;2;255;255;255m                             
+    print("""\033[38;5;120m                           
                                    
   ____   ____ ___  _____ __  ______
  /    \_/ __ \\  \/  /  |  \/  ___/
@@ -306,33 +306,11 @@ if __name__ == "__main__":
     sys.stdout.flush()
     for _ in range(1):
         time.sleep(0.6)
-        print("\033[38;2;255;255;255m[>] \033[38;2;139;69;19mCreated By BisKit")
-        print("\033[38;2;255;255;255m|--> \033[38;2;139;69;19mVersion 1.0.0")
-        print("\033[38;2;255;255;255m[>] \033[38;2;139;69;19mRunning Public Dns Will Block Duckduckgo")
-        print("\033[38;2;255;255;255m****************************")
-        print("""\033[38;2;255;255;0mAllways False Positve Links: \033[38;2;0;255;0m
-****************************************************************
-\033[38;2;255;255;255mhttps://app.fanfix.io/@LinkThatHaveFalsePositves\033[38;2;0;255;0m ***************
-\033[38;2;255;255;255mhttps://www.itemfix.com/c/LinkThatHaveFalsePositves\033[38;2;0;255;0m ************
-\033[38;2;255;255;255mhttps://www.facebook.com/LinkThatHaveFalsePositves\033[38;2;0;255;0m *************
-\033[38;2;255;255;255mhttps://tryhackme.com/r/p/LinkThatHaveFalsePositves\033[38;2;0;255;0m ************
-\033[38;2;255;255;255mhttps://profile.codersrank.io/user/LinkThatHaveFalsePositves\033[38;2;0;255;0m ***
-\033[38;2;255;255;255mhttps://www.instagram.com/LinkThatHaveFalsePositves\033[38;2;0;255;0m ************
-\033[38;2;255;255;255mhttps://www.eyeem.com/u/LinkThatHaveFalsePositves\033[38;2;0;255;0m **************
-\033[38;2;255;255;255mhttps://kik.me/LinkThatHaveFalsePositves\033[38;2;0;255;0m ***********************
-\033[38;2;255;255;255mhttps://tinder.com/@LinkThatHaveFalsePositves\033[38;2;0;255;0m ******************
-\033[38;2;255;255;255mhttps://archive.org/search?query=LinkThatHaveFalsePositves\033[38;2;0;255;0m *****
-\033[38;2;255;255;255mhttps://medium.com/@LinkThatHaveFalsePositves\033[38;2;0;255;0m ******************
-\033[38;2;255;255;255mhttps://my.flightradar24.com/LinkThatHaveFalsePositves\033[38;2;0;255;0m *********
-\033[38;2;255;255;255mhttps://www.patreon.com/search?q=LinkThatHaveFalsePositves\033[38;2;0;255;0m *****
-\033[38;2;255;255;255mhttps://holopin.io/@LinkThatHaveFalsePositves\033[38;2;0;255;0m ******************
-\033[38;2;255;255;255mhttps://www.younow.com/LinkThatHaveFalsePositves\033[38;2;0;255;0m ***************
-\033[38;2;255;255;255mhttps://au.pinterest.com/LinkThatHaveFalsePositves\033[38;2;0;255;0m *************
-\033[38;2;255;255;255mhttps://www.gaiaonline.com/profiles/LinkThatHaveFalsePositves\033[38;2;0;255;0m **
-\033[38;2;255;255;255mhttps://www.codecademy.com/profiles/LinkThatHaveFalsePositves\033[38;2;0;255;0m **
-              """)
+        print("\033[38;5;120m[>] \033[38;5;171mCreated By BisKit")
+        print("\033[38;5;120m|--> \033[38;5;171mVersion 1.0.0")
+        print("\033[38;5;120m[>] \033[38;5;171mRunning Public Dns Will Block Duckduckgo")
         sys.stdout.flush()
     print("\n")
-    username = input("\033[38;2;255;255;255m[\033[38;2;139;69;19m*\033[38;2;255;255;255m]\033[\033[38;2;255;255;255m Enter Person's Name \033[0m")  
-    threads = int(input("\033[38;2;255;255;255m[\033[38;2;139;69;19m*\033[38;2;255;255;255m]\033[\033[38;2;255;255;255m Enter Number of Threads (1-500) \033[0m"))
+    username = input("\033[38;2;255;255;255m[\033[38;5;120m*\033[38;2;255;255;255m]\033[\033[38;2;255;255;255m Enter Person's Name \033[0m")  
+    threads = int(input("\033[38;2;255;255;255m[\033[38;5;120m*\033[38;2;255;255;255m]\033[\033[38;2;255;255;255m Enter Number of Threads (1-500) \033[0m"))
     search_username(username, threads)
