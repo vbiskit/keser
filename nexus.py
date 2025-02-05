@@ -1,4 +1,4 @@
-import time  # Added for timing
+import time  
 import requests
 from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -7026,7 +7026,6 @@ def rgb(r, g, b, text):
 
 def apply_gradient(text):
     """Apply a gradient effect to the text."""
-    # Define a gradient from blue to white
     gradient_colors = [
         (0, 0, 255),    # Pure blue
         (100, 100, 255), # Light blue
@@ -7034,12 +7033,10 @@ def apply_gradient(text):
         (255, 255, 255)  # White
     ]
     
-    # Apply the gradient to each character in the text
     gradient_text = ""
     text_length = len(text)
     
     for i, char in enumerate(text):
-        # Calculate the color index based on the character position
         color_index = int((i / text_length) * (len(gradient_colors) - 1))
         r, g, b = gradient_colors[color_index]
         gradient_text += rgb(r, g, b, char)
@@ -7050,10 +7047,9 @@ def blue_to_white_gradient(text):
     """Generate a gradient from blue to white (using RGB)."""
     gradient = ''
     for i in range(len(text)):
-        # Start with pure blue (0, 0, 255) and transition to white (255, 255, 255)
-        r = int((i * 255) / len(text))  # Red component increases
-        g = int((i * 255) / len(text))  # Green component increases
-        b = 255  # Blue stays constant (starts at 255 and remains)
+        r = int((i * 255) / len(text))  
+        g = int((i * 255) / len(text))  
+        b = 255  
         gradient += f"\033[38;2;{r};{g};{b}m{text[i]}"
     return gradient
 
@@ -7212,12 +7208,10 @@ def scrape_duckduckgo_links(query):
         print(f"{Fore.RED}Error with DuckDuckGo request: {e}{Fore.RESET}")
         return []
 
-# ======== SEARCH FUNCTIONALITY ========
 def search_username(username, threads=1000):
-    start_time = time.time()  # Start timing
+    start_time = time.time()  
     print(f"\n{apply_gradient('Checking username')} {blue_to_white_gradient(username)} on:\n")
     
-    # Check metadata sites
     found = []
     with ThreadPoolExecutor(max_workers=threads) as executor:
         futures = {executor.submit(check_username_on_website, site, username): site 
@@ -7228,13 +7222,10 @@ def search_username(username, threads=1000):
             if result:
                 found.append(result)
 
-    # Perform DuckDuckGo search
     duckduckgo_results = scrape_duckduckgo_links(username)
 
-    # Calculate elapsed time
     elapsed_time = time.time() - start_time
 
-    # Display results
     if found or duckduckgo_results:
         if found:
             print(f"\n{apply_gradient('✅ Found matches:')}")
