@@ -7235,7 +7235,7 @@ def scrape_duckduckgo_links(query):
 
 def search_username(username, threads=500):  
     start_time = time.time()  
-    print(f"\n{apply_gradient('Checking username')} {blue_to_white_gradient(username)} on:\n")
+    print(f"\n{apply_gradient('Checking username')} \033[97m{username} \033[38;2;57;255;20mon:\n")
     
     found = []
     with ThreadPoolExecutor(max_workers=threads) as executor:
