@@ -12,5 +12,5 @@ pip3 install -r requirements.txt
 
 How To Run: python3 nexus.py
 
-if you are running 8.8.8.8 or 1.1.1.1 dns it will block the duckduckgo links
+if duckduckgo doesn't work it may be the public dns
 
