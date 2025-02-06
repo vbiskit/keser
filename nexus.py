@@ -7164,10 +7164,6 @@ user_agents = working_user_agents = [
 def get_random_user_agent():
     return random.choice(user_agents)
 
-
-def get_random_user_agent():
-    return random.choice(user_agents)
-
 def check_username_on_website(site, username):
     try:
         url = site["uri_check"].replace("{account}", username)
@@ -7207,7 +7203,7 @@ def scrape_duckduckgo_links(query):
         print(f"{Fore.RED}Error with DuckDuckGo request: {e}{Fore.RESET}")
         return []
 
-def search_username(username, threads=1000):
+def search_username(username, threads=1):
     start_time = time.time()  
     print(f"\n{apply_gradient('Checking username')} {blue_to_white_gradient(username)} on:\n")
     
@@ -7256,6 +7252,6 @@ if __name__ == "__main__":
     print("??? @biskit")
 
     username = input(f"{apply_gradient('Username:')} ")
-    threads = int(input(f"{apply_gradient('Threads (1-1000):')} "))
+    threads = int(input(f"{apply_gradient('Threads (1-30):')} "))
     
     search_username(username, threads)
