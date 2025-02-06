@@ -4,7 +4,7 @@
 
 ```bash
 
-How Toinstall:
+How To install:
 git clone https://github.com/biskit069/Nexus
 
 cd Nexus
