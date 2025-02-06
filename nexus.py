@@ -7259,7 +7259,7 @@ def search_username(username, threads=500):
         if duckduckgo_results:
             print(f"\n{apply_gradient('DuckDuckGo results:')}")
             for i, link in enumerate(duckduckgo_results, 1):
-                print(f"\033[38;2;255;255;255mResult {i} {link}")
+                print(f"\033[38;2;255;255;255mResult \033[38;2;0;255;255m{i} \033[38;2;255;255;255m{link}")
         print(f"\n{apply_gradient('Summary:')}")
         print(f"{blue_to_white_gradient('🔎 Websites found:')} {len(found)}")
         print(f"{blue_to_white_gradient('🦆 DuckDuckGo results:')} {len(duckduckgo_results)}")
