@@ -5,7 +5,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import random
 import os
 from colorama import Fore
-
+from urllib.parse import urlparse, parse_qs
 metadata = {
      "sites" : [
        {
@@ -7168,7 +7168,7 @@ def check_username_on_website(site, username):
     try:
         url = site["uri_check"].replace("{account}", username)
         headers = {"User-Agent": get_random_user_agent()}
-        response = requests.get(url, headers=headers, timeout=10)
+        response = requests.get(url, headers=headers, timeout=3)
 	    
         if (response.status_code == site["e_code"] and 
             site["e_string"] in response.text):
@@ -7182,7 +7182,7 @@ def check_username_on_website(site, username):
         return None
 
 def scrape_duckduckgo_links(query):
-    url = f"https://duckduckgo.com/html/?q={query}"
+    url = f"https://duckduckgo.com/q={query}"
     headers = {"User-Agent": get_random_user_agent()}
 
     try:
@@ -7203,7 +7203,37 @@ def scrape_duckduckgo_links(query):
         print(f"{Fore.RED}Error with DuckDuckGo request: {e}{Fore.RESET}")
         return []
 
-def search_username(username, threads=1):
+from urllib.parse import urlparse, parse_qs
+
+def scrape_duckduckgo_links(query):
+    url = f"https://duckduckgo.com/html/?q={query}"
+    headers = {"User-Agent": get_random_user_agent()}
+
+    try:
+        response = requests.get(url, headers=headers, timeout=6)
+        response.raise_for_status()
+
+        soup = BeautifulSoup(response.text, "html.parser")
+        links = []
+        
+        for a_tag in soup.find_all("a", class_="result__a", href=True):
+            href = a_tag.get("href")
+
+            if "duckduckgo.com/l/?" in href:
+                parsed_url = urlparse(href)
+                real_url = parse_qs(parsed_url.query).get("uddg", [None])[0]
+                if real_url:
+                    links.append(real_url)
+            elif "duckduckgo.com" not in href:  
+                links.append(href)
+
+        return links
+
+    except requests.exceptions.RequestException as e:
+        print(f"{Fore.RED}Error with DuckDuckGo request: {e}{Fore.RESET}")
+        return []
+
+def search_username(username, threads=500):  
     start_time = time.time()  
     print(f"\n{apply_gradient('Checking username')} {blue_to_white_gradient(username)} on:\n")
     
@@ -7238,20 +7268,21 @@ def search_username(username, threads=1):
         print(f"\n{Fore.RED}No matches found{Fore.RESET}")
         print(f"{blue_to_white_gradient('Total time:')} {elapsed_time:.2f} seconds")
 
+
 if __name__ == "__main__":
     os.system("cls" if os.name == "nt" else "clear")
     
-    print(apply_gradient("""
-    _____   ______________  ______  _________
-    ___  | / /__  ____/_  |/ /_  / / /_  ___/
-    __   |/ /__  __/  __    /_  / / /_____ \ 
-    _  /|  / _  /___  _    | / /_/ / ____/ / 
-    /_/ |_/  /_____/  /_/|_| \____/  /____/  
-
+    print(apply_gradient("""  
+ _____   ______________  ______  _________
+___  | / /__  ____/_  |/ /_  / / /_  ___/
+__   |/ /__  __/  __    /_  / / /_____ \ 
+_  /|  / _  /___  _    | / /_/ / ____/ / 
+/_/ |_/  /_____/  /_/|_| \____/  /____/  
+                                      
     """))
     print("??? @biskit")
 
-    username = input(f"{apply_gradient('Username:')} ")
-    threads = int(input(f"{apply_gradient('Threads (1-30):')} "))
+    username = input(f"""
+{apply_gradient('Username:')} """)
     
-    search_username(username, threads)
+    search_username(username)
