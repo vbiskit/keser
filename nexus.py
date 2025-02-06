@@ -7253,9 +7253,14 @@ def search_username(username, threads=500):
 
     if found or duckduckgo_results:
         if found:
-            print(f"\n{apply_gradient('✅ Found matches:')}")
+            print(f"""
+
+\n{apply_gradient('✅ Found matches:')}""")
+            
             for site_name, url in found:
-                print(f"\033[38;5;81m{site_name:<25} \033[38;2;255;255;255m{url}")
+                
+                print(f"""
+\033[38;5;81m{site_name:<25} \033[38;2;255;255;255m{url}""")
         if duckduckgo_results:
             print(f"\n{apply_gradient('DuckDuckGo results:')}")
             for i, link in enumerate(duckduckgo_results, 1):
