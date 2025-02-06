@@ -13,5 +13,5 @@ pip3 install -r requirements.txt
 
 How To Run: python3 nexus.py
 
-!! if duckduckgo doesn't work it may be the public dns
+if duckduckgo doesn't work it may be the public dns
 
