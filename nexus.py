@@ -7261,7 +7261,7 @@ def search_username(username, threads=500):
                 print(f"""
 \033[38;5;81m{site_name:<25} \033[38;2;255;255;255m{url}""")
         if duckduckgo_results:
-            print(f"\n\033[38;2;57;255;20mDuckDuckGo results:")
+            print(f"\n\033[38;2;255;255;0mDuckDuckGo results:")
             for i, link in enumerate(duckduckgo_results, 1):
                 print(f"\033[38;2;255;255;255mResult \033[38;2;0;255;255m{i} \033[38;2;255;255;255m{link}")
         print(f"\n{apply_gradient('Summary:')}")
