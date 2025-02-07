@@ -7168,7 +7168,7 @@ def check_username_on_website(site, username):
     try:
         url = site["uri_check"].replace("{account}", username)
         headers = {"User-Agent": get_random_user_agent()}
-        response = requests.get(url, headers=headers, timeout=4)
+        response = requests.get(url, headers=headers, timeout=5)
 	    
         if (response.status_code == site["e_code"] and 
             site["e_string"] in response.text):
@@ -7255,11 +7255,11 @@ if __name__ == "__main__":
     os.system("cls" if os.name == "nt" else "clear")
     
     print("""\033[38;2;255;255;0m
-_____   ______________  ______  _________
-___  | / /__  ____/_  |/ /_  / / /_  ___/
-__   |/ /__  __/  __    /_  / / /_____ \ 
-_  /|  / _  /___  _    | / /_/ / ____/ / 
-/_/ |_/  /_____/  /_/|_| \____/  /____/                                                                     
+   _____   ______________  ______  _________
+   ___  | / /__  ____/_  |/ /_  / / /_  ___/
+   __   |/ /__  __/  __    /_  / / /_____ \ 
+   _  /|  / _  /___  _    | / /_/ / ____/ / 
+   /_/ |_/  /_____/  /_/|_| \____/  /____/                                                                     
     """)
     print(Fore.WHITE+"> Created By biskit")
 
