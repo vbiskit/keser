@@ -7161,6 +7161,13 @@ user_agents = working_user_agents = [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko)"
 ]
 
+import requests
+import time
+import random
+from bs4 import BeautifulSoup
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from urllib.parse import urlparse, parse_qs
+
 def get_random_user_agent():
     return random.choice(user_agents)
 
@@ -7182,30 +7189,6 @@ def check_username_on_website(site, username):
         return None
 
 def scrape_duckduckgo_links(query):
-    url = f"https://duckduckgo.com/q={query}"
-    headers = {"User-Agent": get_random_user_agent()}
-
-    try:
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-
-        soup = BeautifulSoup(response.text, "html.parser")
-        links = []
-        
-        for a_tag in soup.find_all("a", class_="result__a", href=True):
-            href = a_tag.get("href")
-            if href and "duckduckgo.com" not in href:
-                links.append(href)
-
-        return links
-
-    except requests.exceptions.RequestException as e:
-        print(f"{Fore.RED}Error with DuckDuckGo request: {e}{Fore.RESET}")
-        return []
-
-from urllib.parse import urlparse, parse_qs
-
-def scrape_duckduckgo_links(query):
     url = f"https://duckduckgo.com/html/?q={query}"
     headers = {"User-Agent": get_random_user_agent()}
 
@@ -7214,8 +7197,8 @@ def scrape_duckduckgo_links(query):
         response.raise_for_status()
 
         soup = BeautifulSoup(response.text, "html.parser")
-        links = []
-        
+        links = set()  
+
         for a_tag in soup.find_all("a", class_="result__a", href=True):
             href = a_tag.get("href")
 
@@ -7223,14 +7206,14 @@ def scrape_duckduckgo_links(query):
                 parsed_url = urlparse(href)
                 real_url = parse_qs(parsed_url.query).get("uddg", [None])[0]
                 if real_url:
-                    links.append(real_url)
+                    links.add(real_url)  
             elif "duckduckgo.com" not in href:  
-                links.append(href)
+                links.add(href)  
 
-        return links
+        return list(links)[:300]  # limit 300 links to scan
 
     except requests.exceptions.RequestException as e:
-        print(f"{Fore.RED}Error with DuckDuckGo request: {e}{Fore.RESET}")
+        print(f"\033[91mError with DuckDuckGo request: {e}\033[0m")
         return []
 
 def search_username(username, threads=500):  
@@ -7240,7 +7223,7 @@ def search_username(username, threads=500):
     found = []
     with ThreadPoolExecutor(max_workers=threads) as executor:
         futures = {executor.submit(check_username_on_website, site, username): site 
-                  for site in metadata["sites"]}
+                   for site in metadata["sites"]}
         
         for future in as_completed(futures):
             result = future.result()
@@ -7248,29 +7231,33 @@ def search_username(username, threads=500):
                 found.append(result)
 
     duckduckgo_results = scrape_duckduckgo_links(username)
-
     elapsed_time = time.time() - start_time
 
     if found or duckduckgo_results:
         if found:
-            print(f"""                 
-\n\033[38;2;57;255;20m✓ Found matches""")
-            
+            print(f"\n{apply_gradient('✅ Found matches:')}\n")  
+            unique_sites = set()
+
             for site_name, url in found:
-                
-                print(f"""
-\033[38;5;81m{site_name:<25} \033[38;2;255;255;255m{url}""")
+                if site_name not in unique_sites:
+                    unique_sites.add(site_name)
+                    site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
+                    category = site_metadata["cat"] if site_metadata else "Unknown"
+                    print(f"\033[38;5;81m{site_name:<20} [ {category} ] \033[38;2;255;255;255m URL: {url}")
+
         if duckduckgo_results:
-            print(f"\n\033[38;2;255;255;0mDuckDuckGo results:")
+            print(f"\n\033[38;2;255;255;0m🦆 DuckDuckGo results (Showing {len(duckduckgo_results)} results):")
             for i, link in enumerate(duckduckgo_results, 1):
-                print(f"\033[38;2;255;255;255mResult \033[38;2;0;255;255m{i} \033[38;2;255;255;255m{link}")
+                print(f"\033[38;2;255;255;255m[{i}] {link}")  
+
         print(f"\n{apply_gradient('Summary:')}")
         print(f"{blue_to_white_gradient('🔎 Websites found:')} {len(found)}")
         print(f"{blue_to_white_gradient('🦆 DuckDuckGo results:')} {len(duckduckgo_results)}")
         print(f"{blue_to_white_gradient('🏁 Total time:')} {elapsed_time:.2f} seconds")
     else:
-        print(f"\n{Fore.RED}No matches found{Fore.RESET}")
+        print(f"\n\033[91mNo matches found\033[0m")
         print(f"{blue_to_white_gradient('Total time:')} {elapsed_time:.2f} seconds")
+
 
 
 if __name__ == "__main__":
