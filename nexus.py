@@ -7203,7 +7203,7 @@ def search_username(username, threads=500):
                     unique_sites.add(site_name)
                     site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
                     category = site_metadata["cat"] if site_metadata else "Unknown"
-                    print(f"\033[38;5;81m{site_name:<20} \033[38;2;213;166;209m[{category}] \033[38;2;255;255;255m URL: {url}")
+                    print(f"\033[38;5;81m{site_name:<20} \033[38;2;213;166;209m[{category}] \033[38;2;255;255;255m {url}")
 
         if duckduckgo_results:
             print(f"\n\033[38;2;255;255;0m🦆 DuckDuckGo {len(duckduckgo_results)} results):")
