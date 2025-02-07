@@ -7240,7 +7240,7 @@ def search_username(username, threads=500):
         if duckduckgo_results:
             print(f"\n\033[38;2;255;255;0m🦆 DuckDuckGo results (Showing {len(duckduckgo_results)} results):")
             for i, link in enumerate(duckduckgo_results, 1):
-                print(f"\033[38;2;255;255;255m[{i}] {link}")  
+                print(f"\033[38;2;57;255;20m[\033[38;5;81m{i}\033[38;2;57;255;20m]\033[38;2;255;255;255m {link}")  
 
         print(f"\n\033[38;2;255;255;255mSummary:")
         print(f"\033[38;2;255;255;0m🔎 Websites found: {len(found)}")
