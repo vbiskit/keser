@@ -7161,13 +7161,6 @@ user_agents = working_user_agents = [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko)"
 ]
 
-import requests
-import time
-import random
-from bs4 import BeautifulSoup
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from urllib.parse import urlparse, parse_qs
-
 def get_random_user_agent():
     return random.choice(user_agents)
 
@@ -7210,7 +7203,7 @@ def scrape_duckduckgo_links(query):
             elif "duckduckgo.com" not in href:  
                 links.add(href)  
 
-        return list(links)[:300]  # limit 300 links to scan
+        return list(links)[:676]  # limit links to scan
 
     except requests.exceptions.RequestException as e:
         print(f"\033[91mError with DuckDuckGo request: {e}\033[0m")
@@ -7218,7 +7211,7 @@ def scrape_duckduckgo_links(query):
 
 def search_username(username, threads=500):  
     start_time = time.time()  
-    print(f"\n{apply_gradient('Checking username')} \033[97m{username} \033[38;2;57;255;20mon:\n")
+    print(f"\n\033[38;2;255;255;255mChecking username {username} \033[38;2;57;255;20mon:\n")
     
     found = []
     with ThreadPoolExecutor(max_workers=threads) as executor:
@@ -7235,44 +7228,42 @@ def search_username(username, threads=500):
 
     if found or duckduckgo_results:
         if found:
-            print(f"\n{apply_gradient('✅ Found matches:')}\n")  
+            print(f"\033[38;2;255;255;0mFound Matches:")
             unique_sites = set()
-
             for site_name, url in found:
                 if site_name not in unique_sites:
                     unique_sites.add(site_name)
                     site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
                     category = site_metadata["cat"] if site_metadata else "Unknown"
-                    print(f"\033[38;5;81m{site_name:<20} [ {category} ] \033[38;2;255;255;255m URL: {url}")
+                    print(f"\033[38;5;81m{site_name:<20}\033[38;2;213;166;209m[{category}] \033[38;2;255;255;255m URL: {url}")
 
         if duckduckgo_results:
             print(f"\n\033[38;2;255;255;0m🦆 DuckDuckGo results (Showing {len(duckduckgo_results)} results):")
             for i, link in enumerate(duckduckgo_results, 1):
                 print(f"\033[38;2;255;255;255m[{i}] {link}")  
 
-        print(f"\n{apply_gradient('Summary:')}")
-        print(f"{blue_to_white_gradient('🔎 Websites found:')} {len(found)}")
-        print(f"{blue_to_white_gradient('🦆 DuckDuckGo results:')} {len(duckduckgo_results)}")
-        print(f"{blue_to_white_gradient('🏁 Total time:')} {elapsed_time:.2f} seconds")
+        print(f"\n\033[38;2;255;255;255mSummary:")
+        print(f"\033[38;2;255;255;0m🔎 Websites found: {len(found)}")
+        print(f"\033[38;2;255;255;0m🏁 Total time: {elapsed_time:.2f} seconds")
     else:
         print(f"\n\033[91mNo matches found\033[0m")
-        print(f"{blue_to_white_gradient('Total time:')} {elapsed_time:.2f} seconds")
+        print(f"\033[38;2;255;255;0m🏁 Total time: {elapsed_time:.2f} seconds")
 
 
 
 if __name__ == "__main__":
     os.system("cls" if os.name == "nt" else "clear")
     
-    print(apply_gradient("""  
-   _____   ______________  ______  _________
-   ___  | / /__  ____/_  |/ /_  / / /_  ___/
-   __   |/ /__  __/  __    /_  / / /_____ \ 
-   _  /|  / _  /___  _    | / /_/ / ____/ / 
-   /_/ |_/  /_____/  /_/|_| \____/  /____/                                   
-    """))
-    print(Fore.WHITE+"Created By biskit")
+    print("""\033[38;2;255;255;0m
+_____   ______________  ______  _________
+___  | / /__  ____/_  |/ /_  / / /_  ___/
+__   |/ /__  __/  __    /_  / / /_____ \ 
+_  /|  / _  /___  _    | / /_/ / ____/ / 
+/_/ |_/  /_____/  /_/|_| \____/  /____/                                                                     
+    """)
+    print(Fore.WHITE+"> Created By biskit")
 
     username = input(f"""
-{apply_gradient('Username:')} """)
+\033[38;2;255;255;0mUsername$\033[38;2;255;255;255m """)
     
     search_username(username)
