@@ -7020,38 +7020,6 @@ metadata = {
   ]
 }
 
-def rgb(r, g, b, text):
-    """Apply RGB color to text using ANSI escape codes."""
-    return f"\033[38;2;{r};{g};{b}m{text}\033[0m"
-
-def apply_gradient(text):
-    """Apply a gradient effect to the text."""
-    gradient_colors = [
-        (0, 0, 255),    
-        (100, 100, 255), 
-        (200, 200, 255), 
-        (255, 255, 255) 
-    ]
-    gradient_text = ""
-    text_length = len(text)
-    
-    for i, char in enumerate(text):
-        color_index = int((i / text_length) * (len(gradient_colors) - 1))
-        r, g, b = gradient_colors[color_index]
-        gradient_text += rgb(r, g, b, char)
-    
-    return gradient_text
-
-def blue_to_white_gradient(text):
-    """Generate a gradient from blue to white (using RGB)."""
-    gradient = ''
-    for i in range(len(text)):
-        r = int((i * 255) / len(text))  
-        g = int((i * 255) / len(text))  
-        b = 255  
-        gradient += f"\033[38;2;{r};{g};{b}m{text[i]}"
-    return gradient
-
 user_agents = working_user_agents = [
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/37.0.2062.94 Chrome/37.0.2062.94 Safari/537.36",
     "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
