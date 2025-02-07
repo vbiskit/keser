@@ -7203,7 +7203,7 @@ def scrape_duckduckgo_links(query):
             elif "duckduckgo.com" not in href:  
                 links.add(href)  
 
-        return list(links)[:676]  # limit links to scan
+        return list(links)[:15]  # limit links to scan
 
     except requests.exceptions.RequestException as e:
         print(f"\033[91mError with DuckDuckGo request: {e}\033[0m")
