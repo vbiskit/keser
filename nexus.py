@@ -7232,6 +7232,6 @@ if __name__ == "__main__":
     print(Fore.WHITE+"> Created By biskit")
 
     username = input(f"""
-\033[38;2;255;255;0mUsername$\033[38;2;255;255;255m """)
+\033[38;2;255;255;0mUsername~$\033[38;2;255;255;255m """)
     
     search_username(username)
