@@ -2,7 +2,7 @@
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=1829F7&width=435&lines=FAST+OSINT+SEARCH+" alt="Typing SVG">
 </p>
 
-![png](./Nexus.gif)
+![png](./preview.gif)
 ```bash
 
 How To install:
