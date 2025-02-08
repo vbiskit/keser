@@ -7136,7 +7136,7 @@ def check_username_on_website(site, username):
     try:
         url = site["uri_check"].replace("{account}", username)
         headers = {"User-Agent": get_random_user_agent()}
-        response = requests.get(url, headers=headers, timeout=5)
+        response = requests.get(url, headers=headers, timeout=10)
 	    
         if (response.status_code == site["e_code"] and 
             site["e_string"] in response.text):
