@@ -7158,7 +7158,7 @@ def scrape_duckduckgo_links(query):
         response.raise_for_status()
 
         soup = BeautifulSoup(response.text, "html.parser")
-        links = set()  
+        links = set()
 
         for a_tag in soup.find_all("a", class_="result__a", href=True):
             href = a_tag.get("href")
@@ -7167,11 +7167,11 @@ def scrape_duckduckgo_links(query):
                 parsed_url = urlparse(href)
                 real_url = parse_qs(parsed_url.query).get("uddg", [None])[0]
                 if real_url:
-                    links.add(real_url)  
-            elif "duckduckgo.com" not in href:  
-                links.add(href)  
+                    links.add(real_url)
+            elif "duckduckgo.com" not in href:
+                links.add(href)
 
-        return list(links)[:12]  # limit links to scan
+        return list(links)  
 
     except requests.exceptions.RequestException as e:
         print(f"\033[91mError with DuckDuckGo request: {e}\033[0m")
@@ -7179,7 +7179,7 @@ def scrape_duckduckgo_links(query):
 
 def search_username(username, threads=500):  
     start_time = time.time()  
-    print(f"\n\033[38;2;255;255;255mChecking username {username} \033[38;2;57;255;20mon:\n")
+    print(f"\n\033[38;2;255;255;255mChecking username {username} \033[38;2;255;255;0mon:\n")
     
     found = []
     with ThreadPoolExecutor(max_workers=threads) as executor:
@@ -7217,21 +7217,21 @@ def search_username(username, threads=500):
         print(f"\n\033[91mNo matches found\033[0m")
         print(f"\033[38;2;255;255;0m🏁 Total time: {elapsed_time:.2f} seconds")
 
-
-
 if __name__ == "__main__":
-    os.system("cls" if os.name == "nt" else "clear")
-    
-    print("""\033[38;2;255;255;0m
-   _____   ______________  ______  _________
-   ___  | / /__  ____/_  |/ /_  / / /_  ___/
-   __   |/ /__  __/  __    /_  / / /_____ \ 
-   _  /|  / _  /___  _    | / /_/ / ____/ / 
-   /_/ |_/  /_____/  /_/|_| \____/  /____/                                                                     
-    """)
-    print(Fore.WHITE+"> Created By biskit")
 
-    username = input(f"""
-\033[38;2;255;255;0mUsername~$\033[38;2;255;255;255m """)
+    os.system("cls" if os.name == "nt" else "clear")
+
+print("""\033[38;2;255;255;0m███╗   ██╗███████╗██╗  ██╗██╗   ██╗███████╗
+\033[38;2;255;255;255m████╗  ██║██╔════╝╚██╗██╔╝██║   ██║██╔════╝
+\033[38;2;255;255;0m██╔██╗ ██║█████╗   ╚███╔╝ ██║   ██║███████╗
+\033[38;2;255;255;255m██║╚██╗██║██╔══╝   ██╔██╗ ██║   ██║╚════██║
+\033[38;2;255;255;0m██║ ╚████║███████╗██╔╝ ██╗╚██████╔╝███████║
+\033[38;2;255;255;255m╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝
+""")
+
+print("\033[38;2;255;255;0m> \033[38;2;255;255;255mCreated By biskit")
+
+username = input(f"""
+\033[38;2;255;255;0mUsername\033[38;2;255;255;255m $\033[38;2;255;255;255m """)
     
-    search_username(username)
+search_username(username)
