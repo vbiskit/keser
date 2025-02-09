@@ -3,10 +3,9 @@
 </p>
 
 ![png](./nexus.png)
-```bash
 
-How To install:
-
+# How To Install: 
+```
 git clone https://github.com/vbiskit/Nexus
 
 cd Nexus
@@ -14,3 +13,4 @@ cd Nexus
 pip3 install -r requirements.txt
 
 python3 nexus.py
+
