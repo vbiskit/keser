@@ -14,8 +14,6 @@ I created Nexus to make my work easier and to help others save time when searchi
 ## Installation  
 
 Clone the repository and install the required dependencies:  
-
-# How To Install: 
 ```
 git clone https://github.com/vbiskit/Nexus
 
