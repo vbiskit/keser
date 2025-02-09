@@ -7196,7 +7196,6 @@ def search_username(username, threads=500):
 
     if found or duckduckgo_results:
         if found:
-            print(f"\033[38;2;255;255;0mFound Matches:")
             unique_sites = set()
             for site_name, url in found:
                 if site_name not in unique_sites:
