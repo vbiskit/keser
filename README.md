@@ -6,6 +6,7 @@
 ```bash
 
 How To install:
+
 git clone https://github.com/vbiskit/Nexus
 
 cd Nexus
