@@ -10,6 +10,7 @@ pip3 install -r requirements.txt
 
 python3 nexus.py
 ```
+# Copy Right
 ```
 Copyright (c) 2025 Biskit
 
