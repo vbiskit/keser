@@ -7217,19 +7217,62 @@ def search_username(username, threads=500):
         print(f"\n\033[91mNo matches found\033[0m")
         print(f"\033[38;2;255;255;0m🏁 Total time: {elapsed_time:.2f} seconds")
 
+def rgb(r, g, b, text):
+    return f"\033[38;2;{r};{g};{b}m{text}"
+
+def clear_screen():
+    os.system("clear" if os.name == "posix" else "cls")
+
+def apply_gradient(text):
+    gradient_colors = [
+        (255, 255, 0),  # Yellow
+        (255, 255, 85),  # Light yellow
+        (255, 255, 170),  # Lighter yellow
+        (255, 255, 255)  # White
+    ]
+
+    gradient_text = ""
+    text_length = len(text)
+
+    for i, char in enumerate(text):
+        color_index = int((i / text_length) * (len(gradient_colors) - 1))
+        r, g, b = gradient_colors[color_index]
+        gradient_text += rgb(r, g, b, char)
+
+    gradient_text += "\033[0m"
+    return gradient_text
+text = "This is a gradient from yellow to white!"
+print(apply_gradient(text))
+
 if __name__ == "__main__":
 
     os.system("cls" if os.name == "nt" else "clear")
 
-print("""\033[38;2;255;255;0m███╗   ██╗███████╗██╗  ██╗██╗   ██╗███████╗
-\033[38;2;255;255;255m████╗  ██║██╔════╝╚██╗██╔╝██║   ██║██╔════╝
-\033[38;2;255;255;0m██╔██╗ ██║█████╗   ╚███╔╝ ██║   ██║███████╗
-\033[38;2;255;255;255m██║╚██╗██║██╔══╝   ██╔██╗ ██║   ██║╚════██║
-\033[38;2;255;255;0m██║ ╚████║███████╗██╔╝ ██╗╚██████╔╝███████║
-\033[38;2;255;255;255m╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝
-""")
+    nex = r'''
+ _______ _______ ___ ___ 
+|    |  |    ___|   |   |
+|       |    ___|-     -|
+|__|____|_______|___|___|
+                         
+'''
+    us = r'''
+ _______ _______ 
+|   |   |     __|
+|   |   |__     |
+|_______|_______|
+                 
+'''
 
-print("\033[38;2;255;255;0m> \033[38;2;255;255;255mCreated By biskit")
+    nex_lines = nex.strip().split("\n")
+    us_lines = us.strip().split("\n")
+
+    max_length = max(len(line) for line in nex_lines)
+
+    for nex_line, us_line in zip(nex_lines, us_lines):
+        print(f"{apply_gradient(nex_line):<{max_length}} {apply_gradient(us_line)}")
+
+
+print("\n\033[38;2;255;255;0m> \033[38;2;255;255;255mCreated By biskit")
 
 username = input(f"""
 \033[38;2;255;255;0mUsername\033[38;2;255;255;255m $\033[38;2;255;255;255m """)
