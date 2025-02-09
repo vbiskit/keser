@@ -15,8 +15,12 @@ I created Nexus to make my work easier and to help others save time when searchi
 
 Clone the repository and install the required dependencies:  
 
-```bash
-git clone https://github.com/vbiskit/Nexus  
-cd Nexus  
-pip3 install -r requirements.txt  
-python3 nexus.py  
+# How To Install: 
+```
+git clone https://github.com/vbiskit/Nexus
+
+cd Nexus
+
+pip3 install -r requirements.txt
+
+python3 nexus.py
