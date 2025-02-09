@@ -13,4 +13,4 @@ cd Nexus
 
 pip3 install -r requirements.txt
 
-How To Run: python3 nexus.py
+python3 nexus.py
