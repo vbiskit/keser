@@ -14,3 +14,5 @@ cd Nexus
 pip3 install -r requirements.txt
 
 python3 nexus.py
+
+the search will be slow depending on your CPU
