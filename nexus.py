@@ -7248,31 +7248,29 @@ if __name__ == "__main__":
 
     os.system("cls" if os.name == "nt" else "clear")
 
-    nex = r'''
+nex = r'''
  _______ _______ ___ ___ 
 |    |  |    ___|   |   |
 |       |    ___|-     -|
 |__|____|_______|___|___|
                          
 '''
-    us = r'''
- _______ _______ 
-|   |   |     __|
-|   |   |__     |
-|_______|_______|
+us = r'''
+_______ _______ 
+   |   |     __|
+   |   |__     |
+_______|_______|
                  
 '''
 
-    nex_lines = nex.strip().split("\n")
-    us_lines = us.strip().split("\n")
+nex_lines = nex.split("\n")
+us_lines = us.split("\n")
 
-    max_length = max(len(line) for line in nex_lines)
-
-    for nex_line, us_line in zip(nex_lines, us_lines):
-        print(f"{apply_gradient(nex_line):<{max_length}} {apply_gradient(us_line)}")
+for nex_line, us_line in zip(nex_lines, us_lines):
+    print(f"{apply_gradient(nex_line)}{apply_gradient(us_line)}")
 
 
-print("\n\033[38;2;255;255;0m> \033[38;2;255;255;255mCreated By biskit")
+print("\033[38;2;255;255;0m> \033[38;2;255;255;255mCreated By biskit")
 
 username = input(f"""
 \033[38;2;255;255;0mUsername\033[38;2;255;255;255m $\033[38;2;255;255;255m """)
