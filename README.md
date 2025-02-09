@@ -1,4 +1,4 @@
-# Nexus  
+# Nexus Fast Osint Username Search 
 
 ![Nexus](./nexus.png)  
 
