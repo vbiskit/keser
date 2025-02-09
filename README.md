@@ -1,4 +1,4 @@
-![png](./Nexus.png)
+![png](./nexus.png)
 
 # How To Install: 
 ```
