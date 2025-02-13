@@ -7179,7 +7179,7 @@ def scrape_duckduckgo_links(query):
 
 def search_username(username, threads=500):
     start_time = time.time()
-    print(f"\n\033[38;2;255;255;255mChecking username {username} \033[38;2;255;255;0mon:\n")
+    print(f"\n\033[38;2;255;255;255mChecking username {username} \033[38;2;180;225;255mon:\n")
 
     found = []
     with ThreadPoolExecutor(max_workers=threads) as executor:
