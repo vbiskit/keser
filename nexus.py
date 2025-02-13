@@ -7224,10 +7224,10 @@ def clear_screen():
 
 def apply_gradient(text):
     gradient_colors = [
-        (255, 255, 0),  # Yellow
-        (255, 255, 85),  # Light yellow
-        (255, 255, 170),  # Lighter yellow
-        (255, 255, 255)  # White
+        (255, 255, 0),  
+        (255, 255, 85),  
+        (255, 255, 170),  
+        (255, 255, 255)  
     ]
 
     gradient_text = ""
