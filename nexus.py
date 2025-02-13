@@ -7240,9 +7240,6 @@ def apply_gradient(text):
 
     gradient_text += "\033[0m"
     return gradient_text
-text = "This is a gradient from yellow to white!"
-print(apply_gradient(text))
-
 if __name__ == "__main__":
 
     os.system("cls" if os.name == "nt" else "clear")
