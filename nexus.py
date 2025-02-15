@@ -7149,6 +7149,38 @@ def check_username_on_website(site, username):
     except Exception as e:
         return None
 
+def gradient_orange(text):
+    """Applies an orange gradient to a given text."""
+    shades = [
+        (255, 140, 0),  
+        (255, 165, 0),  
+        (255, 180, 50),  
+        (255, 200, 100)  
+    ]
+    
+    colored_text = ""
+    for i, char in enumerate(text):
+        r, g, b = shades[i % len(shades)]  # Cycle through colors
+        colored_text += f"\033[38;2;{r};{g};{b}m{char}"
+    
+    return colored_text + "\033[0m"  # Reset color
+
+def gradient_red(text):
+    """Applies a red gradient to a given text."""
+    shades = [
+        (255, 0, 0),    
+        (255, 50, 50),  
+        (255, 100, 100),  
+        (255, 150, 150)  
+    ]
+    
+    colored_text = ""
+    for i, char in enumerate(text):
+        r, g, b = shades[i % len(shades)]  # Cycle through colors
+        colored_text += f"\033[38;2;{r};{g};{b}m{char}"
+    
+    return colored_text + "\033[0m"  # Reset color
+
 def scrape_duckduckgo_links(query):
     url = f"https://duckduckgo.com/html/?q={query}"
     headers = {"User-Agent": get_random_user_agent()}
@@ -7179,8 +7211,8 @@ def scrape_duckduckgo_links(query):
 
 def search_username(username, threads=500):
     start_time = time.time()
-    print(f"\n\033[38;2;255;255;255mChecking username {username} \033[38;2;180;225;255mon:\n")
-
+    print(f"\n\033[38;2;255;255;255mChecking username {username} {gradient_orange('on:')}\n")
+    
     found = []
     with ThreadPoolExecutor(max_workers=threads) as executor:
         futures = {executor.submit(check_username_on_website, site, username): site
@@ -7205,68 +7237,36 @@ def search_username(username, threads=500):
                     print(f"\033[38;5;81m{site_name:<20} \033[38;2;213;166;209m[{category}] \033[38;2;255;255;255m {url}")
 
         if duckduckgo_results:
-            print(f"\n\033[38;2;255;255;0m🦆 DuckDuckGo {len(duckduckgo_results)} results):")
+            print(f"\n\033[\033[38;2;255;182;193mDuckDuckGo")
             for i, link in enumerate(duckduckgo_results, 1):
-                print(f"\033[38;2;57;255;20m[\033[38;5;81m{i}\033[38;2;57;255;20m]\033[38;2;255;255;255m {link}")
+                print(f"\033[38;2;255;255;0m[\033[38;5;81m{i}\033[38;2;255;255;0m]\033[38;2;255;255;255m {link}")
 
-        print(f"\n\033[38;2;255;255;255mSummary:")
-        print(f"\033[38;2;255;255;0m🔎 Websites found: {len(found)}")
-        print(f"\033[38;2;255;255;0m🏁 Total time: {elapsed_time:.2f} seconds")
+        print(f"\n{Fore.LIGHTYELLOW_EX}[\033[38;2;0;255;0m*{Fore.LIGHTYELLOW_EX}]\033[38;2;255;255;255m Websites found \033[38;2;0;255;0m{len(found)}")
+        print(f"{Fore.LIGHTYELLOW_EX}[\033[38;2;0;255;0m*{Fore.LIGHTYELLOW_EX}]\033[38;2;255;255;255m Time Taken \033[38;2;0;255;0m{elapsed_time:.2f}\033[38;2;255;255;255m seconds")
     else:
-        print(f"\n\033[91mNo matches found\033[0m")
-        print(f"\033[38;2;255;255;0m🏁 Total time: {elapsed_time:.2f} seconds")
-
-def rgb(r, g, b, text):
-    return f"\033[38;2;{r};{g};{b}m{text}"
-
-def clear_screen():
-    os.system("clear" if os.name == "posix" else "cls")
-
-def apply_gradient(text):
-    gradient_colors = [
-        (255, 255, 0),  
-        (255, 255, 85),  
-        (255, 255, 170),  
-        (255, 255, 255)  
-    ]
-
-    gradient_text = ""
-    text_length = len(text)
-
-    for i, char in enumerate(text):
-        color_index = int((i / text_length) * (len(gradient_colors) - 1))
-        r, g, b = gradient_colors[color_index]
-        gradient_text += rgb(r, g, b, char)
-
-    gradient_text += "\033[0m"
-    return gradient_text
+        print(f"\n{Fore.LIGHTRED_EX}No matches found")
+        print(f"{Fore.LIGHTWHITE_EX}🏁 Total time {elapsed_time:.2f} seconds")
 if __name__ == "__main__":
 
     os.system("cls" if os.name == "nt" else "clear")
 
 nex = r'''
- ███▄    █ ▓█████ ▒██   ██▒
- ██ ▀█   █ ▓█   ▀ ▒▒ █ █ ▒░
-▓██  ▀█ ██▒▒███   ░░  █   ░
-▓██▒  ▐▌██▒▒▓█  ▄  ░ █ █ ▒ 
-▒██░   ▓██░░▒████▒▒██▒ ▒██▒
-░ ▒░   ▒ ▒ ░░ ▒░ ░▒▒ ░ ░▓ ░
-░ ░░   ░ ▒░ ░ ░  ░░░   ░▒ ░
-   ░   ░ ░    ░    ░    ░  
-         ░    ░  ░ ░    ░  
+_____   ______________  __
+___  | / /__  ____/_  |/ /
+__   |/ /__  __/  __    / 
+_  /|  / _  /___  _    |  
+/_/ |_/  /_____/  /_/|_|  
+                           
                            
 
 '''
 us = r'''
-  █    ██   ██████ 
- ██  ▓██▒▒██    ▒ 
-▓██  ▒██░░ ▓██▄   
-▓▓█  ░██░  ▒   ██▒
-▒▒█████▓ ▒██████▒▒
-░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░
-░░▒░ ░ ░ ░ ░▒  ░ ░
- ░░░ ░ ░ ░  ░  ░  
-   ░           ░  
+_____  _________
+__  / / /_  ___/
+_  / / /_____ \ 
+/ /_/ / ____/ / 
+\____/  /____/  
+                
                   
 '''
 
@@ -7274,11 +7274,9 @@ nex_lines = nex.split("\n")
 us_lines = us.split("\n")
 
 for nex_line, us_line in zip(nex_lines, us_lines):
-    print(f"{apply_gradient(nex_line)}{apply_gradient(us_line)}")
+    print(f"{gradient_red(nex_line)}{gradient_red(us_line)}")
+print(f"{gradient_orange('(')}{Fore.WHITE}Coded By Biskit <3{Fore.LIGHTRED_EX})")
 
-print("\033[38;2;255;255;0m> \033[38;2;30;144;255mCreated By biskit")
-print("\033[38;2;30;144;255m|")
-print("\033[38;2;30;144;255m|")
-username = input(f"""\033[38;2;255;255;0m> Username\033[38;2;255;255;255m\033[38;2;30;144;255m~\033[38;2;180;225;255m:\033[38;2;255;255;255m$\033[38;2;255;255;255m """)
+username = input(f"""{gradient_orange('Username')}{Fore.LIGHTRED_EX}~:{Fore.LIGHTWHITE_EX}${Fore.LIGHTRED_EX} """)
 
 search_username(username)
