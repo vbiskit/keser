@@ -7181,7 +7181,6 @@ def scrape_duckduckgo_links(query):
 def search_username(username, threads=500, save_file=None):
     start_time = time.time()
 
-    # Initialize output variable
     output = ""
 
     found = []
@@ -7218,7 +7217,6 @@ def search_username(username, threads=500, save_file=None):
         output += f"\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;2;255;0;0m No matches found\n"
         output += f"\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m] Time Taken: \033[38;2;0;255;0m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
 
-    # Save the result to a file if -sf is passed
     if save_file:
         try:
             with open(save_file, "w") as f:
@@ -7231,6 +7229,18 @@ def search_username(username, threads=500, save_file=None):
     else:
         print(output)
 
+def print_help():
+    help_text = """
+Usage: python userfinder.py username 
+
+Arguments:
+  -h           Show this help message.
+  -sf <file>   Save the output to a file.
+
+  - Usage python3 userfinder.py example -sf .txt
+"""
+    print(help_text)
+
 if __name__ == "__main__":
     color_blue = "\033[38;2;173;216;230m"  
     color_white = "\033[38;2;255;255;255m"  
@@ -7241,13 +7251,18 @@ if __name__ == "__main__":
  / / / / ___/ _ \/ ___/ /_/ / __ \/ __  / _ \/ ___/
 / /_/ (__  )  __/ /  / __/ / / / / /_/ /  __/ /    
 \__,_/____/\___/_/  /_/ /_/_/ /_/\__,_/\___/_/     
-                                                        
+                                                                                     
 """
     print(f"{color_blue}{logo}")
     print(f"{color_white}                              Coded By BisKit\n")
 
     if len(sys.argv) < 2:
+        print_help()
         sys.exit(1)
+
+    if sys.argv[1] == "-h":
+        print_help()
+        sys.exit(0)
 
     username = sys.argv[1]
     save_file = None
@@ -7256,7 +7271,6 @@ if __name__ == "__main__":
         if len(sys.argv) > 3:
             save_file = sys.argv[3]
         else:
-            print("Please provide a filename for saving the results.")
             sys.exit(1)
 
     search_username(username, save_file=save_file)
