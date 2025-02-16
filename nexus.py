@@ -7148,39 +7148,7 @@ def check_username_on_website(site, username):
 
     except Exception as e:
         return None
-
-def gradient_orange(text):
-    """Applies an orange gradient to a given text."""
-    shades = [
-        (255, 140, 0),  
-        (255, 165, 0),  
-        (255, 180, 50),  
-        (255, 200, 100)  
-    ]
     
-    colored_text = ""
-    for i, char in enumerate(text):
-        r, g, b = shades[i % len(shades)]  # Cycle through colors
-        colored_text += f"\033[38;2;{r};{g};{b}m{char}"
-    
-    return colored_text + "\033[0m"  # Reset color
-
-def gradient_red(text):
-    """Applies a red gradient to a given text."""
-    shades = [
-        (255, 0, 0),    
-        (255, 50, 50),  
-        (255, 100, 100),  
-        (255, 150, 150)  
-    ]
-    
-    colored_text = ""
-    for i, char in enumerate(text):
-        r, g, b = shades[i % len(shades)]  # Cycle through colors
-        colored_text += f"\033[38;2;{r};{g};{b}m{char}"
-    
-    return colored_text + "\033[0m"  # Reset color
-
 def scrape_duckduckgo_links(query):
     url = f"https://duckduckgo.com/html/?q={query}"
     headers = {"User-Agent": get_random_user_agent()}
@@ -7211,7 +7179,7 @@ def scrape_duckduckgo_links(query):
 
 def search_username(username, threads=500):
     start_time = time.time()
-    print(f"\n\033[38;2;255;255;255mChecking username {username} {gradient_orange('on:')}\n")
+    print(f"\n\033[38;2;255;255;255mChecking username {username} \033[38;2;173;216;230mon:\n")
     
     found = []
     with ThreadPoolExecutor(max_workers=threads) as executor:
