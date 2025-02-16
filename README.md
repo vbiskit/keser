@@ -1,6 +1,6 @@
 # Nexus Very Fast Osint Username Search 
 
-![Nexus](./Nexus.png)  
+![Nexus](./logo.png)  
 
 ## About  
 
