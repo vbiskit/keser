@@ -7178,10 +7178,12 @@ def scrape_duckduckgo_links(query):
         print(f"\033[91mError with DuckDuckGo request: {e}\033[0m")
         return []
 
-def search_username(username, threads=500):
+def search_username(username, threads=500, save_file=None):
     start_time = time.time()
-    print(f"\n\033[38;2;255;255;255mChecking username {username} \033[38;2;80;200;120mon:\n")
-    
+
+    # Initialize output variable
+    output = ""
+
     found = []
     with ThreadPoolExecutor(max_workers=threads) as executor:
         futures = {executor.submit(check_username_on_website, site, username): site
@@ -7203,35 +7205,58 @@ def search_username(username, threads=500):
                     unique_sites.add(site_name)
                     site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
                     category = site_metadata["cat"] if site_metadata else "Unknown"
-                    print(f"\033[38;2;255;255;255m[\033[38;5;46m{site_name}\033[38;2;255;255;255m] \033[38;2;255;255;255m[\033[38;2;255;182;193m{category}\033[38;2;255;255;255m] {url}")
+                    output += f"\033[38;2;255;255;255m[\033[38;5;46m{site_name}\033[38;2;255;255;255m] \033[38;2;255;255;255m[\033[38;2;255;182;193m{category}\033[38;2;255;255;255m] {url}\n"
 
         if duckduckgo_results:
-            print(f"\n\033[38;2;255;255;255m[\033[38;5;81mDuckDuckGo\033[38;2;255;255;255m]")
+            output += f"\n\033[38;2;255;255;255m[\033[38;5;81mDuckDuckGo\033[38;2;255;255;255m]\n"
             for i, link in enumerate(duckduckgo_results, 1):
-                print(f"\033[38;2;213;166;209m[\033[38;2;255;255;255m{i}\033[38;2;213;166;209m] \033[38;2;255;255;255m{link}")
+                output += f"\033[38;2;213;166;209m[\033[\033[38;2;255;255;255m{i}\033[38;2;213;166;209m] \033[38;2;255;255;255m{link}\n"
 
-        print(f"\n\033[38;2;255;255;255m[\033[38;2;128;0;255m+\033[38;2;255;255;255m] Websites found: \033[38;2;0;255;0m{len(found)}")
-        print(f"\033[38;2;255;255;255m[\033[38;2;128;0;255m+\033[38;2;255;255;255m] Time Taken: \033[38;2;0;255;0m{elapsed_time:.2f} \033[38;2;255;255;255mseconds")
+        output += f"\n\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m] Websites found: \033[38;2;0;255;0m{len(found)}\n"
+        output += f"\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m] Time Taken: \033[38;2;0;255;0m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
     else:
-        print(f"\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;2;255;0;0m No matches found")
-        print(f"\033[38;2;255;255;255m[\033[38;2;128;0;255m+\033[38;2;255;255;255m] Time Taken: \033[38;2;0;255;0m{elapsed_time:.2f} \033[38;2;255;255;255mseconds")
+        output += f"\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;2;255;0;0m No matches found\n"
+        output += f"\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m] Time Taken: \033[38;2;0;255;0m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
+
+    # Save the result to a file if -sf is passed
+    if save_file:
+        try:
+            with open(save_file, "w") as f:
+                f.write(output)
+            print(f"Results saved to {save_file}")
+        except PermissionError as e:
+            print(f"\033[91mError: {e}\033[0m - You do not have permission to write to the file.")
+        except Exception as e:
+            print(f"\033[91mError: {e}\033[0m")
+    else:
+        print(output)
 
 if __name__ == "__main__":
-
-    os.system("cls" if os.name == "nt" else "clear")
-
-    print("""\033[38;2;173;216;230m                                 
+    color_blue = "\033[38;2;173;216;230m"  
+    color_white = "\033[38;2;255;255;255m"  
+    
+    logo = r"""
                         _____           __         
   __  __________  _____/ __(_)___  ____/ /__  _____
  / / / / ___/ _ \/ ___/ /_/ / __ \/ __  / _ \/ ___/
 / /_/ (__  )  __/ /  / __/ / / / / /_/ /  __/ /    
-\__,_/____/\___/_/  /_/ /_/_/ /_/\__,_/\___/_/                                              
-                                """)
-    print("\033[38;2;200;200;200mCoded By BisKit")
+\__,_/____/\___/_/  /_/ /_/_/ /_/\__,_/\___/_/     
+                                                        
+"""
+    print(f"{color_blue}{logo}")
+    print(f"{color_white}                              Coded By BisKit\n")
 
     if len(sys.argv) < 2:
-        print("\nWrong Usage (example: python3 nexus.py person)\n")
         sys.exit(1)
 
     username = sys.argv[1]
-    search_username(username)
+    save_file = None
+
+    if len(sys.argv) > 2 and sys.argv[2] == "-sf":
+        if len(sys.argv) > 3:
+            save_file = sys.argv[3]
+        else:
+            print("Please provide a filename for saving the results.")
+            sys.exit(1)
+
+    search_username(username, save_file=save_file)
