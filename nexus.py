@@ -6,6 +6,7 @@ import random
 import os
 from colorama import Fore
 from urllib.parse import urlparse, parse_qs
+import sys
 metadata = {
      "sites" : [
        {
@@ -7219,17 +7220,18 @@ if __name__ == "__main__":
 
     os.system("cls" if os.name == "nt" else "clear")
 
-
-
-
-print("""\033[38;2;173;216;230m                                
-   ____  ___  _  ____  _______
-  / __ \/ _ \| |/_/ / / / ___/
- / / / /  __/>  </ /_/ (__  ) 
-/_/ /_/\___/_/|_|\__,_/____/  
+    print("""\033[38;2;173;216;230m                                 
+                        _____           __         
+  __  __________  _____/ __(_)___  ____/ /__  _____
+ / / / / ___/ _ \/ ___/ /_/ / __ \/ __  / _ \/ ___/
+/ /_/ (__  )  __/ /  / __/ / / / / /_/ /  __/ /    
+\__,_/____/\___/_/  /_/ /_/_/ /_/\__,_/\___/_/                                              
                                 """)
-print("\033[38;2;200;200;200mCoded By BisKit")
+    print("\033[38;2;200;200;200mCoded By BisKit")
 
-username = input(f"\n\033[38;2;200;200;200mUsername~;\033[38;2;173;216;230m$ ")
+    if len(sys.argv) < 2:
+        print("\nWrong Usage (example: python3 nexus.py person)\n")
+        sys.exit(1)
 
-search_username(username)
+    username = sys.argv[1]
+    search_username(username)
