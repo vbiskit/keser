@@ -7234,49 +7234,26 @@ def search_username(username, threads=500):
                     unique_sites.add(site_name)
                     site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
                     category = site_metadata["cat"] if site_metadata else "Unknown"
-                    print(f"\033[38;5;81m{site_name:<20} \033[38;2;213;166;209m[{category}] \033[38;2;255;255;255m {url}")
+                    print(f"\033[38;2;255;255;255m[\033[38;5;46m{site_name}\033[38;2;255;255;255m] \033[38;2;255;255;255m[\033[38;2;255;182;193m{category}\033[38;2;255;255;255m] {url}")
 
         if duckduckgo_results:
-            print(f"\n\033[\033[38;2;255;182;193mDuckDuckGo")
+            print(f"\n\033[38;2;255;255;255m[\033[38;2;255;69;100mDuckDuckGo\033[38;2;255;255;255m]")
             for i, link in enumerate(duckduckgo_results, 1):
-                print(f"\033[38;2;255;255;0m[\033[38;5;81m{i}\033[38;2;255;255;0m]\033[38;2;255;255;255m {link}")
+                print(f"\033[38;2;213;166;209m[\033[38;2;255;255;255m{i}\033[38;2;213;166;209m] \033[38;5;81m{link}")
 
-        print(f"\n{Fore.LIGHTYELLOW_EX}[\033[38;2;0;255;0m*{Fore.LIGHTYELLOW_EX}]\033[38;2;255;255;255m Websites found \033[38;2;0;255;0m{len(found)}")
-        print(f"{Fore.LIGHTYELLOW_EX}[\033[38;2;0;255;0m*{Fore.LIGHTYELLOW_EX}]\033[38;2;255;255;255m Time Taken \033[38;2;0;255;0m{elapsed_time:.2f}\033[38;2;255;255;255m seconds")
+        print(f"\n\033[38;2;255;255;255m[\033[38;2;128;0;255m+\033[38;2;255;255;255m] Websites found: \033[38;2;0;255;0m{len(found)}")
+        print(f"\033[38;2;255;255;255m[\033[38;2;128;0;255m+\033[38;2;255;255;255m] Time Taken: \033[38;2;0;255;0m{elapsed_time:.2f} \033[38;2;255;255;255mseconds")
     else:
-        print(f"\n{Fore.LIGHTRED_EX}No matches found")
-        print(f"{Fore.LIGHTWHITE_EX}🏁 Total time {elapsed_time:.2f} seconds")
+        print(f"\n\033[38;2;255;255;255m[!] No matches found")
+        print(f"\033[38;2;255;255;255m[\033[38;2;128;0;255m+\033[38;2;255;255;255m] Time Taken: \033[38;2;0;255;0m{elapsed_time:.2f} \033[38;2;255;255;255mseconds")
+
 if __name__ == "__main__":
 
     os.system("cls" if os.name == "nt" else "clear")
 
-nex = r'''
-_____   ______________  __
-___  | / /__  ____/_  |/ /
-__   |/ /__  __/  __    / 
-_  /|  / _  /___  _    |  
-/_/ |_/  /_____/  /_/|_|  
-                           
-                           
 
-'''
-us = r'''
-_____  _________
-__  / / /_  ___/
-_  / / /_____ \ 
-/ /_/ / ____/ / 
-\____/  /____/  
-                
-                  
-'''
+print("coded by biskit \033[38;2;255;182;193m<3\033[0m")
 
-nex_lines = nex.split("\n")
-us_lines = us.split("\n")
-
-for nex_line, us_line in zip(nex_lines, us_lines):
-    print(f"{gradient_red(nex_line)}{gradient_red(us_line)}")
-print(f"{gradient_orange('(')}{Fore.WHITE}Coded By Biskit <3{Fore.LIGHTRED_EX})")
-
-username = input(f"""{gradient_orange('Username')}{Fore.LIGHTRED_EX}~:{Fore.LIGHTWHITE_EX}${Fore.LIGHTRED_EX} """)
+username = input(f"Username~;\033[38;2;173;216;230m$ ")
 
 search_username(username)
