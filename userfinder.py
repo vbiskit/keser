@@ -1,3 +1,5 @@
+# why you looking at the source code ? nah i couldn't care if you stole the source
+
 import time
 import requests
 from bs4 import BeautifulSoup
