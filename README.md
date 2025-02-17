@@ -17,7 +17,7 @@ cd sneakyurls
 
 pip3 install -r requirements.txt
 
-python3 sneakyurls
+python3 sneakyurls.py
 ```
 # Usage:
 ```
