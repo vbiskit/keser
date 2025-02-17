@@ -7182,7 +7182,7 @@ def make_middle_part_green(url):
     match = re.match(pattern, url)
     if match:
         # The middle part is the domain (second group), colored green
-        return f"{match.group(1)}\033[38;2;230;168;255m{match.group(2)}\033[38;2;0;128;128m{match.group(3) or ''}"
+        return f"{match.group(1)}\033[38;2;255;221;51m{match.group(2)}\033[38;2;255;0;255m{match.group(3) or ''}"
     return url
 
 def search_username(username, threads=200, save_file=None):
@@ -7208,12 +7208,12 @@ def search_username(username, threads=200, save_file=None):
                     unique_sites.add(site_name)
                     site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
                     category = site_metadata["cat"] if site_metadata else "Unknown"
-                    output += f"\033[38;2;255;255;255m[\033[38;2;255;0;255m{category}\033[38;2;255;255;255m]\033[38;2;0;128;128m {make_middle_part_green(url)}\n"
+                    output += f"\033[38;2;255;255;255m[\033[38;5;81m{category}\033[38;2;255;255;255m]\033[38;2;255;0;255m {make_middle_part_green(url)}\n"
 
         if duckduckgo_results:
-            output += f"\n\033[38;2;255;255;255m[\033[38;2;255;221;51mDuckDuckGo\033[38;2;255;255;255m]\n"
+            output += f"\n\033[38;2;255;255;255m[\033[38;2;230;168;255mDuckDuckGo\033[38;2;255;255;255m]\n"
             for i, link in enumerate(duckduckgo_results, 1):
-                output += f"\033[38;2;255;255;255m[\033[38;2;255;0;255m{i}\033[38;2;255;255;255m] \033[38;2;0;128;128m{make_middle_part_green(link)}\n"
+                output += f"\033[38;2;255;255;255m[\033[38;5;81m{i}\033[38;2;255;255;255m] \033[38;2;255;0;255m{make_middle_part_green(link)}\n"
 
         output += f"\n\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m] Websites found: \033[38;2;0;255;0m{len(found)}\n"
         output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
@@ -7234,7 +7234,6 @@ def search_username(username, threads=200, save_file=None):
         print(output)
 
 def print_help():
-    color_darkaqua = "\033[38;2;0;128;128m"
     help_text = f""" 
 Arguments:
   -sf  Save the output to a file.
@@ -7244,15 +7243,15 @@ Usage:
   - python3 userfinder.py example"""
     print(help_text)
 if __name__ == "__main__":
-    logo = r"""
-                        _____           __         
-  __  __________  _____/ __(_)___  ____/ /__  _____
- / / / / ___/ _ \/ ___/ /_/ / __ \/ __  / _ \/ ___/
-/ /_/ (__  )  __/ /  / __/ / / / / /_/ /  __/ /    
-\__,_/____/\___/_/  /_/ /_/_/ /_/\__,_/\___/_/                                                                                                                                             
-"""  
-    print(f"{Fore.LIGHTWHITE_EX}{logo}")
-    print(f"{Fore.LIGHTWHITE_EX}                           (Coded by BisKit V 1.1)\n")
+    logo = r"""                                   
+                 ___ _       _         
+ _ _ ___ ___ ___|  _|_|___ _| |___ ___ 
+| | |_ -| -_|  _|  _| |   | . | -_|  _|
+|___|___|___|_| |_| |_|_|_|___|___|_| 
+"""                                                                                                                                                                                                                                        
+ 
+    print(f"\033[38;2;0;128;128m{logo}")
+    print(f"{Fore.LIGHTCYAN_EX}                           (Coded by BisKit V 1.1)\n")
     if len(sys.argv) < 2:
         print_help()
         sys.exit(0)
