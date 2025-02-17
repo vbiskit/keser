@@ -7211,7 +7211,7 @@ def search_username(username, threads=200, save_file=None):
                     output += f"\033[38;2;255;255;255m[\033[38;2;255;0;255m{category}\033[38;2;255;255;255m]\033[38;2;0;128;128m {make_middle_part_green(url)}\n"
 
         if duckduckgo_results:
-            output += f"\n\033[38;2;255;255;255m[{Fore.LIGHTWHITE_EX}DuckDuckGo\033[38;2;255;255;255m]\n"
+            output += f"\n\033[38;2;255;255;255m[\033[38;2;255;221;51mDuckDuckGo\033[38;2;255;255;255m]\n"
             for i, link in enumerate(duckduckgo_results, 1):
                 output += f"\033[38;2;255;255;255m[\033[38;2;255;0;255m{i}\033[38;2;255;255;255m] \033[38;2;0;128;128m{make_middle_part_green(link)}\n"
 
