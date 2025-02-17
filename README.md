@@ -17,7 +17,7 @@ pip3 install -r requirements.txt
 python3 userfinder.py
 
 ```
-# Usage
+# Usage:
 ```
 python3 userfinder.py someone -sf user.txt
 
