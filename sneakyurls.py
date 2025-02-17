@@ -7239,19 +7239,23 @@ Arguments:
   -sf  Save the output to a file.
 
 Usage:
-  - python3 userfinder.py example -sf example.txt
-  - python3 userfinder.py example"""
+  - python3 sneakyurls.py example -sf example.txt
+  - python3 sneakyurls.py example"""
     print(help_text)
 if __name__ == "__main__":
     logo = r"""                                   
-                 ___ _       _         
- _ _ ___ ___ ___|  _|_|___ _| |___ ___ 
-| | |_ -| -_|  _|  _| |   | . | -_|  _|
-|___|___|___|_| |_| |_|_|_|___|___|_| 
-"""                                                                                                                                                                                                                                        
- 
+  ██████  ███▄    █ ▓█████ ▄▄▄       ██ ▄█▀▓██   ██▓ █    ██  ██▀███   ██▓      ██████ 
+▒██    ▒  ██ ▀█   █ ▓█   ▀▒████▄     ██▄█▒  ▒██  ██▒ ██  ▓██▒▓██ ▒ ██▒▓██▒    ▒██    ▒ 
+░ ▓██▄   ▓██  ▀█ ██▒▒███  ▒██  ▀█▄  ▓███▄░   ▒██ ██░▓██  ▒██░▓██ ░▄█ ▒▒██░    ░ ▓██▄   
+  ▒   ██▒▓██▒  ▐▌██▒▒▓█  ▄░██▄▄▄▄██ ▓██ █▄   ░ ▐██▓░▓▓█  ░██░▒██▀▀█▄  ▒██░      ▒   ██▒
+▒██████▒▒▒██░   ▓██░░▒████▒▓█   ▓██▒▒██▒ █▄  ░ ██▒▓░▒▒█████▓ ░██▓ ▒██▒░██████▒▒██████▒▒
+▒ ▒▓▒ ▒ ░░ ▒░   ▒ ▒ ░░ ▒░ ░▒▒   ▓▒█░▒ ▒▒ ▓▒   ██▒▒▒ ░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░░ ▒░▓  ░▒ ▒▓▒ ▒ ░
+░ ░▒  ░ ░░ ░░   ░ ▒░ ░ ░  ░ ▒   ▒▒ ░░ ░▒ ▒░ ▓██ ░▒░ ░░▒░ ░ ░   ░▒ ░ ▒░░ ░ ▒  ░░ ░▒  ░ ░
+░  ░  ░     ░   ░ ░    ░    ░   ▒   ░ ░░ ░  ▒ ▒ ░░   ░░░ ░ ░   ░░   ░   ░ ░   ░  ░  ░  
+      ░           ░    ░  ░     ░  ░░  ░    ░ ░        ░        ░         ░  ░      ░  
+                                            ░ ░ """                                                                                                                                                                                                                                        
     print(f"\033[38;2;0;128;128m{logo}")
-    print(f"{Fore.LIGHTCYAN_EX}                           (Coded by BisKit V 1.1)\n")
+    print(f"{Fore.LIGHTCYAN_EX}                                               (Coded by BisKit V 1.1)\n")
     if len(sys.argv) < 2:
         print_help()
         sys.exit(0)
@@ -7259,5 +7263,7 @@ if __name__ == "__main__":
     username = sys.argv[1]
     save_file = sys.argv[3] if len(sys.argv) > 3 and sys.argv[2] == "-sf" else None
     search_username(username, save_file=save_file)
+
+    # don't be looking down here
 
     # don't be looking down here
