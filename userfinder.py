@@ -1,5 +1,5 @@
 # why you looking at the source code ? nah i couldn't care if you stole the source
-
+import re
 import time
 import requests
 from bs4 import BeautifulSoup
@@ -7023,7 +7023,7 @@ metadata = {
        }
   ]
 }
-
+# why you still looking 
 user_agents = working_user_agents = [
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/37.0.2062.94 Chrome/37.0.2062.94 Safari/537.36",
     "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
@@ -7135,24 +7135,22 @@ user_agents = working_user_agents = [
 
 def get_random_user_agent():
     return random.choice(user_agents)
-
+#stop it
 def check_username_on_website(site, username):
     try:
         url = site["uri_check"].replace("{account}", username)
         headers = {"User-Agent": get_random_user_agent()}
         response = requests.get(url, headers=headers, timeout=5)
 
-        if (response.status_code == site["e_code"] and
-            site["e_string"] in response.text):
+        if (response.status_code == site["e_code"] and site["e_string"] in response.text):
             return (site["name"], url)
-        elif (response.status_code == site["m_code"] and
-              site["m_string"] in response.text):
+        elif (response.status_code == site["m_code"] and site["m_string"] in response.text):
             return None
         return None
 
-    except Exception as e:
+    except Exception:
         return None
-    
+#yep
 def scrape_duckduckgo_links(query):
     url = f"https://duckduckgo.com/html/?q={query}"
     headers = {"User-Agent": get_random_user_agent()}
@@ -7160,13 +7158,11 @@ def scrape_duckduckgo_links(query):
     try:
         response = requests.get(url, headers=headers, timeout=6)
         response.raise_for_status()
-
         soup = BeautifulSoup(response.text, "html.parser")
         links = set()
-
+        #nothing here
         for a_tag in soup.find_all("a", class_="result__a", href=True):
             href = a_tag.get("href")
-
             if "duckduckgo.com/l/?" in href:
                 parsed_url = urlparse(href)
                 real_url = parse_qs(parsed_url.query).get("uddg", [None])[0]
@@ -7176,26 +7172,31 @@ def scrape_duckduckgo_links(query):
                 links.add(href)
 
         return list(links)
-
     except requests.exceptions.RequestException as e:
         print(f"\033[91mError with DuckDuckGo request: {e}\033[0m")
         return []
 
+def make_middle_part_green(url):
+    # This regex pattern splits the domain from the rest of the URL
+    pattern = r"(https?://)([^/]+)(/.*)?"
+    match = re.match(pattern, url)
+    if match:
+        # The middle part is the domain (second group), colored green
+        return f"{match.group(1)}\033[38;2;230;168;255m{match.group(2)}\033[38;2;0;128;128m{match.group(3) or ''}"
+    return url
+
 def search_username(username, threads=200, save_file=None):
     start_time = time.time()
-
     output = ""
-
     found = []
+    
     with ThreadPoolExecutor(max_workers=threads) as executor:
-        futures = {executor.submit(check_username_on_website, site, username): site
-                   for site in metadata["sites"]}
-
+        futures = {executor.submit(check_username_on_website, site, username): site for site in metadata["sites"]}
         for future in as_completed(futures):
             result = future.result()
             if result:
                 found.append(result)
-
+    
     duckduckgo_results = scrape_duckduckgo_links(username)
     elapsed_time = time.time() - start_time
 
@@ -7207,19 +7208,19 @@ def search_username(username, threads=200, save_file=None):
                     unique_sites.add(site_name)
                     site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
                     category = site_metadata["cat"] if site_metadata else "Unknown"
-                    output += f"\033[38;2;255;255;255m[\033[38;2;230;168;255m{site_name}\033[38;2;255;255;255m] \033[38;2;255;255;255m[\033[38;2;255;221;51m{category}\033[38;2;255;255;255m]\033[38;2;0;128;128m {url}\n"
+                    output += f"\033[38;2;255;255;255m[\033[38;2;255;0;255m{category}\033[38;2;255;255;255m]\033[38;2;0;128;128m {make_middle_part_green(url)}\n"
 
         if duckduckgo_results:
-            output += f"\n\033[38;2;255;255;255m[\033[38;2;230;168;255mDuckDuckGo\033[38;2;255;255;255m]\n"
+            output += f"\n\033[38;2;255;255;255m[\033[38;5;81mDuckDuckGo\033[38;2;255;255;255m]\n"
             for i, link in enumerate(duckduckgo_results, 1):
-                output += f"\033[38;2;255;255;255m[\033[38;2;255;221;51m{i}\033[38;2;255;255;255m] \033[\033[38;2;255;255;255m{link}\n"
+                output += f"\033[38;2;255;255;255m[\033[38;2;255;221;51m{i}\033[38;2;255;255;255m] \033[38;2;0;128;128m{make_middle_part_green(link)}\n"
 
         output += f"\n\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m] Websites found: \033[38;2;0;255;0m{len(found)}\n"
-        output += f"\033[38;2;255;255;255m[\033[38;2;255;130;0m*\033[38;2;255;255;255m] Time Taken: \033[38;2;255;130;0m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
+        output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
     else:
-        output += f"\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;2;255;0;0m No matches found\n"
-        output += f"\033[38;2;255;255;255m[\033[38;2;255;130;0m*\033[38;2;255;255;255m] Time Taken: \033[38;2;255;130;0m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
-
+        output += "\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;2;255;0;0m No matches found\n"
+        output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
+    
     if save_file:
         try:
             with open(save_file, "w") as f:
@@ -7233,47 +7234,34 @@ def search_username(username, threads=200, save_file=None):
         print(output)
 
 def print_help():
-    help_text = """ 
-
+    color_darkaqua = "\033[38;2;0;128;128m"
+    help_text = f""" 
 Arguments:
   -sf  Save the output to a file.
 
 Usage:
-  - python3 userfinder.py example -sf .txt
+  - python3 userfinder.py example -sf example.txt
   - python3 userfinder.py example
 """
     print(help_text)
 
 if __name__ == "__main__":
-    color_purple = "\033[38;2;255;0;255m"  
-    color_white = "\033[38;2;255;255;255m"  
-    
     logo = r"""
-                        _____           __         
-  __  __________  _____/ __(_)___  ____/ /__  _____
- / / / / ___/ _ \/ ___/ /_/ / __ \/ __  / _ \/ ___/
-/ /_/ (__  )  __/ /  / __/ / / / / /_/ /  __/ /    
-\__,_/____/\___/_/  /_/ /_/_/ /_/\__,_/\___/_/     
-                                                                                     
-"""
-    print(f"{color_purple}{logo}")
-    print(f"{color_white}                              Coded By BisKit\n")
-
+_____  __                  ____________       _________            
+__  / / /_____________________  __/__(_)____________  /____________
+_  / / /__  ___/  _ \_  ___/_  /_ __  /__  __ \  __  /_  _ \_  ___/
+/ /_/ / _(__  )/  __/  /   _  __/ _  / _  / / / /_/ / /  __/  /    
+\____/  /____/ \___//_/    /_/    /_/  /_/ /_/\__,_/  \___//_/     
+                                                                                                                                                   
+"""  
+    print(f"\033[38;2;255;0;255m{logo}")
+    print(f"{Fore.LIGHTWHITE_EX}                           (Coded by BisKit V 1.1)\n")
     if len(sys.argv) < 2:
-        print_help()
-        sys.exit(1)
-
-    if sys.argv[1] == "-h":
         print_help()
         sys.exit(0)
 
     username = sys.argv[1]
-    save_file = None
-
-    if len(sys.argv) > 2 and sys.argv[2] == "-sf":
-        if len(sys.argv) > 3:
-            save_file = sys.argv[3]
-        else:
-            sys.exit(1)
-
+    save_file = sys.argv[3] if len(sys.argv) > 3 and sys.argv[2] == "-sf" else None
     search_username(username, save_file=save_file)
+
+    #dont be looking downhere
