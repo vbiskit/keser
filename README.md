@@ -1,5 +1,5 @@
 # userfinder Very Fast Osint Username Search 
-![Screenshot](logo.png)
+![Screenshot]()
 ## About  
 
 I created userfinder to make my work easier and to help others save time when searching for usernames. Many existing tools are either too slow or lack efficiency, so I built userfinder to deliver faster and more reliable results. By outperforming other tools and integrating DuckDuckGo search, userfinder provides a powerful and privacy-friendly way to find usernames or first name and last names with speed and accuracy. 
