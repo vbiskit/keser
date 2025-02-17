@@ -7,6 +7,10 @@ I created SneakyUrls to make my work easier and to help others save time when se
 
 ## Installation  
 
+##
+sneakyurls
+![sneaky](sneakyurls.png)
+
 Clone the repository and install the required dependencies:  
 ```
 git clone https://github.com/vbiskit/sneakyurls
