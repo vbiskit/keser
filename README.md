@@ -1,5 +1,5 @@
 # SneakyUrls Very Fast Osint Username Search 
-![Screenshot](SneakyUrls.jpg)
+![Screenshot](SneakyUrl.jpg)
 
 ## About  
 
