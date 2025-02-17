@@ -7236,8 +7236,8 @@ def print_help():
     help_text = """ 
 
 Arguments:
-  -h           Show this help message.
-  -sf <file>   Save the output to a file.
+  -sf  Save the output to a file.
+
 Usage:
   - python3 userfinder.py example -sf .txt
   - python3 userfinder.py example
