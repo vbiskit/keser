@@ -7,6 +7,7 @@ import os
 from colorama import Fore
 from urllib.parse import urlparse, parse_qs
 import sys
+
 metadata = {
      "sites" : [
        {
