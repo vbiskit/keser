@@ -14,4 +14,11 @@ cd userfinder
 
 pip3 install -r requirements.txt
 
-python3 userfinder.py 
+python3 userfinder.py
+
+```
+# Usage
+```
+python3 userfinder.py someone -sf user.txt
+
+python3 userfinder.py someone 
