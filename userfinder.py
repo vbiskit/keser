@@ -7233,14 +7233,14 @@ def search_username(username, threads=500, save_file=None):
         print(output)
 
 def print_help():
-    help_text = """
-Usage: python userfinder.py username 
+    help_text = """ 
 
 Arguments:
   -h           Show this help message.
   -sf <file>   Save the output to a file.
-
-  - Usage python3 userfinder.py example -sf .txt
+Usage:
+  - python3 userfinder.py example -sf .txt
+  - python3 userfinder.py example
 """
     print(help_text)
 
