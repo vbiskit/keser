@@ -7210,15 +7210,15 @@ def search_username(username, threads=500, save_file=None):
                     output += f"\033[38;2;255;255;255m[\033[38;2;230;168;255m{site_name}\033[38;2;255;255;255m] \033[38;2;255;255;255m[\033[38;2;255;221;51m{category}\033[38;2;255;255;255m]\033[38;2;0;128;128m {url}\n"
 
         if duckduckgo_results:
-            output += f"\n\033[38;2;230;168;255mDuckDuckGo\n"
+            output += f"\n\033[38;2;255;255;255m[\033[38;2;230;168;255mDuckDuckGo\033[38;2;255;255;255m]\n"
             for i, link in enumerate(duckduckgo_results, 1):
                 output += f"\033[38;2;255;255;255m[\033[38;2;255;221;51m{i}\033[38;2;255;255;255m] \033[\033[38;2;0;128;128m{link}\n"
 
         output += f"\n\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m] Websites found: \033[38;2;0;255;0m{len(found)}\n"
-        output += f"\033[38;2;255;255;255m[\033[38;2;255;130;0m*\033[38;2;255;255;255m] Time Taken: \033[38;2;0;255;0m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
+        output += f"\033[38;2;255;255;255m[\033[38;2;255;130;0m*\033[38;2;255;255;255m] Time Taken: \033[38;2;255;130;0m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
     else:
         output += f"\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;2;255;0;0m No matches found\n"
-        output += f"\033[38;2;255;255;255m[\033[38;2;255;130;0m*\033[38;2;255;255;255m] Time Taken: \033[38;2;0;255;0m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
+        output += f"\033[38;2;255;255;255m[\033[38;2;255;130;0m*\033[38;2;255;255;255m] Time Taken: \033[38;2;255;130;0m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
 
     if save_file:
         try:
@@ -7277,3 +7277,4 @@ if __name__ == "__main__":
             sys.exit(1)
 
     search_username(username, save_file=save_file)
+# nothing to see here
