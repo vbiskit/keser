@@ -7255,7 +7255,7 @@ if __name__ == "__main__":
       ░           ░    ░  ░     ░  ░░  ░    ░ ░        ░        ░         ░  ░      ░  
                                             ░ ░ """                                                                                                                                                                                                                                        
     print(f"\033[38;2;0;128;128m{logo}")
-    print(f"{Fore.LIGHTCYAN_EX}                                               (Coded by BisKit V 1.1)\n")
+    print(f"{Fore.LIGHTCYAN_EX}                                                (Coded by BisKit V 1.1)\n")
     if len(sys.argv) < 2:
         print_help()
         sys.exit(0)
