@@ -7,7 +7,7 @@ I created userfinder to make my work easier and to help others save time when se
 
 # Userfinder
 
-![Screenshot](r.png)
+![Screenshot](userfinder2.png)
 
 ## Installation  
 
