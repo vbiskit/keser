@@ -7255,7 +7255,7 @@ if __name__ == "__main__":
 ░  ░  ░     ░   ░ ░    ░    ░   ▒   ░ ░░ ░  ▒ ▒ ░░   ░░░ ░ ░   ░░   ░   ░ ░   ░  ░  ░  
       ░           ░    ░  ░     ░  ░░  ░    ░ ░        ░        ░         ░  ░      ░  
                                             ░ ░ """                                                                                                                                                                                                                                        
-    print(f"\033[38;2;0;255;255m{logo}")
+    print(f"\033[38;2;80;200;120m{logo}")
     print(f"{Fore.LIGHTWHITE_EX}                                                (Coded by BisKit V 2.3)\n")
     if len(sys.argv) < 2:
         print_help()
