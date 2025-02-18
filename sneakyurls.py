@@ -7214,7 +7214,7 @@ def search_username(username, threads=200, save_file=None):
             for i, link in enumerate(duckduckgo_results, 1):
                 output += f"\033[38;2;0;255;255m[\033[38;2;255;255;255m{i}\033[38;2;0;255;255m] \033[38;2;255;0;255m{make_middle_part_green(link)}\n"
 
-        output += f"\n\033[38;2;255;255;255m[\033[38;2;0;128;128m+\033[38;2;255;255;255m] Websites found: \033[38;2;0;128;128m{len(found)}\n"
+        output += f"\n\033[38;2;255;255;255m[\033[38;2;255;204;102m+\033[38;2;255;255;255m] Websites found: \033[38;2;255;204;102m{len(found)}\n"
         output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
     else:
         output += "\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;5;196m No matches found\n"
