@@ -3,7 +3,7 @@
 
 ## About  
 
-i don't even know just install see for your self 
+i don't even know just install and see for your self 
 
 # SneakyUrls Showcase
 ![sneaky](sneakyurls.png)
