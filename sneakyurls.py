@@ -7206,14 +7206,15 @@ def search_username(username, threads=200, save_file=None):
                     unique_sites.add(site_name)
                     site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
                     category = site_metadata["cat"] if site_metadata else "Unknown"
-                    output += f"\033[38;2;255;255;255m[\033[38;5;81m{category}\033[38;2;255;255;255m]\033[38;2;255;0;255m {make_middle_part_green(url)}\n"
-
+                    short_name = site_metadata["name"] if site_metadata else "Unknown"  # Full name
+                    output += f"\033[38;2;255;255;255m[\033[38;2;0;255;0m{short_name}\033[38;2;255;255;255m]\033[38;2;255;255;255m[\033[38;5;81m{category}\033[38;2;255;255;255m]\033[38;2;255;0;255m {make_middle_part_green(url)}\n"
+                    
         if duckduckgo_results:
             output += f"\n\033[38;2;255;255;255m[\033[38;2;230;168;255mDuckDuckGo\033[38;2;255;255;255m]\n"
             for i, link in enumerate(duckduckgo_results, 1):
-                output += f"\033[38;2;255;255;255m[\033[38;5;81m{i}\033[38;2;255;255;255m] \033[38;2;255;0;255m{make_middle_part_green(link)}\n"
+                output += f"\033[38;2;0;255;255m[\033[38;2;255;255;255m{i}\033[38;2;0;255;255m] \033[38;2;255;0;255m{make_middle_part_green(link)}\n"
 
-        output += f"\n\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m] Websites found: \033[38;2;0;255;0m{len(found)}\n"
+        output += f"\n\033[38;2;255;255;255m[\033[38;2;0;128;128m+\033[38;2;255;255;255m] Websites found: \033[38;2;0;128;128m{len(found)}\n"
         output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
     else:
         output += "\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;5;196m No matches found\n"
@@ -7230,6 +7231,8 @@ def search_username(username, threads=200, save_file=None):
             print(f"\033[91mError: {e}\033[0m")
     else:
         print(output)
+
+
 # hello
 def print_help():
     help_text = f""" 
@@ -7252,7 +7255,7 @@ if __name__ == "__main__":
 ░  ░  ░     ░   ░ ░    ░    ░   ▒   ░ ░░ ░  ▒ ▒ ░░   ░░░ ░ ░   ░░   ░   ░ ░   ░  ░  ░  
       ░           ░    ░  ░     ░  ░░  ░    ░ ░        ░        ░         ░  ░      ░  
                                             ░ ░ """                                                                                                                                                                                                                                        
-    print(f"\033[38;2;0;128;128m{logo}")
+    print(f"\033[38;2;255;102;0m{logo}")
     print(f"{Fore.LIGHTCYAN_EX}                                                (Coded by BisKit V 1.1)\n")
     if len(sys.argv) < 2:
         print_help()
