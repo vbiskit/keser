@@ -1,9 +1,9 @@
 # SneakyUrls Very Fast Osint Username Search 
 ![Screenshot](sneakyurl.jpg)
 
-## About  
+## Results time 
 
-i don't even know just install and see for your self 
+if you got good internet might take 10 to 8 seconds
 
 # SneakyUrls Showcase
 ![sneaky](sneakyurls.png)
