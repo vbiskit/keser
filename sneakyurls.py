@@ -7177,11 +7177,9 @@ def scrape_duckduckgo_links(query):
         return []
 
 def make_middle_part_green(url):
-    # This regex pattern splits the domain from the rest of the URL
     pattern = r"(https?://)([^/]+)(/.*)?"
     match = re.match(pattern, url)
     if match:
-        # The middle part is the domain (second group), colored green
         return f"{match.group(1)}\033[38;2;255;221;51m{match.group(2)}\033[38;2;255;0;255m{match.group(3) or ''}"
     return url
 
@@ -7218,7 +7216,7 @@ def search_username(username, threads=200, save_file=None):
         output += f"\n\033[38;2;255;255;255m[\033[38;2;0;255;0m+\033[38;2;255;255;255m] Websites found: \033[38;2;0;255;0m{len(found)}\n"
         output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
     else:
-        output += "\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;2;255;0;0m No matches found\n"
+        output += "\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;5;196m No matches found\n"
         output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
     
     if save_file:
@@ -7263,7 +7261,5 @@ if __name__ == "__main__":
     username = sys.argv[1]
     save_file = sys.argv[3] if len(sys.argv) > 3 and sys.argv[2] == "-sf" else None
     search_username(username, save_file=save_file)
-
-    # don't be looking down here
 
     # don't be looking down here
