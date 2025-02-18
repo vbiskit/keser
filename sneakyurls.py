@@ -7257,7 +7257,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print_help()
         sys.exit(0)
-
+    # you scrolled all the way down to the end
     username = sys.argv[1]
     save_file = sys.argv[3] if len(sys.argv) > 3 and sys.argv[2] == "-sf" else None
     search_username(username, save_file=save_file)
