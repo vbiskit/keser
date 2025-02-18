@@ -6,7 +6,7 @@
 if you got good internet might take 10 to 8 seconds
 
 # SneakyUrls Showcase
-![sneaky](sneakyurls.png)
+![sneaky](showcase.png)
 
 ## Installation 
 Clone the repository and install the required dependencies:  
