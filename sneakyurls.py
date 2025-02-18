@@ -7132,7 +7132,7 @@ user_agents = working_user_agents = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko)"
 ]
-
+# hey
 def get_random_user_agent():
     return random.choice(user_agents)
 #stop it
@@ -7154,7 +7154,7 @@ def check_username_on_website(site, username):
 def scrape_duckduckgo_links(query):
     url = f"https://duckduckgo.com/html/?q={query}"
     headers = {"User-Agent": get_random_user_agent()}
-
+# alright
     try:
         response = requests.get(url, headers=headers, timeout=6)
         response.raise_for_status()
@@ -7175,7 +7175,7 @@ def scrape_duckduckgo_links(query):
     except requests.exceptions.RequestException as e:
         print(f"\033[91mError with DuckDuckGo request: {e}\033[0m")
         return []
-
+# think i cant see you ?
 def make_middle_part_green(url):
     pattern = r"(https?://)([^/]+)(/.*)?"
     match = re.match(pattern, url)
@@ -7197,7 +7197,7 @@ def search_username(username, threads=200, save_file=None):
     
     duckduckgo_results = scrape_duckduckgo_links(username)
     elapsed_time = time.time() - start_time
-
+    # i see you
     if found or duckduckgo_results:
         if found:
             unique_sites = set()
@@ -7230,7 +7230,7 @@ def search_username(username, threads=200, save_file=None):
             print(f"\033[91mError: {e}\033[0m")
     else:
         print(output)
-
+# hello
 def print_help():
     help_text = f""" 
 Arguments:
