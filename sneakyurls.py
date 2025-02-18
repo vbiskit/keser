@@ -7180,7 +7180,7 @@ def make_middle_part_green(url):
     pattern = r"(https?://)([^/]+)(/.*)?"
     match = re.match(pattern, url)
     if match:
-        return f"{match.group(1)}\033[38;2;255;221;51m{match.group(2)}\033[38;2;255;0;255m{match.group(3) or ''}"
+        return f"{match.group(1)}\033[38;2;255;221;51m{match.group(2)}{Fore.LIGHTBLACK_EX}{match.group(3) or ''}"
     return url
 
 def search_username(username, threads=200, save_file=None):
@@ -7207,12 +7207,12 @@ def search_username(username, threads=200, save_file=None):
                     site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
                     category = site_metadata["cat"] if site_metadata else "Unknown"
                     short_name = site_metadata["name"] if site_metadata else "Unknown"  # Full name
-                    output += f"\033[38;2;255;255;255m[\033[38;2;0;255;0m{short_name}\033[38;2;255;255;255m]\033[38;2;255;255;255m[\033[38;5;81m{category}\033[38;2;255;255;255m]\033[38;2;255;0;255m {make_middle_part_green(url)}\n"
+                    output += f"\033[38;2;255;255;255m[\033[38;2;0;255;0m{short_name}\033[38;2;255;255;255m]\033[38;2;255;255;255m[\033[38;5;81m{category}\033[38;2;255;255;255m]{Fore.LIGHTBLACK_EX} {make_middle_part_green(url)}\n"
                     
         if duckduckgo_results:
             output += f"\n\033[38;2;255;255;255m[\033[38;2;230;168;255mDuckDuckGo\033[38;2;255;255;255m]\n"
             for i, link in enumerate(duckduckgo_results, 1):
-                output += f"\033[38;2;0;255;255m[\033[38;2;255;255;255m{i}\033[38;2;0;255;255m] \033[38;2;255;0;255m{make_middle_part_green(link)}\n"
+                output += f"\033[38;2;0;255;255m[\033[38;2;255;255;255m{i}\033[38;2;0;255;255m]{Fore.LIGHTBLACK_EX} {make_middle_part_green(link)}\n"
 
         output += f"\n\033[38;2;255;255;255m[\033[38;2;255;204;102m+\033[38;2;255;255;255m] Websites found: \033[38;2;255;204;102m{len(found)}\n"
         output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
