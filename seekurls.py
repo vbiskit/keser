@@ -7333,6 +7333,16 @@ def search_username(username, threads=200, save_file=None, search_all=False):
         output += "\n\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m]\033[38;2;255;255;255m No matches found\n"
         output += f"\033[38;2;255;255;255m[\033[38;2;0;122;255m*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: \033[38;2;0;122;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
 
+    if save_file:
+        try:
+            with open(save_file, "a") as f:
+                f.write(output + "\n")
+            print(f"\033[38;2;255;255;255m Results saved to {save_file}")
+        except Exception as e:
+            print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
+    else:
+        print(output)
+
 def read_usernames_from_file(file_path):
     with open(file_path, 'r') as file:
         usernames = [line.strip() for line in file.readlines()]
@@ -7387,7 +7397,7 @@ def process_brute_force_duckduckgo(usernames_file, save_file=None):
     output = ""
 
     for username in usernames:
-        print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m]\033[38;2;0;122;255m Checking {username} with duckduckgo", flush=True)  # Instant print INF
+        print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m]\033[38;2;0;122;255m] Checking {username} with duckduckgo", flush=True)  # Instant print INF
         duckduckgo_results = scrape_duckduckgo_links(username)
 
         if duckduckgo_results:
