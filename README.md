@@ -21,6 +21,12 @@ python3 sneakyurls.py
 ```
 # Usage:
 ```
-python3 sneakyurls someone -sf user.txt
-
-python3 sneakyurls.py someone 
+Arguments:
+  -sf  Save the output to a file.
+  -bf  Enable brute-force username variations from a .txt file.
+  -all Search With Duckduckgo And Userlinks
+Usage:
+  - python3 sneakurls.py <example> -sf example.txt
+  - python3 sneakurls.py <example> for just links
+  - python3 sneakurls.py -bf usernames.txt
+  - python3 sneakurls.py <example> -all
