@@ -8,6 +8,9 @@ if you got good internet might take 10 to 8 seconds
 # SneakyUrls Showcase
 ![sneaky](sneakurls.png)
 
+# Brute Force: Usernames
+![bruteforce](bruteforce.png)
+
 ## Installation 
 Clone the repository and install the required dependencies:  
 ```
