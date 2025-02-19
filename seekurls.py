@@ -7387,7 +7387,7 @@ def process_brute_force_duckduckgo(usernames_file, save_file=None):
     output = ""
 
     for username in usernames:
-        print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m] Checking {username} with duckduckgo", flush=True)  # Instant print INF
+        print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m]\033[38;2;0;122;255m Checking {username} with duckduckgo", flush=True)  # Instant print INF
         duckduckgo_results = scrape_duckduckgo_links(username)
 
         if duckduckgo_results:
