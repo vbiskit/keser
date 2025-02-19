@@ -7188,8 +7188,8 @@ def search_username(username, threads=200, save_file=None, search_all=False):
     
     if save_file:
         try:
-            with open(save_file, "w") as f:
-                f.write(output)
+            with open(save_file, "a") as f:  # 'a' means append instead of overwrite
+             f.write(output + "\n")  # Add a new line for readability
             print(f"Results saved to {save_file}\n")
         except PermissionError as e:
             print(f"\033[91mError: {e}\033[0m - You do not have permission to write to the file.")
@@ -7252,7 +7252,7 @@ def print_banner():
  \__ \/ -_) -_) / / || | '_| (_-<
  |___/\___\___|_\_\\_,_|_| |_/__/                                                            """
     print(f"{Fore.LIGHTWHITE_EX}{logo}")
-    print("                                       \033[38;2;255;255;255m(Coded by BisKit V 4.2)\n")
+    print("                                       \033[38;2;255;255;255m(Coded by BisKit V 2.3)\n")
     print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m] You are allowed to take the code and use it for your self just not uploading it thinking you made it for other people to use ")
     print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m] Also you can do real names what i mainly use it for\n")
 def print_help():
@@ -7268,7 +7268,6 @@ Usage:
   - python3 seakurls.py -bf usernames.txt
   - python3 seakurls.py <example> -all
   - python3 seakurls.py -bd example.txt
-  - python3 seekurls.py example -all -sf some.txt
 """
     print(help_text)
 
@@ -7292,7 +7291,7 @@ def highlight_url(url):
     path = parsed_url.path  
 
     # Everything white, only the domain yellow
-    highlighted_url = f"\033[97m{parsed_url.scheme}://\033[38;5;214m{domain}\033[97m{path}"
+    highlighted_url = f"\033[97m{parsed_url.scheme}://\033[38;5;220m{domain}\033[97m{path}"
 
     return highlighted_url
 
@@ -7338,8 +7337,8 @@ def search_username(username, threads=200, save_file=None, search_all=False):
     
     if save_file:
         try:
-            with open(save_file, "w") as f:
-                f.write(output)
+            with open(save_file, "a") as f:  # 'a' means append instead of overwrite
+             f.write(output + "\n")  # Add a new line for readability
             print(f"Results saved to {save_file}")
         except PermissionError as e:
             print(f"\033[91mError: {e}\033[0m - You do not have permission to write to the file.")
@@ -7388,7 +7387,7 @@ def highlight_url(url):
     domain = parsed_url.netloc  
     path = parsed_url.path  
 
-    highlighted_url = f"\033[97m{parsed_url.scheme}://\033[38;5;214m{domain}\033[97m{path}"
+    highlighted_url = f"\033[97m{parsed_url.scheme}://\033[38;5;220m{domain}\033[97m{path}"
 
     return highlighted_url
 
