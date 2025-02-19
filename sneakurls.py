@@ -4156,16 +4156,6 @@ metadata = {
         "cat" : "shopping"
        },
        {
-        "name" : "ok.ru",
-        "uri_check" : "https://ok.ru/{account}",
-        "e_code" : 200,
-        "e_string" : "| OK",
-        "m_string" : "class=\"p404_t",
-        "m_code" : 404,
-        "known" : ["john", "aleksandrvasillev"],
-        "cat" : "social"
-       },
-       {
         "name" : "okidoki",
         "uri_check" : "https://m.okidoki.ee/ru/users/{account}/",
         "e_code" : 200,
@@ -5451,18 +5441,6 @@ metadata = {
         "cat" : "blog"
        },
        {
-        "name" : "Sourceforge",
-        "uri_check" : "https://sourceforge.net/user/username/{account}",
-        "uri_pretty" : "https://sourceforge.net/u/{account}/profile",
-        "e_code" : 400,
-        "e_string" : "\"error\": \"invalid\"",
-        "m_string" : "\"success\": 1",
-        "m_code" : 200,
-        "known" : ["alice", "bob"],
-        "cat" : "coding",
-        "protection": ["cloudflare"]
-       },
-       {
         "name" : "Speaker Deck",
         "uri_check" : "https://speakerdeck.com/{account}/",
         "e_code" : 200,
@@ -5985,16 +5963,6 @@ metadata = {
         "m_string" : "Record not found",
         "known" : ["mikebeganyi", "Zugi"],
         "cat" : "social"
-       },
-       {
-        "name" : "TotalWar",
-        "uri_check" : "https://forums.totalwar.com/profile/{account}",
-        "e_code" : 200,
-        "e_string" : "Total War Forums",
-        "m_string" : "Not Found",
-        "m_code" : 404,
-        "known" : ["iamnotarobot", "passthechips"],
-        "cat" : "gaming"
        },
        {
         "name" : "toyhou.se",
