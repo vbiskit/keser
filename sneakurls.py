@@ -7293,8 +7293,8 @@ def print_banner():
 def print_help():
     help_text = """ 
 Arguments:
-  -sf  Save the output to a file.
-  -bf  Enable brute-force username variations from a .txt file.
+  -sf  Save the output to a file
+  -bf brute-force usernames from a .txt file
   -all Search With Duckduckgo And Userlinks
 Usage:
   - python3 sneakurls.py <example> -sf example.txt
