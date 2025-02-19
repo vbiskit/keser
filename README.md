@@ -1,4 +1,4 @@
-# SneakUrls Very Fast Osint Username Search 
+# SneakUrls -all command
 ![Screenshot](sneakurls.png)
 
 ## Results time 
