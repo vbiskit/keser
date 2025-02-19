@@ -7451,7 +7451,6 @@ def main():
         search_username(args.username, save_file=args.save_file, search_all=args.search_all)
     
     elif args.brute_force:
-        print(f"Processing brute-force file: {args.brute_force}")
         process_file(args.brute_force, save_file=args.save_file)
 
     elif args.brute_force_duckduckgo:
