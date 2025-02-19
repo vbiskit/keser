@@ -7204,7 +7204,7 @@ def search_username(username, threads=200, save_file=None, search_all=False):
                     unique_sites.add(site_name)
                     site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
                     category = site_metadata["cat"] if site_metadata else "Unknown"
-                    short_name = site_metadata["name"] if site_metadata else "Unknown"  
+                    short_name = site_metadata["name"] if site_metadata else "Unknown"  # Full name
                     output += f"\033[38;2;255;255;255m[\033[38;5;214m{short_name}\033[38;2;255;255;255m]\033[38;2;31;117;255m] {url}\n"
                     
         if duckduckgo_results:
@@ -7279,15 +7279,13 @@ def process_file(filename, save_file=None):
 
 def print_banner():
     logo = r"""
-                          __              __    
-   _________  ___  ____ _/ /____  _______/ /____
-  / ___/ __ \/ _ \/ __ `/ //_/ / / / ___/ / ___/
- (__  ) / / /  __/ /_/ / ,< / /_/ / /  / (__  ) 
-/____/_/ /_/\___/\__,_/_/|_|\__,_/_/  /_/____/  
-                                              """
+  ___               _            _    
+ / __|_ _  ___ __ _| |___  _ _ _| |___
+ \__ \ ' \/ -_) _` | / / || | '_| (_-<
+ |___/_||_\___\__,_|_\_\\_,_|_| |_/__/                                  """
     print(f"{Fore.LIGHTWHITE_EX}{logo}")
-    print("                                                \033[38;2;255;255;255m(Coded by BisKit V 2.3)\n")
-
+    print("                                       \033[38;2;255;255;255m(Coded by BisKit V 2.3)\n")
+    print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m] You are allowed to take the code and use it for your self just not uploading it thinking you made it for other people to use\n ")
 def print_help():
     help_text = """ 
 Arguments:
@@ -7312,9 +7310,21 @@ def setup_argparse():
     parser.add_argument("-all", "--search-all", action="store_true", help="Search additional sites like DuckDuckGo.")
     
     return parser
+     
+def highlight_url(url):
+    """
+    Function to highlight only the domain part of the URL in yellow while keeping everything else white.
+    """
+    parsed_url = urlparse(url)
+    domain = parsed_url.netloc  
+    path = parsed_url.path  
 
+    # Everything white, only the domain yellow
+    highlighted_url = f"\033[97m{parsed_url.scheme}://\033[38;5;220m{domain}\033[97m{path}"
 
-def search_username(username, threads=200, save_file=None, search_all=False):  
+    return highlighted_url
+
+def search_username(username, threads=200, save_file=None, search_all=False):
     start_time = time.time()
     output = ""
     found = []
@@ -7341,18 +7351,18 @@ def search_username(username, threads=200, save_file=None, search_all=False):
                     site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
                 
                     short_name = site_metadata["name"] if site_metadata else "Unknown"  # Full name
-                    output += f"\033[38;2;255;255;255m[\033[38;5;214m{short_name}\033[38;2;255;255;255m]\033[38;2;31;117;255m {url}\n"
+                    output += f"\033[38;2;255;255;255m[\033[38;2;0;122;255m{short_name}\033[38;2;255;255;255m]\033[38;2;255;255;255m {url}\n"
         
         if duckduckgo_results:
-            output += f"\n\033[38;2;255;255;255m[\033[38;5;214mDuckDuckGo\033[38;2;255;255;255m]\n"
-            for i, link in enumerate(duckduckgo_results, 1):
-                output += f"\033[38;2;255;255;255m[\033[38;5;214m{i}\033[38;2;255;255;255m]\033[38;2;31;117;255m {link}\n"
+            output += f"\n\033[38;2;255;255;255m[\033[38;2;0;122;255mDuckDuckGo\033[38;2;255;255;255m]\n"
+            for link in duckduckgo_results:
+                output += f"\033[38;2;255;255;255m{highlight_url(link)}\n"
 
-        output += f"\n\033[38;2;255;255;255m[\033[38;2;204;255;204mINF\033[38;2;255;255;255m] \033[38;2;255;204;102m{len(found)}\n"
-        output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
+        output += f"\n\033[38;2;255;255;255m[\033[38;5;214mINF\033[38;2;255;255;255m] \033[38;2;255;255;255mLinks: {len(found)}\n"
+        output += f"\033[38;2;255;255;255m[\033[38;5;214m*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
     else:
         output += "\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;5;196m No matches found\n"
-        output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
+        output += f"\033[38;2;255;255;255m[\033[38;2;0;122;255m*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: \033[38;2;0;122;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
     
     if save_file:
         try:
@@ -7365,33 +7375,8 @@ def search_username(username, threads=200, save_file=None, search_all=False):
             print(f"\033[91mError: {e}\033[0m")
     else:
         print(output)
-def get_random_user_agent():
-    return random.choice(user_agents)
 
-def scrape_duckduckgo_links(query):
-    url = f"https://duckduckgo.com/html/?q={query}"
-    headers = {"User-Agent": get_random_user_agent()}  
 
-    try:
-        response = requests.get(url, headers=headers, timeout=6)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.text, "html.parser")
-        links = set()
-
-        for a_tag in soup.find_all("a", class_="result__a", href=True):
-            href = a_tag.get("href")
-            if "duckduckgo.com/l/?" in href:
-                parsed_url = urlparse(href)
-                real_url = parse_qs(parsed_url.query).get("uddg", [None])[0]
-                if real_url:
-                    links.add(real_url)
-            elif "duckduckgo.com" not in href:
-                links.add(href)
-
-        return list(links)
-    except requests.exceptions.RequestException as e:
-        print(f"\033[91mError with DuckDuckGo request: {e}\033[0m")
-        return []
 
 def read_usernames_from_file(file_path):
     with open(file_path, 'r') as file:
@@ -7430,6 +7415,7 @@ def highlight_url(url):
     parsed_url = urlparse(url)
     domain = parsed_url.netloc  
     path = parsed_url.path  
+
     highlighted_url = f"\033[97m{parsed_url.scheme}://\033[38;5;220m{domain}\033[97m{path}"
 
     return highlighted_url
@@ -7438,7 +7424,7 @@ def process_brute_force_duckduckgo(usernames_file, save_file=None):
     usernames = read_usernames_from_file(usernames_file)
 
     for username in usernames:
-        print(f"\033[38;2;255;255;255m[\033[38;2;255;90;0mSearching\033[38;2;255;255;255m] {username}") 
+        print(f"\033[38;2;255;255;255m[\033[38;2;255;90;0mSearching\033[38;2;255;255;255m] {username}")  
         duckduckgo_results = scrape_duckduckgo_links(username)
 
         if duckduckgo_results:
@@ -7449,7 +7435,7 @@ def process_brute_force_duckduckgo(usernames_file, save_file=None):
         else:
             print(f"\033[38;2;255;255;255m[\033[38;2;255;20;147mNULL \033[38;2;255;255;255m{username}\033[38;2;255;255;255m]")
 
-        time.sleep(5)  
+        time.sleep(5)  # **Added a 2-second delay between searches**
 
 def main():
     print_banner()
@@ -7461,7 +7447,7 @@ def main():
         sys.exit(0)
 
     if args.username:
-        print(f"Searching for username: {args.username}")
+        print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m] Emulating websites for {args.username}")
         search_username(args.username, save_file=args.save_file, search_all=args.search_all)
     
     elif args.brute_force:
@@ -7473,4 +7459,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-# sorry about the retarded code
+
+# i told you it was retarded : (
