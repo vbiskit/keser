@@ -7224,7 +7224,7 @@ def search_username(username, threads=200, save_file=None, search_all=False):
         try:
             with open(save_file, "w") as f:
                 f.write(output)
-            print(f"Results saved to {save_file}")
+            print(f"Results saved to {save_file}\n")
         except PermissionError as e:
             print(f"\033[91mError: {e}\033[0m - You do not have permission to write to the file.")
         except Exception as e:
