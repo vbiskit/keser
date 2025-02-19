@@ -1,4 +1,4 @@
-# Save file with all 
+# Save file with all which means -all is duckduckgo and urls
 ![Screenshot](savefilewithduckduckgo.png)
 
 ## 
