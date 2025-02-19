@@ -1,7 +1,8 @@
 # Duckduckgo Brute Force
 ![Screenshot](duckduckgobruteforce.png)
 
-## The tool has 0 false postives so just letting you know its a insanely fast username or can be real name search what i mainly use this stuff for it has a built in duckduckgo search and a brute force username runs fron a .txt so does the duckduckgo brute force.
+## 
+The tool has 0 false postives so just letting you know its a insanely fast username or can be real name search what i mainly use this stuff for it has a built in duckduckgo search and a brute force username runs fron a .txt so does the duckduckgo brute force.
 
 # Brute Force: Usernames
 ![bruteforce](brute.png)
