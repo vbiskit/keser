@@ -1,12 +1,15 @@
-# SneakUrls -all command
+# Duckduckgo And Links -all 
 ![Screenshot](sneakurls.png)
 
 ## Results time 
 
 if you got good internet might take 10 to 8 seconds
 
-# Brute Force: Usernames
+# Brute Force: Usernames -bf
 ![bruteforce](bruteforce.png)
+
+# Save File -sf
+![savefile](savefile.png)
 
 ## Installation 
 Clone the repository and install the required dependencies:  
