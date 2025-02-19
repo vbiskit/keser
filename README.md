@@ -1,9 +1,8 @@
 # Duckduckgo And Links -all 
 ![Screenshot](sneakurls.png)
 
-## Results time 
-
-if you got good internet might take 10 to 8 seconds
+#
+The tool has 0 false postives so just letting you know its a insanely fast username or can be realname search what i mainly use this stuff for it has a built in duckduckgo search and a brute force username runs fron a .txt so does the duckduckgo brute force
 
 # Brute Force: Usernames -bf
 ![bruteforce](bruteforce.png)
