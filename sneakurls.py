@@ -7416,7 +7416,7 @@ def highlight_url(url):
     domain = parsed_url.netloc  
     path = parsed_url.path  
 
-    highlighted_url = f"\033[97m{parsed_url.scheme}://\033[38;5;214m{domain}\033[97m{path}"
+    highlighted_url = f"\033[97m{parsed_url.scheme}://\033[38;5;220m{domain}\033[97m{path}"
 
     return highlighted_url
 
