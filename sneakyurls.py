@@ -7279,24 +7279,14 @@ def process_file(filename, save_file=None):
         print(f"\033[91mError: The file '{filename}' was not found.\033[0m")
         sys.exit(1)
 
-def setup_argparse():
-    parser = argparse.ArgumentParser(description="Search for usernames on various websites.")
-    
-    parser.add_argument("username", nargs="?", help="The username to search for.")
-    parser.add_argument("-f", "--file", type=str, help="File containing a list of usernames to search.")
-    parser.add_argument("-bf", "--brute-force", type=str, help="Enable brute-force username variations from a .txt file.")
-    parser.add_argument("-sf", "--save-file", type=str, help="Save the results to a file.")
-    parser.add_argument("-all", "--search-all", action="store_true", help="Search additional sites like DuckDuckGo.")
-    
-    return parser
-
 def print_banner():
     logo = r"""
                           __              __    
    _________  ___  ____ _/ /____  _______/ /____
   / ___/ __ \/ _ \/ __ `/ //_/ / / / ___/ / ___/
  (__  ) / / /  __/ /_/ / ,< / /_/ / /  / (__  ) 
-/____/_/ /_/\___/\__,_/_/|_|\__,_/_/  /_/____/"""
+/____/_/ /_/\___/\__,_/_/|_|\__,_/_/  /_/____/  
+                                              """
     print(f"{Fore.LIGHTWHITE_EX}{logo}")
     print("                                                \033[38;2;255;255;255m(Coded by BisKit V 2.3)")
 
@@ -7304,19 +7294,27 @@ def print_help():
     help_text = """ 
 Arguments:
   -sf  Save the output to a file.
-  -f   Process usernames from a file.
   -bf  Enable brute-force username variations from a .txt file.
   -all Search With Duckduckgo And Userlinks
 Usage:
-  - python3 sneakyurls.py example -sf example.txt
-  - python3 sneakyurls.py example
-  - python3 sneakyurls.py -f usernames.txt
-  - python3 sneakyurls.py -bf usernames.txt
+  - python3 sneakurls.py example -sf example.txt
+  - python3 sneakurls.py example
+  - python3 sneakurls.py -bf usernames.txt
+  - python3 sneakurls.py example -all
 """
     print(help_text)
 
-def search_username(username, threads=200, save_file=None, search_all=False):
-    print(f"search_username called for: {username}")  # Add this line for debugging
+def setup_argparse():
+    parser = argparse.ArgumentParser(description="Search for usernames on various websites.")
+    
+    parser.add_argument("username", nargs="?", type=str, help="The username to search for.")
+    parser.add_argument("-bf", "--brute-force", type=str, help="Enable brute-force username variations from a .txt file.")
+    parser.add_argument("-sf", "--save-file", type=str, help="Save the results to a file.")
+    parser.add_argument("-all", "--search-all", action="store_true", help="Search additional sites like DuckDuckGo.")
+    
+    return parser
+
+def search_username(username, threads=200, save_file=None, search_all=False):  
     start_time = time.time()
     output = ""
     found = []
@@ -7372,27 +7370,23 @@ def search_username(username, threads=200, save_file=None, search_all=False):
 
 def main():
     print_banner()  # Display the banner
-    parser = setup_argparse()  # Make sure setup_argparse is defined
+    parser = setup_argparse()  # Ensure setup_argparse is defined
     args = parser.parse_args()
 
     # Debugging: print out parsed arguments
-    print(f"Arguments: {args}")
-
-    # Display help if no username or file input provided
-    if not args.username and not args.file and not args.brute_force:
+    
+    # Check if any of the arguments were passed
+    if not any([args.username, args.brute_force]):
         print_help()
         sys.exit(0)  # Exit after displaying help
 
     # Handle username or file input
     if args.username:
-        print(f"Searching for username: {args.username}")
+        print(f"\033[38;2;255;255;255m[\033[38;2;0;0;255mON\033[38;2;255;255;255m] Searching for {args.username}\n")
         if args.username.strip():  # Ensure the username isn't empty or just spaces
             search_username(args.username, save_file=args.save_file, search_all=args.search_all)
         else:
             print("Error: Invalid username provided.")
-    elif args.file:
-        print(f"Processing file: {args.file}")
-        process_file(args.file, save_file=args.save_file)
     elif args.brute_force:
         print(f"Processing brute-force file: {args.brute_force}")
         process_file(args.brute_force, save_file=args.save_file)
@@ -7400,4 +7394,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-    # if you have read the code and seen why it looks retarded ima fix it later just focus on making it work
+    # fixing code later or not doesnt matter if i did something retarded alright as long as it works 
