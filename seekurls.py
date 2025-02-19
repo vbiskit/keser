@@ -7108,7 +7108,7 @@ def check_username_on_website(site, username):
     try:
         url = site["uri_check"].replace("{account}", username)
         headers = {"User-Agent": get_random_user_agent()}
-        response = requests.get(url, headers=headers, timeout=5)
+        response = requests.get(url, headers=headers, timeout=1.2)
 
         if (response.status_code == site["e_code"] and site["e_string"] in response.text):
             return (site["name"], url)
@@ -7145,7 +7145,7 @@ def scrape_duckduckgo_links(query):
         return []
 # think i cant see you ?
 
-def search_username(username, threads=200, save_file=None, search_all=False):
+def search_username(username, threads=100, save_file=None, search_all=False):
     print(f"search_username called for: {username}")  
     start_time = time.time()
     output = ""
@@ -7204,7 +7204,7 @@ def search_username(username, save_file=None):
     found = []
     usernames_to_search = [username]
     
-    with ThreadPoolExecutor(max_workers=200) as executor:
+    with ThreadPoolExecutor(max_workers=100) as executor:
         futures = {}
         for user in usernames_to_search:
             for site in metadata["sites"]:
@@ -7304,8 +7304,6 @@ def search_username(username, threads=200, save_file=None, search_all=False):
             result = future.result()
             if result:
                 found.append(result)
-    
-    # Initialize DuckDuckGo results if search_all is enabled
     duckduckgo_results = []
     if search_all:
         duckduckgo_results = scrape_duckduckgo_links(username)
@@ -7397,7 +7395,7 @@ def process_brute_force_duckduckgo(usernames_file, save_file=None):
     output = ""
 
     for username in usernames:
-        print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m]\033[38;2;0;122;255m] Checking {username} with duckduckgo", flush=True)  
+        print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m]\033[38;2;0;122;255m Checking {username} with duckduckgo", flush=True)  
         duckduckgo_results = scrape_duckduckgo_links(username)
 
         if duckduckgo_results:
@@ -7415,7 +7413,7 @@ def process_brute_force_duckduckgo(usernames_file, save_file=None):
                 f.write(output + "\n")
             print(f"\033[38;2;255;255;255m Results saved to {save_file}")
         except Exception as e:
-            print(f"\033[38;2;255;255;255m[\033[38;5;196mERR]\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
+            print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
     else:
         print(output)
          
