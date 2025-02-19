@@ -5,9 +5,6 @@
 
 if you got good internet might take 10 to 8 seconds
 
-# SneakUrls: Showcase
-![sneak](sneakurls.png)
-
 # Brute Force: Usernames
 ![bruteforce](bruteforce.png)
 
