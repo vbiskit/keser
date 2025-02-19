@@ -7416,7 +7416,7 @@ def highlight_url(url):
     domain = parsed_url.netloc  
     path = parsed_url.path  
 
-    highlighted_url = f"\033[97m{parsed_url.scheme}://\033[38;5;220m{domain}\033[97m{path}"
+    highlighted_url = f"\033[97m{parsed_url.scheme}://\033[38;5;214m{domain}\033[97m{path}"
 
     return highlighted_url
 
@@ -7435,7 +7435,7 @@ def process_brute_force_duckduckgo(usernames_file, save_file=None):
         else:
             print(f"\033[38;2;255;255;255m[\033[38;2;255;20;147mNULL \033[38;2;255;255;255m{username}\033[38;2;255;255;255m]")
 
-        time.sleep(5)  # **Added a 2-second delay between searches**
+        time.sleep(5)  
 
 def main():
     print_banner()
