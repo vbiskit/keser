@@ -28,8 +28,10 @@ Arguments:
   -sf  Save the output to a file
   -bf brute-force usernames from a .txt file
   -all Search With Duckduckgo And Userlinks
+  -bd brute-force usernames with duckduckgo
 Usage:
-  - python3 sneakurls.py <example> -sf example.txt
-  - python3 sneakurls.py <example> for just links
-  - python3 sneakurls.py -bf usernames.txt
-  - python3 sneakurls.py <example> -all
+  - python3 seakurls.py <example> -sf example.txt
+  - python3 seakurls.py <example> for just links
+  - python3 seakurls.py -bf usernames.txt
+  - python3 seakurls.py <example> -all
+  - python3 seakurls.py -bd example.txt
