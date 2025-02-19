@@ -12,13 +12,13 @@
 ## Installation 
 Clone the repository and install the required dependencies:  
 ```
-git clone https://github.com/vbiskit/sneakyurls
+git clone https://github.com/vbiskit/seekurls
 
-cd sneakyurls
+cd seekurls
 
 pip3 install -r requirements.txt
 
-python3 sneakyurls.py
+python3 seekurls.py
 ```
 # Usage:
 ```
