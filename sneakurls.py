@@ -7270,7 +7270,7 @@ def process_file(filename, save_file=None):
             usernames = [line.strip() for line in file.readlines()]
         
         for username in usernames:
-            print(f"\n\033[38;2;255;204;102m[+] Searching for: {username}\n")
+            print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m] Emulating websites for {username}")
             search_username(username, save_file=save_file)
 
     except FileNotFoundError:
@@ -7285,7 +7285,7 @@ def print_banner():
  |___/_||_\___\__,_|_\_\\_,_|_| |_/__/                                  """
     print(f"{Fore.LIGHTWHITE_EX}{logo}")
     print("                                       \033[38;2;255;255;255m(Coded by BisKit V 2.3)\n")
-    print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m] You are allowed to take the code and use it for your self just not uploading it thinking you made it for other people to use\n ")
+    print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m] You are allowed to take the code and use it for your self just not uploading it thinking you made it for other people to use ")
     print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m] Also you can do real names what i mainly use it for\n")
 def print_help():
     help_text = """ 
@@ -7427,16 +7427,16 @@ def process_brute_force_duckduckgo(usernames_file, save_file=None):
     usernames = read_usernames_from_file(usernames_file)
 
     for username in usernames:
-        print(f"\033[38;2;255;255;255m[\033[38;2;255;90;0mSearching\033[38;2;255;255;255m] {username}")  
+        print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m] Checking {username} with duckduckgo")  
         duckduckgo_results = scrape_duckduckgo_links(username)
 
         if duckduckgo_results:
-            print(f"\033[38;2;204;255;204mINFO:\033[38;5;51m {username}")
+            print(f"\033[38;2;0;122;255mINFO:\033[38;5;51m {username}")
             for link in duckduckgo_results:
                 highlighted_link = highlight_url(link)
                 print(f"\033[97m{highlighted_link}\033[0m")  
         else:
-            print(f"\033[38;2;255;255;255m[\033[38;2;255;20;147mNULL \033[38;2;255;255;255m{username}\033[38;2;255;255;255m]")
+            print(f"\033[38;2;255;255;255m[\033[38;5;51mNULL \033[38;2;255;255;255m{username}\033[38;2;255;255;255m]")
 
         time.sleep(5)  
 
