@@ -1,4 +1,4 @@
-# why you looking at the source code ? nah i couldn't care if you stole the source
+#! WARNING CODE IS RETARDED
 import re
 import time
 import requests
@@ -7178,12 +7178,11 @@ def scrape_duckduckgo_links(query):
 # think i cant see you ?
 
 def search_username(username, threads=200, save_file=None, search_all=False):
-    print(f"search_username called for: {username}")  # Add this line for debugging
+    print(f"search_username called for: {username}")  
     start_time = time.time()
     output = ""
     found = []
     
-    # Assuming you have your own logic for checking usernames on websites (metadata, etc.)
     with ThreadPoolExecutor(max_workers=threads) as executor:
         futures = {executor.submit(check_username_on_website, site, username): site for site in metadata["sites"]}
         for future in as_completed(futures):
@@ -7191,7 +7190,6 @@ def search_username(username, threads=200, save_file=None, search_all=False):
             if result:
                 found.append(result)
     
-    # DuckDuckGo search integration (only when search_all is True)
     duckduckgo_results = []
     if search_all:
         duckduckgo_results = scrape_duckduckgo_links(username)
@@ -7206,7 +7204,7 @@ def search_username(username, threads=200, save_file=None, search_all=False):
                     unique_sites.add(site_name)
                     site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
                     category = site_metadata["cat"] if site_metadata else "Unknown"
-                    short_name = site_metadata["name"] if site_metadata else "Unknown"  # Full name
+                    short_name = site_metadata["name"] if site_metadata else "Unknown"  
                     output += f"\033[38;2;255;255;255m[\033[38;5;214m{short_name}\033[38;2;255;255;255m]\033[38;2;31;117;255m] {url}\n"
                     
         if duckduckgo_results:
@@ -7288,7 +7286,7 @@ def print_banner():
 /____/_/ /_/\___/\__,_/_/|_|\__,_/_/  /_/____/  
                                               """
     print(f"{Fore.LIGHTWHITE_EX}{logo}")
-    print("                                                \033[38;2;255;255;255m(Coded by BisKit V 2.3)")
+    print("                                                \033[38;2;255;255;255m(Coded by BisKit V 2.3)\n")
 
 def print_help():
     help_text = """ 
@@ -7305,21 +7303,22 @@ Usage:
     print(help_text)
 
 def setup_argparse():
-    parser = argparse.ArgumentParser(description="Search for usernames on various websites.")
+    parser = argparse.ArgumentParser(description="Search for usernames on various websites and DuckDuckGo.")
     
     parser.add_argument("username", nargs="?", type=str, help="The username to search for.")
     parser.add_argument("-bf", "--brute-force", type=str, help="Enable brute-force username variations from a .txt file.")
+    parser.add_argument("-bd", "--brute-force-duckduckgo", type=str, help="Brute-force usernames from a .txt file and search DuckDuckGo.")
     parser.add_argument("-sf", "--save-file", type=str, help="Save the results to a file.")
     parser.add_argument("-all", "--search-all", action="store_true", help="Search additional sites like DuckDuckGo.")
     
     return parser
+
 
 def search_username(username, threads=200, save_file=None, search_all=False):  
     start_time = time.time()
     output = ""
     found = []
     
-    # Assuming you have your own logic for checking usernames on websites (metadata, etc.)
     with ThreadPoolExecutor(max_workers=threads) as executor:
         futures = {executor.submit(check_username_on_website, site, username): site for site in metadata["sites"]}
         for future in as_completed(futures):
@@ -7327,7 +7326,6 @@ def search_username(username, threads=200, save_file=None, search_all=False):
             if result:
                 found.append(result)
     
-    # DuckDuckGo search integration (only when search_all is True)
     duckduckgo_results = []
     if search_all:
         duckduckgo_results = scrape_duckduckgo_links(username)
@@ -7350,7 +7348,7 @@ def search_username(username, threads=200, save_file=None, search_all=False):
             for i, link in enumerate(duckduckgo_results, 1):
                 output += f"\033[38;2;255;255;255m[\033[38;5;214m{i}\033[38;2;255;255;255m]\033[38;2;31;117;255m {link}\n"
 
-        output += f"\n\033[38;2;255;255;255m[\033[38;2;255;204;102m+\033[38;2;255;255;255m] Websites found: \033[38;2;255;204;102m{len(found)}\n"
+        output += f"\n\033[38;2;255;255;255m[\033[38;2;204;255;204mINF\033[38;2;255;255;255m] \033[38;2;255;204;102m{len(found)}\n"
         output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
     else:
         output += "\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;5;196m No matches found\n"
@@ -7367,31 +7365,112 @@ def search_username(username, threads=200, save_file=None, search_all=False):
             print(f"\033[91mError: {e}\033[0m")
     else:
         print(output)
+def get_random_user_agent():
+    return random.choice(user_agents)
+
+def scrape_duckduckgo_links(query):
+    url = f"https://duckduckgo.com/html/?q={query}"
+    headers = {"User-Agent": get_random_user_agent()}  
+
+    try:
+        response = requests.get(url, headers=headers, timeout=6)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.text, "html.parser")
+        links = set()
+
+        for a_tag in soup.find_all("a", class_="result__a", href=True):
+            href = a_tag.get("href")
+            if "duckduckgo.com/l/?" in href:
+                parsed_url = urlparse(href)
+                real_url = parse_qs(parsed_url.query).get("uddg", [None])[0]
+                if real_url:
+                    links.add(real_url)
+            elif "duckduckgo.com" not in href:
+                links.add(href)
+
+        return list(links)
+    except requests.exceptions.RequestException as e:
+        print(f"\033[91mError with DuckDuckGo request: {e}\033[0m")
+        return []
+
+def read_usernames_from_file(file_path):
+    with open(file_path, 'r') as file:
+        usernames = [line.strip() for line in file.readlines()]
+    return usernames
+
+def scrape_duckduckgo_links(query):
+    url = f"https://duckduckgo.com/html/?q={query}"
+    headers = {"User-Agent": get_random_user_agent()}
+    try:
+        response = requests.get(url, headers=headers, timeout=6)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.text, "html.parser")
+        links = set()
+
+        for a_tag in soup.find_all("a", class_="result__a", href=True):
+            href = a_tag.get("href")
+            if "duckduckgo.com/l/?" in href:
+                parsed_url = urlparse(href)
+                real_url = parse_qs(parsed_url.query).get("uddg", [None])[0]
+                if real_url:
+                    links.add(real_url)
+            elif "duckduckgo.com" not in href:
+                links.add(href)
+
+        return list(links)
+
+    except requests.exceptions.RequestException as e:
+        print(f"\033[91mError with DuckDuckGo request: {e}\033[0m")
+        return []
+
+def highlight_url(url):
+    """
+    Function to highlight only the domain part of the URL in yellow while keeping everything else white.
+    """
+    parsed_url = urlparse(url)
+    domain = parsed_url.netloc  
+    path = parsed_url.path  
+    highlighted_url = f"\033[97m{parsed_url.scheme}://\033[38;5;220m{domain}\033[97m{path}"
+
+    return highlighted_url
+
+def process_brute_force_duckduckgo(usernames_file, save_file=None):
+    usernames = read_usernames_from_file(usernames_file)
+
+    for username in usernames:
+        print(f"\033[38;2;255;255;255m[\033[38;2;255;90;0mSearching\033[38;2;255;255;255m] {username}") 
+        duckduckgo_results = scrape_duckduckgo_links(username)
+
+        if duckduckgo_results:
+            print(f"\033[38;2;204;255;204mINFO:\033[38;5;51m {username}")
+            for link in duckduckgo_results:
+                highlighted_link = highlight_url(link)
+                print(f"\033[97m{highlighted_link}\033[0m")  
+        else:
+            print(f"\033[38;2;255;255;255m[\033[38;2;255;20;147mNULL \033[38;2;255;255;255m{username}\033[38;2;255;255;255m]")
+
+        time.sleep(5)  
 
 def main():
-    print_banner()  # Display the banner
-    parser = setup_argparse()  # Ensure setup_argparse is defined
+    print_banner()
+    parser = setup_argparse()
     args = parser.parse_args()
 
-    # Debugging: print out parsed arguments
-    
-    # Check if any of the arguments were passed
-    if not any([args.username, args.brute_force]):
+    if not any([args.username, args.brute_force, args.brute_force_duckduckgo]):
         print_help()
-        sys.exit(0)  # Exit after displaying help
+        sys.exit(0)
 
-    # Handle username or file input
     if args.username:
-        print(f"\033[38;2;255;255;255m[\033[38;2;0;0;255mON\033[38;2;255;255;255m] Searching for {args.username}\n")
-        if args.username.strip():  # Ensure the username isn't empty or just spaces
-            search_username(args.username, save_file=args.save_file, search_all=args.search_all)
-        else:
-            print("Error: Invalid username provided.")
+        print(f"Searching for username: {args.username}")
+        search_username(args.username, save_file=args.save_file, search_all=args.search_all)
+    
     elif args.brute_force:
         print(f"Processing brute-force file: {args.brute_force}")
         process_file(args.brute_force, save_file=args.save_file)
 
+    elif args.brute_force_duckduckgo:
+        process_brute_force_duckduckgo(args.brute_force_duckduckgo, save_file=args.save_file)
+
 if __name__ == "__main__":
     main()
-
-    # fixing code later or not doesnt matter if i did something retarded alright as long as it works 
+# sorry about the retarded code
