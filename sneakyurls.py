@@ -7292,17 +7292,12 @@ def setup_argparse():
 
 def print_banner():
     logo = r"""
-  ██████  ███▄    █ ▓█████ ▄▄▄       ██ ▄█▀▓██   ██▓ █    ██  ██▀███   ██▓      ██████
-▒██    ▒  ██ ▀█   █ ▓█   ▀▒████▄     ██▄█▒  ▒██  ██▒ ██  ▓██▒▓██ ▒ ██▒▓██▒    ▒██    ▒
-░ ▓██▄   ▓██  ▀█ ██▒▒███  ▒██  ▀█▄  ▓███▄░   ▒██ ██░▓██  ▒██░▓██ ░▄█ ▒▒██░    ░ ▓██▄
-  ▒   ██▒▓██▒  ▐▌██▒▒▓█  ▄░██▄▄▄▄██ ▓██ █▄   ░ ▐██▓░▓▓█  ░██░▒██▀▀█▄  ▒██░      ▒   ██▒
-▒██████▒▒▒██░   ▓██░░▒████▒▓█   ▓██▒▒██▒ █▄  ░ ██▒▓░▒▒█████▓ ░██▓ ▒██▒░██████▒▒██████▒▒
-▒ ▒▓▒ ▒ ░░ ▒░   ▒ ▒ ░░ ▒░ ░▒▒   ▓▒█░▒ ▒▒ ▓▒   ██▒▒▒ ░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░░ ▒░▓  ░▒ ▒▓▒ ▒ ░
-░ ░▒  ░ ░░ ░░   ░ ▒░ ░ ░  ░ ▒   ▒▒ ░░ ░▒ ▒░ ▓██ ░▒░ ░░▒░ ░ ░   ░▒ ░ ▒░░ ░ ▒  ░░ ░▒  ░ ░
-░  ░  ░     ░   ░ ░    ░    ░   ▒   ░ ░░ ░  ▒ ▒ ░░   ░░░ ░ ░   ░░   ░   ░ ░   ░  ░  ░
-      ░           ░    ░  ░     ░  ░░  ░    ░ ░        ░        ░         ░  ░      ░
-                                            ░ ░"""
-    print(f"\033[38;2;80;200;120m{logo}")
+                          __              __    
+   _________  ___  ____ _/ /____  _______/ /____
+  / ___/ __ \/ _ \/ __ `/ //_/ / / / ___/ / ___/
+ (__  ) / / /  __/ /_/ / ,< / /_/ / /  / (__  ) 
+/____/_/ /_/\___/\__,_/_/|_|\__,_/_/  /_/____/"""
+    print(f"{Fore.LIGHTWHITE_EX}{logo}")
     print("                                                \033[38;2;255;255;255m(Coded by BisKit V 2.3)")
 
 def print_help():
@@ -7311,7 +7306,7 @@ Arguments:
   -sf  Save the output to a file.
   -f   Process usernames from a file.
   -bf  Enable brute-force username variations from a .txt file.
-  -all Search additional sites like DuckDuckGo.
+  -all Search With Duckduckgo And Userlinks
 Usage:
   - python3 sneakyurls.py example -sf example.txt
   - python3 sneakyurls.py example
