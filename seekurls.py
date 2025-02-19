@@ -7268,6 +7268,7 @@ Usage:
   - python3 seakurls.py -bf usernames.txt
   - python3 seakurls.py <example> -all
   - python3 seakurls.py -bd example.txt
+  - python3 seekurls.py example -all -sf some.txt
 """
     print(help_text)
 
