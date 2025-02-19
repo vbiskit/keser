@@ -14,10 +14,6 @@ The tool has 0 false postives so just letting you know its a insanely fast usern
 
 ![copy](normalsearch.png)
 
-# save file with duckduckgo
-
-![copy](savefilewithduckduckgo.png)
-
 # Duckduckgo Brute Force Usernames
 
 ![Screenshot](duckduckgobruteforce.png)
