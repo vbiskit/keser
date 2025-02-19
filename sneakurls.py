@@ -7247,10 +7247,10 @@ def process_file(filename, save_file=None):
 
 def print_banner():
     logo = r"""
-  ___               _            _    
- / __|_ _  ___ __ _| |___  _ _ _| |___
- \__ \ ' \/ -_) _` | / / || | '_| (_-<
- |___/_||_\___\__,_|_\_\\_,_|_| |_/__/                                  """
+  ___          _            _    
+ / __| ___ ___| |___  _ _ _| |___
+ \__ \/ -_) -_) / / || | '_| (_-<
+ |___/\___\___|_\_\\_,_|_| |_/__/                                                            """
     print(f"{Fore.LIGHTWHITE_EX}{logo}")
     print("                                       \033[38;2;255;255;255m(Coded by BisKit V 2.3)\n")
     print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m] You are allowed to take the code and use it for your self just not uploading it thinking you made it for other people to use ")
@@ -7263,11 +7263,11 @@ Arguments:
   -all Search With Duckduckgo And Userlinks
   -bd brute-force usernames with duckduckgo
 Usage:
-  - python3 sneakurls.py <example> -sf example.txt
-  - python3 sneakurls.py <example> for just links
-  - python3 sneakurls.py -bf usernames.txt
-  - python3 sneakurls.py <example> -all
-  - python3 sneakurls.py -bd example.txt
+  - python3 seakurls.py <example> -sf example.txt
+  - python3 seakurls.py <example> for just links
+  - python3 seakurls.py -bf usernames.txt
+  - python3 seakurls.py <example> -all
+  - python3 seakurls.py -bd example.txt
 """
     print(help_text)
 
@@ -7332,7 +7332,7 @@ def search_username(username, threads=200, save_file=None, search_all=False):
         output += f"\n\033[38;2;255;255;255m[\033[38;5;214mINF\033[38;2;255;255;255m] \033[38;2;255;255;255mLinks: {len(found)}\n"
         output += f"\033[38;2;255;255;255m[\033[38;5;214m*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
     else:
-        output += "\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;5;196m No matches found\n"
+        output += "\n\033[38;2;255;255;255m[\033[38;5;196mWRN\033[38;2;255;255;255m]\033[38;2;255;255;255m No matches found\n"
         output += f"\033[38;2;255;255;255m[\033[38;2;0;122;255m*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: \033[38;2;0;122;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
     
     if save_file:
