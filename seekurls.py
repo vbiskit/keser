@@ -7305,6 +7305,7 @@ def search_username(username, threads=200, save_file=None, search_all=False):
             if result:
                 found.append(result)
     
+    # Initialize DuckDuckGo results if search_all is enabled
     duckduckgo_results = []
     if search_all:
         duckduckgo_results = scrape_duckduckgo_links(username)
@@ -7332,7 +7333,7 @@ def search_username(username, threads=200, save_file=None, search_all=False):
     else:
         output += "\n\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m]\033[38;2;255;255;255m No matches found\n"
         output += f"\033[38;2;255;255;255m[\033[38;2;0;122;255m*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: \033[38;2;0;122;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
-
+    
     if save_file:
         try:
             with open(save_file, "a") as f:
@@ -7343,6 +7344,7 @@ def search_username(username, threads=200, save_file=None, search_all=False):
     else:
         print(output)
 
+
 def read_usernames_from_file(file_path):
     with open(file_path, 'r') as file:
         usernames = [line.strip() for line in file.readlines()]
@@ -7351,10 +7353,9 @@ def read_usernames_from_file(file_path):
 def get_random_user_agent():
     return random.choice(user_agents)
 
-# Function to scrape DuckDuckGo links
 def scrape_duckduckgo_links(query):
     url = f"https://duckduckgo.com/html/?q={query}"
-    headers = {"User-Agent": get_random_user_agent()}  # Use random user agent from the list
+    headers = {"User-Agent": get_random_user_agent()} 
     
     try:
         response = requests.get(url, headers=headers, timeout=6)
@@ -7378,7 +7379,6 @@ def scrape_duckduckgo_links(query):
         print(f"\033[91mError with DuckDuckGo request: {e}\033[0m")
         return []
 
-# Function to highlight URLs
 def highlight_url(url):
     """
     Function to highlight only the domain part of the URL in yellow while keeping everything else white.
@@ -7397,17 +7397,17 @@ def process_brute_force_duckduckgo(usernames_file, save_file=None):
     output = ""
 
     for username in usernames:
-        print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m]\033[38;2;0;122;255m] Checking {username} with duckduckgo", flush=True)  # Instant print INF
+        print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m]\033[38;2;0;122;255m] Checking {username} with duckduckgo", flush=True)  
         duckduckgo_results = scrape_duckduckgo_links(username)
 
         if duckduckgo_results:
             for link in duckduckgo_results:
                 highlighted_link = highlight_url(link)
-                print(f"\033[97m{highlighted_link}\033[0m", flush=True)  # Instant print each result
+                print(f"\033[97m{highlighted_link}\033[0m", flush=True) 
         else:
             print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m]{username}\n", flush=True)
 
-        time.sleep(5)  # Adjust this if needed to avoid rate-limiting
+        time.sleep(5)  
 
     if save_file:
         try:
@@ -7418,8 +7418,7 @@ def process_brute_force_duckduckgo(usernames_file, save_file=None):
             print(f"\033[38;2;255;255;255m[\033[38;5;196mERR]\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
     else:
         print(output)
-
-# Main function that orchestrates everything
+         
 def main():
     print_banner()
     parser = setup_argparse()
