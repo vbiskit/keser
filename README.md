@@ -1,5 +1,5 @@
-# Duckduckgo Brute Force
-![Screenshot](duckduckgobruteforce.png)
+# Save file with all 
+![Screenshot](savefilewithduckduckgo.png)
 
 ## 
 The tool has 0 false postives so just letting you know its a insanely fast username or can be real name search what i mainly use this stuff for it has a built in duckduckgo search and a brute force username runs fron a .txt so does the duckduckgo brute force.
@@ -17,6 +17,10 @@ The tool has 0 false postives so just letting you know its a insanely fast usern
 # save file with duckduckgo
 
 ![copy](savefilewithduckduckgo.png)
+
+# Duckduckgo Brute Force Usernames
+
+![Screenshot](duckduckgobruteforce.png)
 
 ## Installation 
 Clone the repository and install the required dependencies:  
