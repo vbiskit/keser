@@ -7286,17 +7286,20 @@ def print_banner():
     print(f"{Fore.LIGHTWHITE_EX}{logo}")
     print("                                       \033[38;2;255;255;255m(Coded by BisKit V 2.3)\n")
     print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m] You are allowed to take the code and use it for your self just not uploading it thinking you made it for other people to use\n ")
+    print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m] Also you can do real names what i mainly use it for\n")
 def print_help():
     help_text = """ 
 Arguments:
   -sf  Save the output to a file
   -bf brute-force usernames from a .txt file
   -all Search With Duckduckgo And Userlinks
+  -bd brute-force usernames with duckduckgo
 Usage:
   - python3 sneakurls.py <example> -sf example.txt
   - python3 sneakurls.py <example> for just links
   - python3 sneakurls.py -bf usernames.txt
   - python3 sneakurls.py <example> -all
+  - python3 sneakurls.py -bd example.txt
 """
     print(help_text)
 
