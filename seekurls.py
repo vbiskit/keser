@@ -7338,9 +7338,14 @@ def read_usernames_from_file(file_path):
         usernames = [line.strip() for line in file.readlines()]
     return usernames
 
+def get_random_user_agent():
+    return random.choice(user_agents)
+
+# Function to scrape DuckDuckGo links
 def scrape_duckduckgo_links(query):
     url = f"https://duckduckgo.com/html/?q={query}"
-    headers = {"User-Agent": "Mozilla/5.0"}  
+    headers = {"User-Agent": get_random_user_agent()}  # Use random user agent from the list
+    
     try:
         response = requests.get(url, headers=headers, timeout=6)
         response.raise_for_status()
@@ -7363,6 +7368,7 @@ def scrape_duckduckgo_links(query):
         print(f"\033[91mError with DuckDuckGo request: {e}\033[0m")
         return []
 
+# Function to highlight URLs
 def highlight_url(url):
     """
     Function to highlight only the domain part of the URL in yellow while keeping everything else white.
@@ -7375,22 +7381,23 @@ def highlight_url(url):
 
     return highlighted_url
 
+# Function to process brute force DuckDuckGo links
 def process_brute_force_duckduckgo(usernames_file, save_file=None):
     usernames = read_usernames_from_file(usernames_file)
     output = ""
 
     for username in usernames:
-        output += f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m] Checking {username} with duckduckgo\n"  
+        print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m] Checking {username} with duckduckgo", flush=True)  # Instant print INF
         duckduckgo_results = scrape_duckduckgo_links(username)
 
         if duckduckgo_results:
             for link in duckduckgo_results:
                 highlighted_link = highlight_url(link)
-                output += f"\033[97m{highlighted_link}\n"
+                print(f"\033[97m{highlighted_link}\033[0m", flush=True)  # Instant print each result
         else:
-            output += f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m]{username}\n"
+            print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m]{username}\n", flush=True)
 
-        time.sleep(5)  
+        time.sleep(5)  # Adjust this if needed to avoid rate-limiting
 
     if save_file:
         try:
@@ -7402,6 +7409,7 @@ def process_brute_force_duckduckgo(usernames_file, save_file=None):
     else:
         print(output)
 
+# Main function that orchestrates everything
 def main():
     print_banner()
     parser = setup_argparse()
