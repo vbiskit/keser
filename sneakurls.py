@@ -7297,10 +7297,10 @@ Arguments:
   -bf  Enable brute-force username variations from a .txt file.
   -all Search With Duckduckgo And Userlinks
 Usage:
-  - python3 sneakurls.py example -sf example.txt
-  - python3 sneakurls.py example
+  - python3 sneakurls.py <example> -sf example.txt
+  - python3 sneakurls.py <example> for just links
   - python3 sneakurls.py -bf usernames.txt
-  - python3 sneakurls.py example -all
+  - python3 sneakurls.py <example> -all
 """
     print(help_text)
 
