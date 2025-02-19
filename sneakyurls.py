@@ -9,7 +9,7 @@ import os
 from colorama import Fore
 from urllib.parse import urlparse, parse_qs
 import sys
-
+import argparse
 metadata = {
      "sites" : [
        {
@@ -7176,18 +7176,14 @@ def scrape_duckduckgo_links(query):
         print(f"\033[91mError with DuckDuckGo request: {e}\033[0m")
         return []
 # think i cant see you ?
-def make_middle_part_green(url):
-    pattern = r"(https?://)([^/]+)(/.*)?"
-    match = re.match(pattern, url)
-    if match:
-        return f"{match.group(1)}\033[38;2;50;255;50m{match.group(2)}{Fore.LIGHTBLACK_EX}{match.group(3) or ''}"
-    return url
 
-def search_username(username, threads=200, save_file=None):
+def search_username(username, threads=200, save_file=None, search_all=False):
+    print(f"search_username called for: {username}")  # Add this line for debugging
     start_time = time.time()
     output = ""
     found = []
     
+    # Assuming you have your own logic for checking usernames on websites (metadata, etc.)
     with ThreadPoolExecutor(max_workers=threads) as executor:
         futures = {executor.submit(check_username_on_website, site, username): site for site in metadata["sites"]}
         for future in as_completed(futures):
@@ -7195,9 +7191,13 @@ def search_username(username, threads=200, save_file=None):
             if result:
                 found.append(result)
     
-    duckduckgo_results = scrape_duckduckgo_links(username)
+    # DuckDuckGo search integration (only when search_all is True)
+    duckduckgo_results = []
+    if search_all:
+        duckduckgo_results = scrape_duckduckgo_links(username)
+
     elapsed_time = time.time() - start_time
-    # i see you
+
     if found or duckduckgo_results:
         if found:
             unique_sites = set()
@@ -7207,12 +7207,12 @@ def search_username(username, threads=200, save_file=None):
                     site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
                     category = site_metadata["cat"] if site_metadata else "Unknown"
                     short_name = site_metadata["name"] if site_metadata else "Unknown"  # Full name
-                    output += f"\033[38;2;255;255;255m[\033[38;5;177m{short_name}\033[38;2;255;255;255m]\033[38;2;255;255;255m[\033[38;2;217;0;255m{category}\033[38;2;255;255;255m]{Fore.LIGHTBLACK_EX} {make_middle_part_green(url)}\n"
+                    output += f"\033[38;2;255;255;255m[\033[38;5;214m{short_name}\033[38;2;255;255;255m]\033[38;2;31;117;255m] {url}\n"
                     
         if duckduckgo_results:
             output += f"\n\033[38;2;255;255;255m[\033[38;5;177mDuckDuckGo\033[38;2;255;255;255m]\n"
             for i, link in enumerate(duckduckgo_results, 1):
-                output += f"\033[38;2;217;0;255m[\033[38;2;255;255;255m{i}\033[38;2;217;0;255m]{Fore.LIGHTBLACK_EX} {make_middle_part_green(link)}\n"
+                output += f"\033[38;2;217;0;255m[\033[38;2;255;255;255m{i}\033[38;2;31;117;255m] {link}\n"
 
         output += f"\n\033[38;2;255;255;255m[\033[38;2;255;204;102m+\033[38;2;255;255;255m] Websites found: \033[38;2;255;204;102m{len(found)}\n"
         output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
@@ -7232,37 +7232,177 @@ def search_username(username, threads=200, save_file=None):
     else:
         print(output)
 
+def search_username(username, save_file=None):
+    start_time = time.time()
+    output = ""
+    found = []
+    usernames_to_search = [username]
+    
+    with ThreadPoolExecutor(max_workers=200) as executor:
+        futures = {}
+        for user in usernames_to_search:
+            for site in metadata["sites"]:
+                futures[executor.submit(check_username_on_website, site, user)] = user
+        
+        for future in as_completed(futures):
+            result = future.result()
+            if result:
+                found.append(result)
+    
+    elapsed_time = time.time() - start_time
+    
+    if found:
+        for site_name, url in found:
+            output += f"\033[38;2;255;255;255m[\033[38;5;177m{site_name}\033[38;2;255;255;255m]\033[38;2;31;117;255m{url}\n"
+        output += f"\n\033[38;2;255;255;255m[\033[38;2;255;204;102m+\033[38;2;255;255;255m] Websites found: \033[38;2;255;204;102m{len(found)}\n"
+    else:
+        output += "\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;5;196m No matches found\n"
+    
+    output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
+    
+    if save_file:
+        with open(save_file, "w") as f:
+            f.write(output)
+    else:
+        print(output)
 
-# hello
-def print_help():
-    help_text = f""" 
-Arguments:
-  -sf  Save the output to a file.
+def process_file(filename, save_file=None):
+    try:
+        with open(filename, "r") as file:
+            usernames = [line.strip() for line in file.readlines()]
+        
+        for username in usernames:
+            print(f"\n\033[38;2;255;204;102m[+] Searching for: {username}\n")
+            search_username(username, save_file=save_file)
 
-Usage:
-  - python3 sneakyurls.py example -sf example.txt
-  - python3 sneakyurls.py example\n"""
-    print(help_text)
-if __name__ == "__main__":
-    logo = r"""                                   
-  ██████  ███▄    █ ▓█████ ▄▄▄       ██ ▄█▀▓██   ██▓ █    ██  ██▀███   ██▓      ██████ 
-▒██    ▒  ██ ▀█   █ ▓█   ▀▒████▄     ██▄█▒  ▒██  ██▒ ██  ▓██▒▓██ ▒ ██▒▓██▒    ▒██    ▒ 
-░ ▓██▄   ▓██  ▀█ ██▒▒███  ▒██  ▀█▄  ▓███▄░   ▒██ ██░▓██  ▒██░▓██ ░▄█ ▒▒██░    ░ ▓██▄   
+    except FileNotFoundError:
+        print(f"\033[91mError: The file '{filename}' was not found.\033[0m")
+        sys.exit(1)
+
+def setup_argparse():
+    parser = argparse.ArgumentParser(description="Search for usernames on various websites.")
+    
+    parser.add_argument("username", nargs="?", help="The username to search for.")
+    parser.add_argument("-f", "--file", type=str, help="File containing a list of usernames to search.")
+    parser.add_argument("-bf", "--brute-force", type=str, help="Enable brute-force username variations from a .txt file.")
+    parser.add_argument("-sf", "--save-file", type=str, help="Save the results to a file.")
+    parser.add_argument("-all", "--search-all", action="store_true", help="Search additional sites like DuckDuckGo.")
+    
+    return parser
+
+def print_banner():
+    logo = r"""
+  ██████  ███▄    █ ▓█████ ▄▄▄       ██ ▄█▀▓██   ██▓ █    ██  ██▀███   ██▓      ██████
+▒██    ▒  ██ ▀█   █ ▓█   ▀▒████▄     ██▄█▒  ▒██  ██▒ ██  ▓██▒▓██ ▒ ██▒▓██▒    ▒██    ▒
+░ ▓██▄   ▓██  ▀█ ██▒▒███  ▒██  ▀█▄  ▓███▄░   ▒██ ██░▓██  ▒██░▓██ ░▄█ ▒▒██░    ░ ▓██▄
   ▒   ██▒▓██▒  ▐▌██▒▒▓█  ▄░██▄▄▄▄██ ▓██ █▄   ░ ▐██▓░▓▓█  ░██░▒██▀▀█▄  ▒██░      ▒   ██▒
 ▒██████▒▒▒██░   ▓██░░▒████▒▓█   ▓██▒▒██▒ █▄  ░ ██▒▓░▒▒█████▓ ░██▓ ▒██▒░██████▒▒██████▒▒
 ▒ ▒▓▒ ▒ ░░ ▒░   ▒ ▒ ░░ ▒░ ░▒▒   ▓▒█░▒ ▒▒ ▓▒   ██▒▒▒ ░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░░ ▒░▓  ░▒ ▒▓▒ ▒ ░
 ░ ░▒  ░ ░░ ░░   ░ ▒░ ░ ░  ░ ▒   ▒▒ ░░ ░▒ ▒░ ▓██ ░▒░ ░░▒░ ░ ░   ░▒ ░ ▒░░ ░ ▒  ░░ ░▒  ░ ░
-░  ░  ░     ░   ░ ░    ░    ░   ▒   ░ ░░ ░  ▒ ▒ ░░   ░░░ ░ ░   ░░   ░   ░ ░   ░  ░  ░  
-      ░           ░    ░  ░     ░  ░░  ░    ░ ░        ░        ░         ░  ░      ░  
-                                            ░ ░ """                                                                                                                                                                                                                                        
+░  ░  ░     ░   ░ ░    ░    ░   ▒   ░ ░░ ░  ▒ ▒ ░░   ░░░ ░ ░   ░░   ░   ░ ░   ░  ░  ░
+      ░           ░    ░  ░     ░  ░░  ░    ░ ░        ░        ░         ░  ░      ░
+                                            ░ ░"""
     print(f"\033[38;2;80;200;120m{logo}")
-    print(f"{Fore.LIGHTWHITE_EX}                                                (Coded by BisKit V 2.3)\n")
-    if len(sys.argv) < 2:
-        print_help()
-        sys.exit(0)
-    # you scrolled all the way down to the end
-    username = sys.argv[1]
-    save_file = sys.argv[3] if len(sys.argv) > 3 and sys.argv[2] == "-sf" else None
-    search_username(username, save_file=save_file)
+    print("                                                \033[38;2;255;255;255m(Coded by BisKit V 2.3)")
 
-    # don't be looking down here
+def print_help():
+    help_text = """ 
+Arguments:
+  -sf  Save the output to a file.
+  -f   Process usernames from a file.
+  -bf  Enable brute-force username variations from a .txt file.
+  -all Search additional sites like DuckDuckGo.
+Usage:
+  - python3 sneakyurls.py example -sf example.txt
+  - python3 sneakyurls.py example
+  - python3 sneakyurls.py -f usernames.txt
+  - python3 sneakyurls.py -bf usernames.txt
+"""
+    print(help_text)
+
+def search_username(username, threads=200, save_file=None, search_all=False):
+    print(f"search_username called for: {username}")  # Add this line for debugging
+    start_time = time.time()
+    output = ""
+    found = []
+    
+    # Assuming you have your own logic for checking usernames on websites (metadata, etc.)
+    with ThreadPoolExecutor(max_workers=threads) as executor:
+        futures = {executor.submit(check_username_on_website, site, username): site for site in metadata["sites"]}
+        for future in as_completed(futures):
+            result = future.result()
+            if result:
+                found.append(result)
+    
+    # DuckDuckGo search integration (only when search_all is True)
+    duckduckgo_results = []
+    if search_all:
+        duckduckgo_results = scrape_duckduckgo_links(username)
+
+    elapsed_time = time.time() - start_time
+
+    if found or duckduckgo_results:
+        if found:
+            unique_sites = set()
+            for site_name, url in found:
+                if site_name not in unique_sites:
+                    unique_sites.add(site_name)
+                    site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
+                
+                    short_name = site_metadata["name"] if site_metadata else "Unknown"  # Full name
+                    output += f"\033[38;2;255;255;255m[\033[38;5;214m{short_name}\033[38;2;255;255;255m]\033[38;2;31;117;255m {url}\n"
+        
+        if duckduckgo_results:
+            output += f"\n\033[38;2;255;255;255m[\033[38;5;214mDuckDuckGo\033[38;2;255;255;255m]\n"
+            for i, link in enumerate(duckduckgo_results, 1):
+                output += f"\033[38;2;255;255;255m[\033[38;5;214m{i}\033[38;2;255;255;255m]\033[38;2;31;117;255m {link}\n"
+
+        output += f"\n\033[38;2;255;255;255m[\033[38;2;255;204;102m+\033[38;2;255;255;255m] Websites found: \033[38;2;255;204;102m{len(found)}\n"
+        output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
+    else:
+        output += "\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;5;196m No matches found\n"
+        output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
+    
+    if save_file:
+        try:
+            with open(save_file, "w") as f:
+                f.write(output)
+            print(f"Results saved to {save_file}")
+        except PermissionError as e:
+            print(f"\033[91mError: {e}\033[0m - You do not have permission to write to the file.")
+        except Exception as e:
+            print(f"\033[91mError: {e}\033[0m")
+    else:
+        print(output)
+
+def main():
+    print_banner()  # Display the banner
+    parser = setup_argparse()  # Make sure setup_argparse is defined
+    args = parser.parse_args()
+
+    # Debugging: print out parsed arguments
+    print(f"Arguments: {args}")
+
+    # Display help if no username or file input provided
+    if not args.username and not args.file and not args.brute_force:
+        print_help()
+        sys.exit(0)  # Exit after displaying help
+
+    # Handle username or file input
+    if args.username:
+        print(f"Searching for username: {args.username}")
+        if args.username.strip():  # Ensure the username isn't empty or just spaces
+            search_username(args.username, save_file=args.save_file, search_all=args.search_all)
+        else:
+            print("Error: Invalid username provided.")
+    elif args.file:
+        print(f"Processing file: {args.file}")
+        process_file(args.file, save_file=args.save_file)
+    elif args.brute_force:
+        print(f"Processing brute-force file: {args.brute_force}")
+        process_file(args.brute_force, save_file=args.save_file)
+
+if __name__ == "__main__":
+    main()
+
+    # if you have read the code and seen why it looks retarded ima fix it later just focus on making it work
