@@ -7172,7 +7172,7 @@ def search_username(username, threads=200, save_file=None, search_all=False):
                     unique_sites.add(site_name)
                     site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
                     category = site_metadata["cat"] if site_metadata else "Unknown"
-                    short_name = site_metadata["name"] if site_metadata else "Unknown"  # Full name
+                    short_name = site_metadata["name"] if site_metadata else "Unknown"  
                     output += f"\033[38;2;255;255;255m[\033[38;5;214m{short_name}\033[38;2;255;255;255m]\033[38;2;31;117;255m] {url}\n"
                     
         if duckduckgo_results:
@@ -7188,8 +7188,8 @@ def search_username(username, threads=200, save_file=None, search_all=False):
     
     if save_file:
         try:
-            with open(save_file, "a") as f:  # 'a' means append instead of overwrite
-             f.write(output + "\n")  # Add a new line for readability
+            with open(save_file, "a") as f:  
+             f.write(output + "\n")  
             print(f"Results saved to {save_file}\n")
         except PermissionError as e:
             print(f"\033[91mError: {e}\033[0m - You do not have permission to write to the file.")
@@ -7289,8 +7289,6 @@ def highlight_url(url):
     parsed_url = urlparse(url)
     domain = parsed_url.netloc  
     path = parsed_url.path  
-
-    # Everything white, only the domain yellow
     highlighted_url = f"\033[97m{parsed_url.scheme}://\033[38;5;220m{domain}\033[97m{path}"
 
     return highlighted_url
@@ -7321,7 +7319,7 @@ def search_username(username, threads=200, save_file=None, search_all=False):
                     unique_sites.add(site_name)
                     site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
                 
-                    short_name = site_metadata["name"] if site_metadata else "Unknown"  # Full name
+                    short_name = site_metadata["name"] if site_metadata else "Unknown"  
                     output += f"\033[38;2;255;255;255m[\033[38;2;0;122;255m{short_name}\033[38;2;255;255;255m]\033[38;2;255;255;255m {url}\n"
         
         if duckduckgo_results:
@@ -7332,22 +7330,8 @@ def search_username(username, threads=200, save_file=None, search_all=False):
         output += f"\n\033[38;2;255;255;255m[\033[38;5;214mINF\033[38;2;255;255;255m] \033[38;2;255;255;255mLinks: {len(found)}\n"
         output += f"\033[38;2;255;255;255m[\033[38;5;214m*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
     else:
-        output += "\n\033[38;2;255;255;255m[\033[38;5;196mWRN\033[38;2;255;255;255m]\033[38;2;255;255;255m No matches found\n"
+        output += "\n\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m]\033[38;2;255;255;255m No matches found\n"
         output += f"\033[38;2;255;255;255m[\033[38;2;0;122;255m*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: \033[38;2;0;122;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
-    
-    if save_file:
-        try:
-            with open(save_file, "a") as f:  # 'a' means append instead of overwrite
-             f.write(output + "\n")  # Add a new line for readability
-            print(f"Results saved to {save_file}")
-        except PermissionError as e:
-            print(f"\033[91mError: {e}\033[0m - You do not have permission to write to the file.")
-        except Exception as e:
-            print(f"\033[91mError: {e}\033[0m")
-    else:
-        print(output)
-
-
 
 def read_usernames_from_file(file_path):
     with open(file_path, 'r') as file:
@@ -7356,7 +7340,7 @@ def read_usernames_from_file(file_path):
 
 def scrape_duckduckgo_links(query):
     url = f"https://duckduckgo.com/html/?q={query}"
-    headers = {"User-Agent": get_random_user_agent()}
+    headers = {"User-Agent": "Mozilla/5.0"}  
     try:
         response = requests.get(url, headers=headers, timeout=6)
         response.raise_for_status()
@@ -7393,20 +7377,30 @@ def highlight_url(url):
 
 def process_brute_force_duckduckgo(usernames_file, save_file=None):
     usernames = read_usernames_from_file(usernames_file)
+    output = ""
 
     for username in usernames:
-        print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m] Checking {username} with duckduckgo")  
+        output += f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m] Checking {username} with duckduckgo\n"  
         duckduckgo_results = scrape_duckduckgo_links(username)
 
         if duckduckgo_results:
-            print(f"\033[38;2;0;122;255mINFO:\033[38;5;51m {username}")
             for link in duckduckgo_results:
                 highlighted_link = highlight_url(link)
-                print(f"\033[97m{highlighted_link}\033[0m")  
+                output += f"\033[97m{highlighted_link}\n"
         else:
-            print(f"\033[38;2;255;255;255m[\033[38;5;51mNULL \033[38;2;255;255;255m{username}\033[38;2;255;255;255m]")
+            output += f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m]{username}\n"
 
         time.sleep(5)  
+
+    if save_file:
+        try:
+            with open(save_file, "a") as f:
+                f.write(output + "\n")
+            print(f"\033[38;2;255;255;255m Results saved to {save_file}")
+        except Exception as e:
+            print(f"\033[38;2;255;255;255m[\033[38;5;196mERR]\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
+    else:
+        print(output)
 
 def main():
     print_banner()
@@ -7429,5 +7423,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# i told you it was retarded : (
