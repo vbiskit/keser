@@ -10,7 +10,7 @@ The tool has 0 false postives so just letting you know its a insanely fast usern
 # Save File 
 ![savefile](normalsavefile.png)
 
-# search username
+# Save file with all links
 
 ![Screenshot](savefilewithduckduckgo.png)
 
