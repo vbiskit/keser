@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=14&pause=1000&color=F70EC3&width=435&lines=adding+duckduckgo+and+all+links+brute+force+soon+" alt="Typing SVG">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=15&pause=1000&color=E9F700&background=000000&width=435&lines=adding+duckduckgo+and+all+links+brute+force+soon+" alt="Typing SVG">
 </p>
 
 # Really Fast Normal Search
