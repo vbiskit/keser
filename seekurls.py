@@ -7430,9 +7430,9 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
                 else:
                     break
 
-            else:  # Successful result
-                if retry_count > 0:  # Only print success after retry
-                    print(f"\033[38;2;255;255;255m[\033[38;5;141mINFO\033[38;2;255;255;255m]\033[38;5;213m SUCCESS {username}", flush=True)  # SUCCESS prints immediately after Retrying
+            else:  
+                if retry_count > 0:  
+                    print(f"\033[38;2;255;255;255m[\033[38;5;141mINFO\033[38;2;255;255;255m]\033[38;5;213m SUCCESS", flush=True)  
                 for link in duckduckgo_results:
                     highlighted_link = highlight_url(link)
                     print(f"\033[97m{highlighted_link}\033[0m", flush=True)
