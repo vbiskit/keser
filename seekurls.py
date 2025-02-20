@@ -7262,12 +7262,17 @@ Arguments:
   -bf brute-force usernames from a .txt file
   -all Search With Duckduckgo And Userlinks
   -bd brute-force usernames with duckduckgo
+  -bf name,name2
+  -bd name,name2
 Usage:
   - python3 seakurls.py <example> -sf example.txt
   - python3 seakurls.py <example> for just links
   - python3 seakurls.py -bf usernames.txt
   - python3 seakurls.py <example> -all
   - python3 seakurls.py -bd example.txt
+  - python3 seekurls.py example -all -sf some.txt
+  - python3 seekurls.py -bf name,name2
+  - python3 seekurls.py -bd name,name2
 """
     print(help_text)
 
