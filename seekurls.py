@@ -7247,7 +7247,7 @@ def process_file(filename, save_file=None):
 
 def print_banner():
     logo = r"""
-  ___          _            _    
+  ___          _            _
  / __| ___ ___| |___  _ _ _| |___
  \__ \/ -_) -_) / / || | '_| (_-<
  |___/\___\___|_\_\\_,_|_| |_/__/                                                            """
@@ -7256,7 +7256,7 @@ def print_banner():
     print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m] You are allowed to take the code and use it for your self may edit the script just not uploading it thinking you made it for other people to use ")
     print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m] Also you can do real names what i mainly use it for\n")
 def print_help():
-    help_text = """ 
+    help_text = """
 Arguments:
   -sf  Save the output to a file
   -bf brute-force usernames from a .txt file
@@ -7273,65 +7273,76 @@ Usage:
 
 def setup_argparse():
     parser = argparse.ArgumentParser(description="Search for usernames on various websites and DuckDuckGo.")
-    
+
     parser.add_argument("username", nargs="?", type=str, help="The username to search for.")
     parser.add_argument("-bf", "--brute-force", type=str, help="Enable brute-force username variations from a .txt file.")
     parser.add_argument("-bd", "--brute-force-duckduckgo", type=str, help="Brute-force usernames from a .txt file and search DuckDuckGo.")
     parser.add_argument("-sf", "--save-file", type=str, help="Save the results to a file.")
     parser.add_argument("-all", "--search-all", action="store_true", help="Search additional sites like DuckDuckGo.")
-    
+
     return parser
-     
+
 def highlight_url(url):
     """
     Function to highlight only the domain part of the URL in yellow while keeping everything else white.
     """
     parsed_url = urlparse(url)
-    domain = parsed_url.netloc  
-    path = parsed_url.path  
+    domain = parsed_url.netloc
+    path = parsed_url.path
     highlighted_url = f"\033[97m{parsed_url.scheme}://\033[38;5;220m{domain}\033[97m{path}"
 
     return highlighted_url
 
-def search_username(username, threads=200, save_file=None, search_all=False):
+def process_bf_argument(bf_arg):
+    """Handles -bf argument to allow either a .txt file or a comma-separated list of usernames."""
+    if os.path.isfile(bf_arg):  
+        with open(bf_arg, "r") as f:
+            usernames = [line.strip() for line in f if line.strip()]
+    else:  
+        usernames = bf_arg.split(",")
+
+    return usernames
+
+def search_username(usernames, threads=200, save_file=None, search_all=False):
     start_time = time.time()
     output = ""
-    found = []
-    
-    with ThreadPoolExecutor(max_workers=threads) as executor:
-        futures = {executor.submit(check_username_on_website, site, username): site for site in metadata["sites"]}
-        for future in as_completed(futures):
-            result = future.result()
-            if result:
-                found.append(result)
-    duckduckgo_results = []
-    if search_all:
-        duckduckgo_results = scrape_duckduckgo_links(username)
 
-    elapsed_time = time.time() - start_time
+    if isinstance(usernames, str):
+        usernames = [usernames]  
 
-    if found or duckduckgo_results:
-        if found:
+    for username in usernames:
+        found = []
+
+        with ThreadPoolExecutor(max_workers=threads) as executor:
+            futures = {executor.submit(check_username_on_website, site, username): site for site in metadata["sites"]}
+            for future in as_completed(futures):
+                result = future.result()
+                if result:
+                    found.append(result)
+
+        duckduckgo_results = scrape_duckduckgo_links(username) if search_all else []
+        elapsed_time = time.time() - start_time
+
+        if found or duckduckgo_results:
             unique_sites = set()
             for site_name, url in found:
                 if site_name not in unique_sites:
                     unique_sites.add(site_name)
                     site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
-                
-                    short_name = site_metadata["name"] if site_metadata else "Unknown"  
+                    short_name = site_metadata["name"] if site_metadata else "Unknown"
                     output += f"\033[38;2;255;255;255m[\033[38;2;0;122;255m{short_name}\033[38;2;255;255;255m]\033[38;2;255;255;255m {url}\n"
-        
-        if duckduckgo_results:
-            output += f"\n\033[38;2;255;255;255m[\033[38;2;0;122;255mDuckDuckGo\033[38;2;255;255;255m]\n"
-            for link in duckduckgo_results:
-                output += f"\033[38;2;255;255;255m{highlight_url(link)}\n"
 
-        output += f"\n\033[38;2;255;255;255m[\033[38;5;214mINF\033[38;2;255;255;255m] \033[38;2;255;255;255mLinks: {len(found)}\n"
-        output += f"\033[38;2;255;255;255m[\033[38;5;214m*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
-    else:
-        output += "\n\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m]\033[38;2;255;255;255m No matches found\n"
-        output += f"\033[38;2;255;255;255m[\033[38;2;0;122;255m*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: \033[38;2;0;122;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
-    
+            if duckduckgo_results:
+                output += f"\n\033[38;2;255;255;255m[\033[38;2;0;122;255mDuckDuckGo\033[38;2;255;255;255m]\n"
+                for link in duckduckgo_results:
+                    output += f"\033[38;2;255;255;255m{highlight_url(link)}\n"
+
+            output += f"\n\033[38;2;255;255;255m[\033[38;5;214mINF\033[38;2;255;255;255m] \033[38;2;255;255;255mLinks: {len(found)}\n"
+            output += f"\033[38;2;255;255;255m[\033[38;5;214m*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
+        else:
+            output += f"\n\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m]\033[38;2;255;255;255m No matches found for {username}\n"
+            output += f"\033[38;2;255;255;255m[\033[38;2;0;122;255m*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: \033[38;2;0;122;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
+
     if save_file:
         try:
             with open(save_file, "a") as f:
@@ -7353,8 +7364,8 @@ def get_random_user_agent():
 
 def scrape_duckduckgo_links(query):
     url = f"https://duckduckgo.com/html/?q={query}"
-    headers = {"User-Agent": get_random_user_agent()} 
-    
+    headers = {"User-Agent": get_random_user_agent()}
+
     try:
         response = requests.get(url, headers=headers, timeout=3.5)
         response.raise_for_status()
@@ -7382,21 +7393,25 @@ def highlight_url(url):
     Function to highlight only the domain part of the URL in yellow while keeping everything else white.
     """
     parsed_url = urlparse(url)
-    domain = parsed_url.netloc  
-    path = parsed_url.path  
+    domain = parsed_url.netloc
+    path = parsed_url.path
 
     highlighted_url = f"\033[97m{parsed_url.scheme}://\033[38;5;220m{domain}\033[97m{path}"
 
     return highlighted_url
 
-def process_brute_force_duckduckgo(usernames_file, save_file=None, max_retries=5):
-    usernames = read_usernames_from_file(usernames_file)
+def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=5):
+    if os.path.isfile(usernames_input):
+        usernames = read_usernames_from_file(usernames_input)
+    else:
+        usernames = usernames_input.split(',')
+
     output = ""
 
     for username in usernames:
         retry_count = 0
         success = False
-        first_retry = True  
+        first_retry = True
 
         print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m]\033[38;2;0;122;255m Checking {username} with duckduckgo", flush=True)
 
@@ -7407,13 +7422,13 @@ def process_brute_force_duckduckgo(usernames_file, save_file=None, max_retries=5
                 if first_retry:
                     print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] {username}", flush=True)
                     print(f"\033[38;2;255;255;255m[\033[38;5;51mINFO\033[38;2;255;255;255m] \033[38;5;51mRetrying\033[38;2;255;255;255m {username}", flush=True)
-                    first_retry = False  
+                    first_retry = False
 
                 retry_count += 1
                 if retry_count < max_retries:
-                    time.sleep(2.6)  
+                    time.sleep(2.6)
                 else:
-                    break  
+                    break
 
             else:  # Successful result
                 if retry_count > 0:  # Only print success after retry
@@ -7435,6 +7450,7 @@ def process_brute_force_duckduckgo(usernames_file, save_file=None, max_retries=5
     else:
         print(output)
 
+
 def main():
     print_banner()
     parser = setup_argparse()
@@ -7447,13 +7463,16 @@ def main():
     if args.username:
         print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m] Emulating websites for {args.username}")
         search_username(args.username, save_file=args.save_file, search_all=args.search_all)
-    
+
     elif args.brute_force:
-        process_file(args.brute_force, save_file=args.save_file)
+        usernames = process_bf_argument(args.brute_force)
+
+        for username in usernames:
+            print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m] Emulating websites for {username}")
+            search_username(username, save_file=args.save_file)
 
     elif args.brute_force_duckduckgo:
         process_brute_force_duckduckgo(args.brute_force_duckduckgo, save_file=args.save_file)
 
 if __name__ == "__main__":
     main()
-# yes i know
