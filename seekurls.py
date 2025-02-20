@@ -7253,7 +7253,7 @@ def print_banner():
  |___/\___\___|_\_\\_,_|_| |_/__/                                                            """
     print(f"{Fore.LIGHTWHITE_EX}{logo}")
     print("                                       \033[38;2;255;255;255m(Coded by BisKit V 4.2)\n")
-    print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m] You are allowed to take the code and use it for your self just not uploading it thinking you made it for other people to use ")
+    print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m] You are allowed to take the code and use it for your self may edit the script just not uploading it thinking you made it for other people to use ")
     print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m] Also you can do real names what i mainly use it for\n")
 def print_help():
     help_text = """ 
