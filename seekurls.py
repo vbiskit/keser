@@ -7356,7 +7356,7 @@ def scrape_duckduckgo_links(query):
     headers = {"User-Agent": get_random_user_agent()} 
     
     try:
-        response = requests.get(url, headers=headers, timeout=6)
+        response = requests.get(url, headers=headers, timeout=3.5)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
         links = set()
@@ -7389,37 +7389,39 @@ def highlight_url(url):
 
     return highlighted_url
 
-def process_brute_force_duckduckgo(usernames_file, save_file=None, max_retries=3):
+def process_brute_force_duckduckgo(usernames_file, save_file=None, max_retries=5):
     usernames = read_usernames_from_file(usernames_file)
     output = ""
 
     for username in usernames:
         retry_count = 0
         success = False
+        first_retry = True  
+
         print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m]\033[38;2;0;122;255m Checking {username} with duckduckgo", flush=True)
 
         while retry_count < max_retries and not success:
             duckduckgo_results = scrape_duckduckgo_links(username)
 
-            if duckduckgo_results:
+            if not duckduckgo_results:
+                if first_retry:
+                    print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] {username}", flush=True)
+                    print(f"\033[38;2;255;255;255m[\033[38;5;51mINFO\033[38;2;255;255;255m] \033[38;5;51mRetrying\033[38;2;255;255;255m {username}", flush=True)
+                    first_retry = False  
+
+                retry_count += 1
+                if retry_count < max_retries:
+                    time.sleep(2.6)  
+                else:
+                    break  
+
+            else:  # Successful result
+                if retry_count > 0:  # Only print success after retry
+                    print(f"\033[38;2;255;255;255m[\033[38;5;141mINFO\033[38;2;255;255;255m]\033[38;5;213m SUCCESS {username}", flush=True)  # SUCCESS prints immediately after Retrying
                 for link in duckduckgo_results:
                     highlighted_link = highlight_url(link)
                     print(f"\033[97m{highlighted_link}\033[0m", flush=True)
                 success = True
-
-                if retry_count > 0:
-                    print(f"\033[38;2;255;255;255m[\033[1;32mINFO\033[38;2;255;255;255m] SUCCESS {username} found after retry", flush=True)
-            else:
-                print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m]{username}\n", flush=True)
-                retry_count += 1
-                
-                if retry_count == 1:  
-                    print(f"\033[38;2;255;255;255m[\033[1;32mINFO\033[38;2;255;255;255m] Retrying {username}", flush=True)
-
-                if retry_count < max_retries:
-                    time.sleep(5)  
-                else:
-                    print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] {username} failed after {max_retries} attempts\n", flush=True)
 
         time.sleep(5)
 
@@ -7432,7 +7434,6 @@ def process_brute_force_duckduckgo(usernames_file, save_file=None, max_retries=3
             print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
     else:
         print(output)
-
 
 def main():
     print_banner()
@@ -7455,3 +7456,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+# yes i know
