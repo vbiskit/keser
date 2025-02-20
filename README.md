@@ -1,5 +1,5 @@
-# Save file with all which means -all is duckduckgo and urls
-![Screenshot](savefilewithduckduckgo.png)
+# Really Fast Normal Search
+![copy](fastnormalsearch.png)
 
 ## 
 The tool has 0 false postives so just letting you know its a insanely fast username or can be real name search what i mainly use this stuff for it has a built in duckduckgo search and a brute force username runs fron a .txt so does the duckduckgo brute force.
@@ -12,10 +12,9 @@ The tool has 0 false postives so just letting you know its a insanely fast usern
 
 # search username
 
-![copy](normalsearch.png)
+![Screenshot](savefilewithduckduckgo.png)
 
 # Duckduckgo Brute Force Usernames
-
 ![Screenshot](duckduckgobruteforce.png)
 
 ## Installation 
