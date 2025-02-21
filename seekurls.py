@@ -7100,15 +7100,12 @@ user_agents = working_user_agents = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko)"
 ]
-# hey
-def get_random_user_agent():
-    return random.choice(user_agents)
-#stop it
+
 def check_username_on_website(site, username):
     try:
         url = site["uri_check"].replace("{account}", username)
         headers = {"User-Agent": get_random_user_agent()}
-        response = requests.get(url, headers=headers, timeout=1.2)
+        response = requests.get(url, headers=headers, timeout=3.8)
 
         if (response.status_code == site["e_code"] and site["e_string"] in response.text):
             return (site["name"], url)
@@ -7118,132 +7115,6 @@ def check_username_on_website(site, username):
 
     except Exception:
         return None
-#yep
-def scrape_duckduckgo_links(query):
-    url = f"https://duckduckgo.com/html/?q={query}"
-    headers = {"User-Agent": get_random_user_agent()}
-# alright
-    try:
-        response = requests.get(url, headers=headers, timeout=6)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.text, "html.parser")
-        links = set()
-        #nothing here
-        for a_tag in soup.find_all("a", class_="result__a", href=True):
-            href = a_tag.get("href")
-            if "duckduckgo.com/l/?" in href:
-                parsed_url = urlparse(href)
-                real_url = parse_qs(parsed_url.query).get("uddg", [None])[0]
-                if real_url:
-                    links.add(real_url)
-            elif "duckduckgo.com" not in href:
-                links.add(href)
-
-        return list(links)
-    except requests.exceptions.RequestException as e:
-        print(f"\033[91mError with DuckDuckGo request: {e}\033[0m")
-        return []
-# think i cant see you ?
-
-def search_username(username, threads=100, save_file=None, search_all=False):
-    print(f"search_username called for: {username}")  
-    start_time = time.time()
-    output = ""
-    found = []
-    
-    with ThreadPoolExecutor(max_workers=threads) as executor:
-        futures = {executor.submit(check_username_on_website, site, username): site for site in metadata["sites"]}
-        for future in as_completed(futures):
-            result = future.result()
-            if result:
-                found.append(result)
-    
-    duckduckgo_results = []
-    if search_all:
-        duckduckgo_results = scrape_duckduckgo_links(username)
-
-    elapsed_time = time.time() - start_time
-
-    if found or duckduckgo_results:
-        if found:
-            unique_sites = set()
-            for site_name, url in found:
-                if site_name not in unique_sites:
-                    unique_sites.add(site_name)
-                    site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
-                    category = site_metadata["cat"] if site_metadata else "Unknown"
-                    short_name = site_metadata["name"] if site_metadata else "Unknown"  
-                    output += f"\033[38;2;255;255;255m[\033[38;5;214m{short_name}\033[38;2;255;255;255m]\033[38;2;31;117;255m] {url}\n"
-                    
-        if duckduckgo_results:
-            output += f"\n\033[38;2;255;255;255m[\033[38;5;177mDuckDuckGo\033[38;2;255;255;255m]\n"
-            for i, link in enumerate(duckduckgo_results, 1):
-                output += f"\033[38;2;217;0;255m[\033[38;2;255;255;255m{i}\033[38;2;31;117;255m] {link}\n"
-
-        output += f"\n\033[38;2;255;255;255m[\033[38;2;255;204;102m+\033[38;2;255;255;255m] Websites found: \033[38;2;255;204;102m{len(found)}\n"
-        output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
-    else:
-        output += "\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;5;196m No matches found\n"
-        output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
-    
-    if save_file:
-        try:
-            with open(save_file, "a") as f:  
-             f.write(output + "\n")  
-            print(f"Results saved to {save_file}\n")
-        except PermissionError as e:
-            print(f"\033[91mError: {e}\033[0m - You do not have permission to write to the file.")
-        except Exception as e:
-            print(f"\033[91mError: {e}\033[0m")
-    else:
-        print(output)
-
-def search_username(username, save_file=None):
-    start_time = time.time()
-    output = ""
-    found = []
-    usernames_to_search = [username]
-    
-    with ThreadPoolExecutor(max_workers=100) as executor:
-        futures = {}
-        for user in usernames_to_search:
-            for site in metadata["sites"]:
-                futures[executor.submit(check_username_on_website, site, user)] = user
-        
-        for future in as_completed(futures):
-            result = future.result()
-            if result:
-                found.append(result)
-    
-    elapsed_time = time.time() - start_time
-    
-    if found:
-        for site_name, url in found:
-            output += f"\033[38;2;255;255;255m[\033[38;5;177m{site_name}\033[38;2;255;255;255m]\033[38;2;31;117;255m{url}\n"
-        output += f"\n\033[38;2;255;255;255m[\033[38;2;255;204;102m+\033[38;2;255;255;255m] Websites found: \033[38;2;255;204;102m{len(found)}\n"
-    else:
-        output += "\n\033[38;2;255;255;255m[\033[38;2;255;255;0m!\033[38;2;255;255;255m]\033[38;5;196m No matches found\n"
-    
-    output += f"\033[38;2;255;255;255m[\033[38;2;31;117;255m*\033[38;2;255;255;255m] Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
-    
-    if save_file:
-        with open(save_file, "w") as f:
-            f.write(output)
-    else:
-        print(output)
-
-def process_file(filename, save_file=None):
-    try:
-        with open(filename, "r") as file:
-            usernames = [line.strip() for line in file.readlines()]
-        
-        for username in usernames:
-            print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m] Emulating websites for {username}")
-            search_username(username, save_file=save_file)
-
-    except FileNotFoundError:
-        print(f"\033[91mError: The file '{filename}' was not found.\033[0m")
-        sys.exit(1)
 
 def print_banner():
     logo = r"""
@@ -7287,10 +7158,11 @@ def setup_argparse():
 
     return parser
 
+def get_random_user_agent():
+    return random.choice(user_agents)
+
 def highlight_url(url):
-    """
-    Function to highlight only the domain part of the URL in yellow while keeping everything else white.
-    """
+
     parsed_url = urlparse(url)
     domain = parsed_url.netloc
     path = parsed_url.path
@@ -7299,7 +7171,6 @@ def highlight_url(url):
     return highlighted_url
 
 def process_bf_argument(bf_arg):
-    """Handles -bf argument to allow either a .txt file or a comma-separated list of usernames."""
     if os.path.isfile(bf_arg):  
         with open(bf_arg, "r") as f:
             usernames = [line.strip() for line in f if line.strip()]
@@ -7308,7 +7179,7 @@ def process_bf_argument(bf_arg):
 
     return usernames
 
-def search_username(usernames, threads=200, save_file=None, search_all=False):
+def search_username(usernames, threads=100, save_file=None, search_all=False):
     start_time = time.time()
     output = ""
 
@@ -7364,15 +7235,12 @@ def read_usernames_from_file(file_path):
         usernames = [line.strip() for line in file.readlines()]
     return usernames
 
-def get_random_user_agent():
-    return random.choice(user_agents)
-
 def scrape_duckduckgo_links(query):
     url = f"https://duckduckgo.com/html/?q={query}"
     headers = {"User-Agent": get_random_user_agent()}
 
     try:
-        response = requests.get(url, headers=headers, timeout=3.5)
+        response = requests.get(url, headers=headers, timeout=4)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
         links = set()
