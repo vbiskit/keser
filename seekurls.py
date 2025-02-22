@@ -7262,9 +7262,6 @@ def scrape_duckduckgo_links(query):
         return []
 
 def highlight_url(url):
-    """
-    Function to highlight only the domain part of the URL in yellow while keeping everything else white.
-    """
     parsed_url = urlparse(url)
     domain = parsed_url.netloc
     path = parsed_url.path
@@ -7322,7 +7319,6 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
             print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
     else:
         print(output)
-
 
 def main():
     print_banner()
