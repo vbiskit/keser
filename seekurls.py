@@ -10,6 +10,7 @@ from colorama import Fore
 from urllib.parse import urlparse, parse_qs
 import sys
 import argparse
+
 metadata = {
      "sites" : [
        {
