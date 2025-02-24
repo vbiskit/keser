@@ -42,11 +42,11 @@ Arguments:
   -bf name,name2
   -bd name,name2
 Usage:
-  - python3 seakurls.py <example> -sf example.txt
-  - python3 seakurls.py <example> for just links
-  - python3 seakurls.py -bf usernames.txt
-  - python3 seakurls.py <example> -all
-  - python3 seakurls.py -bd example.txt
+  - python3 seekurls.py <example> -sf example.txt
+  - python3 seekurls.py <example> for just links
+  - python3 seekurls.py -bf usernames.txt
+  - python3 seekurls.py <example> -all
+  - python3 seekurls.py -bd example.txt
   - python3 seekurls.py example -all -sf some.txt
   - python3 seekurls.py -bf name,name2
   - python3 seekurls.py -bd name,name2
