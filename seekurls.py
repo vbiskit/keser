@@ -7111,7 +7111,7 @@ def check_username_on_website(site, username):
         response = requests.get(url, headers=headers, timeout=10)
 
         if (response.status_code == site["e_code"] and site["e_string"] in response.text):
-            print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255m{site['name']}\033[38;2;255;255;255m] \033[38;2;255;255;255m[\033[38;2;255;255;102m{site['cat']}\033[38;2;255;255;255m] {url}")
+            print(f"\033[38;2;255;255;255m[{Fore.LIGHTCYAN_EX}{site['name']}\033[38;2;255;255;255m] \033[38;2;255;255;255m[\033[38;2;255;255;102m{site['cat']}\033[38;2;255;255;255m] {url}")
             return (site["name"], url, site["cat"])  
         elif (response.status_code == site["m_code"] and site["m_string"] in response.text):
             return None
@@ -7127,9 +7127,9 @@ def print_banner():
  \__ \/ -_) -_) / / || | '_| (_-<
  |___/\___\___|_\_\\_,_|_| |_/__/                                                            """
     print(f"{Fore.LIGHTWHITE_EX}{logo}")
-    print("                                       \033[38;2;255;255;255m(Coded by BisKit V 4.2)\n")
-    print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m] You are allowed to take the code and use it for your self may edit the script just not uploading it thinking you made it for other people to use ")
-    print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m] Also you can do real names what i mainly use it for\n")
+    print("                                       \033[38;2;255;255;255m(Coded by BisKit V 4.2")
+    print(f"\033[38;2;255;255;255m[{Fore.LIGHTYELLOW_EX}WRN\033[38;2;255;255;255m] You are allowed to take the code and use it for your self may edit the script just not uploading it thinking you made it for other people to use ")
+    print(f"\033[38;2;255;255;255m[{Fore.LIGHTYELLOW_EX}WRN\033[38;2;255;255;255m] Also you can do real names what i mainly use it for\n")
 def print_help():
     help_text = """
 Arguments:
@@ -7170,7 +7170,7 @@ def highlight_url(url):
     parsed_url = urlparse(url)
     domain = parsed_url.netloc
     path = parsed_url.path
-    highlighted_url = f"\033[97m{parsed_url.scheme}://\033[38;5;220m{domain}\033[97m{path}"
+    highlighted_url = f"\033[97m{parsed_url.scheme}://{Fore.LIGHTYELLOW_EX}{domain}\033[97m{path}"
 
     return highlighted_url
 
@@ -7183,7 +7183,7 @@ def process_bf_argument(bf_arg):
 
     return usernames
 
-def search_username(usernames, threads=35, save_file=None, search_all=False):
+def search_username(usernames, threads=64, save_file=None, search_all=False):
     start_time = time.time()
     output = ""
 
@@ -7206,12 +7206,12 @@ def search_username(usernames, threads=35, save_file=None, search_all=False):
         elapsed_time = time.time() - start_time
 
         if duckduckgo_results:
-            print(f"\n\033[38;2;255;255;255m[\033[38;2;0;122;255mDuckDuckGo\033[38;2;255;255;255m]")
+            print(f"\n\033[38;2;255;255;255m[{Fore.LIGHTCYAN_EX}DuckDuckGo\033[38;2;255;255;255m]")
             for link in duckduckgo_results:
                 print(f"\033[38;2;255;255;255m{highlight_url(link)}")
 
-        print(f"\n\033[38;2;255;255;255m[\033[38;5;214mINF\033[38;2;255;255;255m] \033[38;2;255;255;255mLinks: {len(found)}")
-        print(f"\033[38;2;255;255;255m[\033[38;5;214m*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds")
+        print(f"\n\033[38;2;255;255;255m[{Fore.LIGHTGREEN_EX}INF\033[38;2;255;255;255m] \033[38;2;255;255;255mLinks{Fore.LIGHTYELLOW_EX}: \033[38;2;255;255;255m{len(found)}")
+        print(f"\033[38;2;255;255;255m[{Fore.LIGHTYELLOW_EX}*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: {Fore.LIGHTGREEN_EX}{elapsed_time:.2f} \033[38;2;255;255;255mseconds")
 
     if save_file:
         try:
@@ -7265,7 +7265,7 @@ def highlight_url(url):
     domain = parsed_url.netloc
     path = parsed_url.path
 
-    highlighted_url = f"\033[97m{parsed_url.scheme}://\033[38;5;220m{domain}\033[97m{path}"
+    highlighted_url = f"\033[97m{parsed_url.scheme}://{Fore.LIGHTYELLOW_EX}{domain}\033[97m{path}"
 
     return highlighted_url
 
@@ -7282,7 +7282,7 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
         success = False
         first_retry = True
 
-        print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m]\033[38;2;0;122;255m Checking {username} with duckduckgo", flush=True)
+        print(f"\033[38;2;255;255;255m[{Fore.LIGHTGREEN_EX}INF\033[38;2;255;255;255m] Checking {username} with duckduckgo", flush=True)
 
         while retry_count < max_retries and not success:
             duckduckgo_results = scrape_duckduckgo_links(username)
@@ -7329,14 +7329,14 @@ def main():
         sys.exit(0)
 
     if args.username:
-        print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m] Emulating websites for {args.username}")
+        print(f"\033[38;2;255;255;255m[{Fore.LIGHTGREEN_EX}INF\033[38;2;255;255;255m] Emulating websites for {args.username}")
         search_username(args.username, save_file=args.save_file, search_all=args.search_all)
 
     elif args.brute_force:
         usernames = process_bf_argument(args.brute_force)
 
         for username in usernames:
-            print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255mINF\033[38;2;255;255;255m] Emulating websites for {username}")
+            print(f"\033[38;2;255;255;255m[{Fore.LIGHTGREEN_EX}INF\033[38;2;255;255;255m] Emulating websites for {username}")
             search_username(username, save_file=args.save_file)
 
     elif args.brute_force_duckduckgo:
