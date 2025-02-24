@@ -2,7 +2,7 @@
 
 ![!](usersearch.png)
 
-#Brute Force: Usernames
+# Brute Force: Usernames
 
 ![bruteforce](brute.png)
 
