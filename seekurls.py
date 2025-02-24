@@ -7104,6 +7104,9 @@ user_agents = working_user_agents = [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko)"
 ]
 
+def get_random_user_agent():
+    return random.choice(user_agents)
+
 def check_username_on_website(site, username):
     try:
         url = site["uri_check"].replace("{account}", username)
@@ -7128,7 +7131,6 @@ def print_banner():
  |___/\___\___|_\_\\_,_|_| |_/__/                                                            """
     print(f"{Fore.LIGHTWHITE_EX}{logo}")
     print("                                       \033[38;2;255;255;255m(Coded by BisKit V 4.2")
-    
     print(f"\033[38;2;255;255;255m[{Fore.LIGHTYELLOW_EX}WRN\033[38;2;255;255;255m] You are allowed to take the code and use it for your self may edit the script just not uploading it thinking you made it for other people to use ")
     print(f"\033[38;2;255;255;255m[{Fore.LIGHTYELLOW_EX}WRN\033[38;2;255;255;255m] Also you can do real names what i mainly use it for\n")
 def print_help():
@@ -7162,9 +7164,6 @@ def setup_argparse():
     parser.add_argument("-all", "--search-all", action="store_true", help="Search additional sites like DuckDuckGo.")
 
     return parser
-
-def get_random_user_agent():
-    return random.choice(user_agents)
 
 def highlight_url(url):
 
@@ -7278,7 +7277,9 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
     else:
         usernames = usernames_input.split(',')
 
-    output = ""
+    output = ""  
+    total_links_found = 0  
+    start_time = time.time()  
 
     for username in usernames:
         retry_count = 0
@@ -7302,25 +7303,31 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
                 else:
                     break
 
-            else:  
-                if retry_count > 0:  
-                    print(f"\033[38;2;255;255;255m[\033[38;5;141mINFO\033[38;2;255;255;255m]\033[38;5;213m SUCCESS", flush=True)  
+            else:
+                if retry_count > 0:
+                    print(f"\033[38;2;255;255;255m[\033[38;5;141mINFO\033[38;2;255;255;255m]\033[38;5;213m SUCCESS", flush=True)
                 for link in duckduckgo_results:
                     highlighted_link = highlight_url(link)
                     print(f"\033[97m{highlighted_link}\033[0m", flush=True)
+                    output += f"{highlighted_link}\n"  
+                    total_links_found += 1  
                 success = True
 
         time.sleep(5)
 
+    elapsed_time = time.time() - start_time
+
     if save_file:
         try:
             with open(save_file, "a") as f:
-                f.write(output + "\n")
-            print(f"\033[38;2;255;255;255m Results saved to {save_file}")
+                f.write(output.strip())  
         except Exception as e:
             print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
-    else:
-        print(output)
+
+    print(f"\n\033[38;2;255;255;255m[{Fore.LIGHTGREEN_EX}INF\033[38;2;255;255;255m] \033[38;2;255;255;255mLinks{Fore.LIGHTYELLOW_EX}: \033[38;2;255;255;255m{total_links_found}")
+    print(f"\033[38;2;255;255;255m[{Fore.LIGHTYELLOW_EX}*\033[38;2;255;255;255m] \033[38;2;255;255;255mTime Taken: {Fore.LIGHTGREEN_EX}{elapsed_time:.2f} \033[38;2;255;255;255mseconds")
+    if save_file:
+        print(f"\033[38;2;255;255;255m[{Fore.LIGHTGREEN_EX}INF\033[38;2;255;255;255m] Results saved to {save_file}")
 
 def main():
     print_banner()
