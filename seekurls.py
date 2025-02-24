@@ -7111,8 +7111,8 @@ def check_username_on_website(site, username):
         response = requests.get(url, headers=headers, timeout=10)
 
         if (response.status_code == site["e_code"] and site["e_string"] in response.text):
-            print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255m{site['name']}\033[38;2;255;255;255m]\033[38;2;255;255;255m {url}")
-            return (site["name"], url)
+            print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255m{site['name']}\033[38;2;255;255;255m] \033[38;2;255;255;255m[\033[38;2;255;255;102m{site['cat']}\033[38;2;255;255;255m] {url}")
+            return (site["name"], url, site["cat"])  
         elif (response.status_code == site["m_code"] and site["m_string"] in response.text):
             return None
         return None
@@ -7216,7 +7216,12 @@ def search_username(usernames, threads=35, save_file=None, search_all=False):
     if save_file:
         try:
             with open(save_file, "a") as f:
-                f.write(output + "\n")
+                for site_name, url, cat in found:
+                    f.write(f"[{site_name}] ({cat}) {url}\n")
+                if duckduckgo_results:
+                    f.write("\n[DuckDuckGo]\n")
+                    for link in duckduckgo_results:
+                        f.write(f"{link}\n")
             print(f"\033[38;2;255;255;255m Results saved to {save_file}")
         except Exception as e:
             print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
