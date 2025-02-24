@@ -7108,9 +7108,10 @@ def check_username_on_website(site, username):
     try:
         url = site["uri_check"].replace("{account}", username)
         headers = {"User-Agent": get_random_user_agent()}
-        response = requests.get(url, headers=headers, timeout=3.8)
+        response = requests.get(url, headers=headers, timeout=10)
 
         if (response.status_code == site["e_code"] and site["e_string"] in response.text):
+            print(f"\033[38;2;255;255;255m[\033[38;2;0;122;255m{site['name']}\033[38;2;255;255;255m]\033[38;2;255;255;255m {url}")
             return (site["name"], url)
         elif (response.status_code == site["m_code"] and site["m_string"] in response.text):
             return None
@@ -7182,7 +7183,7 @@ def process_bf_argument(bf_arg):
 
     return usernames
 
-def search_username(usernames, threads=100, save_file=None, search_all=False):
+def search_username(usernames, threads=35, save_file=None, search_all=False):
     start_time = time.time()
     output = ""
 
@@ -7191,36 +7192,26 @@ def search_username(usernames, threads=100, save_file=None, search_all=False):
 
     for username in usernames:
         found = []
+        unique_sites = set()
 
         with ThreadPoolExecutor(max_workers=threads) as executor:
             futures = {executor.submit(check_username_on_website, site, username): site for site in metadata["sites"]}
             for future in as_completed(futures):
                 result = future.result()
-                if result:
+                if result and result[0] not in unique_sites:
+                    unique_sites.add(result[0])
                     found.append(result)
 
         duckduckgo_results = scrape_duckduckgo_links(username) if search_all else []
         elapsed_time = time.time() - start_time
 
-        if found or duckduckgo_results:
-            unique_sites = set()
-            for site_name, url in found:
-                if site_name not in unique_sites:
-                    unique_sites.add(site_name)
-                    site_metadata = next((site for site in metadata["sites"] if site["name"] == site_name), None)
-                    short_name = site_metadata["name"] if site_metadata else "Unknown"
-                    output += f"\033[38;2;255;255;255m[\033[38;2;0;122;255m{short_name}\033[38;2;255;255;255m]\033[38;2;255;255;255m {url}\n"
+        if duckduckgo_results:
+            print(f"\n\033[38;2;255;255;255m[\033[38;2;0;122;255mDuckDuckGo\033[38;2;255;255;255m]")
+            for link in duckduckgo_results:
+                print(f"\033[38;2;255;255;255m{highlight_url(link)}")
 
-            if duckduckgo_results:
-                output += f"\n\033[38;2;255;255;255m[\033[38;2;0;122;255mDuckDuckGo\033[38;2;255;255;255m]\n"
-                for link in duckduckgo_results:
-                    output += f"\033[38;2;255;255;255m{highlight_url(link)}\n"
-
-            output += f"\n\033[38;2;255;255;255m[\033[38;5;214mINF\033[38;2;255;255;255m] \033[38;2;255;255;255mLinks: {len(found)}\n"
-            output += f"\033[38;2;255;255;255m[\033[38;5;214m*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
-        else:
-            output += f"\n\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m]\033[38;2;255;255;255m No matches found for {username}\n"
-            output += f"\033[38;2;255;255;255m[\033[38;2;0;122;255m*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: \033[38;2;0;122;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds\n"
+        print(f"\n\033[38;2;255;255;255m[\033[38;5;214mINF\033[38;2;255;255;255m] \033[38;2;255;255;255mLinks: {len(found)}")
+        print(f"\033[38;2;255;255;255m[\033[38;5;214m*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: \033[38;2;31;117;255m{elapsed_time:.2f} \033[38;2;255;255;255mseconds")
 
     if save_file:
         try:
