@@ -7188,7 +7188,7 @@ def search_username(usernames, threads=64, save_file=None, search_all=False):
     output = ""
 
     if isinstance(usernames, str):
-        usernames = [usernames]  
+        usernames = [usernames]
 
     for username in usernames:
         found = []
@@ -7211,22 +7211,24 @@ def search_username(usernames, threads=64, save_file=None, search_all=False):
                 print(f"\033[38;2;255;255;255m{highlight_url(link)}")
 
         print(f"\n\033[38;2;255;255;255m[{Fore.LIGHTGREEN_EX}INF\033[38;2;255;255;255m] \033[38;2;255;255;255mLinks{Fore.LIGHTYELLOW_EX}: \033[38;2;255;255;255m{len(found)}")
-        print(f"\033[38;2;255;255;255m[{Fore.LIGHTYELLOW_EX}*\033[38;2;255;255;255m] \033[38;2;255;255;255m Time Taken: {Fore.LIGHTGREEN_EX}{elapsed_time:.2f} \033[38;2;255;255;255mseconds")
+        print(f"\033[38;2;255;255;255m[{Fore.LIGHTYELLOW_EX}*\033[38;2;255;255;255m] \033[38;2;255;255;255mTime Taken: {Fore.LIGHTGREEN_EX}{elapsed_time:.2f} \033[38;2;255;255;255mseconds")
 
-    if save_file:
-        try:
-            with open(save_file, "a") as f:
-                for site_name, url, cat in found:
-                    f.write(f"[{site_name}] ({cat}) {url}\n")
-                if duckduckgo_results:
-                    f.write("\n[DuckDuckGo]\n")
-                    for link in duckduckgo_results:
-                        f.write(f"{link}\n")
-            print(f"\033[38;2;255;255;255m Results saved to {save_file}")
-        except Exception as e:
-            print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
-    else:
-        print(output)
+        if save_file:
+            try:
+                with open(save_file, "a") as f:
+                    for site_name, url, cat in found:
+                        highlighted_url = highlight_url(url)  
+                        f.write(f"\033[38;2;255;255;255m[{Fore.LIGHTCYAN_EX}{site_name}\033[38;2;255;255;255m] [\033[38;2;255;255;255m\033[38;2;255;255;102m{cat}\033[38;2;255;255;255m] {url} \n")  # Write highlighted URL
+                    if duckduckgo_results:
+                        f.write(f"\n[{Fore.LIGHTCYAN_EX}DuckDuckGo]\n")
+                        for link in duckduckgo_results:
+                            highlighted_link = highlight_url(link)  
+                            f.write(f"{highlighted_link}\n")  
+                print(f"{Fore.LIGHTGREEN_EX}[{Fore.LIGHTYELLOW_EX}+{Fore.LIGHTGREEN_EX}] Results saved to {save_file}")
+            except Exception as e:
+                print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
+        else:
+            print(output)
 
 
 def read_usernames_from_file(file_path):
