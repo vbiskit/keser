@@ -7286,7 +7286,7 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
         success = False
         first_retry = True
 
-        print(f"\033[38;2;255;255;255m[{Fore.LIGHTGREEN_EX}INF\033[38;2;255;255;255m] Checking {username} with duckduckgo", flush=True)
+        print(f"\033[38;2;255;255;255m[{Fore.LIGHTGREEN_EX}INF\033[38;2;255;255;255m]{Fore.LIGHTGREEN_EX} Checking {username} with duckduckgo", flush=True)
 
         while retry_count < max_retries and not success:
             duckduckgo_results = scrape_duckduckgo_links(username)
