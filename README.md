@@ -10,6 +10,8 @@ git clone https://github.com/vbiskit/oneRise
 sudo mv oneRise/oneRise /usr/local/bin/
 
 sudo chmod +x /usr/local/bin/oneRise/onerise.py
+
+sudo ln -s /usr/local/bin/oneRise/onerise.py /usr/local/bin/onerise
 ```
 # Run the tool:
 ```yaml
