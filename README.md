@@ -10,8 +10,7 @@ sudo chmod +x oneRise/oneRise/onerise.py
 sudo mv oneRise /usr/local/bin/onerise 
 ```
 # Run the tool:
-onerise
-```
+```yaml
 onerise
 ```
 # onerise -h
