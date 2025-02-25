@@ -7194,7 +7194,7 @@ def print_banner():
 / /_/ / / / /  __/ _, _/ (__  )  __/
 \____/_/ /_/\___/_/ |_/_/____/\___/  """
     print(f"{(logo)}\n")
-    print("                                       \033[38;2;255;255;255m(Coded by BisKit V 4.2\n")
+    print("                                       \033[38;2;255;255;255m(Coded by BisKit V 6.7\n")
     print(f"[{blue2('WRN')}\033[38;2;255;255;255m] You are allowed to take the code and use it for your self may edit the script just not uploading it thinking you made it for other people to use")
     print(f"[{blue2('WRN')}\033[38;2;255;255;255m] Also you can do real names what i mainly use it for\n")
 
