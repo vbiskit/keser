@@ -30,7 +30,11 @@ cd seekurls
 
 pip3 install -r requirements.txt
 
-python3 seekurls.py
+chmod +x onerise.py
+
+sudo mv onerise.py /usr/local/bin/onerise
+
+onerise
 ```
 # Usage:
 ```
