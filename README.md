@@ -9,11 +9,7 @@ git clone https://github.com/vbiskit/oneRise
 
 cd oneRise
 
-pip3 install -r requirements.txt
-
-chmod +x onerise.py
-
-sudo mv onerise.py /usr/local/bin/onerise
+python3 installer.py
 ```
 # Run the tool:
 ```
