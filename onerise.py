@@ -7110,18 +7110,17 @@ user_agents = working_user_agents = [
 def rgb(r, g, b, text):
     return f'\033[38;2;{r};{g};{b}m{text}\033[0m'
 
-
-gradient_colors = [
-    (0, 180, 255),  
-    (0, 220, 220),  
-    (0, 255, 180),  
-    (0, 255, 120),  
-]
-
 def blue_green(text):
+    gradient_colors = [
+        (0, 180, 255),  
+        (0, 220, 220),  
+        (0, 255, 180),  
+        (0, 255, 120),  
+    ]
+
     gradient_text = ""
     text_length = len(text)
-    
+
     for i, char in enumerate(text):
         color_index = int((i / text_length) * (len(gradient_colors) - 1))
         r, g, b = gradient_colors[color_index]
@@ -7129,16 +7128,33 @@ def blue_green(text):
 
     return gradient_text
 
-def rgb(r, g, b, text):
-    return f'\033[38;2;{r};{g};{b}m{text}\033[0m'
-
+# 2. Blue Gradient
 def blue2(text):
     gradient_colors = [
         (0, 0, 255),       
         (0, 102, 255),     
-        (0, 191, 255),      
+        (0, 191, 255),     
         (30, 144, 255),    
         (70, 130, 180),    
+    ]
+
+    gradient_text = ""
+    text_length = len(text)
+
+    for i, char in enumerate(text):
+        color_index = int((i / text_length) * (len(gradient_colors) - 1))
+        r, g, b = gradient_colors[color_index]
+        gradient_text += rgb(r, g, b, char)
+
+    return gradient_text
+
+def vibrant_yellow_green(text):
+    gradient_colors = [
+        (255, 255, 0),   
+        (220, 255, 0),   
+        (180, 255, 0),   
+        (120, 255, 0),  
+        (60, 255, 0),    
     ]
 
     gradient_text = ""
@@ -7159,7 +7175,7 @@ async def check_username_on_website(session, site, username):
     headers = {"User-Agent": get_random_user_agent()}
 
     try:
-        async with session.get(url, headers=headers, timeout=8) as response:
+        async with session.get(url, headers=headers, timeout=9.1) as response:
             raw_bytes = await response.read()
             try:
                 text = raw_bytes.decode("utf-8")
@@ -7167,7 +7183,7 @@ async def check_username_on_website(session, site, username):
                 text = raw_bytes.decode("latin-1")
 
             if response.status == site["e_code"] and site["e_string"] in text:
-                print(f"\033[38;2;255;255;255m[\033[38;2;0;255;0m{site['name']}\033[38;2;255;255;255m] \033[38;2;255;255;255m[\033[38;2;255;255;102m{site['cat']}\033[38;2;255;255;255m] {url}")
+                print(f"\033[38;2;255;255;255m[\033[38;2;0;191;255m{site['name']}\033[38;2;255;255;255m] \033[38;2;255;255;255m[\033[38;2;0;255;0m{site['cat']}\033[38;2;255;255;255m] {url}")
                 return (site["name"], url, site["cat"])
 
             if "m_code" in site and "m_string" in site:
@@ -7183,20 +7199,20 @@ async def check_username_with_retries(session, site, username, max_retries=2):
         result = await check_username_on_website(session, site, username)
         if result is not None:
             return result
-        await asyncio.sleep(1.1)  
+        await asyncio.sleep(0.91)  
     return None
 
 def print_banner():
-    logo = r"""
-                    ____  _         
-  ____  ____  ___  / __ \(_)_______ 
- / __ \/ __ \/ _ \/ /_/ / / ___/ _ \
-/ /_/ / / / /  __/ _, _/ (__  )  __/
-\____/_/ /_/\___/_/ |_/_/____/\___/  """
-    print(f"{(logo)}\n")
-    print("                                       \033[38;2;255;255;255m(Coded by BisKit V 6.7\n")
-    print(f"[{blue2('WRN')}\033[38;2;255;255;255m] You are allowed to take the code and use it for your self may edit the script just not uploading it thinking you made it for other people to use")
-    print(f"[{blue2('WRN')}\033[38;2;255;255;255m] Also you can do real names what i mainly use it for\n")
+    logo = r"""                                                                    
+                      ,------. ,--.               
+ ,---. ,--,--,  ,---. |  .--. '`--' ,---.  ,---.  
+| .-. ||      \| .-. :|  '--'.',--.(  .-' | .-. : 
+' '-' '|  ||  |\   --.|  |\  \ |  |.-'  `)\   --. 
+ `---' `--''--' `----'`--' '--'`--'`----'  `----' """
+    print(f"{blue_green(logo)}\n")
+    print(f"{vibrant_yellow_green(' Coded by BisKit V 6.7')}\n")
+    print(f"[\033[38;2;255;255;255m{blue2('WRN')}\033[38;2;255;255;255m] You are allowed to take the code and use it for your self may edit the script just not uploading it thinking you made it for other people to use")
+    print(f"[\033[38;2;255;255;255m{blue2('WRN')}\033[38;2;255;255;255m] Also you can do real names what i mainly use it for\033[38;2;255;255;255m\n")
 
 def print_help():
     help_text = """
@@ -7274,13 +7290,13 @@ async def search_username(username, save_file=None, search_all=False):
     print(f"[{blue_green('*')}\033[38;2;255;255;255m] [{blue2('Time Taken')}\033[38;2;255;255;255m] \033[38;2;255;255;255m{elapsed_time:.2f} seconds\n")
 
     if save_file:
-        sys.stdout = sys.__stdout__  
+        sys.stdout = sys.__stdout__  # coded by vbiskit
         captured_output = output_capture.getvalue()  
 
         try:
             with open(save_file, "a") as f:
                 f.write(captured_output)
-            print(f"{Fore.LIGHTGREEN_EX}[{Fore.LIGHTYELLOW_EX}+{Fore.LIGHTGREEN_EX}] Results saved to {save_file}")
+            print(f"{vibrant_yellow_green('+')} Results saved to {save_file}")
         except Exception as e:
             print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
 
@@ -7289,7 +7305,7 @@ def scrape_duckduckgo_links(query):
     headers = {"User-Agent": get_random_user_agent()}
 
     try:  
-        response = requests.get(url, headers=headers, timeout=4)
+        response = requests.get(url, headers=headers, timeout=10)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
         links = set()
@@ -7328,62 +7344,51 @@ def read_usernames_from_file(file_path):
         print(f"\033[91mError reading file {file_path}: {e}\033[0m")
         return []
 
-def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=5):
+def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=2):
     if os.path.isfile(usernames_input):
         usernames = read_usernames_from_file(usernames_input)
     else:
         usernames = usernames_input.split(',')
 
+    total_links_found = 0
+    start_time = time.time()
+
     if save_file:
         output_capture = io.StringIO()
         sys.stdout = output_capture  
 
-    total_links_found = 0
-    start_time = time.time()
-
-    duckduckgo_links = []  
-
     for username in usernames:
         retry_count = 0
         success = False
-        first_retry = True
 
-        print(f"[{blue2('INFO')}\033[38;2;255;255;255m] Checking {username} with DuckDuckGo", flush=True)
+        print(f"[\033[38;2;255;255;255m{blue2('INFO')}\033[38;2;255;255;255m] Checking {username} with DuckDuckGo", flush=True)
 
         while retry_count < max_retries and not success:
             duckduckgo_results = scrape_duckduckgo_links(username)
 
             if not duckduckgo_results:
-                if first_retry:
-                    print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] No results found for {username}", flush=True)
-                    print(f"\033[38;2;255;255;255m[\033[38;5;51mINFO\033[38;2;255;255;255m] Retrying {username}...", flush=True)
-                    first_retry = False
+                if retry_count == 0:
+                    print(f"[\033[38;2;255;255;255m\033[38;5;196mERR\033[38;2;255;255;255m]\033[38;5;196m No results found for \033[38;2;255;255;255m{username}", flush=True)
+                    print(f"[\033[38;2;255;255;255m{blue_green('INF')}\033[38;2;255;255;255m] Retrying {username}...", flush=True)
 
                 retry_count += 1
                 if retry_count < max_retries:
-                    time.sleep(2.6)
+                    time.sleep(2)
                 else:
                     break
-
             else:
-                if retry_count > 0:
-                    print(f"[{blue_green('INFO')}\033[38;2;255;255;255m]\033[90;47m SUCCESS\033[0m", flush=True)
                 for link in duckduckgo_results:
                     highlighted_link = highlight_url(link)
-                    duckduckgo_links.append(highlighted_link)
+                    print(highlighted_link, flush=True)
                     total_links_found += 1
                 success = True
 
-        time.sleep(5)
-
-    if duckduckgo_links:
-        for link in duckduckgo_links:
-            print(f"{link}", flush=True)
+        time.sleep(6.5)
 
     elapsed_time = time.time() - start_time
 
-    print(f"\n[{blue_green('INF')}\033[38;2;255;255;255m] [{blue2('Time Taken')}\033[38;2;255;255;255m] \033[38;2;255;255;255m: {total_links_found}") 
-    print(f"[{blue2('*')}\033[38;2;255;255;255m] [{blue2('Time Taken')}\033[38;2;255;255;255m] \033[38;2;255;255;255m{elapsed_time:.2f} seconds\n")
+    print(f"\n[\033[38;2;255;255;255m{blue_green('INF')}\033[38;2;255;255;255m] Links: {total_links_found}")
+    print(f"[\033[38;2;255;255;255m{blue2('*')}\033[38;2;255;255;255m] Time Taken: {elapsed_time:.2f} seconds\n")
 
     if save_file:
         sys.stdout = sys.__stdout__  
@@ -7394,7 +7399,7 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
                 f.write(captured_output)
             print(f"{Fore.LIGHTGREEN_EX}[{Fore.LIGHTYELLOW_EX}+{Fore.LIGHTGREEN_EX}] Results saved to {save_file}")
         except Exception as e:
-            print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
+            print(f"[{blue2('ERR')}] Failed to save results to {save_file}: {str(e)}")
 
 def main():
     print_banner()  
@@ -7406,14 +7411,14 @@ def main():
         sys.exit(0)
 
     if args.username:
-        print(f"[{blue_green('INF')}\033[38;2;255;255;255m] Emulating websites for {args.username}")
+        print(f"[\033[38;2;255;255;255m{blue_green('INF')}\033[38;2;255;255;255m] Emulating websites for {args.username}")
         asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all))
 
     elif args.brute_force:
         usernames = process_bf_argument(args.brute_force)
 
         for username in usernames:
-            print(f"[{blue_green('INF')}\033[38;2;255;255;255m] Emulating websites for {username}")
+            print(f"[\033[38;2;255;255;255m{blue_green('INF')}\033[38;2;255;255;255m] Emulating websites for {username}")
             asyncio.run(search_username(username, save_file=args.save_file, search_all=args.search_all))
 
     elif args.brute_force_duckduckgo:
