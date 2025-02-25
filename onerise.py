@@ -15,7 +15,7 @@ from urllib.parse import urlparse, parse_qs
 import sys
 import argparse
 import asyncio
-
+import io
 metadata = {
      "sites" : [
        {
@@ -7195,8 +7195,8 @@ def print_banner():
 \____/_/ /_/\___/_/ |_/_/____/\___/  """
     print(f"{(logo)}\n")
     print("                                       \033[38;2;255;255;255m(Coded by BisKit V 4.2\n")
-    print(f"[{blue2('WRN')}]\033[38;2;255;255;255m You are allowed to take the code and use it for your self may edit the script just not uploading it thinking you made it for other people to use")
-    print(f"[{blue2('WRN')}]\033[38;2;255;255;255m Also you can do real names what i mainly use it for\n")
+    print(f"[{blue2('WRN')}\033[38;2;255;255;255m] You are allowed to take the code and use it for your self may edit the script just not uploading it thinking you made it for other people to use")
+    print(f"[{blue2('WRN')}\033[38;2;255;255;255m] Also you can do real names what i mainly use it for\n")
 
 def print_help():
     help_text = """
@@ -7248,6 +7248,10 @@ async def search_username(username, save_file=None, search_all=False):
     unique_sites = set()
     duckduckgo_results = [] 
 
+    if save_file:
+        output_capture = io.StringIO()
+        sys.stdout = output_capture 
+
     async with aiohttp.ClientSession() as session:
         tasks = [check_username_with_retries(session, site, username) for site in metadata["sites"]]
         results = await asyncio.gather(*tasks)
@@ -7263,22 +7267,22 @@ async def search_username(username, save_file=None, search_all=False):
             for link in duckduckgo_results:
                 highlighted_link = highlight_url(link)
                 print(f"\033[97m{highlighted_link}\033[0m", flush=True)
-                found.append(("DuckDuckGo", link, "Search Engine"))
 
     elapsed_time = time.time() - start_time
 
-    print(f"\n[{blue_green('INF')}]\033[38;2;255;255;255m [{blue2('Time Taken')}] \033[38;2;255;255;255m: {len(found) - len(duckduckgo_results)}")  
-    print(f"[{blue_green('*')}] \033[38;2;255;255;255m[{blue2('Time Taken')}] \033[38;2;255;255;255m{elapsed_time:.2f} seconds\n")
+    print(f"\n[{blue_green('INF')}\033[38;2;255;255;255m] [{blue2('Time Taken')}\033[38;2;255;255;255m] \033[38;2;255;255;255m: {len(found)}")  
+    print(f"[{blue_green('*')}\033[38;2;255;255;255m] [{blue2('Time Taken')}\033[38;2;255;255;255m] \033[38;2;255;255;255m{elapsed_time:.2f} seconds\n")
 
     if save_file:
+        sys.stdout = sys.__stdout__  
+        captured_output = output_capture.getvalue()  
+
         try:
             with open(save_file, "a") as f:
-                for site_name, url, cat in found:
-                    f.write(f"\033[38;2;255;255;255m[{Fore.LIGHTCYAN_EX}{site_name}\033[38;2;255;255;255m] [\033[38;2;255;255;102m{cat}\033[38;2;255;255;255m] {url}\n")
+                f.write(captured_output)
             print(f"{Fore.LIGHTGREEN_EX}[{Fore.LIGHTYELLOW_EX}+{Fore.LIGHTGREEN_EX}] Results saved to {save_file}")
         except Exception as e:
             print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
-
 
 def scrape_duckduckgo_links(query):
     url = f"https://duckduckgo.com/html/?q={query}"
@@ -7330,7 +7334,10 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
     else:
         usernames = usernames_input.split(',')
 
-    output = ""
+    if save_file:
+        output_capture = io.StringIO()
+        sys.stdout = output_capture  
+
     total_links_found = 0
     start_time = time.time()
 
@@ -7341,7 +7348,7 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
         success = False
         first_retry = True
 
-        print(f"[{blue2('INFO')}]\033[38;2;255;255;255m Checking {username} with DuckDuckGo", flush=True)
+        print(f"[{blue2('INFO')}\033[38;2;255;255;255m] Checking {username} with DuckDuckGo", flush=True)
 
         while retry_count < max_retries and not success:
             duckduckgo_results = scrape_duckduckgo_links(username)
@@ -7360,7 +7367,7 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
 
             else:
                 if retry_count > 0:
-                    print(f"[{blue_green('INFO')}]\033[90;47m SUCCESS\033[0m", flush=True)
+                    print(f"[{blue_green('INFO')}\033[38;2;255;255;255m]\033[90;47m SUCCESS\033[0m", flush=True)
                 for link in duckduckgo_results:
                     highlighted_link = highlight_url(link)
                     duckduckgo_links.append(highlighted_link)
@@ -7372,21 +7379,22 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
     if duckduckgo_links:
         for link in duckduckgo_links:
             print(f"{link}", flush=True)
-        output += "\n".join(duckduckgo_links) + "\n"
 
     elapsed_time = time.time() - start_time
 
-    print(f"\n[{blue_green('INF')}]\033[38;2;255;255;255m [{blue2('Time Taken')}] \033[38;2;255;255;255m: {total_links_found}") 
-    print(f"[{blue2('*')}]\033[38;2;255;255;255m [{blue2('Time Taken')}] \033[38;2;255;255;255m{elapsed_time:.2f} seconds\n")
-    
+    print(f"\n[{blue_green('INF')}\033[38;2;255;255;255m] [{blue2('Time Taken')}\033[38;2;255;255;255m] \033[38;2;255;255;255m: {total_links_found}") 
+    print(f"[{blue2('*')}\033[38;2;255;255;255m] [{blue2('Time Taken')}\033[38;2;255;255;255m] \033[38;2;255;255;255m{elapsed_time:.2f} seconds\n")
+
     if save_file:
+        sys.stdout = sys.__stdout__  
+        captured_output = output_capture.getvalue()  
+
         try:
             with open(save_file, "a") as f:
-                f.write(output.strip())
-            print(f"\033[38;2;255;255;255m[{Fore.LIGHTGREEN_EX}INF\033[38;2;255;255;255m] Results saved to {save_file}")
+                f.write(captured_output)
+            print(f"{Fore.LIGHTGREEN_EX}[{Fore.LIGHTYELLOW_EX}+{Fore.LIGHTGREEN_EX}] Results saved to {save_file}")
         except Exception as e:
             print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
-
 
 def main():
     print_banner()  
@@ -7398,14 +7406,14 @@ def main():
         sys.exit(0)
 
     if args.username:
-        print(f"[{blue_green('INF')}]\033[38;2;255;255;255m Emulating websites for {args.username}")
+        print(f"[{blue_green('INF')}\033[38;2;255;255;255m]Emulating websites for {args.username}")
         asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all))
 
     elif args.brute_force:
         usernames = process_bf_argument(args.brute_force)
 
         for username in usernames:
-            print(f"[{blue_green('INF')}]\033[38;2;255;255;255m Emulating websites for {username}")
+            print(f"[{blue_green('INF')}\033[38;2;255;255;255m] Emulating websites for {username}")
             asyncio.run(search_username(username, save_file=args.save_file, search_all=args.search_all))
 
     elif args.brute_force_duckduckgo:
