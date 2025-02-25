@@ -7230,15 +7230,6 @@ def setup_argparse():
 
     return parser
 
-def highlight_url(url):
-
-    parsed_url = urlparse(url)
-    domain = parsed_url.netloc
-    path = parsed_url.path
-    highlighted_url = f"\033[97m{parsed_url.scheme}://{Fore.LIGHTYELLOW_EX}{domain}\033[97m{path}"
-
-    return highlighted_url
-
 def process_bf_argument(bf_arg):
     if os.path.isfile(bf_arg):  
         with open(bf_arg, "r") as f:
@@ -7251,10 +7242,11 @@ def process_bf_argument(bf_arg):
 def get_random_user_agent():
     return random.choice(user_agents)
 
-async def search_username(username, save_file=None):
+async def search_username(username, save_file=None, search_all=False):
     start_time = time.time()
     found = []
     unique_sites = set()
+    duckduckgo_results = [] 
 
     async with aiohttp.ClientSession() as session:
         tasks = [check_username_with_retries(session, site, username) for site in metadata["sites"]]
@@ -7265,9 +7257,17 @@ async def search_username(username, save_file=None):
                 unique_sites.add(result[0])
                 found.append(result)
 
+        if search_all:
+            duckduckgo_results = scrape_duckduckgo_links(username)  
+            print(f"\n[{blue_green('Duckduckgo')}]\033[38;2;255;255;255m", flush=True)  
+            for link in duckduckgo_results:
+                highlighted_link = highlight_url(link)
+                print(f"\033[97m{highlighted_link}\033[0m", flush=True)
+                found.append(("DuckDuckGo", link, "Search Engine"))
+
     elapsed_time = time.time() - start_time
 
-    print(f"\n[{blue_green('INF')}]\033[38;2;255;255;255m [{blue2('Time Taken')}] \033[38;2;255;255;255m: {len(found)}")
+    print(f"\n[{blue_green('INF')}]\033[38;2;255;255;255m [{blue2('Time Taken')}] \033[38;2;255;255;255m: {len(found) - len(duckduckgo_results)}")  
     print(f"[{blue_green('*')}] \033[38;2;255;255;255m[{blue2('Time Taken')}] \033[38;2;255;255;255m{elapsed_time:.2f} seconds\n")
 
     if save_file:
@@ -7279,16 +7279,12 @@ async def search_username(username, save_file=None):
         except Exception as e:
             print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
 
-def read_usernames_from_file(file_path):
-    with open(file_path, 'r') as file:
-        usernames = [line.strip() for line in file.readlines()]
-    return usernames
 
 def scrape_duckduckgo_links(query):
     url = f"https://duckduckgo.com/html/?q={query}"
     headers = {"User-Agent": get_random_user_agent()}
 
-    try:
+    try:  
         response = requests.get(url, headers=headers, timeout=4)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
@@ -7319,15 +7315,26 @@ def highlight_url(url):
 
     return highlighted_url
 
+def read_usernames_from_file(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            usernames = [line.strip() for line in file if line.strip()]
+        return usernames
+    except Exception as e:
+        print(f"\033[91mError reading file {file_path}: {e}\033[0m")
+        return []
+
 def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=5):
     if os.path.isfile(usernames_input):
         usernames = read_usernames_from_file(usernames_input)
     else:
         usernames = usernames_input.split(',')
 
-    output = ""  
-    total_links_found = 0  
-    start_time = time.time()  
+    output = ""
+    total_links_found = 0
+    start_time = time.time()
+
+    duckduckgo_links = []  
 
     for username in usernames:
         retry_count = 0
@@ -7341,8 +7348,8 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
 
             if not duckduckgo_results:
                 if first_retry:
-                    print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] {username}", flush=True)
-                    print(f"\033[38;2;255;255;255m[\033[38;5;51mINFO\033[38;2;255;255;255m] \033[38;5;51mRetrying\033[38;2;255;255;255m {username}", flush=True)
+                    print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] No results found for {username}", flush=True)
+                    print(f"\033[38;2;255;255;255m[\033[38;5;51mINFO\033[38;2;255;255;255m] Retrying {username}...", flush=True)
                     first_retry = False
 
                 retry_count += 1
@@ -7353,32 +7360,36 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
 
             else:
                 if retry_count > 0:
-                    print(f"[{blue_green('INFO')}]\033[90;47m SUCCESS", flush=True)
+                    print(f"[{blue_green('INFO')}]\033[90;47m SUCCESS\033[0m", flush=True)
                 for link in duckduckgo_results:
                     highlighted_link = highlight_url(link)
-                    print(f"\033[38;5;10m{highlighted_link}\033[0m", flush=True)
-                    output += f"{highlighted_link}\n"  
-                    total_links_found += 1  
+                    duckduckgo_links.append(highlighted_link)
+                    total_links_found += 1
                 success = True
 
         time.sleep(5)
 
+    if duckduckgo_links:
+        for link in duckduckgo_links:
+            print(f"{link}", flush=True)
+        output += "\n".join(duckduckgo_links) + "\n"
+
     elapsed_time = time.time() - start_time
 
+    print(f"\n[{blue_green('INF')}]\033[38;2;255;255;255m [{blue2('Time Taken')}] \033[38;2;255;255;255m: {total_links_found}") 
+    print(f"[{blue2('*')}]\033[38;2;255;255;255m [{blue2('Time Taken')}] \033[38;2;255;255;255m{elapsed_time:.2f} seconds\n")
+    
     if save_file:
         try:
             with open(save_file, "a") as f:
-                f.write(output.strip())  
+                f.write(output.strip())
+            print(f"\033[38;2;255;255;255m[{Fore.LIGHTGREEN_EX}INF\033[38;2;255;255;255m] Results saved to {save_file}")
         except Exception as e:
             print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
 
-    print(f"[{blue_green('INF')}]\033[38;2;255;255;255m [{blue2('Time Taken')}] \033[38;2;255;255;255m: {total_links_found}")
-    print(f"[{blue2('*')}]\033[38;2;255;255;255m [{blue2('Time Taken')}] {Fore.LIGHTGREEN_EX}{elapsed_time:.2f} \033[38;2;255;255;255mseconds")
-    if save_file:
-        print(f"\033[38;2;255;255;255m[{Fore.LIGHTGREEN_EX}INF\033[38;2;255;255;255m] Results saved to {save_file}")
 
 def main():
-    print_banner()
+    print_banner()  
     parser = setup_argparse()
     args = parser.parse_args()
 
@@ -7388,17 +7399,17 @@ def main():
 
     if args.username:
         print(f"[{blue_green('INF')}]\033[38;2;255;255;255m Emulating websites for {args.username}")
-        asyncio.run(search_username(args.username, save_file=args.save_file))
+        asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all))
 
     elif args.brute_force:
         usernames = process_bf_argument(args.brute_force)
 
         for username in usernames:
             print(f"[{blue_green('INF')}]\033[38;2;255;255;255m Emulating websites for {username}")
-            asyncio.run(search_username(username, save_file=args.save_file))
+            asyncio.run(search_username(username, save_file=args.save_file, search_all=args.search_all))
 
     elif args.brute_force_duckduckgo:
-        print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Duckduckgo Brute Force is not up rn")
+        process_brute_force_duckduckgo(args.brute_force_duckduckgo, save_file=args.save_file)
 
 if __name__ == "__main__":
     main()
