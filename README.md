@@ -5,9 +5,11 @@ The tool has 0 false postives its a fast username or can be real name search wha
 ## Installation 
 Clone the repository and install the required dependencies:  
 ```yaml
-sudo chmod +x oneRise/oneRise/onerise.py 
+git clone https://github.com/vbiskit/oneRise
 
-sudo mv oneRise /usr/local/bin/onerise 
+sudo mv oneRise/oneRise /usr/local/bin/
+
+sudo chmod +x /usr/local/bin/oneRise/onerise.py
 ```
 # Run the tool:
 ```yaml
