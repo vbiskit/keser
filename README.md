@@ -1,4 +1,4 @@
-![!](onerise.png)
+![!](oneRise.png)
 
 # About this tool
 
