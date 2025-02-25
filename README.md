@@ -1,21 +1,5 @@
-# user search
-
-![!](usersearch.png)
-
-# Brute Force: Usernames
-
-![bruteforce](brute.png)
-
-# Save File 
-![savefile](normalsavefile.png)
-
-# Save file with all links
-
-![Screenshot](savefilewithduckduckgo.png)
-
-# Duckduckgo Brute Force Usernames
-
-![Screenshot](bruteduckduckgo.png)
+# oneRise
+![!](onerise.png)
 
 # About this tool
 
