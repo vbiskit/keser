@@ -17,8 +17,9 @@ sudo mv onerise.py /usr/local/bin/onerise
 
 onerise
 ```
-# Usage:
-```
+# onerise -h
+
+```yaml
 Arguments:
   -sf  Save the output to a file
   -bf brute-force usernames from a .txt file
@@ -38,3 +39,4 @@ Usage:
   - python3 seekurls.py example -all -sf some.txt
   - python3 seekurls.py -bf name,name2
   - python3 seekurls.py -bd name,name2
+```
