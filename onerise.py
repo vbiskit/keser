@@ -7197,7 +7197,7 @@ async def check_username_on_website(session, site, username):
         return None
 
 async def check_username_with_retries(session, site, username, max_retries=2):
-    for attempt in range(max_retries):
+    for attempt in range(max_retries): # coded by biskit
         result = await check_username_on_website(session, site, username)
         if result is not None:
             return result
@@ -7443,3 +7443,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# coded by biskit
