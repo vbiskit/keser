@@ -7406,7 +7406,7 @@ def main():
         sys.exit(0)
 
     if args.username:
-        print(f"[{blue_green('INF')}\033[38;2;255;255;255m]Emulating websites for {args.username}")
+        print(f"[{blue_green('INF')}\033[38;2;255;255;255m] Emulating websites for {args.username}")
         asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all))
 
     elif args.brute_force:
