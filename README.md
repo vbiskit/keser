@@ -19,7 +19,7 @@ sudo mv onerise.py /usr/local/bin/onerise
 ```
 Now run the tool: onerise
 ```
-#onerise -h
+# onerise -h
 
 ```yaml
 Arguments:
