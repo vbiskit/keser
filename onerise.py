@@ -7213,7 +7213,7 @@ def print_banner():
  `---' `--''--' `----'`--' '--'`--'`----'  `----' """
     print(f"{blue_green(logo)}\n")
     print(f"{vibrant_yellow_green(' Coded by BisKit V 6.7')}\n")
-    print(f"{vibrant_yellow_green('-h to see Usage and Arguments')}\n")
+    print(f"{vibrant_yellow_green(' -h to see Usage and Arguments')}\n")
     print(f"[\033[38;2;255;255;255m{blue2('WRN')}\033[38;2;255;255;255m] You are allowed to take the code and use it for your self may edit the script just not uploading it thinking you made it for other people to use")
     print(f"[\033[38;2;255;255;255m{blue2('WRN')}\033[38;2;255;255;255m] Also you can do real names what i mainly use it for\033[38;2;255;255;255m\n")
 
