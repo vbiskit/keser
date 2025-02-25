@@ -14,10 +14,11 @@ pip3 install -r requirements.txt
 chmod +x onerise.py
 
 sudo mv onerise.py /usr/local/bin/onerise
-
-onerise
 ```
-# onerise -h
+# Run the tool:
+Now run the tool: onerise
+
+#onerise -h
 
 ```yaml
 Arguments:
