@@ -4,7 +4,7 @@ The tool has 0 false postives its a fast username or can be real name search wha
 
 ## Installation 
 Clone the repository and install the required dependencies:  
-```
+```yaml
 git clone https://github.com/vbiskit/oneRise
 
 cd oneRise
