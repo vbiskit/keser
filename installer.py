@@ -1,9 +1,10 @@
+# run the installer 
 import os
 import sys
 import subprocess
 import getpass
 import shutil
-# run the installer 
+
 PACKAGE_NAME = "onerise"
 SCRIPT_NAME = "onerise.py"
 INSTALL_PATH = f"/usr/local/bin/{PACKAGE_NAME}"
