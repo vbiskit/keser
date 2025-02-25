@@ -7208,14 +7208,14 @@ Arguments:
   -bf name,name2
   -bd name,name2
 Usage:
-  - python3 seekurls.py <example> -sf example.txt
-  - python3 seekurls.py <example> for just links
-  - python3 seekurls.py -bf usernames.txt
-  - python3 seekurls.py <example> -all
-  - python3 seekurls.py -bd example.txt
-  - python3 seekurls.py example -all -sf some.txt
-  - python3 seekurls.py -bf name,name2
-  - python3 seekurls.py -bd name,name2
+  - python3 onerise.py <example> -sf example.txt
+  - python3 onerise.py <example> for just links
+  - python3 onerise.py -bf usernames.txt
+  - python3 onerise.py <example> -all
+  - python3 onerise.py -bd example.txt
+  - python3 onerise.py example -all -sf some.txt
+  - python3 onerise.py -bf name,name2
+  - python3 onerise.py -bd name,name2
 """
     print(help_text)
 
