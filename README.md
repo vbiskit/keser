@@ -24,9 +24,9 @@ The tool has 0 false postives its a fast username or can be real name search wha
 ## Installation 
 Clone the repository and install the required dependencies:  
 ```
-git clone https://github.com/vbiskit/seekurls
+git clone https://github.com/vbiskit/oneRise
 
-cd seekurls
+cd oneRise
 
 pip3 install -r requirements.txt
 
