@@ -38,7 +38,4 @@ Usage:
   - python3 onerise.py example -all -sf some.txt
   - python3 onerise.py -bf name,name2
   - python3 onerise.py -bd name,name2
-  - python3 seekurls.py example -all -sf some.txt
-  - python3 seekurls.py -bf name,name2
-  - python3 seekurls.py -bd name,name2
 ```
