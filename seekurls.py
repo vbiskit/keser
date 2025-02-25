@@ -7334,7 +7334,7 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
         success = False
         first_retry = True
 
-        print(f"\033[38;2;255;255;255m[{Fore.LIGHTGREEN_EX}INF\033[38;2;255;255;255m]{Fore.LIGHTGREEN_EX} Checking {username} with duckduckgo", flush=True)
+        print(f"[{blue2('INFO')}]\033[38;2;255;255;255m Checking {username} with DuckDuckGo", flush=True)
 
         while retry_count < max_retries and not success:
             duckduckgo_results = scrape_duckduckgo_links(username)
@@ -7353,10 +7353,10 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
 
             else:
                 if retry_count > 0:
-                    print(f"\033[38;2;255;255;255m[\033[38;5;141mINFO\033[38;2;255;255;255m]\033[38;5;213m SUCCESS", flush=True)
+                    print(f"[{blue_green('INFO')}]\033[90;47m SUCCESS", flush=True)
                 for link in duckduckgo_results:
                     highlighted_link = highlight_url(link)
-                    print(f"\033[97m{highlighted_link}\033[0m", flush=True)
+                    print(f"\033[38;2;0;255;0m{highlighted_link}\033[0m", flush=True)
                     output += f"{highlighted_link}\n"  
                     total_links_found += 1  
                 success = True
