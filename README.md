@@ -6,10 +6,8 @@ The tool has 0 false postives its a fast username or can be real name search wha
 Clone the repository and install the required dependencies:  
 ```yaml
 git clone https://github.com/vbiskit/oneRise
-
-chmod +x oneRise/oneRise/onerise.py 
-
-sudo mv oneRise /usr/local/bin/onerise
+Chmod +x onerise.py
+sudo mv onerise.py /usr/local/bin/onerise
 ```
 # Run the tool:
 ```
