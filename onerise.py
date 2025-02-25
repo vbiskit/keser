@@ -7175,7 +7175,7 @@ async def check_username_on_website(session, site, username):
     headers = {"User-Agent": get_random_user_agent()}
 
     try:
-        async with session.get(url, headers=headers, timeout=9.1) as response:
+        async with session.get(url, headers=headers, timeout=5) as response:
             raw_bytes = await response.read()
             try:
                 text = raw_bytes.decode("utf-8")
@@ -7199,7 +7199,7 @@ async def check_username_with_retries(session, site, username, max_retries=2):
         result = await check_username_on_website(session, site, username)
         if result is not None:
             return result
-        await asyncio.sleep(0.91)  
+        await asyncio.sleep(0.05)  
     return None
 
 def print_banner():
@@ -7214,8 +7214,10 @@ def print_banner():
     print(f"[\033[38;2;255;255;255m{blue2('WRN')}\033[38;2;255;255;255m] You are allowed to take the code and use it for your self may edit the script just not uploading it thinking you made it for other people to use")
     print(f"[\033[38;2;255;255;255m{blue2('WRN')}\033[38;2;255;255;255m] Also you can do real names what i mainly use it for\033[38;2;255;255;255m\n")
 
-def print_help():
-    help_text = """
+def setup_argparse():
+    class CustomHelpFormatter(argparse.HelpFormatter):
+        def format_help(self):
+            help_text = """
 Arguments:
   -sf  Save the output to a file
   -bf brute-force usernames from a .txt file
@@ -7233,10 +7235,19 @@ Usage:
   - python3 onerise.py -bf name,name2
   - python3 onerise.py -bd name,name2
 """
-    print(help_text)
+            return help_text
 
-def setup_argparse():
-    parser = argparse.ArgumentParser(description="Search for usernames on various websites and DuckDuckGo.")
+    parser = argparse.ArgumentParser(
+        description="Search for usernames on various websites and DuckDuckGo.",
+        formatter_class=CustomHelpFormatter,  
+        add_help=False  
+    )
+
+    parser.add_argument(
+        "-h", "--help",
+        action="store_true",
+        help="Show this help message and exit."
+    )
 
     parser.add_argument("username", nargs="?", type=str, help="The username to search for.")
     parser.add_argument("-bf", "--brute-force", type=str, help="Enable brute-force username variations from a .txt file.")
@@ -7296,7 +7307,7 @@ async def search_username(username, save_file=None, search_all=False):
         try:
             with open(save_file, "a") as f:
                 f.write(captured_output)
-            print(f"{vibrant_yellow_green('+')} Results saved to {save_file}")
+            print(f"{Fore.LIGHTGREEN_EX}[{Fore.LIGHTYELLOW_EX}+{Fore.LIGHTGREEN_EX}] Results saved to {save_file}")
         except Exception as e:
             print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
 
@@ -7406,8 +7417,11 @@ def main():
     parser = setup_argparse()
     args = parser.parse_args()
 
+    if hasattr(args, 'help') and args.help:
+        print(parser.format_help())  
+        sys.exit(0)
+
     if not any([args.username, args.brute_force, args.brute_force_duckduckgo]):
-        print_help()
         sys.exit(0)
 
     if args.username:
