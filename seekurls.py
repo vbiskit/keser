@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 #! WARNING CODE IS RETARDED
 # coded by vbiskit don't be a script kiddie and steal my shit
 import aiohttp
