@@ -2,6 +2,7 @@
 
 #! WARNING CODE IS RETARDED
 # coded by vbiskit don't be a script kiddie and steal my shit
+
 import aiohttp
 import re
 import time
@@ -16,6 +17,7 @@ import sys
 import argparse
 import asyncio
 import io
+
 metadata = {
      "sites" : [
        {
