@@ -7315,7 +7315,7 @@ def highlight_url(url):
     domain = parsed_url.netloc
     path = parsed_url.path
 
-    highlighted_url = f"\033[97m{parsed_url.scheme}://{Fore.LIGHTYELLOW_EX}{domain}\033[97m{path}"
+    highlighted_url = f"\033[38;2;255;255;255m{parsed_url.scheme}://\033[38;5;10m{domain}\033[38;2;255;255;255m{path}"
 
     return highlighted_url
 
@@ -7356,7 +7356,7 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
                     print(f"[{blue_green('INFO')}]\033[90;47m SUCCESS", flush=True)
                 for link in duckduckgo_results:
                     highlighted_link = highlight_url(link)
-                    print(f"\033[38;2;0;255;0m{highlighted_link}\033[0m", flush=True)
+                    print(f"\033[38;5;10m{highlighted_link}\033[0m", flush=True)
                     output += f"{highlighted_link}\n"  
                     total_links_found += 1  
                 success = True
