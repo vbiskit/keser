@@ -1,4 +1,3 @@
-# oneRise
 ![!](onerise.png)
 
 # About this tool
