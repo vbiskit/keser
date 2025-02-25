@@ -7,9 +7,9 @@ Clone the repository and install the required dependencies:
 ```yaml
 git clone https://github.com/vbiskit/oneRise
 
-cd oneRise
+chmod +x oneRise/oneRise/onerise.py 
 
-python3 installer.py
+sudo mv oneRise /usr/local/bin/onerise
 ```
 # Run the tool:
 ```
