@@ -57,5 +57,6 @@ virtualenv python
 cd python
 
 source bin/activate
+
+now you can install and run the tool just follow the steps at the top in Installation
 ```
-**now you can install and run the tool just follow the steps at the top in Installation**
