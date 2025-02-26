@@ -47,7 +47,7 @@ Usage:
 
 
 
-# can't install tool because of error: externally-managed-environment: fix in 14 seconds
+# can't install tool because of error: externally-managed-environment fix in 14 seconds.
 ```
 sudo apt install virtualenv
 
