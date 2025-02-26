@@ -9,7 +9,7 @@ Clone the repository and install the required dependencies:
 ```yaml
 git clone https://github.com/vbiskit/oneRise
 
-cd
+cd oneRise
 
 pip3 install -r requirements.txt
 
