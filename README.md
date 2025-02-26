@@ -9,6 +9,12 @@ Clone the repository and install the required dependencies:
 ```yaml
 git clone https://github.com/vbiskit/oneRise
 
+cd
+
+pip3 install -r requirements.txt
+
+cd
+
 sudo mv oneRise/oneRise /usr/local/bin/
 
 sudo chmod +x /usr/local/bin/oneRise/onerise.py
@@ -42,4 +48,14 @@ Usage:
 
 
 
-**Repository Views** ![Views](https://profile-counter.glitch.me/oneRise/count.svg)
+# can't install tool because of error: externally-managed-environment: fix in 20 seconds
+```
+sudo apt install virtualenv
+
+virtualenv python
+
+cd python
+
+source bin/activate
+```
+# now you can install and run the tool just follow the steps at the top in Installation
