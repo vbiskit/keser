@@ -1,7 +1,7 @@
-![png](show.png)
+![png](showoneRise.png)
 # About this tool
 
-The tool has 0 false postives its a fast username or can be real name search what i mainly use this stuff for it has a built in duckduckgo search and a brute force username runs fron a .txt so does the duckduckgo brute force.
+The tool has 0 false postives its a very fast username or can be real name search what i mainly use this stuff for it has a built in duckduckgo search and a brute force username runs fron a .txt so does the duckduckgo brute force.
 
 ## Installation 
 Clone the repository and install the required dependencies:  
