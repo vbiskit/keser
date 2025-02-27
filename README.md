@@ -45,7 +45,7 @@ Usage:
   - python3 onerise.py -bd name,name2
 ```
 **can't install tool because of error: externally-managed-environment fix in 14 seconds.**
-```
+```yaml
 sudo apt install virtualenv
 
 virtualenv python
