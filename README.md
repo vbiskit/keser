@@ -56,3 +56,11 @@ source bin/activate
 ```
 now you can install and run the tool just follow the steps here
 https://github.com/vbiskit/oneRise/tree/main?tab=readme-ov-file#installation
+
+# how to uninstall the tool
+```
+sudo rm -rf /usr/local/bin/oneRise
+
+sudo rm -rf /usr/local/bin/oneRise/onerise.py
+
+sudo rm -rf /usr/local/bin/onerise
