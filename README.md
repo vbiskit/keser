@@ -57,7 +57,7 @@ source bin/activate
 now you can install and run the tool just follow the steps here
 https://github.com/vbiskit/oneRise/tree/main?tab=readme-ov-file#installation
 
-# how to uninstall the tool
+# how to uninstall the tool:
 ```yaml
 sudo rm -rf /usr/local/bin/oneRise
 
