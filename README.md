@@ -54,5 +54,5 @@ cd python
 
 source bin/activate
 ```
-**now you can install and run the tool just follow the steps here**
+now you can install and run the tool just follow the steps here
 https://github.com/vbiskit/oneRise/tree/main?tab=readme-ov-file#installation
