@@ -44,7 +44,7 @@ Usage:
   - python3 onerise.py -bf name,name2
   - python3 onerise.py -bd name,name2
 ```
-**can't install tool because of error: externally-managed-environment: fix in 14 seconds.**
+**can't install tool because of error: externally-managed-environment fix in 14 seconds.**
 ```
 sudo apt install virtualenv
 
