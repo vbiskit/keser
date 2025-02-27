@@ -59,6 +59,9 @@ https://github.com/vbiskit/oneRise/tree/main?tab=readme-ov-file#installation
 
 # how to uninstall the tool:
 ```yaml
+
+rm -rf oneRise
+
 sudo rm -rf /usr/local/bin/oneRise
 
 sudo rm -rf /usr/local/bin/oneRise/onerise.py
