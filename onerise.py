@@ -15,7 +15,6 @@ import sys
 import argparse
 import asyncio
 import io
-import json
 
 def fetch_metadata():
     url = "https://raw.githubusercontent.com/vbiskit/oneRise/refs/heads/main/metadata.json"
