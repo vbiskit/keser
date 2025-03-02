@@ -14,7 +14,7 @@ pip3 install -r requirements.txt
 
 cd
 
-sudo mv oneRise/oneRise /usr/local/bin/
+sudo mv oneRise /usr/local/bin/
 
 sudo chmod +x /usr/local/bin/oneRise/onerise.py
 
