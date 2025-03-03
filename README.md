@@ -6,7 +6,7 @@
 
 ![png](noFlags.png)
 
-# About this tool
+## About this tool
 
 The tool has 0 false postives its a very fast username or can be real name search what i mainly use this stuff for it has a built in duckduckgo search and a brute force username runs fron a .txt so does the duckduckgo brute force,: its also scans through 676 sites
 
@@ -27,11 +27,11 @@ sudo chmod +x /usr/local/bin/oneRise/onerise.py
 
 sudo ln -s /usr/local/bin/oneRise/onerise.py /usr/local/bin/onerise
 ```
-# Run the tool:
+## Run the tool:
 ```yaml
 onerise
 ```
-# onerise -h
+## onerise -h
 
 ```yaml
 Arguments:
