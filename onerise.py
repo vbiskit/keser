@@ -15,6 +15,8 @@ import sys
 import argparse
 import asyncio
 import io
+import itertools
+import string
 
 def fetch_metadata():
     url = "https://raw.githubusercontent.com/vbiskit/oneRise/refs/heads/main/metadata.json"
@@ -248,17 +250,20 @@ Arguments:
   -bf brute-force usernames from a .txt file
   -all Search With Duckduckgo And Userlinks
   -bd brute-force usernames with duckduckgo
+  -bsn brute-force similar names (e.g., vbiskit -> biskit, biskit069)
   -bf name,name2
   -bd name,name2
+  -bsn search similar names of that user
 Usage:
-  - python3 onerise.py <example> -sf example.txt
-  - python3 onerise.py <example> for just links
-  - python3 onerise.py -bf usernames.txt
-  - python3 onerise.py <example> -all
-  - python3 onerise.py -bd example.txt
-  - python3 onerise.py example -all -sf some.txt
-  - python3 onerise.py -bf name,name2
-  - python3 onerise.py -bd name,name2
+  - python3 onerise <example> -sf example.txt
+  - python3 onerise <example> for just links
+  - python3 onerise -bf usernames.txt
+  - python3 onerise <example> -all
+  - python3 onerise -bd example.txt
+  - python3 onerise example -all -sf some.txt
+  - python3 onerise -bf name,name2
+  - python3 onerise -bd name,name2
+  - python3 onerise -bsn <user>
 """
             return help_text
 
@@ -277,10 +282,59 @@ Usage:
     parser.add_argument("username", nargs="?", type=str, help="The username to search for.")
     parser.add_argument("-bf", "--brute-force", type=str, help="Enable brute-force username variations from a .txt file.")
     parser.add_argument("-bd", "--brute-force-duckduckgo", type=str, help="Brute-force usernames from a .txt file and search DuckDuckGo.")
+    parser.add_argument("-bsn", "--brute-force-similar-names", type=str, help="Brute-force similar names (e.g., vbiskit -> biskit, biskit069).")
     parser.add_argument("-sf", "--save-file", type=str, help="Save the results to a file.")
     parser.add_argument("-all", "--search-all", action="store_true", help="Search additional sites like DuckDuckGo.")
 
     return parser
+
+
+def generate_similar_names(username):
+    variations = set()
+    variations.add(username)  
+
+    parts = []
+    if " " in username:  
+        parts = username.split(" ")
+    else:  
+        parts = [username]
+
+    # Generate combinations of parts
+    if len(parts) > 1:
+        variations.add("".join(parts))  
+        variations.add("".join(reversed(parts)))  
+        variations.add("_".join(parts))  
+        variations.add(".".join(parts))  
+        variations.add("-".join(parts))  
+
+    # Add common prefixes
+    common_prefixes = ['x', 'xx', 'the', 'real', 'official', 'im', 'its', 'mr', 'ms', 'dr', 'pro']
+    for prefix in common_prefixes:
+        variations.add(f"{prefix}{username}")  
+        variations.add(f"{prefix}_{username}")  
+        variations.add(f"{prefix}{''.join(parts)}")  
+
+    common_suffixes = ['123', '69', '007', '01', '2023', 'x', 'xx', 'lol', 'uwu', 'qt']
+    for suffix in common_suffixes:
+        variations.add(f"{username}{suffix}")  
+        variations.add(f"{''.join(parts)}{suffix}")  
+        variations.add(f"{username}_{suffix}")  
+
+    for _ in range(5):  
+        random_num = random.randint(1, 999)
+        variations.add(f"{username}{random_num}")  
+        variations.add(f"{''.join(parts)}{random_num}")  
+
+    reversed_username = username[::-1]  
+    variations.add(reversed_username)  
+
+    variations.add(username.lower())
+    variations.add(username.upper())
+
+    mixed_case = "".join([char.upper() if i % 2 == 0 else char.lower() for i, char in enumerate(username)])
+    variations.add(mixed_case)  
+
+    return list(variations)
 
 def process_bf_argument(bf_arg):
     if os.path.isfile(bf_arg):  
@@ -322,8 +376,12 @@ async def search_username(username, save_file=None, search_all=False):
 
     elapsed_time = time.time() - start_time
 
-    print(f"\n\033[38;2;255;255;255m[{blue_green('INF')}\033[38;2;255;255;255m] [{blue2('sites')}\033[38;2;255;255;255m] \033[38;2;255;255;255m: {len(found)}")  
-    print(f"[{blue_green('*')}\033[38;2;255;255;255m] [{blue2('Time Taken')}\033[38;2;255;255;255m] \033[38;2;255;255;255m{elapsed_time:.2f} seconds\n")
+    # Check if no links were found
+    if not found and not duckduckgo_results:
+        print(f"\n\033[38;2;255;255;255m[\033[38;2;255;0;0mERR\033[38;2;255;255;255m] Name doesn't exist \033[38;5;11m{username}\n")
+    else:
+        print(f"\n\033[38;2;255;255;255m[{blue_green('INF')}\033[38;2;255;255;255m] [{blue2('sites')}\033[38;2;255;255;255m] \033[38;2;255;255;255m: {len(found)}")  
+        print(f"[{blue_green('*')}\033[38;2;255;255;255m] [{blue2('Time Taken')}\033[38;2;255;255;255m] \033[38;2;255;255;255m{elapsed_time:.2f} seconds\n")
 
     if save_file:
         sys.stdout = sys.__stdout__  
@@ -446,7 +504,7 @@ def main():
         print(parser.format_help())  
         sys.exit(0)
 
-    if not any([args.username, args.brute_force, args.brute_force_duckduckgo]):
+    if not any([args.username, args.brute_force, args.brute_force_duckduckgo, args.brute_force_similar_names]):
         sys.exit(0)
 
     if args.username:
@@ -462,6 +520,12 @@ def main():
 
     elif args.brute_force_duckduckgo:
         process_brute_force_duckduckgo(args.brute_force_duckduckgo, save_file=args.save_file)
+
+    elif args.brute_force_similar_names:
+        similar_names = generate_similar_names(args.brute_force_similar_names)
+        for name in similar_names:
+            print(f"\033[38;2;255;255;255m[{blue_green('INF')}\033[38;2;255;255;255m] Emulating websites for {name}")
+            asyncio.run(search_username(name, save_file=args.save_file, search_all=args.search_all))
 
 if __name__ == "__main__":
     main()
