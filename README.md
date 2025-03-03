@@ -6,7 +6,7 @@
 
 ![png](noFlags.png)
 
-## user brute force
+## user brute force -bd Flag 
 
 ![png](userbruteforce.png)
 
