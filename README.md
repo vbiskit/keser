@@ -6,13 +6,13 @@
 
 ![png](noFlags.png)
 
-## duckduckgo brute force -bd Flag
-
-![png](duckbruteforce.png)
-
 ## user brute force
 
 ![png](userbruteforce.png)
+
+## duckduckgo brute force -bd Flag
+
+![png](duckbruteforce.png)
 
 ## About this tool
 
