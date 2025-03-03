@@ -460,7 +460,7 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
             if not duckduckgo_results:
                 if retry_count == 0:
                     print(f"[\033[38;2;255;255;255m\033[38;5;196mERR\033[38;2;255;255;255m]\033[38;5;196m No results found for \033[38;2;255;255;255m{username}", flush=True)
-                    print(f"\033[38;2;255;255;255m[{blue2('INFO')}\033[38;2;255;255;255m] Retrying {username}...", flush=True)
+                    print(f"\033[38;2;255;255;255m[{vibrant_yellow_green('INFO')}\033[38;2;255;255;255m] Retrying {username}...", flush=True)
 
                 retry_count += 1
                 if retry_count < max_retries:
