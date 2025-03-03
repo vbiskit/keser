@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=21&pause=1000&color=F7F400&background=000000&width=435&lines=making+it+easy+to+read+fix+soon" alt="Typing SVG">
-</p>
 
 ## showcase of the tool using -all Flag for duckduckgo and user links
 
