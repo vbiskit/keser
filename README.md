@@ -59,7 +59,7 @@ Usage:
   - python3 onerise.py -bf name,name2
   - python3 onerise.py -bd name,name2
 ```
-**can't install tool because of error: externally-managed-environment fix in 14 seconds.**
+## can't install tool because of error: externally-managed-environment fix in 14 seconds.
 ```yaml
 sudo apt install virtualenv
 
@@ -69,7 +69,7 @@ cd python
 
 source bin/activate
 ```
-now you can install and run the tool just follow the steps here
+**now you can install and run the tool just follow the steps here**
 https://github.com/vbiskit/oneRise/tree/main?tab=readme-ov-file#installation
 
 # how to uninstall the tool:
