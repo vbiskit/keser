@@ -249,7 +249,7 @@ Arguments:
   -bf brute-force usernames from a .txt file
   -all Search With Duckduckgo And Userlinks
   -bd brute-force usernames with duckduckgo
-  -bsn brute-force similar names (e.g., vbiskit -> biskit, biskit069)
+  -bsn brute-force similar names 
   -bf name,name2
   -bd name,name2
   -bsn search similar names of that user
