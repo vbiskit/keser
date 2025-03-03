@@ -335,8 +335,18 @@ def generate_similar_names(username):
 
 def process_bf_argument(bf_arg):
     if os.path.isfile(bf_arg):  
-        with open(bf_arg, "r") as f:
-            usernames = [line.strip() for line in f if line.strip()]
+        try:
+            with open(bf_arg, "r") as f:
+                usernames = [line.strip() for line in f if line.strip()]
+        except PermissionError:
+            print(f"\033[91mError: Permission denied when trying to read the file {bf_arg}.\033[0m")
+            return []
+        except FileNotFoundError:
+            print(f"\033[91mError: The file {bf_arg} does not exist.\033[0m")
+            return []
+        except Exception as e:
+            print(f"\033[91mError reading the file {bf_arg}: {e}\033[0m")
+            return []
     else:  
         usernames = bf_arg.split(",")
 
@@ -425,12 +435,19 @@ def highlight_url(url):
     return highlighted_url
 
 def read_usernames_from_file(file_path):
+    if not os.path.isfile(file_path):  
+        print(f"\033[91mError: The file {file_path} does not exist.\033[0m")
+        return []
+
     try:
         with open(file_path, 'r') as file:
             usernames = [line.strip() for line in file if line.strip()]
         return usernames
+    except PermissionError:
+        print(f"\033[91mError: Permission denied when trying to read the file {file_path}.\033[0m")
+        return []
     except Exception as e:
-        print(f"\033[91mError reading file {file_path}: {e}\033[0m")
+        print(f"\033[91mError reading the file {file_path}: {e}\033[0m")
         return []
 
 def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=1):
