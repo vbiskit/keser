@@ -1,6 +1,11 @@
 **showcase of the tool using -all Flag for duckduckgo and user links**
 
 ![png](showtool.png)
+
+# default usersearch with no flags 
+
+![png](noFlags.png)
+
 # About this tool
 
 The tool has 0 false postives its a very fast username or can be real name search what i mainly use this stuff for it has a built in duckduckgo search and a brute force username runs fron a .txt so does the duckduckgo brute force,: its also scans through 676 sites
