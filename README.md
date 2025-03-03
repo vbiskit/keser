@@ -1,4 +1,4 @@
-**showcase of the tool using -all Flag for duckduckgo and user links**
+## showcase of the tool using -all Flag for duckduckgo and user links
 
 ![png](showtool.png)
 
