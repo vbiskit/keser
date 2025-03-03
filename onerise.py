@@ -15,8 +15,6 @@ import sys
 import argparse
 import asyncio
 import io
-import itertools
-import string
 
 def fetch_metadata():
     url = "https://raw.githubusercontent.com/vbiskit/oneRise/refs/heads/main/metadata.json"
@@ -299,7 +297,6 @@ def generate_similar_names(username):
     else:  
         parts = [username]
 
-    # Generate combinations of parts
     if len(parts) > 1:
         variations.add("".join(parts))  
         variations.add("".join(reversed(parts)))  
@@ -307,7 +304,6 @@ def generate_similar_names(username):
         variations.add(".".join(parts))  
         variations.add("-".join(parts))  
 
-    # Add common prefixes
     common_prefixes = ['x', 'xx', 'the', 'real', 'official', 'im', 'its', 'mr', 'ms', 'dr', 'pro']
     for prefix in common_prefixes:
         variations.add(f"{prefix}{username}")  
@@ -344,10 +340,7 @@ def process_bf_argument(bf_arg):
         usernames = bf_arg.split(",")
 
     return usernames
-
-def get_random_user_agent():
-    return random.choice(user_agents)
-
+    
 async def search_username(username, save_file=None, search_all=False):
     start_time = time.time()
     found = []
@@ -376,9 +369,8 @@ async def search_username(username, save_file=None, search_all=False):
 
     elapsed_time = time.time() - start_time
 
-    # Check if no links were found
     if not found and not duckduckgo_results:
-        print(f"\n\033[38;2;255;255;255m[\033[38;2;255;0;0mERR\033[38;2;255;255;255m] Name doesn't exist \033[38;5;11m{username}\n")
+        print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0mERR\033[38;2;255;255;255m] Name doesn't exist \033[38;5;11m{username}\n")
     else:
         print(f"\n\033[38;2;255;255;255m[{blue_green('INF')}\033[38;2;255;255;255m] [{blue2('sites')}\033[38;2;255;255;255m] \033[38;2;255;255;255m: {len(found)}")  
         print(f"[{blue_green('*')}\033[38;2;255;255;255m] [{blue2('Time Taken')}\033[38;2;255;255;255m] \033[38;2;255;255;255m{elapsed_time:.2f} seconds\n")
