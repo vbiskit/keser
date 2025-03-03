@@ -238,7 +238,7 @@ def print_banner():
     print(f"{logo}\n")
     print(" coded by biskit V 7.2\n")
     print(" -h to see Usage and Arguments\n")
-    print(" \033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m]\033[38;2;255;255;255m This is Private\033[38;2;255;255;255m\n")
+    print(" \033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m]\033[38;2;255;255;255m i was going to make this private just incase skids but i guess what ever enjoy happy osint!!! \033[38;2;255;255;255m\n")
 
 def setup_argparse():
     class CustomHelpFormatter(argparse.HelpFormatter):
