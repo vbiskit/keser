@@ -2,7 +2,7 @@
 
 ![png](showtool.png)
 
-# default usersearch with no flags 
+## default usersearch with no flags 
 
 ![png](noFlags.png)
 
