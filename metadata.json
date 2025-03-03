@@ -2101,16 +2101,6 @@
         "cat" : "health"
        },
        {
-         "name" : "GDBrowser",
-         "uri_check" : "https://gdbrowser.com/u/{account}",
-         "e_code" : 200,
-         "e_string" : "<div class=\"popup\" id=\"statsDiv\"",
-         "m_string" : "<p>Found. Redirecting to ",
-         "m_code" : 302,
-         "known" : ["SorkoPiko", "Subwoofer"],
-         "cat" : "gaming"
-       },
-       {
         "name" : "GeeksForGeeks",
         "uri_check" : "https://authapi.geeksforgeeks.org/api-get/user-profile-info/?handle={account}",
         "uri_pretty" : "https://www.geeksforgeeks.org/user/{account}/",
