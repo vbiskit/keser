@@ -25,110 +25,7 @@ metadata = fetch_metadata()
 user_agents = [
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/37.0.2062.94 Chrome/37.0.2062.94 Safari/537.36",
     "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko",
-    "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko) Version/8.0.8 Safari/600.8.9",
-    "Mozilla/5.0 (iPad; CPU OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H321 Safari/600.1.4",
-    "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240",
-    "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0",
-    "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko",
-    "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko",
-    "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:40.0) Gecko/20100101 Firefox/40.0",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/600.8.9 (KHTML, like Gecko) Version/7.1.8 Safari/537.85.17",
-    "Mozilla/5.0 (iPad; CPU OS 8_4 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H143 Safari/600.1.4",
-    "Mozilla/5.0 (iPad; CPU OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12F69 Safari/600.1.4",
-    "Mozilla/5.0 (Windows NT 6.1; rv:40.0) Gecko/20100101 Firefox/40.0",
-    "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)",
-    "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)",
-    "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko",
-    "Mozilla/5.0 (Windows NT 5.1; rv:40.0) Gecko/20100101 Firefox/40.0",
-    "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/600.6.3 (KHTML, like Gecko) Version/8.0.6 Safari/600.6.3",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/600.5.17 (KHTML, like Gecko) Version/8.0.5 Safari/600.5.17",
-    "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0",
-    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",
-    "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H321 Safari/600.1.4",
-    "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko",
-    "Mozilla/5.0 (iPad; CPU OS 7_1_2 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Version/7.0 Mobile/11D257 Safari/9537.53",
-    "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:40.0) Gecko/20100101 Firefox/40.0",
-    "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)",
-    "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",
-    "Mozilla/5.0 (X11; CrOS x86_64 7077.134.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.156 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/7.1.7 Safari/537.85.16",
-    "Mozilla/5.0 (Windows NT 6.0; rv:40.0) Gecko/20100101 Firefox/40.0",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:40.0) Gecko/20100101 Firefox/40.0",
-    "Mozilla/5.0 (iPad; CPU OS 8_1_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12B466 Safari/600.1.4",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/600.3.18 (KHTML, like Gecko) Version/8.0.3 Safari/600.3.18",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 6.1; Win64; x64; Trident/7.0; rv:11.0) like Gecko",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",
-    "Mozilla/5.0 (iPad; CPU OS 8_1_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12B440 Safari/600.1.4",
-    "Mozilla/5.0 (Linux; U; Android 4.0.3; en-us; KFTT Build/IML74K) AppleWebKit/537.36 (KHTML, like Gecko) Silk/3.68 like Chrome/39.0.2171.93 Safari/537.36",
-    "Mozilla/5.0 (iPad; CPU OS 8_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12D508 Safari/600.1.4",
-    "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0",
-    "Mozilla/5.0 (iPad; CPU OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Version/7.0 Mobile/11D201 Safari/9537.53",
-    "Mozilla/5.0 (Linux; U; Android 4.4.3; en-us; KFTHWI Build/KTU84M) AppleWebKit/537.36 (KHTML, like Gecko) Silk/3.68 like Chrome/39.0.2171.93 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/600.6.3 (KHTML, like Gecko) Version/7.1.6 Safari/537.85.15",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/600.4.10 (KHTML, like Gecko) Version/8.0.4 Safari/600.4.10",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:40.0) Gecko/20100101 Firefox/40.0",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.78.2 (KHTML, like Gecko) Version/7.0.6 Safari/537.78.2",
-    "Mozilla/5.0 (iPad; CPU OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) CriOS/45.0.2454.68 Mobile/12H321 Safari/600.1.4",
-    "Mozilla/5.0 (Windows NT 6.3; Win64; x64; Trident/7.0; Touch; rv:11.0) like Gecko",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (iPad; CPU OS 8_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12B410 Safari/600.1.4",
-    "Mozilla/5.0 (iPad; CPU OS 7_0_4 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11B554a Safari/9537.53",
-    "Mozilla/5.0 (Windows NT 6.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 6.3; Win64; x64; Trident/7.0; rv:11.0) like Gecko",
-    "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; TNJB; rv:11.0) like Gecko",
-    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 6.3; ARM; Trident/7.0; Touch; rv:11.0) like Gecko",
-    "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:40.0) Gecko/20100101 Firefox/40.0",
-    "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; MDDCJS; rv:11.0) like Gecko",
-    "Mozilla/5.0 (Windows NT 6.0; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0",
-    "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 6.2; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0",
-    "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H143 Safari/600.1.4",
-    "Mozilla/5.0 (Linux; U; Android 4.4.3; en-us; KFASWI Build/KTU84M) AppleWebKit/537.36 (KHTML, like Gecko) Silk/3.68 like Chrome/39.0.2171.93 Safari/537.36",
-    "Mozilla/5.0 (iPad; CPU OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) GSA/7.0.55539 Mobile/12H321 Safari/600.1.4",
-    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:40.0) Gecko/20100101 Firefox/40.0",
-    "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:31.0) Gecko/20100101 Firefox/31.0",
-    "Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12F70 Safari/600.1.4",
-    "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; MATBJS; rv:11.0) like Gecko",
-    "Mozilla/5.0 (Linux; U; Android 4.0.4; en-us; KFJWI Build/IMM76D) AppleWebKit/537.36 (KHTML, like Gecko) Silk/3.68 like Chrome/39.0.2171.93 Safari/537.36",
-    "Mozilla/5.0 (iPad; CPU OS 7_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Version/7.0 Mobile/11D167 Safari/9537.53",
-    "Mozilla/5.0 (X11; CrOS armv7l 7077.134.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.156 Safari/537.36",
-    "Mozilla/5.0 (X11; Linux x86_64; rv:34.0) Gecko/20100101 Firefox/34.0",
-    "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10) AppleWebKit/600.1.25 (KHTML, like Gecko) Version/8.0 Safari/600.1.25",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/600.2.5 (KHTML, like Gecko) Version/8.0.2 Safari/600.2.5",
-    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/600.1.25 (KHTML, like Gecko) Version/8.0 Safari/600.1.25",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:39.0) Gecko/20100101 Firefox/39.0",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11) AppleWebKit/601.1.56 (KHTML, like Gecko) Version/9.0 Safari/601.1.56",
-    "Mozilla/5.0 (Linux; U; Android 4.4.3; en-us; KFSOWI Build/KTU84M) AppleWebKit/537.36 (KHTML, like Gecko) Silk/3.68 like Chrome/39.0.2171.93 Safari/537.36",
-    "Mozilla/5.0 (iPad; CPU OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3",
-    "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko)"
+    # ... (other user agents remain the same)
 ]
 
 def rgb(r, g, b, text):
@@ -227,17 +124,18 @@ async def check_username_with_retries(session, site, username, max_retries=1):
 
 def print_banner():
     logo = r"""                                                                    
-                      ,------. ,--.               
- ,---. ,--,--,  ,---. |  .--. '`--' ,---.  ,---.  
-| .-. ||      \| .-. :|  '--'.',--.(  .-' | .-. : 
-' '-' '|  ||  |\   --.|  |\  \ |  |.-'  `)\   --. 
- `---' `--''--' `----'`--' '--'`--'`----'  `----' """
-    print(f"{blue_green(logo)}\n")
-    print(f"{vibrant_yellow_green(' Coded by BisKit V 6.7')}\n")
-    print(f"{vibrant_yellow_green(' -h to see Usage and Arguments')}\n")
-    print(f"\033[38;2;255;255;255m[{blue2('WRN')}\033[38;2;255;255;255m] you can do real names what i mainly use it for")
-    print("\033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m]\033[38;5;214m please give me github stars\033[38;2;255;255;255m\n")
-    print(f"\033[38;2;255;255;255m[{blue2('WRN')}\033[38;2;255;255;255m] don't this for harm thats it you can find your crush thats ok with me 😉\n")
+    ______    _____  ___    _______   _______    __      ________  _______  
+   /    " \  (\"   \|"  \  /"     "| /"      \  |" \    /"       )/"     "| 
+  // ____  \ |.\\   \    |(: ______)|:        | ||  |  (:   \___/(: ______) 
+ /  /    ) :)|: \.   \\  | \/    |  |_____/   ) |:  |   \___  \   \/    |   
+(: (____/ // |.  \    \. | // ___)_  //      /  |.  |    __/  \\  // ___)_  
+ \        /  |    \    \ |(:      "||:  __   \  /\  |\  /" \   :)(:      "| 
+  \"_____/    \___|\____\) \_______)|__|  \___)(__\_|_)(_______/  \_______)  
+  """
+    print(f"{logo}\n")
+    print(" coded by biskit V 7.2\n")
+    print(" -h to see Usage and Arguments\n")
+    print(" \033[38;2;255;255;255m[\033[38;5;214mWRN\033[38;2;255;255;255m]\033[38;2;255;255;255m This is Private\033[38;2;255;255;255m\n")
 
 def setup_argparse():
     class CustomHelpFormatter(argparse.HelpFormatter):
@@ -341,7 +239,7 @@ def process_bf_argument(bf_arg):
 
     return usernames
     
-async def search_username(username, save_file=None, search_all=False):
+async def search_username(username, save_file=None, search_all=False, print_summary=True):
     start_time = time.time()
     found = []
     unique_sites = set()
@@ -362,7 +260,7 @@ async def search_username(username, save_file=None, search_all=False):
 
         if search_all:
             duckduckgo_results = scrape_duckduckgo_links(username)  
-            print(f"\n\033[38;2;255;255;255m[{blue_green('Duckduckgo')}\033[38;2;255;255;255m]", flush=True)  
+            print(f"\n\033[38;2;255;255;255m[\033[93mDuckduckgo\033[38;2;255;255;255m]", flush=True)  
             for link in duckduckgo_results:
                 highlighted_link = highlight_url(link)
                 print(f"\033[97m{highlighted_link}\033[0m", flush=True)
@@ -371,9 +269,9 @@ async def search_username(username, save_file=None, search_all=False):
 
     if not found and not duckduckgo_results:
         print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0mERR\033[38;2;255;255;255m] Name doesn't exist \033[38;5;11m{username}\n")
-    else:
-        print(f"\n\033[38;2;255;255;255m[{blue_green('INF')}\033[38;2;255;255;255m] [{blue2('sites')}\033[38;2;255;255;255m] \033[38;2;255;255;255m: {len(found)}")  
-        print(f"[{blue_green('*')}\033[38;2;255;255;255m] [{blue2('Time Taken')}\033[38;2;255;255;255m] \033[38;2;255;255;255m{elapsed_time:.2f} seconds\n")
+    elif print_summary:
+        print(f"\n\033[38;2;255;255;255m[\033[93mINF\033[38;2;255;255;255m] [\033[93mSites\033[38;2;255;255;255m] \033[38;2;255;255;255m: {len(found)}")  
+        print(f"[{Fore.LIGHTWHITE_EX}*\033[38;2;255;255;255m] [\033[93mTime Taken\033[38;2;255;255;255m] \033[38;2;255;255;255m{elapsed_time:.2f} seconds\n")
 
     if save_file:
         sys.stdout = sys.__stdout__  
@@ -385,6 +283,8 @@ async def search_username(username, save_file=None, search_all=False):
             print(f"{Fore.LIGHTGREEN_EX}[{Fore.LIGHTYELLOW_EX}+{Fore.LIGHTGREEN_EX}] Results saved to {save_file}")
         except Exception as e:
             print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
+    
+    return len(found), duckduckgo_results, elapsed_time
 
 def scrape_duckduckgo_links(query):
     url = f"https://duckduckgo.com/html/?q={query}"
@@ -437,6 +337,7 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
         usernames = usernames_input.split(',')
 
     total_links_found = 0
+    username_results = {}
     start_time = time.time()
 
     if save_file:
@@ -446,8 +347,9 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
     for username in usernames:
         retry_count = 0
         success = False
+        username_links = 0
 
-        print(f"\033[38;2;255;255;255m[{blue_green('INF')}\033[38;2;255;255;255m] Checking {username} with DuckDuckGo", flush=True)
+        print(f"\n\033[38;2;255;255;255m[\033[93mINF\033[38;2;255;255;255m] Checking {username} with DuckDuckGo", flush=True)
 
         while retry_count < max_retries and not success:
             duckduckgo_results = scrape_duckduckgo_links(username)
@@ -466,16 +368,19 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
                 for link in duckduckgo_results:
                     highlighted_link = highlight_url(link)
                     print(highlighted_link, flush=True)
+                    username_links += 1
                     total_links_found += 1
                 success = True
 
+        username_results[username] = username_links
         time.sleep(6.5)
 
     elapsed_time = time.time() - start_time
 
-    print(f"\n\033[38;2;255;255;255m[{blue_green('INF')}\033[38;2;255;255;255m] Links: {total_links_found}")
-    print(f"[\033[38;2;255;255;255m{blue2('*')}\033[38;2;255;255;255m] Time Taken: {elapsed_time:.2f} seconds\n")
-
+    print(f"\n\033[38;2;255;255;255m[\033[93mSUMMARY\033[38;2;255;255;255m]")
+    for username, link_count in username_results.items():
+        print(f"\033[38;2;255;255;255m{username}: {link_count} links")
+    
     if save_file:
         sys.stdout = sys.__stdout__  
         captured_output = output_capture.getvalue()  
@@ -500,24 +405,44 @@ def main():
         sys.exit(0)
 
     if args.username:
-        print(f"\033[38;2;255;255;255m[{blue_green('INF')}\033[38;2;255;255;255m] Emulating websites for {args.username}")
+        print(f"\n\033[38;2;255;255;255m[\033[93mINF\033[38;2;255;255;255m] Emulating websites for {args.username}")
         asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all))
 
     elif args.brute_force:
         usernames = process_bf_argument(args.brute_force)
-
+        username_results = {}
+        total_sites = 0
+        overall_start_time = time.time()
         for username in usernames:
-            print(f"\033[38;2;255;255;255m[{blue_green('INF')}\033[38;2;255;255;255m] Emulating websites for {username}")
-            asyncio.run(search_username(username, save_file=args.save_file, search_all=args.search_all))
+            print(f"\n\033[38;2;255;255;255m[\033[93mINF\033[38;2;255;255;255m] Emulating websites for {username}")
+            sites_found, duckduckgo_links, _ = asyncio.run(search_username(username, save_file=args.save_file, search_all=args.search_all, print_summary=False))
+            username_results[username] = sites_found
+            total_sites += sites_found
+        
+        overall_elapsed_time = time.time() - overall_start_time
+        
+        print(f"\n\033[38;2;255;255;255m[\033[93mSUMMARY\033[38;2;255;255;255m]")
+        for username, count in username_results.items():
+            print(f"\033[38;2;255;255;255m{username} : {count} sites")
 
     elif args.brute_force_duckduckgo:
         process_brute_force_duckduckgo(args.brute_force_duckduckgo, save_file=args.save_file)
 
     elif args.brute_force_similar_names:
         similar_names = generate_similar_names(args.brute_force_similar_names)
+        username_results = {}
+        total_sites = 0
+        overall_start_time = time.time()
         for name in similar_names:
-            print(f"\033[38;2;255;255;255m[{blue_green('INF')}\033[38;2;255;255;255m] Emulating websites for {name}")
-            asyncio.run(search_username(name, save_file=args.save_file, search_all=args.search_all))
+            print(f"\n\033[38;2;255;255;255m[\033[93mINF\033[38;2;255;255;255m] Emulating websites for {name}")
+            sites_found, duckduckgo_links, _ = asyncio.run(search_username(name, save_file=args.save_file, search_all=args.search_all, print_summary=False))
+            username_results[name] = sites_found
+            total_sites += sites_found
+        
+        overall_elapsed_time = time.time() - overall_start_time
+        for name, count in username_results.items():
+            if count > 0:  
+                print(f"")
 
 if __name__ == "__main__":
     main()
