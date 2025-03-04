@@ -2,6 +2,15 @@
 
 ![updated](Updated.png)
 
+## search with duckduckgo and the 676 sites to check 
+
+![searchall](searchall.png)
+
+
+## duckduckgo brute force 
+
+![searchall](duckbrute.png)
+
 ## About this tool
 
 The tool has 0 false postives its a very fast username or can be real name search what i mainly use this stuff for it has a built in duckduckgo search and a brute force username runs fron a .txt so does the duckduckgo brute force,: its also scans through 676 sites
