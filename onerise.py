@@ -311,7 +311,7 @@ def generate_similar_names(username):
         variations.add(f"{prefix}_{username}")  
         variations.add(f"{prefix}{''.join(parts)}")  
 
-    common_suffixes = ['123', '69', '007', '01', '2023', 'x', 'xx', 'lol', 'uwu', 'qt']
+    common_suffixes = ['123', '69', '007', '01', '2023', 'xxx', 'the', 'lol', 'uwu', 'qt' 'him']
     for suffix in common_suffixes:
         variations.add(f"{username}{suffix}")  
         variations.add(f"{''.join(parts)}{suffix}")  
