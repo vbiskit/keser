@@ -1,6 +1,6 @@
 # if you came to this github page all the screenshots are outdated i have upgraded the tool and looks i will do the screenshots later on im to lazy.
 
-## Updated tool
+## Updated tool:
 
 ![updated](Updated.png)
 
