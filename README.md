@@ -6,7 +6,6 @@
 
 ![searchall](searchall.png)
 
-
 ## duckduckgo brute force 
 
 ![searchall](duckbrute.png)
