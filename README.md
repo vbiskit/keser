@@ -1,24 +1,6 @@
-# if you came to this github page all the screenshots are outdated i have upgraded the tool and looks i will do the screenshots later on im to lazy.
-
-## Updated tool:
+## Brute Force -bf Flag, i will upload more screenshots onto the git page soon
 
 ![updated](Updated.png)
-
-## showcase of the tool using -all Flag for duckduckgo and user links
-
-![png](showtool.png)
-
-## default usersearch with no flags 
-
-![png](noFlags.png)
-
-## user brute force -bd Flag 
-
-![png](userbruteforce.png)
-
-## duckduckgo brute force -bd Flag
-
-![png](duckbruteforce.png)
 
 ## About this tool
 
