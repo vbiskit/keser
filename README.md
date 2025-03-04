@@ -1,3 +1,5 @@
+# if you came to this github page all the screenshots are outdated i have upgraded the tool and looks i will do the screenshots later on im to lazy.
+
 ## showcase of the tool using -all Flag for duckduckgo and user links
 
 ![png](showtool.png)
