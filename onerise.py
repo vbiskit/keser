@@ -383,7 +383,7 @@ async def search_username(username, save_file=None, search_all=False, print_summ
     if not found and not duckduckgo_results:
         print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0mERR\033[38;2;255;255;255m] Name doesn't exist \033[38;5;11m{username}\n")
     elif print_summary:
-        print(f"\n\033[38;2;255;255;255m[\033[93mINF\033[38;2;255;255;255m] [\033[93mSites\033[38;2;255;255;255m] \033[38;2;255;255;255m: {len(found)} from '{username}'")  
+        print(f"\n\033[38;2;255;255;255m[\033[38;2;255;255;255mINF\033[38;2;255;255;255m] [\033[93mSites\033[38;2;255;255;255m] \033[38;2;255;255;255m: {len(found)} from '{username}'")  
         print(f"[{Fore.LIGHTWHITE_EX}*\033[38;2;255;255;255m] [\033[93mTime Taken\033[38;2;255;255;255m] \033[38;2;255;255;255m{elapsed_time:.2f} seconds\n")
 
     if save_file:
