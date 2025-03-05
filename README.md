@@ -27,7 +27,7 @@ cd
 
 sudo mv oneRise /usr/local/bin/
 
-sudo chmod +x /usr/local/bin/oneRise/onerise.py
+sudo chmod +x /usr/local/bin/oneRise/oneRise/onerise.py
 
 sudo ln -s /usr/local/bin/oneRise/onerise.py /usr/local/bin/onerise
 ```
