@@ -1,7 +1,7 @@
 ## Description
-everything you need in a username tool very fast 0 false positives scan through 676 
+everything you need in a username tool very fast 0 false positives scan through 670 or something i don't know the correct number of links but its more then 670
 
-[![asciicast](https://asciinema.org/a/180370.png)](https://asciinema.org/a/180370)
+[![asciicast](https://asciinema.org/a/whp3JWXmnLXKNWKGcH8EwQ8LO.png)](https://asciinema.org/a/whp3JWXmnLXKNWKGcH8EwQ8LO)
 
 ## Installation 
 Clone the repository and install the required dependencies:  
