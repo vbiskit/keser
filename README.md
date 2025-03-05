@@ -1,12 +1,12 @@
-## Brute Force -bf Flag, i will upload more screenshots onto the git page soon
+## Brute Force -bf Flag, 
 
 ![updated](Updated.png)
 
-## search with duckduckgo and the 676 sites to check 
+## search with duckduckgo and the 676 sites to check -all Flag
 
 ![searchall](searchall.png)
 
-## duckduckgo brute force 
+## duckduckgo brute force -bd Flag
 
 ![searchall](duckbrute.png)
 
