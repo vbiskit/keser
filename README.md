@@ -1,6 +1,6 @@
 ## Description
 **everything you need in a username tool very fast 0 false positives searches through over 670 sites**
-![onerise](onerise.png)
+![onerise](demo.png)
 
 ## Installation 
 Clone the repository and install the required dependencies:  
