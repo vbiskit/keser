@@ -1,4 +1,4 @@
-## Brute Force -bf Flag, 
+## Brute Force -bf Flag
 
 ![updated](Updated.png)
 
