@@ -1,15 +1,3 @@
-## Brute Force -bf Flag
-
-![updated](Updated.png)
-
-## search with duckduckgo and the 676 sites to check -all Flag
-
-![searchall](searchall.png)
-
-## duckduckgo brute force -bd Flag
-
-![searchall](duckbrute.png)
-
 ## About this tool
 
 The tool has 0 false postives its a very fast username or can be real name search what i mainly use this stuff for it has a built in duckduckgo search and a brute force username runs fron a .txt so does the duckduckgo brute force,: its also scans through 676 sites
@@ -29,7 +17,11 @@ sudo mv oneRise /usr/local/bin/
 
 sudo chmod +x /usr/local/bin/oneRise/oneRise/onerise.py
 
-sudo ln -s /usr/local/bin/oneRise/oneRise/onerise.py /usr/local/bin/oneRise/oneRise
+echo '#!/bin/bash' | sudo tee /usr/local/bin/onerise > /dev/null
+
+echo 'cd /usr/local/bin/oneRise/oneRise && python3 onerise.py "$@"' | sudo tee -a /usr/local/bin/onerise > /dev/null
+
+sudo chmod +x /usr/local/bin/onerise
 ```
 ## Run the tool:
 ```yaml
@@ -73,11 +65,6 @@ https://github.com/vbiskit/oneRise/tree/main?tab=readme-ov-file#installation
 
 # how to uninstall the tool:
 ```yaml
+sudo rm -f /usr/local/bin/onerise
 
-rm -rf oneRise
-
-sudo rm -rf oneRise /usr/local/bin/
-
-sudo rm -rf /usr/local/bin/oneRise/oneRise/onerise.py
-
-sudo rm -rf /usr/local/bin/oneRise/oneRise
+sudo rm -rf /usr/local/bin/oneRise
