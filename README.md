@@ -2,7 +2,7 @@
 everything you need in a username tool very fast 0 false positives searches through over 670 sites
 
 [![asciicast](https://asciinema.org/a/whp3JWXmnLXKNWKGcH8EwQ8LO.png)](https://asciinema.org/a/whp3JWXmnLXKNWKGcH8EwQ8LO)
-
+[![asciicast](whp3JWXmnLXKNWKGcH8EwQ8LO.png)
 ## Installation 
 Clone the repository and install the required dependencies:  
 ```yaml
