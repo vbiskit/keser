@@ -29,7 +29,7 @@ sudo mv oneRise /usr/local/bin/
 
 sudo chmod +x /usr/local/bin/oneRise/oneRise/onerise.py
 
-sudo ln -s /usr/local/bin/oneRise/onerise.py /usr/local/bin/onerise
+sudo ln -s /usr/local/bin/oneRise/oneRise/onerise.py /usr/local/bin/oneRise/oneRise
 ```
 ## Run the tool:
 ```yaml
@@ -76,8 +76,8 @@ https://github.com/vbiskit/oneRise/tree/main?tab=readme-ov-file#installation
 
 rm -rf oneRise
 
-sudo rm -rf /usr/local/bin/oneRise
+sudo rm -rf oneRise /usr/local/bin/
 
-sudo rm -rf /usr/local/bin/oneRise/onerise.py
+sudo rm -rf /usr/local/bin/oneRise/oneRise/onerise.py
 
-sudo rm -rf /usr/local/bin/onerise
+sudo rm -rf /usr/local/bin/oneRise/oneRise
