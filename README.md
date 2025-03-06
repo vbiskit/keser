@@ -4,27 +4,27 @@
 ## Installation 
 Clone the repository and install the required dependencies:  
 ```yaml
-git clone https://github.com/vbiskit/oneRise
+git clone https://github.com/vbiskit/keser
 
-cd oneRise
+cd keser
 
 pip3 install -r requirements.txt
 
 cd
 
-sudo mv oneRise /usr/local/bin/
+sudo mv keser /usr/local/bin/
 
-sudo chmod +x /usr/local/bin/oneRise/oneRise/onerise.py
+sudo chmod +x /usr/local/bin/keser/keser/keser.py
 
-echo '#!/bin/bash' | sudo tee /usr/local/bin/onerise > /dev/null
+echo '#!/bin/bash' | sudo tee /usr/local/bin/keser > /dev/null
 
-echo 'cd /usr/local/bin/oneRise/oneRise && python3 onerise.py "$@"' | sudo tee -a /usr/local/bin/onerise > /dev/null
+echo 'cd /usr/local/bin/keser/keser && python3 onerise.py "$@"' | sudo tee -a /usr/local/bin/keser > /dev/null
 
 sudo chmod +x /usr/local/bin/onerise
 ```
 ## Run the tool:
 ```yaml
-onerise
+keser
 ```
 ## onerise -h
 
@@ -64,6 +64,6 @@ https://github.com/vbiskit/oneRise/tree/main?tab=readme-ov-file#installation
 
 # how to uninstall the tool:
 ```yaml
-sudo rm -f /usr/local/bin/onerise
+sudo rm -f /usr/local/bin/keser
 
-sudo rm -rf /usr/local/bin/oneRise
+sudo rm -rf /usr/local/bin/keser
