@@ -34,20 +34,20 @@ Arguments:
   -bf brute-force usernames from a .txt file
   -all Search With Duckduckgo And Userlinks
   -bd brute-force usernames with duckduckgo
-  -bsn brute-force similar names 
+  -bsn brute-force similar names
   -bf name,name2
   -bd name,name2
   -bsn search similar names of that user
 Usage:
-   onerise <example> -sf example.txt
-   onerise <example> for just links
-   onerise -bf usernames.txt
-   onerise <example> -all
-   onerise -bd example.txt
-   onerise example -all -sf some.txt
-   onerise -bf name,name2
-   onerise -bd name,name2
-   onerise -bsn <user>
+   keser <example> -sf example.txt
+   keser <example> for just links
+   keser -bf usernames.txt
+   keser <example> -all
+   keser -bd example.txt
+   keser example -all -sf some.txt
+   keser -bf name,name2
+   keser -bd name,name2
+   keser -bsn <user>
 ```
 ## can't install tool because of error: externally-managed-environment fix in 14 seconds.
 ```yaml
