@@ -20,7 +20,7 @@ echo '#!/bin/bash' | sudo tee /usr/local/bin/keser > /dev/null
 
 echo 'cd /usr/local/bin/keser/keser && python3 onerise.py "$@"' | sudo tee -a /usr/local/bin/keser > /dev/null
 
-sudo chmod +x /usr/local/bin/onerise
+sudo chmod +x /usr/local/bin/keser
 ```
 ## Run the tool:
 ```yaml
