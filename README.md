@@ -60,6 +60,6 @@ https://github.com/vbiskit/keser/blob/main/README.md#installation
 
 # how to uninstall the tool:
 ```yaml
-sudo rm -f /usr/local/bin/keser
+rm ~/keser/keser/keser
 
-sudo rm -rf /usr/local/bin/keser
+rm ~/keser/keser/keser.py
