@@ -4,8 +4,6 @@
 ## Installation 
 Clone the repository and install the required dependencies:  
 ```yaml
-sudo apt install bash
-
 git clone https://github.com/vbiskit/keser
 
 cd keser
