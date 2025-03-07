@@ -12,15 +12,11 @@ pip3 install -r requirements.txt
 
 cd
 
-sudo mv keser /usr/local/bin/
+echo 'export PATH="$HOME/keser/keser:$PATH"' >> ~/.bashrc && source ~/.bashrc
 
-sudo chmod +x /usr/local/bin/keser/keser/keser.py
+chmod +x ~/keser/keser/keser.py
 
-echo '#!/bin/bash' | sudo tee /usr/local/bin/keser > /dev/null
-
-echo 'cd /usr/local/bin/keser/keser && python3 onerise.py "$@"' | sudo tee -a /usr/local/bin/keser > /dev/null
-
-sudo chmod +x /usr/local/bin/keser
+mv ~/keser/keser/keser.py ~/keser/keser/keser
 ```
 ## Run the tool:
 ```yaml
