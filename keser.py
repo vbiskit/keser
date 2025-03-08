@@ -547,7 +547,7 @@ def main():
             
             username_results[username] = (sites_found, search_time)
 
-        print("\n")  
+        print()  
         for username, (count, search_time) in username_results.items():
             print(f"\033[93mSites\033[38;2;255;255;255m: {count} from '{username}' - Search time: {search_time:.2f} seconds")
 
@@ -566,9 +566,9 @@ def main():
             
             username_results[name] = (sites_found, search_time)
 
-        print("\n")  
+        print()  
         for name, (count, search_time) in username_results.items():
             print(f"\033[93mSites\033[38;2;255;255;255m: {count} from '{name}' - Search time: {search_time:.2f} seconds")
-
+             
 if __name__ == "__main__":
     main()
