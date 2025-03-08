@@ -276,7 +276,8 @@ Usage:
    keser example -all -sf some.txt
    keser -bf name,name2
    keser -bd name,name2
-   keser -bsn <user> \n"""
+   keser -bsn <user> 
+   """
             return help_text
 
     parser = argparse.ArgumentParser(
