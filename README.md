@@ -14,11 +14,11 @@ pip3 install -r requirements.txt
 
 cd
 
-echo 'export PATH="$HOME/keser/keser:$PATH"' >> ~/.bashrc && source ~/.bashrc
+echo 'export PATH="$HOME/keser:$PATH"' >> ~/.bashrc && source ~/.bashrc
 
-chmod +x ~/keser/keser/keser.py
+chmod +x ~/keser/keser.py
 
-mv ~/keser/keser/keser.py ~/keser/keser/keser
+mv ~/keser/keser.py ~/keser/keser
 ```
 ## Run the tool:
 ```yaml
