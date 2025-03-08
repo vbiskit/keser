@@ -16,6 +16,82 @@ import argparse
 import asyncio
 import io
 
+def pink(text):
+    gradient_colors = [
+        (255, 20, 147),  
+        (173, 216, 230), 
+    ]
+
+    gradient_text = ""
+    text_length = len(text)
+
+    for i, char in enumerate(text):
+        color_index = int((i / text_length) * (len(gradient_colors) - 1))
+        r, g, b = gradient_colors[color_index]
+        gradient_text += rgb(r, g, b, char)
+
+    return gradient_text
+
+
+def purple(text):
+    gradient_colors = [
+        (128, 0, 128),  
+        (160, 0, 110),  
+        (190, 0, 90),   
+        (220, 0, 60),   
+        (255, 0, 0),   
+    ]
+
+    gradient_text = ""
+    text_length = len(text)
+
+    for i, char in enumerate(text):
+        color_index = int((i / text_length) * (len(gradient_colors) - 1))
+        r, g, b = gradient_colors[color_index]
+        gradient_text += rgb(r, g, b, char)
+
+    return gradient_text
+
+def rgb(r, g, b, text):
+    return f'\033[38;2;{r};{g};{b}m{text}\033[0m'
+
+def blue_green(text):
+    gradient_colors = [
+        (0, 180, 255),
+        (0, 220, 220),
+        (0, 255, 180),
+        (0, 255, 120),
+    ]
+
+    gradient_text = ""
+    text_length = len(text)
+
+    for i, char in enumerate(text):
+        color_index = int((i / text_length) * (len(gradient_colors) - 1))
+        r, g, b = gradient_colors[color_index]
+        gradient_text += rgb(r, g, b, char)
+
+    return gradient_text
+
+def yellow(text):
+    gradient_colors = [
+        (255, 255, 0),
+        (220, 255, 0),
+        (180, 255, 0),
+        (120, 255, 0),
+        (60, 255, 0),
+    ]
+
+    gradient_text = ""
+    text_length = len(text)
+
+    for i, char in enumerate(text):
+        color_index = int((i / text_length) * (len(gradient_colors) - 1))
+        r, g, b = gradient_colors[color_index]
+        gradient_text += rgb(r, g, b, char)
+
+    return gradient_text
+
 def fetch_metadata():
     url = "https://raw.githubusercontent.com/cyocei/random/refs/heads/main/.json"
     return requests.get(url).json()
@@ -130,82 +206,6 @@ user_agents = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko)"
 ]
-
-def pink(text):
-    gradient_colors = [
-        (255, 20, 147),  
-        (173, 216, 230), 
-    ]
-
-    gradient_text = ""
-    text_length = len(text)
-
-    for i, char in enumerate(text):
-        color_index = int((i / text_length) * (len(gradient_colors) - 1))
-        r, g, b = gradient_colors[color_index]
-        gradient_text += rgb(r, g, b, char)
-
-    return gradient_text
-
-
-def purple(text):
-    gradient_colors = [
-        (128, 0, 128),  
-        (160, 0, 110),  
-        (190, 0, 90),   
-        (220, 0, 60),   
-        (255, 0, 0),   
-    ]
-
-    gradient_text = ""
-    text_length = len(text)
-
-    for i, char in enumerate(text):
-        color_index = int((i / text_length) * (len(gradient_colors) - 1))
-        r, g, b = gradient_colors[color_index]
-        gradient_text += rgb(r, g, b, char)
-
-    return gradient_text
-
-def rgb(r, g, b, text):
-    return f'\033[38;2;{r};{g};{b}m{text}\033[0m'
-
-def blue_green(text):
-    gradient_colors = [
-        (0, 180, 255),
-        (0, 220, 220),
-        (0, 255, 180),
-        (0, 255, 120),
-    ]
-
-    gradient_text = ""
-    text_length = len(text)
-
-    for i, char in enumerate(text):
-        color_index = int((i / text_length) * (len(gradient_colors) - 1))
-        r, g, b = gradient_colors[color_index]
-        gradient_text += rgb(r, g, b, char)
-
-    return gradient_text
-
-def yellow(text):
-    gradient_colors = [
-        (255, 255, 0),
-        (220, 255, 0),
-        (180, 255, 0),
-        (120, 255, 0),
-        (60, 255, 0),
-    ]
-
-    gradient_text = ""
-    text_length = len(text)
-
-    for i, char in enumerate(text):
-        color_index = int((i / text_length) * (len(gradient_colors) - 1))
-        r, g, b = gradient_colors[color_index]
-        gradient_text += rgb(r, g, b, char)
-
-    return gradient_text
 
 def get_random_user_agent():
     return random.choice(user_agents)
@@ -405,7 +405,7 @@ async def search_username(username, save_file=None, search_all=False, print_summ
         try:
             with open(save_file, "a") as f:
                 f.write(captured_output)
-            print(f"{blue_green}[{Fore.LIGHTWHITE_EX}+{blue_green}] Results saved to {save_file}")
+            print(f"{Fore.LIGHTBLUE_EX}[{Fore.LIGHTGREEN_EX}*{Fore.LIGHTBLUE_EX}] Results saved to {save_file}")
         except Exception as e:
             print(f"\033[38;2;255;255;255m[\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
 
@@ -515,7 +515,7 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
         try:
             with open(save_file, "a") as f:
                 f.write(captured_output)
-            print(f"{blue_green}[{Fore.LIGHTWHITE_EX}+{blue_green}] Results saved to {save_file}")
+            print(f"{Fore.LIGHTBLUE_EX}[{Fore.LIGHTGREEN_EX}*{Fore.LIGHTBLUE_EX}] Results saved to {save_file}")
         except Exception as e:
            print(f"[\033[38;2;255;255;255m\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
 
