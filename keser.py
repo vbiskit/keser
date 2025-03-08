@@ -277,8 +277,8 @@ Usage:
    keser example -all -sf some.txt
    keser -bf name,name2
    keser -bd name,name2
-   keser -bsn <user> 
-   """
+   keser -bsn <user>"""
+            
             return help_text
 
     parser = argparse.ArgumentParser(
@@ -397,7 +397,7 @@ async def search_username(username, save_file=None, search_all=False, print_summ
     if not found and not duckduckgo_results:
         print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0mERR\033[38;2;255;255;255m] Name doesn't exist \033[38;5;11m{username}")
     elif print_summary:
-        print(f"\n\033[93mSites\033[38;2;255;255;255m: {len(found)} from '{username}' - Search time: {elapsed_time:.2f} seconds")
+        print(f"\033[93mSites\033[38;2;255;255;255m: {len(found)} from '{username}' - Search time: {elapsed_time:.2f} seconds")
 
     if save_file:
         sys.stdout = sys.__stdout__
