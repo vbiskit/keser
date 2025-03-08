@@ -1,6 +1,6 @@
 # MUST READ.
-```asni
-[2;33m[2;36mPlease Give Me GithHub Stars.
+```yaml
+Please Give Me GithHub Stars.
 ```
 ## Description
 **everything you need in a username tool very fast 0 false positives searches through over 670 sites**
