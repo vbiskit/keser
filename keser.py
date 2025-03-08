@@ -93,7 +93,7 @@ def yellow(text):
     return gradient_text
 
 def fetch_metadata():
-    url = "https://raw.githubusercontent.com/cyocei/random/refs/heads/main/.json"
+    url = "https://raw.githubusercontent.com/vbiskit/keser/refs/heads/main/search.json"
     return requests.get(url).json()
 
 metadata = fetch_metadata()
