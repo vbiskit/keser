@@ -24,7 +24,7 @@ mv ~/keser/keser/keser.py ~/keser/keser/keser
 ```yaml
 keser
 ```
-## onerise -h
+## keser -h
 
 ```yaml
 Arguments:
