@@ -247,7 +247,7 @@ def print_banner():
     print(f"{pink(keser)}")
     print(f"{purple('The Advance Username Search.')}")
     print(f"{purple ( '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')}")
-    print(f"{pink ( ': keser -h                          :')}")
+    print(f"{pink ( ': keser --help                      :')}")
     print(f"{pink( ': https://github.com/vbiskit/keser  :')}")
     print(f"{purple ( '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')}")
 
