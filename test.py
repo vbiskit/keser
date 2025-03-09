@@ -274,7 +274,8 @@ Usage:
    keser -bf name,name2
    keser -bd name,name2
    keser -bsn <user>
-""" 
+\r"""
+            
             return help_text
 
     parser = argparse.ArgumentParser(
@@ -295,8 +296,6 @@ Usage:
     parser.add_argument("-bsn", "--brute-force-similar-names", type=str, help="Brute-force similar names (e.g., vbiskit -> biskit, biskit069).")
     parser.add_argument("-sf", "--save-file", type=str, help="Save the results to a file.")
     parser.add_argument("-all", "--search-all", action="store_true", help="Search additional sites like DuckDuckGo.")
-
-    parser.print_help = lambda: print(parser.format_help(), end="")
 
     return parser
 
@@ -395,7 +394,7 @@ async def search_username(username, save_file=None, search_all=False, print_summ
     if not found and not duckduckgo_results:
         print(f"\033[38;2;255;255;255m[\033[38;2;255;0;0mERR\033[38;2;255;255;255m] Name doesn't exist \033[38;5;11m{username}")
     elif print_summary:
-        print(f"\n\033[93mSites\033[38;2;255;255;255m: {len(found)} from '{username}' - Search time: {elapsed_time:.2f} seconds", end="")
+        print(f"\n\033[93mSites\033[38;2;255;255;255m: {len(found)} from '{username}' - Search time: {elapsed_time:.2f} seconds")
 
     if save_file:
         sys.stdout = sys.__stdout__
@@ -505,7 +504,7 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
     elapsed_time = time.time() - start_time
     print()
     for username, link_count in username_results.items():
-     print(f"\033[93mSites\033[38;2;255;255;255m: {link_count} from '{username}' - Search time: {elapsed_time:.2f} seconds", end="")
+     print(f"\033[93mSites\033[38;2;255;255;255m: {link_count} from '{username}' - Search time: {elapsed_time:.2f} seconds")
 
     if save_file:
         sys.stdout = sys.__stdout__
@@ -548,7 +547,7 @@ def main():
 
         print()  
         for username, (count, search_time) in username_results.items():
-            print(f"\033[93mSites\033[38;2;255;255;255m: {count} from '{username}' - Search time: {search_time:.2f} seconds", end="")
+            print(f"\033[93mSites\033[38;2;255;255;255m: {count} from '{username}' - Search time: {search_time:.2f} seconds")
 
     elif args.brute_force_duckduckgo:
         process_brute_force_duckduckgo(args.brute_force_duckduckgo, save_file=args.save_file)
@@ -567,7 +566,7 @@ def main():
 
         print()  
         for name, (count, search_time) in username_results.items():
-            print(f"\033[93mSites\033[38;2;255;255;255m: {count} from '{name}' - Search time: {search_time:.2f} seconds", end="")
+            print(f"\033[93mSites\033[38;2;255;255;255m: {count} from '{name}' - Search time: {search_time:.2f} seconds")
              
 if __name__ == "__main__":
     main()
