@@ -254,8 +254,7 @@ def print_banner():
 def setup_argparse():
     class CustomHelpFormatter(argparse.HelpFormatter):
         def format_help(self):
-            help_text = """\033[38;2;255;255;255m
-Arguments:
+            help_text = """\033[38;2;255;255;255mArguments:
   -sf  Save the output to a file
   -bf brute-force usernames from a .txt file
   -all Search With Duckduckgo And Userlinks
@@ -274,10 +273,15 @@ Usage:
    keser -bf name,name2
    keser -bd name,name2
    keser -bsn <user>
-""",
+"""
             
             return help_text
-
+    parser = argparse.ArgumentParser(
+        description="Search for usernames on various websites and DuckDuckGo.",
+        formatter_class=CustomHelpFormatter,
+        add_help=False
+    )
+    
     parser = argparse.ArgumentParser(
         description="Search for usernames on various websites and DuckDuckGo.",
         formatter_class=CustomHelpFormatter,
