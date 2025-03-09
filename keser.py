@@ -296,13 +296,13 @@ def generate_similar_names(username):
         variations.add(".".join(parts))
         variations.add("-".join(parts))
 
-    common_prefixes = ['x', 'xx', 'the', 'real', 'official', 'im', 'its', 'mr', 'ms', 'dr', 'pro' 'itshim' 'itsher' 'sigma']
+    common_prefixes = ['x', 'xx', 'the', 'real', 'official', 'im', 'its', 'mr', 'ms', 'dr', 'pro', 'itshim', 'itsher', 'sigma', 'him', 'iitz', 'imhim', 'itsme', 'her', 'itsher']
     for prefix in common_prefixes:
         variations.add(f"{prefix}{username}")
         variations.add(f"{prefix}_{username}")
         variations.add(f"{prefix}{''.join(parts)}")
 
-    common_suffixes = ['1', '69', '007', '7', '13', 'xxx', 'the', 'lol', 'uwu', 'qt' 'him' 'iitz' 'imhim' 'itsme']
+    common_suffixes = ['13', '69', '007', '7', '13', '4', 'xxx', 'the', 'lol', 'uwu', 'qt', 'ekitten',]
     for suffix in common_suffixes:
         variations.add(f"{username}{suffix}")
         variations.add(f"{''.join(parts)}{suffix}")
