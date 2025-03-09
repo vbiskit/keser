@@ -7,7 +7,7 @@ Please Give Me GithHub Stars.
 ![keser](keser.png)
 
 # Why use it,
-```yaml
+```
 find people with there last names on websites usernames pointless
 ```
 
