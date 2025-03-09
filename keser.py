@@ -281,46 +281,39 @@ Usage:
 
 def generate_similar_names(username):
     variations = set()
-    variations.add(username)
 
-    parts = []
-    if " " in username:
-        parts = username.split(" ")
-    else:
-        parts = [username]
+    parts = username.split(" ") if " " in username else [username]
 
     if len(parts) > 1:
         variations.add("".join(parts))
         variations.add("".join(reversed(parts)))
-        variations.add("_".join(parts))
         variations.add(".".join(parts))
         variations.add("-".join(parts))
 
-    common_prefixes = ['x', 'xx', 'the', 'real', 'official', 'im', 'its', 'mr', 'ms', 'dr', 'pro' 'itshim' 'itsher' 'sigma']
+    common_prefixes = ['x', 'xx', 'the', 'real', 'official', 'im', 'its', 'mr', 'ms', 'dr', 'pro', 'itshim', 'itsher', 'sigma']
     for prefix in common_prefixes:
         variations.add(f"{prefix}{username}")
-        variations.add(f"{prefix}_{username}")
         variations.add(f"{prefix}{''.join(parts)}")
 
-    common_suffixes = ['1', '69', '007', '7', '13', 'xxx', 'the', 'lol', 'uwu', 'qt' 'him' 'iitz' 'imhim' 'itsme']
+    common_suffixes = ['1', '69', '007', '7', '13', 'xxx', 'the', 'lol', 'uwu', 'qt', 'him', 'iitz', 'imhim', 'itsme']
     for suffix in common_suffixes:
         variations.add(f"{username}{suffix}")
         variations.add(f"{''.join(parts)}{suffix}")
-        variations.add(f"{username}_{suffix}")
 
     for _ in range(5):
-        random_num = random.randint(1, 999)
+        random_num = random.randint(14,99 )
         variations.add(f"{username}{random_num}")
         variations.add(f"{''.join(parts)}{random_num}")
 
     reversed_username = username[::-1]
     variations.add(reversed_username)
 
-    variations.add(username.lower())
-    variations.add(username.upper())
-
     mixed_case = "".join([char.upper() if i % 2 == 0 else char.lower() for i, char in enumerate(username)])
     variations.add(mixed_case)
+
+    variations.discard(username)
+    variations.discard(username.lower())
+    variations.discard(username.upper())
 
     return list(variations)
 
