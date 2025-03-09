@@ -6,10 +6,10 @@ Please Give Me GithHub Stars.
 
 ![keser](keser.png)
 
-# Why use it
-
-## find people with there last names on websites usernames pointless
-
+# Why use it,
+```yaml
+find people with there last names on websites usernames pointless
+```
 
 ## Installation 
 Clone the repository and install the required dependencies:  
