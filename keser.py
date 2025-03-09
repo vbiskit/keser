@@ -18,21 +18,20 @@ import asyncio
 import io
 
 def pink(text):
-    gradient_colors = [
+    colors = [
         (255, 20, 147),  
         (173, 216, 230), 
     ]
 
-    gradient_text = ""
+    colors_text = ""
     text_length = len(text)
 
     for i, char in enumerate(text):
-        color_index = int((i / text_length) * (len(gradient_colors) - 1))
-        r, g, b = gradient_colors[color_index]
-        gradient_text += rgb(r, g, b, char)
+        color_index = int((i / text_length) * (len(colors) - 1))
+        r, g, b = colors[color_index]
+        colors_text += rgb(r, g, b, char)
 
-    return gradient_text
-
+    return colors_text
 
 def purple(text):
     gradient_colors = [
@@ -55,24 +54,6 @@ def purple(text):
 
 def rgb(r, g, b, text):
     return f'\033[38;2;{r};{g};{b}m{text}\033[0m'
-
-def blue_green(text):
-    gradient_colors = [
-        (0, 180, 255),
-        (0, 220, 220),
-        (0, 255, 180),
-        (0, 255, 120),
-    ]
-
-    gradient_text = ""
-    text_length = len(text)
-
-    for i, char in enumerate(text):
-        color_index = int((i / text_length) * (len(gradient_colors) - 1))
-        r, g, b = gradient_colors[color_index]
-        gradient_text += rgb(r, g, b, char)
-
-    return gradient_text
 
 def yellow(text):
     gradient_output = ""
