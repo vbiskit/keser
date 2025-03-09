@@ -401,7 +401,7 @@ def scrape_duckduckgo_links(query):
     headers = {"User-Agent": get_random_user_agent()}
 
     try:
-        response = requests.get(url, headers=headers, timeout=30)
+        response = requests.get(url, headers=headers, timeout=10)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
         links = set()
@@ -438,7 +438,7 @@ def read_usernames_from_file(file_path):
         print(f"\033[91mError reading the file {file_path}: {e}\033[0m")
         return []
 
-def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=1):
+def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=2):
     if os.path.isfile(usernames_input):
         usernames = read_usernames_from_file(usernames_input)
     else:
@@ -463,11 +463,11 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
 
             if not duckduckgo_results:
                 if retry_count == 0:
-                    print(f"[\033[38;2;255;255;255m\033[38;5;196mERR\033[38;2;255;255;255m]\033[38;5;196m No results found for \033[38;2;255;255;255m{username} Retrying failed User", flush=True)
+                    print(f"[\033[38;2;255;255;255m\033[38;5;196mERR\033[38;2;255;255;255m]\033[38;5;196m No results found for \033[38;2;255;255;255m{username} Retrying failed user\n", flush=True)
 
                 retry_count += 1
                 if retry_count < max_retries:
-                    time.sleep(0.91)
+                    time.sleep(0.96)
                 else:
                     break
             else:
@@ -479,7 +479,7 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
                 success = True
 
         username_results[username] = username_links
-        time.sleep(6.5)
+        time.sleep(4.3)
     
     elapsed_time = time.time() - start_time
     print()
