@@ -17,6 +17,9 @@ import argparse
 import asyncio
 import io
 
+def rgb(r, g, b, text):
+    return f'\033[38;2;{r};{g};{b}m{text}\033[0m'
+
 def pink(text):
     colors = [
         (255, 20, 147),  
@@ -51,9 +54,6 @@ def purple(text):
         gradient_text += rgb(r, g, b, char)
 
     return gradient_text
-
-def rgb(r, g, b, text):
-    return f'\033[38;2;{r};{g};{b}m{text}\033[0m'
 
 def yellow(text):
     gradient_output = ""
