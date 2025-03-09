@@ -6,9 +6,9 @@ Please Give Me GithHub Stars.
 
 ![keser](keser.png)
 
-# Why use it,
+## Why use it
 ```
-find people with there last names on websites usernames pointless
+find people with there last names on websites, usernames pointless
 ```
 
 ## Installation 
