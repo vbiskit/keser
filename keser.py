@@ -75,23 +75,18 @@ def blue_green(text):
     return gradient_text
 
 def yellow(text):
-    gradient_colors = [
-        (255, 255, 0),
-        (220, 255, 0),
-        (180, 255, 0),
-        (120, 255, 0),
-        (60, 255, 0),
-    ]
-
-    gradient_text = ""
-    text_length = len(text)
+    gradient_output = ""
+    start_color = (255, 255, 0)  
+    end_color = (0, 255, 0)  
 
     for i, char in enumerate(text):
-        color_index = int((i / text_length) * (len(gradient_colors) - 1))
-        r, g, b = gradient_colors[color_index]
-        gradient_text += rgb(r, g, b, char)
+        ratio = i / len(text)
+        r = int(start_color[0] + (end_color[0] - start_color[0]) * ratio)
+        g = int(start_color[1] + (end_color[1] - start_color[1]) * ratio)
+        b = int(start_color[2] + (end_color[2] - start_color[2]) * ratio)
+        gradient_output += f"\033[38;2;{r};{g};{b}m{char}"
 
-    return gradient_text
+    return gradient_output + "\033[0m"
 
 def fetch_metadata():
     url = "https://raw.githubusercontent.com/vbiskit/keser/refs/heads/main/search.json"
@@ -245,10 +240,10 @@ async def check_username_with_retries(session, site, username, max_retries=1):
 
 def print_banner():
     keser = r"""
- .-. .-..----. .----..----..----. 
- | |/ / | {_  { {__  | {_  | {}  }
- | |\ \ | {__ .-._} }| {__ | .-. \
- `-' `-'`----'`----' `----'`-' `-'"""
+.-. .-..----. .----..----..----. 
+| |/ / | {_  { {__  | {_  | {}  }
+| |\ \ | {__ .-._} }| {__ | .-. \
+`-' `-'`----'`----' `----'`-' `-'"""
     print(f"{pink(keser)}")
     print(f"\n{purple ( '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')}")
     print(f"{pink ( ': keser -h                          :')}")
