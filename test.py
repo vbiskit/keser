@@ -273,7 +273,8 @@ Usage:
    keser example -all -sf some.txt
    keser -bf name,name2
    keser -bd name,name2
-   keser -bsn <user>""",end=""
+   keser -bsn <user>
+""",
             
             return help_text
 
