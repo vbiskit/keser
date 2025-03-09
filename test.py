@@ -273,7 +273,7 @@ def setup_argparse():
                 "   keser example -all -sf some.txt\n" + \
                 "   keser -bf name,name2\n" + \
                 "   keser -bd name,name2\n" + \
-                "   keser -bsn <user>"
+                "   keser -bsn <user>\n"
             
             return help_text
     parser = argparse.ArgumentParser(
