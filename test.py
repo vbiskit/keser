@@ -254,26 +254,26 @@ def print_banner():
 def setup_argparse():
     class CustomHelpFormatter(argparse.HelpFormatter):
         def format_help(self):
-            help_text = """\033[38;2;255;255;255mArguments:
-  -sf  Save the output to a file
-  -bf brute-force usernames from a .txt file
-  -all Search With Duckduckgo And Userlinks
-  -bd brute-force usernames with duckduckgo
-  -bsn brute-force similar names
-  -bf name,name2
-  -bd name,name2
-  -bsn search similar names of that user
-Usage:
-   keser <example> -sf example.txt
-   keser <example> for just links
-   keser -bf usernames.txt
-   keser <example> -all
-   keser -bd example.txt
-   keser example -all -sf some.txt
-   keser -bf name,name2
-   keser -bd name,name2
-   keser -bsn <user>
-"""
+            help_text = "\033[38;2;255;255;255m" + \
+                "Arguments:\n" + \
+                "  -sf  Save the output to a file\n" + \
+                "  -bf brute-force usernames from a .txt file\n" + \
+                "  -all Search With Duckduckgo And Userlinks\n" + \
+                "  -bd brute-force usernames with duckduckgo\n" + \
+                "  -bsn brute-force similar names\n" + \
+                "  -bf name,name2\n" + \
+                "  -bd name,name2\n" + \
+                "  -bsn search similar names of that user\n" + \
+                "Usage:\n" + \
+                "   keser <example> -sf example.txt\n" + \
+                "   keser <example> for just links\n" + \
+                "   keser -bf usernames.txt\n" + \
+                "   keser <example> -all\n" + \
+                "   keser -bd example.txt\n" + \
+                "   keser example -all -sf some.txt\n" + \
+                "   keser -bf name,name2\n" + \
+                "   keser -bd name,name2\n" + \
+                "   keser -bsn <user>"
             
             return help_text
     parser = argparse.ArgumentParser(
@@ -281,7 +281,7 @@ Usage:
         formatter_class=CustomHelpFormatter,
         add_help=False
     )
-    
+
     parser = argparse.ArgumentParser(
         description="Search for usernames on various websites and DuckDuckGo.",
         formatter_class=CustomHelpFormatter,
