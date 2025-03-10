@@ -18,10 +18,10 @@
 </p>
 
 ## 😁 Description
-everything you need in a username tool very fast 0 false positives searches through over 670 sites and with duckduckgo
+**everything you need in a username tool very fast 0 false positives searches through over 670 sites and with duckduckgo**
 
 ## 🤔 Why use it
-find people with there last names on websites, usernames pointless
+find people with there last names on websites, **usernames pointless**
 
 ## 📦 Installation 
 ```yaml
