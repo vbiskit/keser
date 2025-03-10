@@ -73,7 +73,3 @@ source bin/activate
 ```
 **now you can install and run the tool just follow the steps here**
 https://github.com/vbiskit/keser/blob/main/README.md#installation
-
-# 🤖  how to uninstall the tool:
-```yaml
-rm -rf keser
