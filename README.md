@@ -1,10 +1,8 @@
-```yaml
-Please Give Me GithHub Stars.
-```
+<p align="center"><img width="100" height="100" src="images/user.png"></p>
+</p>
+
 ## Description
 **everything you need in a username tool very fast 0 false positives searches through over 670 sites and with duckduckgo**
-
-![icon](Images/user.png)
 
 ## Why use it
 ```
