@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-# coded by vbiskit
-# Warning Code Is Not Neat 
-# if you saw the asii codes yes i know its really messy and i should of used it like this {white}{blue}{pink} i just can't be stuffed going back to change it so its neat sorry.
+# Coded by vbiskit
+# If you saw the asii codes yes i know its really messy and i should of used it like this {white}{blue}{pink} i just can't be stuffed going back to change it so its neat sorry.
 
 import aiohttp
 import re
