@@ -285,7 +285,6 @@ def generate_similar_names(username):
 
     if len(parts) > 1:
         variations.add("".join(parts))
-        variations.add("".join(reversed(parts)))
         variations.add(".".join(parts))
         variations.add("-".join(parts))
 
@@ -294,18 +293,15 @@ def generate_similar_names(username):
         variations.add(f"{prefix}{username}")
         variations.add(f"{prefix}{''.join(parts)}")
 
-    common_suffixes = ['1', '69', '007', '7', '13', 'xxx', 'the', 'lol', 'uwu', 'qt', 'him', 'iitz', 'imhim', 'itsme']
+    common_suffixes = ['1', '69', '007', '7', '13', 'xxx', 'lol', 'uwu', 'qt', 'him', 'iitz', 'imhim', 'itsme']
     for suffix in common_suffixes:
         variations.add(f"{username}{suffix}")
         variations.add(f"{''.join(parts)}{suffix}")
 
     for _ in range(5):
-        random_num = random.randint(14,99 )
+        random_num = random.randint(14, 99)
         variations.add(f"{username}{random_num}")
         variations.add(f"{''.join(parts)}{random_num}")
-
-    reversed_username = username[::-1]
-    variations.add(reversed_username)
 
     mixed_case = "".join([char.upper() if i % 2 == 0 else char.lower() for i, char in enumerate(username)])
     variations.add(mixed_case)
