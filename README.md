@@ -44,7 +44,7 @@ mv ~/keser/keser.py ~/keser/keser
 ```yaml
 keser
 ```
-## 🥺 keser --help
+## 😁 keser --help
 ```yaml
 Arguments:
   -sf  Save the output to a file
