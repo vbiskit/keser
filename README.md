@@ -1,6 +1,17 @@
  <p align="center">
     <img src="https://raw.githubusercontent.com/vbiskit/keser/main/Images/cat.jpeg" height="300"/>
   </p>
+<p align="center">
+  <a href="https://github.com/vbiskit/keser">
+    <img alt="Minimum Python version required: 3.10+" src="https://img.shields.io/badge/Python-3.10%2B-brightgreen?style=flat-square" />
+  </a>
+  <a href="https://github.com/soxoj/maigret/blob/main/LICENSE">
+    <img alt="License badge for keser" src="https://img.shields.io/github/license/soxoj/maigret?style=flat-square" />
+  </a>
+  <a href="https://github.com/vbiskit/keser">
+    <img alt="View count for keser" src="https://komarev.com/ghpvc/?username=vbiskit&color=brightgreen&label=views&style=flat-square" />
+  </a>
+</p>
 
 ## 😁 Description
 everything you need in a username tool very fast 0 false positives searches through over 670 sites and with duckduckgo
