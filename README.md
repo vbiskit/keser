@@ -24,7 +24,7 @@ Fastest Username Search 0 False Positives, Scan Over 670 Sites
 
 # 🛠️Tool Showcase
 <a href="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO">
-  <img src="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO.svg" alt="asciicast" width="600">
+  <img src="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO.svg" alt="asciicast" width="1920x1080">
 </a>
 
 ## 📦 Installation 
