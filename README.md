@@ -20,7 +20,7 @@
 Fastest **Username** Search 0 False Positives At Ez Find Your Friend or Anyone on These Sites, Scan Over 670 Sites
 
 ## 🛠️Tool Showcase. if you are having problems installing go here 
-👉 **https://github.com/vbiskit/keser?tab=readme-ov-file#-cant-install-tool-because-of-error-externally-managed-environment-fix**
+👉 **https://github.com/vbiskit/keser?tab=readme-ov-file#-cant-install-tool-because-of-error-externally-managed-environment-fix*
 
 <a href="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO">
   <img src="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO.svg" alt="asciicast" width="1720x1080">
@@ -72,4 +72,4 @@ cd python
 source bin/activate
 ```
 **now you can install and run the tool just follow the steps here**
-https://github.com/vbiskit/keser/blob/main/README.md#installation
+**https://github.com/vbiskit/keser/tree/main#-installation*
