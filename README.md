@@ -9,9 +9,8 @@
     <img alt="View count for Keser" src="https://komarev.com/ghpvc/?username=vbiskit&color=brightgreen&label=views&style=flat-square" />
   </a>
   <a href="https://twitter.com/">
-    <img alt="Twitter" src="https://img.shields.io/twitter/follow/sillybiskit?style=flat-square&logo=twitter&color=1DA1F2" />
-  </a>
-</p>
+    <img alt="Twitter" src="https://img.shields.io/twitter/follow/sillybiskit?style=flat-square&logo=twitter&color=FF5733" />
+</a>
 
 ## 😁 Description
 everything you need in a username tool very fast 0 false positives searches through over 670 sites and with duckduckgo
