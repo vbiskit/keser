@@ -1,13 +1,13 @@
 
-😁 ## Description
+## 😁 Description
 **everything you need in a username tool very fast 0 false positives searches through over 670 sites and with duckduckgo**
 
-🤔 ## Why use it
+## 🤔 Why use it
 ```
 find people with there last names on websites, usernames pointless
 ```
 
-📦 ## Installation 
+## 📦 Installation 
 Clone the repository and install the required dependencies:  
 ```yaml
 git clone https://github.com/vbiskit/keser
@@ -24,11 +24,11 @@ chmod +x ~/keser/keser.py
 
 mv ~/keser/keser.py ~/keser/keser
 ```
-🚀 ## Run the tool:
+## 🚀 Run the tool:
 ```yaml
 keser
 ```
-🥺 ## keser -h
+## 🥺 keser -h
 
 ```yaml
 Arguments:
@@ -51,7 +51,7 @@ Usage:
    keser -bd name,name2
    keser -bsn <user>
 ```
-😡 ## can't install tool because of error: externally-managed-environment fix in 14 seconds.
+## 😡 can't install tool because of error: externally-managed-environment fix in 14 seconds.
 ```yaml
 sudo apt install virtualenv
 
@@ -64,6 +64,6 @@ source bin/activate
 **now you can install and run the tool just follow the steps here**
 https://github.com/vbiskit/keser/blob/main/README.md#installation
 
-# how to uninstall the tool:
+# 🤖  how to uninstall the tool:
 ```yaml
 rm -rf keser
