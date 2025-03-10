@@ -8,12 +8,13 @@
   <a href="https://github.com/vbiskit/keser">
     <img alt="View count for Keser" src="https://komarev.com/ghpvc/?username=vbiskit&color=brightgreen&label=views&style=flat-square" />
   </a>
- <a href="https://twitter.com/sillybiskit">
-  <img alt="Twitter Follow" src="https://img.shields.io/badge/Twitter-sillybiskit-FF5733?style=flat-square&logo=twitter&logoColor=white" />
-</a>
+  <a href="https://twitter.com/sillybiskit">
+    <img alt="Twitter Follow" src="https://img.shields.io/badge/Twitter-sillybiskit-FF5733?style=flat-square&logo=twitter&logoColor=white" />
+  </a>
+</p>
+
 <p align="center">
-    <img src="https://raw.githubusercontent.com/vbiskit/keser/blob/main/Images/cat.jpeg" height="300"/>
-  </p>
+    <img src="https://raw.githubusercontent.com/vbiskit/keser/main/Images/cat.jpeg" height="300"/>
 </p>
 
 ## 😁 Description
