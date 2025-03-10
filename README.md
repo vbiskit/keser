@@ -17,7 +17,7 @@
 </p>
 
 ## 🤔 Why use it
-#### Fastest Username Search 0 False Positives At Ez Find Your Friend or Anyone on These Sites, Scan Over 670 Sites 
+### **Fastest Username Search 0 False Positives At Ez Find Your Friend or Anyone on These Sites, Scan Over 670 Sites**
 
 ## 🛠️Tool Showcase
 <a href="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO">
