@@ -71,5 +71,4 @@ cd python
 
 source bin/activate
 ```
-**now you can install and run the tool just follow the steps here**
-*https://github.com/vbiskit/keser/tree/main#-installation*
+**now you can install and run the tool just scroll up to follow the instructions from installation **
