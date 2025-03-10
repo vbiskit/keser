@@ -9,7 +9,7 @@
     <img alt="View count for Keser project" src="https://komarev.com/ghpvc/?username=vbiskit&color=brightgreen&label=views&style=flat-square" />
   </a>
   <a href="https://github.com/vbiskit/keser">
-    <img alt="GitHub Downloads" src="https://img.shields.io/github/downloads/vbiskit/keser/total?style=flat-square" />
+    <img alt="Git Clone Badge" src="https://img.shields.io/badge/git%20clone-github.com/vbiskit/keser-blue?style=flat-square&logo=git" />
   </a>
 </p>
 
