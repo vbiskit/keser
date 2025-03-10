@@ -1,29 +1,38 @@
-import os
+]import os
 import sys
 import shutil
 import subprocess
 
 def install_keser():
-    # Get the path of the current directory where setup.py is located
+    # Get the current directory of the script
     current_dir = os.path.dirname(os.path.abspath(__file__))
     
-    # Path to install the executable to /usr/local/bin
+    # Define paths
     tool_name = "keser"
-    tool_path = os.path.join(current_dir, 'keser.py')
-    destination_path = '/usr/local/bin/' + tool_name
+    script_path = os.path.join(current_dir, "keser.py")
+    wrapper_path = os.path.join(current_dir, "keser_wrapper")
 
-    # Check if the tool is already installed
+    # Path to install the tool to /usr/local/bin
+    destination_path = '/usr/local/bin/keser'
+
+    # Check if tool is already installed
     if os.path.exists(destination_path):
         print(f"Tool already installed at {destination_path}. Skipping installation.")
     else:
-        # Move the tool to /usr/local/bin and set permissions
-        print(f"Installing tool to {destination_path}...")
-        shutil.copy(tool_path, destination_path)
-        
-        # Make the tool executable
+        # Create a wrapper file that calls the python script
+        with open(wrapper_path, 'w') as f:
+            f.write(f"#!/bin/bash\npython3 {script_path} \"$@\"")
+
+        # Copy the wrapper to /usr/local/bin
+        shutil.copy(wrapper_path, destination_path)
+
+        # Make the wrapper file executable
         subprocess.run(['chmod', '+x', destination_path], check=True)
 
-    print(f"Installation complete. You can now run '{tool_name}' from anywhere!")
+        # Remove the temporary wrapper from the local directory
+        os.remove(wrapper_path)
+
+        print(f"Installation complete. You can now run 'keser' from anywhere!")
 
 def uninstall_keser():
     # Path where the tool is installed
