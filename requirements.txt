@@ -1,4 +1,0 @@
-aiohttp
-requests
-beautifulsoup4
-colorama
