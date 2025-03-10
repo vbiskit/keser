@@ -17,10 +17,10 @@
 </p>
 
 ## 😁 Description
-**everything you need in a username tool very fast 0 false positives searches through over 670 sites and with duckduckgo**
+**Everything You Need**
 
 ## 🤔 Why use it
-Fastest Username Search 0 False Positives, Scan Over 670 Sites 
+Fastest Username Search 0 False Positives At Ez Find Your Friend or Anyone on These Sites, Scan Over 670 Sites 
 
 # 🛠️Tool Showcase
 <a href="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO">
