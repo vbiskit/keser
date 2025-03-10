@@ -21,7 +21,7 @@
 **everything you need in a username tool very fast 0 false positives searches through over 670 sites and with duckduckgo**
 
 ## 🤔 Why use it
-find people with there last names on websites, **usernames pointless**
+Fastest Username Search 0 False Positives, Scan Over 670 Sites 
 
 ## 📦 Installation 
 ```yaml
