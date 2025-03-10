@@ -1,7 +1,11 @@
-<p align="center"><img width="100" height="100" src="Images/user.png"></p>
- <a href="https://github.com/vbiskit/keser">
-        <img alt="View count for Maigret project" src="https://komarev.com/ghpvc/?username=keser&color=brightgreen&label=views&style=flat-square" />
-    </a>
+<p align="center">
+  <img width="100" height="100" src="Images/user.png">
+</p>
+
+<p align="center">
+  <a href="https://github.com/vbiskit/keser">
+    <img alt="View count for keser" src="https://komarev.com/ghpvc/?username=keser&color=brightgreen&label=views&style=flat-square" />
+  </a>
 </p>
 
 ## Description
