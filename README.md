@@ -1,22 +1,13 @@
-<p align="center">
-  <img width="100" height="100" src="Images/user.png">
-</p>
 
-<p align="center">
-  <a href="https://github.com/vbiskit/keser">
-    <img alt="View count for keser" src="https://komarev.com/ghpvc/?username=keser&color=brightgreen&label=views&style=flat-square" />
-  </a>
-</p>
-
-## Description
+😁 ## Description
 **everything you need in a username tool very fast 0 false positives searches through over 670 sites and with duckduckgo**
 
-## Why use it
+🤔 ## Why use it
 ```
 find people with there last names on websites, usernames pointless
 ```
 
-## Installation 
+📦 ## Installation 
 Clone the repository and install the required dependencies:  
 ```yaml
 git clone https://github.com/vbiskit/keser
@@ -33,11 +24,11 @@ chmod +x ~/keser/keser.py
 
 mv ~/keser/keser.py ~/keser/keser
 ```
-## Run the tool:
+🚀 ## Run the tool:
 ```yaml
 keser
 ```
-## keser -h
+🥺 ## keser -h
 
 ```yaml
 Arguments:
@@ -60,7 +51,7 @@ Usage:
    keser -bd name,name2
    keser -bsn <user>
 ```
-## can't install tool because of error: externally-managed-environment fix in 14 seconds.
+😡 ## can't install tool because of error: externally-managed-environment fix in 14 seconds.
 ```yaml
 sudo apt install virtualenv
 
