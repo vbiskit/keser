@@ -16,9 +16,6 @@
     <img src="https://raw.githubusercontent.com/vbiskit/keser/main/Images/cat.jpeg" height="300"/>
 </p>
 
-## 😁 Description
-**Everything You Need**
-
 ## 🤔 Why use it
 Fastest Username Search 0 False Positives At Ez Find Your Friend or Anyone on These Sites, Scan Over 670 Sites 
 
