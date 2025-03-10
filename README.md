@@ -69,7 +69,7 @@ Usage:
    keser -bsn <user>
 ```
 
-## 😡 can't install tool because of error: externally-managed-environment fix in 14 seconds.
+## 😡 can't install tool because of error: externally-managed-environment fix.
 ```yaml
 sudo apt install virtualenv
 
