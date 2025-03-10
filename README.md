@@ -12,6 +12,9 @@
     <img alt="Twitter Follow" src="https://img.shields.io/badge/Twitter-sillybiskit-FF5733?style=flat-square&logo=twitter&logoColor=white" />
   </a>
 </p>
+<p align="center">
+    <img src="https://raw.githubusercontent.com/vbiskit/keser/main/Images/cat.jpeg" height="300"/>
+</p>
 
 ## 😁 Description
 **everything you need in a username tool very fast 0 false positives searches through over 670 sites and with duckduckgo**
@@ -20,9 +23,9 @@
 Fastest Username Search 0 False Positives, Scan Over 670 Sites 
 
 # 🛠️Tool Showcase
-<p align="center">
-    <img src="https://raw.githubusercontent.com/vbiskit/keser/main/Images/cat.jpeg" height="300"/>
-</p>
+<a href="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO">
+  <img src="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO.svg" alt="asciicast" width="600">
+</a>
 
 ## 📦 Installation 
 ```yaml
