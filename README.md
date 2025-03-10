@@ -12,7 +12,7 @@
   <img alt="Twitter Follow" src="https://img.shields.io/badge/Twitter-sillybiskit-FF5733?style=flat-square&logo=twitter&logoColor=white" />
 </a>
 <p align="center">
-    <img src="https://raw.githubusercontent.com/soxoj/maigret/main/Images/cat.png" height="300"/>
+    <img src="https://raw.githubusercontent.com/vbiskit/keser/main/Images/cat.png" height="300"/>
   </p>
 </p>
 
