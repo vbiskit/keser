@@ -43,8 +43,7 @@ mv ~/keser/keser.py ~/keser/keser
 ```yaml
 keser
 ```
-## 🥺 keser -h
-
+## 🥺 keser --help
 ```yaml
 Arguments:
   -sf  Save the output to a file
@@ -66,6 +65,11 @@ Usage:
    keser -bd name,name2
    keser -bsn <user>
 ```
+
+<a href="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO">
+  <img src="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO.svg" alt="asciicast" width="600">
+</a>
+
 ## 😡 can't install tool because of error: externally-managed-environment fix in 14 seconds.
 ```yaml
 sudo apt install virtualenv
