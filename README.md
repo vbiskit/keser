@@ -9,7 +9,7 @@
     <img alt="View count for Keser" src="https://komarev.com/ghpvc/?username=vbiskit&color=brightgreen&label=views&style=flat-square" />
   </a>
  <a href="https://twitter.com/sillybiskit">
-  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/sillybiskit?style=flat-square&logo=twitter&color=FF5733&label=Twitter" />
+  <img alt="Twitter Follow" src="https://img.shields.io/badge/Twitter-sillybiskit-FF5733?style=flat-square&logo=twitter&logoColor=white" />
 </a>
 
 ## 😁 Description
