@@ -1,4 +1,4 @@
-<p align="center"><img width="100" height="100" src="/images/user.png"></p>
+<p align="center"><img width="100" height="100" src="Images/user.png"></p>
 </p>
 
 ## Description
