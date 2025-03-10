@@ -7,35 +7,32 @@ def install_keser():
     # Get the current directory of the script
     current_dir = os.path.dirname(os.path.abspath(__file__))
     
-    # Define paths
-    tool_name = "keser"
+    # Define the paths
     script_path = os.path.join(current_dir, "keser.py")
-    wrapper_path = os.path.join(current_dir, "keser_wrapper")
-
-    # Path to install the tool to /usr/local/bin
+    
+    # The path where we want to install the command globally
     destination_path = '/usr/local/bin/keser'
 
-    # Check if tool is already installed
+    # Check if the tool is already installed
     if os.path.exists(destination_path):
         print(f"Tool already installed at {destination_path}. Skipping installation.")
     else:
-        # Create a wrapper file that calls the python script
-        with open(wrapper_path, 'w') as f:
-            f.write(f"#!/bin/bash\npython3 {script_path} \"$@\"")
+        # Create a wrapper script that runs the Python script
+        wrapper_script = f"""#!/bin/bash
+python3 {script_path} "$@"
+"""
+        
+        # Write the wrapper script to a file in /usr/local/bin
+        with open(destination_path, 'w') as f:
+            f.write(wrapper_script)
 
-        # Copy the wrapper to /usr/local/bin
-        shutil.copy(wrapper_path, destination_path)
-
-        # Make the wrapper file executable
+        # Make the wrapper script executable
         subprocess.run(['chmod', '+x', destination_path], check=True)
-
-        # Remove the temporary wrapper from the local directory
-        os.remove(wrapper_path)
 
         print(f"Installation complete. You can now run 'keser' from anywhere!")
 
 def uninstall_keser():
-    # Path where the tool is installed
+    # Path to remove the installed tool
     destination_path = '/usr/local/bin/keser'
 
     # Remove the tool if it exists
