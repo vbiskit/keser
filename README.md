@@ -20,7 +20,7 @@
 </p>
 
 ## 🐧 What can you install Keser on
-### 📦 you can install this on MacOs Linux.
+### 📦 you can install keser on MacOs Linux.
 
 ## 🤔 Why use it
 Fastest **Username** Search 0 False Positives At Ez Find Your Friend or Anyone on These Sites, Scan Over 670 Sites
