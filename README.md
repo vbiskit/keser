@@ -16,7 +16,7 @@
     <img src="https://raw.githubusercontent.com/vbiskit/keser/main/Images/cat.jpeg" height="300"/>
 </p>
 <p align="center">
-    <h4 align="center" style="font-size: 200px; margin: 0; padding: 0;">KESER</h4>
+    <span style="font-size: 200px; font-weight: bold; display: inline-block;">KESER</span>
 </p>
 
 ## 🤔 Why use it
