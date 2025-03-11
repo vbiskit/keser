@@ -29,6 +29,7 @@ Fastest **Username** Search 0 False Positives At Ez Find Your Friend or Anyone o
   <img src="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO.svg" alt="asciicast" width="1080x720">
 </a>
 
+### only works for LINUX 🐧
 ## 📦 Installation 
 ```yaml
 git clone https://github.com/vbiskit/keser
