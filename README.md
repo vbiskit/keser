@@ -16,7 +16,7 @@
     <img src="https://raw.githubusercontent.com/vbiskit/keser/main/Images/cat.jpeg" height="300"/>
 </p>
 <p align="center">
-    <h4 align="center">keser</h4>
+    <h4 align="center">KESER</h4>
 </p>
 
 ## 🤔 Why use it
