@@ -77,4 +77,4 @@ cd python
 
 source bin/activate
 ```
-### now you can install and run the tool just scroll up to follow the instructions from installation
+### 👋 now you can install and run the tool just scroll up to follow the instructions from installation
