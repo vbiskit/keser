@@ -16,7 +16,7 @@
     <img src="https://raw.githubusercontent.com/vbiskit/keser/main/Images/cat.jpeg" height="300"/>
 </p>
 <p align="center">
-    <span style="font-size: 200px; font-weight: bold; display: inline-block;">KESER</span>
+    <h4 align="center">Everything You Need For A Usersearch</h4>
 </p>
 
 ## 🤔 Why use it
