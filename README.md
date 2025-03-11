@@ -20,7 +20,7 @@
 </p>
 
 # 🤔 Why should i use this
-### Fastest **Username** Search 0 False Positives At Ez Find Your Friend or Anyone on These Sites, Scan Over 670 Sites
+Fastest **Username** Search 0 False Positives At Ez Find Your Friend or Anyone on These Sites, Scan Over 670 Sites
 
 
 ## 🛠️Tool Showcase. if you are having problems installing go here 
