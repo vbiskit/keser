@@ -19,7 +19,7 @@
     <h4 align="center">Everything You Need For A Usersearch</h4>
 </p>
 
-## 🐧 What Can You Install It On
+## 🐧 What can you install Keser On
 ### 📦 you can install this on MacOs Linux.
 
 ## 🤔 Why use it
