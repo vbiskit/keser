@@ -19,6 +19,8 @@
     <h4 align="center">Everything You Need For A Usersearch</h4>
 </p>
 
+# only works for Linux 🐧
+
 ## 🤔 Why use it
 Fastest **Username** Search 0 False Positives At Ez Find Your Friend or Anyone on These Sites, Scan Over 670 Sites
 
@@ -29,7 +31,7 @@ Fastest **Username** Search 0 False Positives At Ez Find Your Friend or Anyone o
   <img src="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO.svg" alt="asciicast" width="1080x720">
 </a>
 
-## 📦 Installation. only works for Linux
+## 📦 Installation
 ```yaml
 git clone https://github.com/vbiskit/keser
 
