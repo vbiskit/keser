@@ -19,8 +19,8 @@
     <h4 align="center">Everything You Need For A Usersearch</h4>
 </p>
 
-### 🤔 Why use it
-Fastest **Username** Search 0 False Positives At Ez Find Your Friend or Anyone on These Sites, Scan Over 670 Sites
+## 🤔 Why use it
+### Fastest **Username** Search 0 False Positives At Ez Find Your Friend or Anyone on These Sites, Scan Over 670 Sites
 
 
 ## 🛠️Tool Showcase. if you are having problems installing go here 
@@ -29,9 +29,6 @@ Fastest **Username** Search 0 False Positives At Ez Find Your Friend or Anyone o
 <a href="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO">
   <img src="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO.svg" alt="asciicast" width="1080x720">
 </a>
-
-## 🐧 What can you install Keser on
-### 📦 you can install keser on MacOs Linux.
 
 ## 🎁 Installation
 ```yaml
