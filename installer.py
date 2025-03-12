@@ -25,7 +25,7 @@ def install_keser():
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print("Usage: python setup.py install")
+        print("Usage: python installer.py install")
         sys.exit(1)
 
     action = sys.argv[1].lower()
