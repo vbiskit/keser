@@ -2,7 +2,16 @@ import os
 import sys
 import subprocess
 
+def ensure_pip():
+    try:
+        subprocess.run([sys.executable, "-m", "ensurepip"], check=True)
+    except subprocess.CalledProcessError:
+        print("Failed to install pip. Please install pip manually.")
+        sys.exit(1)
+
 def install_keser():
+    ensure_pip()
+
     current_dir = os.path.dirname(os.path.abspath(__file__))
     script_path = os.path.join(current_dir, "keser.py")
     destination_path = '/usr/local/bin/keser'
