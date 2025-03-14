@@ -1,5 +1,7 @@
-{      
-        "sites" : [
+{
+    "Note" : ["this script is originally by whatsmyname.app i have took it and edited it so we can get no false positives"],
+                   
+    "sites" : [
        {
         "name" : "Mastodon-101010.pl",
         "uri_check" : "https://101010.pl/@{account}",
