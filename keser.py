@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # Coded by vbiskit
-# If you saw the asii codes yes i know its really messy and i should of used it like this {white}{blue}{pink} i just can't be stuffed going back to change it so its neat sorry.
 
 import aiohttp
 import re
@@ -243,7 +242,6 @@ Arguments:
   -bd brute-force usernames with duckduckgo
   -bf name,name2
   -bd name,name2
-  -bsn search similar names of that user
 Usage:
    keser <example> -sf example.txt
    keser <example> for just links
@@ -252,8 +250,7 @@ Usage:
    keser -bd example.txt
    keser example -all -sf some.txt
    keser -bf name,name2
-   keser -bd name,name2
-   keser -bsn <user>"""
+   keser -bd name,name2"""
             
             return help_text
 
@@ -272,45 +269,10 @@ Usage:
     parser.add_argument("username", nargs="?", type=str, help="The username to search for.")
     parser.add_argument("-bf", "--brute-force", type=str, help="Enable brute-force username variations from a .txt file.")
     parser.add_argument("-bd", "--brute-force-duckduckgo", type=str, help="Brute-force usernames from a .txt file and search DuckDuckGo.")
-    parser.add_argument("-bsn", "--brute-force-similar-names", type=str, help="Brute-force similar names (e.g., vbiskit -> biskit, biskit069).")
     parser.add_argument("-sf", "--save-file", type=str, help="Save the results to a file.")
     parser.add_argument("-all", "--search-all", action="store_true", help="Search additional sites like DuckDuckGo.")
 
     return parser
-
-def generate_similar_names(username):
-    variations = set()
-
-    parts = username.split(" ") if " " in username else [username]
-
-    if len(parts) > 1:
-        variations.add("".join(parts))
-        variations.add(".".join(parts))
-        variations.add("-".join(parts))
-
-    common_prefixes = ['x', 'xx', 'the', 'real', 'official', 'im', 'its', 'mr', 'ms', 'dr', 'pro', 'itshim', 'itsher', 'sigma']
-    for prefix in common_prefixes:
-        variations.add(f"{prefix}{username}")
-        variations.add(f"{prefix}{''.join(parts)}")
-
-    common_suffixes = ['1', '69', '007', '7', '13', 'xxx', 'lol', 'uwu', 'qt', 'him', 'iitz', 'imhim', 'itsme']
-    for suffix in common_suffixes:
-        variations.add(f"{username}{suffix}")
-        variations.add(f"{''.join(parts)}{suffix}")
-
-    for _ in range(5):
-        random_num = random.randint(14, 99)
-        variations.add(f"{username}{random_num}")
-        variations.add(f"{''.join(parts)}{random_num}")
-
-    mixed_case = "".join([char.upper() if i % 2 == 0 else char.lower() for i, char in enumerate(username)])
-    variations.add(mixed_case)
-
-    variations.discard(username)
-    variations.discard(username.lower())
-    variations.discard(username.upper())
-
-    return list(variations)
 
 def process_bf_argument(bf_arg):
     if os.path.isfile(bf_arg):
@@ -494,7 +456,7 @@ def main():
         print(parser.format_help())
         sys.exit(0)
 
-    if not any([args.username, args.brute_force, args.brute_force_duckduckgo, args.brute_force_similar_names]):
+    if not any([args.username, args.brute_force, args.brute_force_duckduckgo]):
         sys.exit(0)
 
     if args.username:
@@ -519,22 +481,6 @@ def main():
 
     elif args.brute_force_duckduckgo:
         process_brute_force_duckduckgo(args.brute_force_duckduckgo, save_file=args.save_file)
-
-    elif args.brute_force_similar_names:
-        similar_names = generate_similar_names(args.brute_force_similar_names)
-        username_results = {}
-        
-        for name in similar_names:
-            print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Emulating websites for')} \033[38;2;255;255;255m{name}\n")
-            start_time = time.time()
-            sites_found, duckduckgo_links, _ = asyncio.run(search_username(name, save_file=args.save_file, search_all=args.search_all, print_summary=False))
-            search_time = time.time() - start_time
-            
-            username_results[name] = (sites_found, search_time)
-
-        print()  
-        for name, (count, search_time) in username_results.items():
-            print(f"\033[93mSites\033[38;2;255;255;255m: {count} from '{name}' - Search time: {search_time:.2f} seconds")
              
 if __name__ == "__main__":
     main()
