@@ -35,7 +35,7 @@ if you are having problems installing go **here**
 <img src="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO.svg" alt="asciicast" width="1280">
 </a>
 
-## 🎁 Installation
+## 📦 Installation
 ```yaml
 git clone https://github.com/vbiskit/keser
 
