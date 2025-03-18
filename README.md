@@ -20,7 +20,7 @@
 </p>
 
 # 🔭 whats New! 
-**search top socials games and sites -top argument**
+**search top socials games and sites -top argument. updated timeout to 28 seconds to make sure people with slow internet catch all links still the fastest uesrname tool**
 
 ------------------------------------------------
 ## 🤔 Why should i use this
