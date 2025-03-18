@@ -220,10 +220,10 @@ async def check_username_with_retries(session, site, username, max_retries=1):
 
 def print_banner():
     keser = r"""
-.-. .-..----. .----..----..----. 
-| |/ / | {_  { {__  | {_  | {}  }
-| |\ \ | {__ .-._} }| {__ | .-. \
-`-' `-'`----'`----' `----'`-' `-'"""
+ .-. .-..----. .----..----..----. 
+ | |/ / | {_  { {__  | {_  | {}  }
+ | |\ \ | {__ .-._} }| {__ | .-. \
+ `-' `-'`----'`----' `----'`-' `-'"""
     print(f"{pink(keser)}")
     print(f"{purple('The Advance Username Search.')}")
     print(f"{purple ( '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')}")
