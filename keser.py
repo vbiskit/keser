@@ -240,6 +240,7 @@ Arguments:
   -bf brute-force usernames from a .txt file
   -all Search With Duckduckgo And Userlinks
   -bd brute-force usernames with duckduckgo
+  -top show top socials, sites, gaming
   -bf name,name2
   -bd name,name2
 Usage:
@@ -250,7 +251,8 @@ Usage:
    keser -bd example.txt
    keser example -all -sf some.txt
    keser -bf name,name2
-   keser -bd name,name2"""
+   keser -bd name,name2
+   keser <example> -top"""
             
             return help_text
 
@@ -271,6 +273,7 @@ Usage:
     parser.add_argument("-bd", "--brute-force-duckduckgo", type=str, help="Brute-force usernames from a .txt file and search DuckDuckGo.")
     parser.add_argument("-sf", "--save-file", type=str, help="Save the results to a file.")
     parser.add_argument("-all", "--search-all", action="store_true", help="Search additional sites like DuckDuckGo.")
+    parser.add_argument("-top", "--top-sites", action="store_true", help="Show only top social media and gaming sites.")
 
     return parser
 
@@ -293,7 +296,19 @@ def process_bf_argument(bf_arg):
 
     return usernames
 
-async def search_username(username, save_file=None, search_all=False, print_summary=True):
+TOP_SOCIAL_SITES = [
+    "facebook", "instagram", "twitter", "tiktok", "snapchat", "HudsonRock",
+    "linkedin", "pinterest", "reddit", "tumblr", "youtube user", "Imginn", "kik",
+    "twitch", "discord", "telegram", "whatsapp", "vimeo", "gta", "github", "Instagram_archives",
+    "medium", "flickr", "behance", "deviantart", "vsco", "hoo.be", "onlysearch", "paypal", "linktree"
+]
+
+TOP_GAMING_SITES = [
+    "steam", "Apex Legends",
+    "chess.com", "Minecraft List", "Roblox", "fortnite tracker", "MCName"
+]
+
+async def search_username(username, save_file=None, search_all=False, print_summary=True, top_sites=False):
     start_time = time.time()
     found = []
     unique_sites = set()
@@ -304,7 +319,14 @@ async def search_username(username, save_file=None, search_all=False, print_summ
         sys.stdout = output_capture
 
     async with aiohttp.ClientSession() as session:
-        tasks = [check_username_with_retries(session, site, username) for site in metadata["sites"]]
+        sites_to_check = metadata["sites"]
+        if top_sites:
+            sites_to_check = [
+                site for site in metadata["sites"]
+                if site["name"].lower() in TOP_SOCIAL_SITES or site["name"].lower() in TOP_GAMING_SITES
+            ]
+
+        tasks = [check_username_with_retries(session, site, username) for site in sites_to_check]
         results = await asyncio.gather(*tasks)
 
         for result in results:
@@ -460,17 +482,23 @@ def main():
         sys.exit(0)
 
     if args.username:
-        print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Emulating websites for')} \033[38;2;255;255;255m{args.username}\n")
-        asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all))
+        if args.top_sites:
+            print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Searching All Top Sites')} \033[38;2;255;255;255m{args.username}\n")
+        else:
+            print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Emulating websites for')} \033[38;2;255;255;255m{args.username}\n")
+        asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all, top_sites=args.top_sites))
 
     elif args.brute_force:
         usernames = process_bf_argument(args.brute_force)
         username_results = {}
         
         for username in usernames:
-            print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Emulating websites for')} \033[38;2;255;255;255m{username}\n")
+            if args.top_sites:
+                print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Searching top social media and gaming sites for')} \033[38;2;255;255;255m{username}\n")
+            else:
+                print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Emulating websites for')} \033[38;2;255;255;255m{username}\n")
             start_time = time.time()
-            sites_found, duckduckgo_links, _ = asyncio.run(search_username(username, save_file=args.save_file, search_all=args.search_all, print_summary=False))
+            sites_found, duckduckgo_links, _ = asyncio.run(search_username(username, save_file=args.save_file, search_all=args.search_all, print_summary=False, top_sites=args.top_sites))
             search_time = time.time() - start_time
             
             username_results[username] = (sites_found, search_time)
