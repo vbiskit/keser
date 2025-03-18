@@ -16,7 +16,7 @@ def install_keser():
     script_path = os.path.join(current_dir, "keser.py")
     destination_path = '/usr/local/bin/keser'
     
-    required_modules = ['aiohttp', 'requests', 'beautifulsoup4', 'colorama']
+    required_modules = ['aiohttp', 'requests', 'beautifulsoup4', 'colorama', 'dnspython']
     for module in required_modules:
         subprocess.run([sys.executable, "-m", "pip", "install", module], check=True)
 
