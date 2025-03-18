@@ -54,9 +54,9 @@ Arguments:
   -bf brute-force usernames from a .txt file
   -all Search With Duckduckgo And Userlinks
   -bd brute-force usernames with duckduckgo
+  -top show top socials, sites, gaming
   -bf name,name2
   -bd name,name2
-  -bsn search similar names of that user
 Usage:
    keser <example> -sf example.txt
    keser <example> for just links
@@ -66,7 +66,7 @@ Usage:
    keser example -all -sf some.txt
    keser -bf name,name2
    keser -bd name,name2
-   keser -bsn <user>
+   keser <example> -top
 ```
 
 ## 😡 can't install tool because of error: externally-managed-environment fix.
