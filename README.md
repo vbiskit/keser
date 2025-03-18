@@ -13,7 +13,7 @@
   </a>
 </p>
 <p align="center">
-    <img src="https://raw.githubusercontent.com/vbiskit/keser/main/Images/logo.png" height="300"/>
+    <img src="https://raw.githubusercontent.com/vbiskit/keser/main/Images/cat.jepg" height="300"/>
 </p>
 <p align="center">
     <h4 align="center">Everything You Need For A Usersearch</h4>
