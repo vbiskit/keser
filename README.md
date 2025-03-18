@@ -28,7 +28,7 @@ Fastest **Username** Search 0 False Positives Find Your Friends or Anyone on The
 
 
 ## 🛠️Tool Showcase.  
-if you are having **problems** installing go here
+if you are having problems installing go **here**
 👉 *https://github.com/vbiskit/keser?tab=readme-ov-file#-cant-install-tool-because-of-error-externally-managed-environment-fix*
 
 <a href="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO">
