@@ -2312,7 +2312,7 @@
         "cat" : "social"
        },
        {
-        "name" : "GTAinside.com",
+        "name" : "GTA",
         "uri_check" : "https://www.gtainside.com/user/{account}",
         "e_code" : 200,
         "e_string" : "userpage_user",
