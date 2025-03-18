@@ -218,6 +218,30 @@ async def check_username_with_retries(session, site, username, max_retries=1):
         await asyncio.sleep(0.03)
     return None
 
+async def check_top_site(session, site, username):
+    url = site["uri_check"].replace("{account}", username)
+    headers = {"User-Agent": get_random_user_agent()}
+
+    try:
+        async with session.get(url, headers=headers, timeout=18.6) as response:
+            raw_bytes = await response.read()
+            try:
+                text = raw_bytes.decode("utf-8")
+            except UnicodeDecodeError:
+                text = raw_bytes.decode("latin-1")
+
+            if response.status == site["e_code"] and site["e_string"] in text:
+                print(f"\033[38;2;255;255;255m[\033[38;2;0;191;255m{site['name']}\033[38;2;255;255;255m] \033[38;2;255;255;255m[\033[38;2;0;255;0m{site['cat']}\033[38;2;255;255;255m] \033[90m{url}")
+                return (site["name"], url, site["cat"])
+
+            if "m_code" in site and "m_string" in site:
+                if response.status == site["m_code"] and site["m_string"] in text:
+                    return None
+
+            return None
+    except (aiohttp.ClientError, asyncio.TimeoutError):
+        return None
+
 def print_banner():
     keser = r"""
  .-. .-..----. .----..----..----. 
@@ -225,11 +249,11 @@ def print_banner():
  | |\ \ | {__ .-._} }| {__ | .-. \
  `-' `-'`----'`----' `----'`-' `-'"""
     print(f"{pink(keser)}")
-    print(f"{purple('The Advance Username Search.')}")
-    print(f"{purple ( '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')}")
-    print(f"{pink ( ': keser --help                      :')}")
-    print(f"{pink( ': https://github.com/vbiskit/keser  :')}")
-    print(f"{purple ( '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')}")
+    print(f"{purple(' The Advance Username Search.')}")
+    print(f"{purple ( ' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')}")
+    print(f"{pink ( ' :  keser --help                      :')}")
+    print(f"{pink( ' :   https://github.com/vbiskit/keser :')}")
+    print(f"{purple ( ' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')}")
 
 def setup_argparse():
     class CustomHelpFormatter(argparse.HelpFormatter):
@@ -325,8 +349,10 @@ async def search_username(username, save_file=None, search_all=False, print_summ
                 site for site in metadata["sites"]
                 if site["name"].lower() in TOP_SOCIAL_SITES or site["name"].lower() in TOP_GAMING_SITES
             ]
-
-        tasks = [check_username_with_retries(session, site, username) for site in sites_to_check]
+            tasks = [check_top_site(session, site, username) for site in sites_to_check]
+        else:
+            tasks = [check_username_with_retries(session, site, username) for site in sites_to_check]
+            
         results = await asyncio.gather(*tasks)
 
         for result in results:
