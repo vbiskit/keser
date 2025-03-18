@@ -18,9 +18,10 @@
 <p align="center">
     <h4 align="center">Everything You Need For A Usersearch</h4>
 </p>
+-----------------------------------------------
 
 # 🔭 whats New! 
-search top socials games and sites -top argument
+**search top socials games and sites -top argument**
 
 ------------------------------------------------
 # 🤔 Why should i use this
