@@ -249,7 +249,7 @@ def print_banner():
  | |\ \ | {__ .-._} }| {__ | .-. \
  `-' `-'`----'`----' `----'`-' `-'"""
     print(f"{pink(keser)}")
-    print(f"{purple(' The Advance Username Search.')}")
+    print(f"{purple(' Version 1.0.2')}")
     print(f"{purple ( ' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')}")
     print(f"{pink ( ' :  keser --help                      :')}")
     print(f"{pink( ' :   https://github.com/vbiskit/keser :')}")
