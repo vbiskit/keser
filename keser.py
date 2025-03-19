@@ -520,7 +520,7 @@ def main():
         
         for username in usernames:
             if args.top_sites:
-                print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Searching top social media and gaming sites for')} \033[38;2;255;255;255m{username}\n")
+                print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Searching All Top Sites')} \033[38;2;255;255;255m{username}\n")
             else:
                 print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Emulating websites for')} \033[38;2;255;255;255m{username}\n")
             start_time = time.time()
