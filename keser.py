@@ -223,7 +223,7 @@ async def check_top_site(session, site, username):
     headers = {"User-Agent": get_random_user_agent()}
 
     try:
-        async with session.get(url, headers=headers, timeout=18.6) as response:
+        async with session.get(url, headers=headers) as response:
             raw_bytes = await response.read()
             try:
                 text = raw_bytes.decode("utf-8")
@@ -321,7 +321,7 @@ def process_bf_argument(bf_arg):
     return usernames
 
 TOP_SOCIAL_SITES = [
-    "facebook", "instagram", "twitter", "tiktok", "snapchat", "HudsonRock",
+    "facebook", "instagram", "twitter", "tiktok", "snapchat", "hudsonrock",
     "linkedin", "pinterest", "reddit", "tumblr", "youtube user", "Imginn", "kik",
     "twitch", "discord", "telegram", "whatsapp", "vimeo", "gta", "github", "Instagram_archives",
     "medium", "flickr", "behance", "deviantart", "vsco", "hoo.be", "onlysearch", "paypal", "linktree"
