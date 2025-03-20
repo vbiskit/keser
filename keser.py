@@ -252,7 +252,7 @@ def print_banner():
     print(f"{purple(' Version 1.0.2')}")
     print(f"{purple ( ' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')}")
     print(f"{pink ( ' :  keser --help                      :')}")
-    print(f"{pink( ' :   https://github.com/vbiskit/keser :')}")
+    print(f"{pink( ' :  https://github.com/vbiskit/keser  :')}")
     print(f"{purple ( ' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')}")
 
 def setup_argparse():
