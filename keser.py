@@ -321,10 +321,10 @@ def process_bf_argument(bf_arg):
     return usernames
 
 TOP_SOCIAL_SITES = [
-    "facebook", "instagram", "twitter", "tiktok", "snapchat", "hudsonrock",
+    "instagram", "twitter", "tiktok", "snapchat", "hudsonrock",
     "linkedin", "pinterest", "reddit", "tumblr", "youtube user", "Imginn", "kik",
     "twitch", "discord", "telegram", "whatsapp", "vimeo", "gta", "github", "Instagram_archives",
-    "medium", "flickr", "behance", "deviantart", "vsco", "hoo.be", "onlysearch", "paypal", "linktree"
+    "flickr", "deviantart", "vsco", "hoo.be", "onlysearch", "paypal", "linktree"
 ]
 
 TOP_GAMING_SITES = [
