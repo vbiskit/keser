@@ -2312,7 +2312,7 @@
         "cat" : "social"
        },
        {
-        "name" : "GTA",
+        "name" : "GTAinside.com",
         "uri_check" : "https://www.gtainside.com/user/{account}",
         "e_code" : 200,
         "e_string" : "userpage_user",
@@ -2903,7 +2903,7 @@
         "cat" : "social"
        },
        {
-        "name" : "Instagram (Imginn)",
+        "name" : "Instagram",
         "uri_check" : "https://imginn.com/{account}/",
         "e_code" : 200,
         "e_string" : "userinfo",
