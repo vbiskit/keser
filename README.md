@@ -57,7 +57,7 @@ Arguments:
   -top this shows the top sites for social media gaming tiktok instagram fortnite etc. 
   -bf name,name2
   -bd name,name2
-  --timeout is for very fast searches, use <13.6> Recommend (For Fast Internets Only) don't use timeout if you have slow wifi the default is enough to catch all your thinking links.
+  --timeout is for very fast searches, use <13.6> Recommend (For Fast Internets Only) don't use timeout if you have slow wifi the default is enough to catch tiktok all the sites.
 Usage:
    keser <example> -sf example.txt
    keser <example> for just links
