@@ -298,12 +298,12 @@ Usage:
     )
 
     parser.add_argument("username", nargs="?", type=str, help="The username to search for.")
-    parser.add_argument("-bf", "--brute-force", type=str, help="Enable brute-force username variations from a .txt file.")
-    parser.add_argument("-bd", "--brute-force-duckduckgo", type=str, help="Brute-force usernames from a .txt file and search DuckDuckGo.")
-    parser.add_argument("-sf", "--save-file", type=str, help="Save the results to a file.")
-    parser.add_argument("-all", "--search-all", action="store_true", help="Search additional sites like DuckDuckGo.")
-    parser.add_argument("-top", "--top-sites", action="store_true", help="Show only top social media and gaming sites.")
-    parser.add_argument("--timeout", type=float, default=26.8, help="Set timeout in seconds for normal search and brute force (default: 26.8)")
+    parser.add_argument("-bf", "--brute-force", type=str, help="brute force users")
+    parser.add_argument("-bd", "--brute-force-duckduckgo", type=str, help="brute force users with duckduckgo")
+    parser.add_argument("-sf", "--save-file", type=str, help="Save results to a .txt")
+    parser.add_argument("-all", "--search-all", action="store_true", help="search with duckduckgo and normal sites")
+    parser.add_argument("-top", "--top-sites", action="store_true", help="search top sites tiktok instagram etc.")
+    parser.add_argument("--timeout", type=float, default=26.8, help="speed up the search time (only for fast internet)")
 
     return parser
 
