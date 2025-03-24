@@ -188,12 +188,12 @@ user_agents = [
 def get_random_user_agent():
     return random.choice(user_agents)
 
-async def check_username_on_website(session, site, username):
+async def check_username_on_website(session, site, username, timeout=26.8):
     url = site["uri_check"].replace("{account}", username)
     headers = {"User-Agent": get_random_user_agent()}
 
     try:
-        async with session.get(url, headers=headers, timeout=26.8) as response:
+        async with session.get(url, headers=headers, timeout=timeout) as response:
             raw_bytes = await response.read()
             try:
                 text = raw_bytes.decode("utf-8")
@@ -212,9 +212,9 @@ async def check_username_on_website(session, site, username):
     except (aiohttp.ClientError, asyncio.TimeoutError):
         return None
 
-async def check_username_with_retries(session, site, username, max_retries=1):
+async def check_username_with_retries(session, site, username, timeout=26.8, max_retries=1):
     for attempt in range(max_retries):
-        result = await check_username_on_website(session, site, username)
+        result = await check_username_on_website(session, site, username, timeout)
         if result is not None:
             return result
         await asyncio.sleep(0.03)
@@ -269,6 +269,7 @@ Arguments:
   -top show top socials, sites, gaming
   -bf name,name2
   -bd name,name2
+  --timeout using timeout for very fast searches, use 13.6 Recommend (For Fast Internets Only) don't use timeout if you have slow internet the default is enough for people with slow internets.
 Usage:
    keser <example> -sf example.txt
    keser <example> for just links
@@ -278,7 +279,9 @@ Usage:
    keser example -all -sf some.txt
    keser -bf name,name2
    keser -bd name,name2
-   keser <example> -top"""
+   keser <example> -top
+   keser <example> --timeout 5
+   keser <example> -bf name,name2 --timeout 5"""
 
             return help_text
 
@@ -291,7 +294,7 @@ Usage:
     parser.add_argument(
         "-h", "--help",
         action="store_true",
-        help="Show this help message and exit."
+        help="mr helper message 🐧"
     )
 
     parser.add_argument("username", nargs="?", type=str, help="The username to search for.")
@@ -300,6 +303,7 @@ Usage:
     parser.add_argument("-sf", "--save-file", type=str, help="Save the results to a file.")
     parser.add_argument("-all", "--search-all", action="store_true", help="Search additional sites like DuckDuckGo.")
     parser.add_argument("-top", "--top-sites", action="store_true", help="Show only top social media and gaming sites.")
+    parser.add_argument("--timeout", type=float, default=26.8, help="Set timeout in seconds for normal search and brute force (default: 26.8)")
 
     return parser
 
@@ -334,7 +338,7 @@ TOP_GAMING_SITES = [
     "chess.com", "Minecraft List", "Roblox", "fortnite tracker", "MCName"
 ]
 
-async def search_username(username, save_file=None, search_all=False, print_summary=True, top_sites=False):
+async def search_username(username, save_file=None, search_all=False, print_summary=True, top_sites=False, timeout=26.8):
     start_time = time.time()
     found = []
     unique_sites = set()
@@ -362,7 +366,7 @@ async def search_username(username, save_file=None, search_all=False, print_summ
             ]
             tasks = [check_top_site(session, site, username) for site in sites_to_check]
         else:
-            tasks = [check_username_with_retries(session, site, username) for site in sites_to_check]
+            tasks = [check_username_with_retries(session, site, username, timeout) for site in sites_to_check]
 
         results = await asyncio.gather(*tasks)
 
@@ -523,7 +527,7 @@ def main():
             print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Searching All Top Sites')} \033[38;2;255;255;255m{args.username}\n")
         else:
             print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Emulating websites for')} \033[38;2;255;255;255m{args.username}\n")
-        asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all, top_sites=args.top_sites))
+        asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all, top_sites=args.top_sites, timeout=args.timeout))
 
     elif args.brute_force:
         usernames = process_bf_argument(args.brute_force)
@@ -535,7 +539,7 @@ def main():
             else:
                 print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Emulating websites for')} \033[38;2;255;255;255m{username}\n")
             start_time = time.time()
-            sites_found, duckduckgo_links, _ = asyncio.run(search_username(username, save_file=args.save_file, search_all=args.search_all, print_summary=False, top_sites=args.top_sites))
+            sites_found, duckduckgo_links, _ = asyncio.run(search_username(username, save_file=args.save_file, search_all=args.search_all, print_summary=False, top_sites=args.top_sites, timeout=args.timeout))
             search_time = time.time() - start_time
 
             username_results[username] = (sites_found, search_time)
