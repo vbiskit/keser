@@ -297,13 +297,13 @@ Usage:
         help="mr helper message 🐧"
     )
 
-    parser.add_argument("username", nargs="?", type=str, help="The username to search for.")
-    parser.add_argument("-bf", "--brute-force", type=str, help="brute force users")
-    parser.add_argument("-bd", "--brute-force-duckduckgo", type=str, help="brute force users with duckduckgo")
-    parser.add_argument("-sf", "--save-file", type=str, help="Save results to a .txt")
-    parser.add_argument("-all", "--search-all", action="store_true", help="search with duckduckgo and normal sites")
-    parser.add_argument("-top", "--top-sites", action="store_true", help="search top sites tiktok instagram etc.")
-    parser.add_argument("--timeout", type=float, default=26.8, help="speed up the search time (only for fast internet)")
+    parser.add_argument("username", nargs="?", type=str)
+    parser.add_argument("-bf", "--brute-force", type=str)
+    parser.add_argument("-bd", "--brute-force-duckduckgo", type=str)
+    parser.add_argument("-sf", "--save-file", type=str)
+    parser.add_argument("-all", "--search-all", action="store_true")
+    parser.add_argument("-top", "--top-sites", action="store_true")
+    parser.add_argument("--timeout", type=float, default=26.8)
 
     return parser
 
