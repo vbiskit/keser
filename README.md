@@ -54,9 +54,10 @@ Arguments:
   -bf brute-force usernames from a .txt file
   -all Search With Duckduckgo And Userlinks
   -bd brute-force usernames with duckduckgo
-  -top show top socials, sites, gaming
+  -top this shows the top sites for social media gaming tiktok instagram fortnite etc. 
   -bf name,name2
   -bd name,name2
+  --timeout is for very fast searches, use <13.6> Recommend (For Fast Internets Only) don't use timeout if you have slow internet the default is enough for people with slow wifi.
 Usage:
    keser <example> -sf example.txt
    keser <example> for just links
@@ -67,6 +68,8 @@ Usage:
    keser -bf name,name2
    keser -bd name,name2
    keser <example> -top
+   keser <example> --timeout 5
+   keser <example> -bf name,name2 --timeout 5
 ```
 
 ## 😡 can't install tool because of error: externally-managed-environment fix.
