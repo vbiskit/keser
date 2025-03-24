@@ -15,14 +15,16 @@ import sys
 import argparse
 import asyncio
 import io
+import socket
+from aiohttp import TCPConnector
 
 def rgb(r, g, b, text):
     return f'\033[38;2;{r};{g};{b}m{text}\033[0m'
 
 def pink(text):
     colors = [
-        (255, 20, 147),  
-        (173, 216, 230), 
+        (255, 20, 147),
+        (173, 216, 230),
     ]
 
     colors_text = ""
@@ -37,11 +39,11 @@ def pink(text):
 
 def purple(text):
     gradient_colors = [
-        (128, 0, 128),  
-        (160, 0, 110),  
-        (190, 0, 90),   
-        (220, 0, 60),   
-        (255, 0, 0),   
+        (128, 0, 128),
+        (160, 0, 110),
+        (190, 0, 90),
+        (220, 0, 60),
+        (255, 0, 0),
     ]
 
     gradient_text = ""
@@ -56,8 +58,8 @@ def purple(text):
 
 def yellow(text):
     gradient_output = ""
-    start_color = (255, 255, 0)  
-    end_color = (0, 255, 0)  
+    start_color = (255, 255, 0)
+    end_color = (0, 255, 0)
 
     for i, char in enumerate(text):
         ratio = i / len(text)
@@ -191,7 +193,7 @@ async def check_username_on_website(session, site, username):
     headers = {"User-Agent": get_random_user_agent()}
 
     try:
-        async with session.get(url, headers=headers, timeout=26.8) as response:
+        async with session.get(url, headers=headers, timeout=19.6) as response:
             raw_bytes = await response.read()
             try:
                 text = raw_bytes.decode("utf-8")
@@ -244,7 +246,7 @@ async def check_top_site(session, site, username):
 
 def print_banner():
     keser = r"""
- .-. .-..----. .----..----..----. 
+ .-. .-..----. .----..----..----.
  | |/ / | {_  { {__  | {_  | {}  }
  | |\ \ | {__ .-._} }| {__ | .-. \
  `-' `-'`----'`----' `----'`-' `-'"""
@@ -277,7 +279,7 @@ Usage:
    keser -bf name,name2
    keser -bd name,name2
    keser <example> -top"""
-            
+
             return help_text
 
     parser = argparse.ArgumentParser(
@@ -341,8 +343,17 @@ async def search_username(username, save_file=None, search_all=False, print_summ
     if save_file:
         output_capture = io.StringIO()
         sys.stdout = output_capture
+    connector = TCPConnector(
+        ssl=False,
+        ttl_dns_cache=300,
+        use_dns_cache=True,
+        limit=100,
+        force_close=True,
+        family=socket.AF_INET,  
+        resolver=aiohttp.AsyncResolver(nameservers=['1.1.1.1', '1.0.0.1'])  
+    )
 
-    async with aiohttp.ClientSession() as session:
+    async with aiohttp.ClientSession(connector=connector) as session:
         sites_to_check = metadata["sites"]
         if top_sites:
             sites_to_check = [
@@ -352,7 +363,7 @@ async def search_username(username, save_file=None, search_all=False, print_summ
             tasks = [check_top_site(session, site, username) for site in sites_to_check]
         else:
             tasks = [check_username_with_retries(session, site, username) for site in sites_to_check]
-            
+
         results = await asyncio.gather(*tasks)
 
         for result in results:
@@ -478,7 +489,7 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
 
         username_results[username] = username_links
         time.sleep(4.3)
-    
+
     elapsed_time = time.time() - start_time
     print()
     for username, link_count in username_results.items():
@@ -517,7 +528,7 @@ def main():
     elif args.brute_force:
         usernames = process_bf_argument(args.brute_force)
         username_results = {}
-        
+
         for username in usernames:
             if args.top_sites:
                 print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Searching All Top Sites')} \033[38;2;255;255;255m{username}\n")
@@ -526,15 +537,15 @@ def main():
             start_time = time.time()
             sites_found, duckduckgo_links, _ = asyncio.run(search_username(username, save_file=args.save_file, search_all=args.search_all, print_summary=False, top_sites=args.top_sites))
             search_time = time.time() - start_time
-            
+
             username_results[username] = (sites_found, search_time)
 
-        print()  
+        print()
         for username, (count, search_time) in username_results.items():
             print(f"\033[93mSites\033[38;2;255;255;255m: {count} from '{username}' - Search time: {search_time:.2f} seconds")
 
     elif args.brute_force_duckduckgo:
         process_brute_force_duckduckgo(args.brute_force_duckduckgo, save_file=args.save_file)
-             
+
 if __name__ == "__main__":
     main()
