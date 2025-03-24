@@ -193,7 +193,7 @@ async def check_username_on_website(session, site, username):
     headers = {"User-Agent": get_random_user_agent()}
 
     try:
-        async with session.get(url, headers=headers, timeout=19.6) as response:
+        async with session.get(url, headers=headers, timeout=26.8) as response:
             raw_bytes = await response.read()
             try:
                 text = raw_bytes.decode("utf-8")
