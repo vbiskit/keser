@@ -266,7 +266,7 @@ Arguments:
   -bf brute-force usernames from a .txt file
   -all Search With Duckduckgo And Userlinks
   -bd brute-force usernames with duckduckgo
-  -top show top socials, sites, gaming
+  -top this shows the top sites for social media gaming tiktok instagram fortnite etc. 
   -bf name,name2
   -bd name,name2
   --timeout using timeout for very fast searches, use 13.6 Recommend (For Fast Internets Only) don't use timeout if you have slow internet the default is enough for people with slow internets.
