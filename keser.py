@@ -286,15 +286,13 @@ Usage:
             return help_text
 
     parser = argparse.ArgumentParser(
-        description="Search for usernames on various websites and DuckDuckGo.",
         formatter_class=CustomHelpFormatter,
         add_help=False
     )
 
     parser.add_argument(
         "-h", "--help",
-        action="store_true",
-        help="mr helper message 🐧"
+        action="store_true"
     )
 
     parser.add_argument("username", nargs="?", type=str)
