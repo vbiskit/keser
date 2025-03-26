@@ -17,6 +17,7 @@ import asyncio
 import io
 import socket
 from aiohttp import TCPConnector
+from .loadingbar import Stats
 
 def rgb(r, g, b, text):
     return f'\033[38;2;{r};{g};{b}m{text}\033[0m'
@@ -345,14 +346,15 @@ async def search_username(username, save_file=None, search_all=False, print_summ
     if save_file:
         output_capture = io.StringIO()
         sys.stdout = output_capture
+
     connector = TCPConnector(
         ssl=False,
         ttl_dns_cache=300,
         use_dns_cache=True,
         limit=100,
         force_close=True,
-        family=socket.AF_INET,  
-        resolver=aiohttp.AsyncResolver(nameservers=['1.1.1.1', '1.0.0.1'])  
+        family=socket.AF_INET,
+        resolver=aiohttp.AsyncResolver(nameservers=['1.1.1.1', '1.0.0.1'])
     )
 
     async with aiohttp.ClientSession(connector=connector) as session:
@@ -362,20 +364,24 @@ async def search_username(username, save_file=None, search_all=False, print_summ
                 site for site in metadata["sites"]
                 if site["name"].lower() in TOP_SOCIAL_SITES or site["name"].lower() in TOP_GAMING_SITES
             ]
-            tasks = [check_top_site(session, site, username) for site in sites_to_check]
-        else:
-            tasks = [check_username_with_retries(session, site, username, timeout) for site in sites_to_check]
+        with Stats(len(sites_to_check)) as stats_checking:
+            if top_sites:
+                tasks = [check_top_site(session, site, username) for site in sites_to_check]
+            else:
+                tasks = [check_username_with_retries(session, site, username, timeout) for site in sites_to_check]
 
-        results = await asyncio.gather(*tasks)
-
-        for result in results:
-            if result and result[0] not in unique_sites:
-                unique_sites.add(result[0])
-                found.append(result)
+            for task in asyncio.as_completed(tasks):
+                result = await task
+                if result and result[0] not in unique_sites:
+                    unique_sites.add(result[0])
+                    found.append(result)
+                    stats_checking.update(1, 1)
+                else:
+                    stats_checking.update(1, 0)
 
         if search_all:
-            duckduckgo_results = scrape_duckduckgo_links(username)
             print(f"\n\033[38;2;255;255;255m[\033[38;2;0;255;0mDuckduckgo\033[38;2;255;255;255m]", flush=True)
+            duckduckgo_results = scrape_duckduckgo_links(username)
             for link in duckduckgo_results:
                 highlighted_link = highlight_url(link)
                 print(f"\033[97m{highlighted_link}\033[0m", flush=True)
@@ -463,34 +469,34 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
         output_capture = io.StringIO()
         sys.stdout = output_capture
 
-    for username in usernames:
-        retry_count = 0
-        success = False
-        username_links = 0
-        print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Checking With Duckduckgo')} \033[38;2;255;255;255m{username}\n", flush=True)
+    with Stats(len(usernames)) as stats_checking:
+        for username in usernames:
+            retry_count = 0
+            success = False
+            username_links = 0
+            while retry_count < max_retries and not success:
+                duckduckgo_results = scrape_duckduckgo_links(username)
 
-        while retry_count < max_retries and not success:
-            duckduckgo_results = scrape_duckduckgo_links(username)
+                if not duckduckgo_results:
+                    if retry_count == 0:
+                        print(f"[\033[38;2;255;255;255m\033[38;5;196mERR\033[38;2;255;255;255m]\033[38;5;196m No results found for \033[38;2;255;255;255m{username} Retrying failed user\n", flush=True)
 
-            if not duckduckgo_results:
-                if retry_count == 0:
-                    print(f"[\033[38;2;255;255;255m\033[38;5;196mERR\033[38;2;255;255;255m]\033[38;5;196m No results found for \033[38;2;255;255;255m{username} Retrying failed user\n", flush=True)
-
-                retry_count += 1
-                if retry_count < max_retries:
-                    time.sleep(0.96)
+                    retry_count += 1
+                    if retry_count < max_retries:
+                        time.sleep(0.96)
+                    else:
+                        break
                 else:
-                    break
-            else:
-                for link in duckduckgo_results:
-                    highlighted_link = highlight_url(link)
-                    print(highlighted_link, flush=True)
-                    username_links += 1
-                    total_links_found += 1
-                success = True
+                    for link in duckduckgo_results:
+                        highlighted_link = highlight_url(link)
+                        print(highlighted_link, flush=True)
+                        username_links += 1
+                        total_links_found += 1
+                    success = True
 
-        username_results[username] = username_links
-        time.sleep(4.3)
+            username_results[username] = username_links
+            stats_checking.update(1, username_links)
+            time.sleep(4.3)
 
     elapsed_time = time.time() - start_time
     print()
@@ -522,20 +528,15 @@ def main():
 
     if args.username:
         if args.top_sites:
-            print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Searching All Top Sites')} \033[38;2;255;255;255m{args.username}\n")
+            asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all, top_sites=args.top_sites, timeout=args.timeout))
         else:
-            print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Emulating websites for')} \033[38;2;255;255;255m{args.username}\n")
-        asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all, top_sites=args.top_sites, timeout=args.timeout))
+            asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all, top_sites=args.top_sites, timeout=args.timeout))
 
     elif args.brute_force:
         usernames = process_bf_argument(args.brute_force)
         username_results = {}
 
         for username in usernames:
-            if args.top_sites:
-                print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Searching All Top Sites')} \033[38;2;255;255;255m{username}\n")
-            else:
-                print(f"\n\033[38;2;255;255;255m[{yellow('INF')}\033[38;2;255;255;255m] {yellow('Emulating websites for')} \033[38;2;255;255;255m{username}\n")
             start_time = time.time()
             sites_found, duckduckgo_links, _ = asyncio.run(search_username(username, save_file=args.save_file, search_all=args.search_all, print_summary=False, top_sites=args.top_sites, timeout=args.timeout))
             search_time = time.time() - start_time
