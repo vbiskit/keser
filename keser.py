@@ -246,7 +246,7 @@ async def check_top_site(session, site, username, timeout=13.6):
     except (aiohttp.ClientError, asyncio.TimeoutError):
         return None
 
-async def check_top_site_with_retries(session, site, username, timeout=13.6, max_retries=5):
+async def check_top_site_with_retries(session, site, username, timeout=13.6, max_retries=3):
     for attempt in range(max_retries):
         result = await check_top_site(session, site, username, timeout)
         if result is not None:
