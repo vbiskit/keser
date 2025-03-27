@@ -18,6 +18,7 @@ import io
 import socket
 from aiohttp import TCPConnector
 from stats.stats import stats
+import signal
 
 def rgb(r, g, b, text):
     return f'\033[38;2;{r};{g};{b}m{text}\033[0m'
@@ -503,7 +504,12 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
         except Exception as e:
            print(f"[\033[38;2;255;255;255m\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
 
+def signal_handler(signum, frame):
+    print("\n ⚠️ \033[0mkeser is interrupted.")
+    sys.exit(0)
+
 def main():
+    signal.signal(signal.SIGINT, signal_handler)
     parser = setup_argparse()
     args = parser.parse_args()
 
