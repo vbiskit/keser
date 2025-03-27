@@ -266,7 +266,7 @@ def print_banner(show_newline=True):
     print(pink(' :  keser --help                      :'))
     print(pink(' :  https://github.com/vbiskit/keser  :'))
     print(purple(' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~\n'))
-    print(f"\033[93m[!]\033[0m] --Timeout Argument Won't Work With -top Argument ok?{'\n' if show_newline else ''}")
+    print(f"\033[93m[!]\033[0m --Timeout Argument Won't Work With -top Argument ok?{'\n' if show_newline else ''}")
 
 def setup_argparse():
     class CustomHelpFormatter(argparse.HelpFormatter):
