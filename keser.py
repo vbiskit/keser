@@ -202,7 +202,7 @@ async def check_username_on_website(session, site, username, timeout=26.8):
                 text = raw_bytes.decode("latin-1")
 
             if response.status == site["e_code"] and site["e_string"] in text:
-                print(f"\033[38;2;255;255;255m[\033[38;2;0;191;255m{site['name']}\033[38;2;255;255;255m] \033[38;2;255;255;255m[\033[38;2;0;255;0m{site['cat']}\033[38;2;255;255;255m] \033[90m{url}")
+                print(f"\033[38;2;255;255;255m[\033[38;2;0;191;255m{site['name']}\033[38;2;255;255;255m] \033[38;2;255;255;255m[\033[38;2;0;255;0m{site['cat']}\033[38;2;255;255;255m] \033[90m{url} ")
                 return (site["name"], url, site["cat"])
 
             if "m_code" in site and "m_string" in site:
@@ -245,7 +245,7 @@ async def check_top_site(session, site, username):
     except (aiohttp.ClientError, asyncio.TimeoutError):
         return None
 
-def print_banner():
+def print_banner(show_newline=True):
     keser = r"""
  .-. .-..----. .----..----..----.
  | |/ / | {_  { {__  | {_  | {}  }
@@ -256,7 +256,7 @@ def print_banner():
     print(f"{purple ( ' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')}")
     print(f"{pink ( ' :  keser --help                      :')}")
     print(f"{pink( ' :  https://github.com/vbiskit/keser  :')}")
-    print(f"{purple ( ' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')}\n")
+    print(f"{purple ( ' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')}{'\n' if show_newline else ''}")
 
 def setup_argparse():
     class CustomHelpFormatter(argparse.HelpFormatter):
@@ -504,17 +504,18 @@ def process_brute_force_duckduckgo(usernames_input, save_file=None, max_retries=
            print(f"[\033[38;2;255;255;255m\033[38;5;196mERR\033[38;2;255;255;255m] Failed to save results to {save_file}: {str(e)}")
 
 def main():
-    print_banner()
     parser = setup_argparse()
     args = parser.parse_args()
 
     if hasattr(args, 'help') and args.help:
+        print_banner(show_newline=False)
         print(parser.format_help())
         sys.exit(0)
 
     if not args.username:
         sys.exit(0)
 
+    print_banner(show_newline=True)
     if args.top_sites:
         asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all, top_sites=args.top_sites, timeout=args.timeout))
     else:
