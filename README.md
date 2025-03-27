@@ -51,25 +51,16 @@ keser
 ```yaml
 Arguments:
   -sf  Save the output to a file
-  -bf brute-force usernames from a .txt file
   -all Search With Duckduckgo And Userlinks
-  -bd brute-force usernames with duckduckgo
   -top this shows the top sites for social media gaming tiktok instagram fortnite etc. 
-  -bf name,name2
-  -bd name,name2
   --timeout is for very fast searches, use <13.6> Recommend (For Fast Internets Only) don't use timeout if you have slow wifi the default is enough to catch tiktok all the sites.
 Usage:
    keser <example> -sf example.txt
    keser <example> for just links
-   keser -bf usernames.txt
    keser <example> -all
-   keser -bd example.txt
    keser example -all -sf some.txt
-   keser -bf name,name2
-   keser -bd name,name2
    keser <example> -top
-   keser <example> --timeout 5
-   keser <example> -bf name,name2 --timeout 5
+   keser <example> --timeout 
 ```
 
 ## 😡 can't install tool because of error: externally-managed-environment fix.
