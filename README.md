@@ -20,7 +20,7 @@
 </p>
 
 # 🔭 whats New! 
-search top socials games etc. -top argument. updated timeout to **28 seconds to make sure people with slow internet catch all links** still the fastest uesrname tool, username searches will run off cloud flare dns now. --timeout argument
+search top socials games etc. -top argument. updated timeout to **28 seconds to make sure people with slow internet catch all links** still the fastest uesrname tool, username searches will run off cloud flare dns now. --timeout argument new search bar to see percentage % of bar seconds how many links it has checked 
 
 ------------------------------------------------
 ## 🤔 Why should i use this
