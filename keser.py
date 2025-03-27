@@ -222,7 +222,7 @@ async def check_username_with_retries(session, site, username, timeout=26.8, max
         await asyncio.sleep(0.03)
     return None
 
-async def check_top_site(session, site, username, timeout=26.8):
+async def check_top_site(session, site, username, timeout=13.6):
     url = site["uri_check"].replace("{account}", username)
     headers = {"User-Agent": get_random_user_agent()}
 
@@ -246,7 +246,7 @@ async def check_top_site(session, site, username, timeout=26.8):
     except (aiohttp.ClientError, asyncio.TimeoutError):
         return None
 
-async def check_top_site_with_retries(session, site, username, timeout=26.8, max_retries=9):
+async def check_top_site_with_retries(session, site, username, timeout=13.6, max_retries=9):
     for attempt in range(max_retries):
         result = await check_top_site(session, site, username, timeout)
         if result is not None:
