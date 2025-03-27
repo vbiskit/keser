@@ -8,7 +8,7 @@ class stats:
         self.found = 0
         self.start_time = time.time()
         self.last_update = 0
-        self.update_interval = 0.1
+        self.update_interval = 0.01  
 
     def __enter__(self):
         return self
