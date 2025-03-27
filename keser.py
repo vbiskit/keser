@@ -264,25 +264,16 @@ def setup_argparse():
             help_text = """\033[38;2;255;255;255m
 Arguments:
   -sf  Save the output to a file
-  -bf brute-force usernames from a .txt file
   -all Search With Duckduckgo And Userlinks
-  -bd brute-force usernames with duckduckgo
   -top this shows the top sites for social media gaming tiktok instagram fortnite etc. 
-  -bf name,name2
-  -bd name,name2
   --timeout is for very fast searches, use <13.6> Recommend (For Fast Internets Only) don't use timeout if you have slow wifi the default is enough to catch tiktok all the sites.
 Usage:
    keser <example> -sf example.txt
    keser <example> for just links
-   keser -bf usernames.txt
    keser <example> -all
-   keser -bd example.txt
    keser example -all -sf some.txt
-   keser -bf name,name2
-   keser -bd name,name2
    keser <example> -top
-   keser <example> --timeout 5
-   keser <example> -bf name,name2 --timeout 5"""
+   keser <example> --timeout 5"""
 
             return help_text
 
@@ -297,8 +288,6 @@ Usage:
     )
 
     parser.add_argument("username", nargs="?", type=str)
-    parser.add_argument("-bf", "--brute-force", type=str)
-    parser.add_argument("-bd", "--brute-force-duckduckgo", type=str)
     parser.add_argument("-sf", "--save-file", type=str)
     parser.add_argument("-all", "--search-all", action="store_true")
     parser.add_argument("-top", "--top-sites", action="store_true")
@@ -523,32 +512,13 @@ def main():
         print(parser.format_help())
         sys.exit(0)
 
-    if not any([args.username, args.brute_force, args.brute_force_duckduckgo]):
+    if not args.username:
         sys.exit(0)
 
-    if args.username:
-        if args.top_sites:
-            asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all, top_sites=args.top_sites, timeout=args.timeout))
-        else:
-            asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all, top_sites=args.top_sites, timeout=args.timeout))
-
-    elif args.brute_force:
-        usernames = process_bf_argument(args.brute_force)
-        username_results = {}
-
-        for username in usernames:
-            start_time = time.time()
-            sites_found, duckduckgo_links, _ = asyncio.run(search_username(username, save_file=args.save_file, search_all=args.search_all, print_summary=False, top_sites=args.top_sites, timeout=args.timeout))
-            search_time = time.time() - start_time
-
-            username_results[username] = (sites_found, search_time)
-
-        print()
-        for username, (count, search_time) in username_results.items():
-            print(f"\033[93mSites\033[38;2;255;255;255m: {count} from '{username}' - Search time: {search_time:.2f} seconds")
-
-    elif args.brute_force_duckduckgo:
-        process_brute_force_duckduckgo(args.brute_force_duckduckgo, save_file=args.save_file)
+    if args.top_sites:
+        asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all, top_sites=args.top_sites, timeout=args.timeout))
+    else:
+        asyncio.run(search_username(args.username, save_file=args.save_file, search_all=args.search_all, top_sites=args.top_sites, timeout=args.timeout))
 
 if __name__ == "__main__":
     main()
