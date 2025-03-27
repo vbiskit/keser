@@ -45,7 +45,7 @@ python3 installer.py install
 ```
 ## 🚀 Run the tool:
 ```yaml
-keser
+keser --help
 ```
 ## 😁 keser --help
 ```yaml
