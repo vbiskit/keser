@@ -222,12 +222,12 @@ async def check_username_with_retries(session, site, username, timeout=26.8, max
         await asyncio.sleep(0.03)
     return None
 
-async def check_top_site(session, site, username):
+async def check_top_site(session, site, username, timeout=26.8):
     url = site["uri_check"].replace("{account}", username)
     headers = {"User-Agent": get_random_user_agent()}
 
     try:
-        async with session.get(url, headers=headers) as response:
+        async with session.get(url, headers=headers, timeout=timeout) as response:
             raw_bytes = await response.read()
             try:
                 text = raw_bytes.decode("utf-8")
@@ -245,6 +245,14 @@ async def check_top_site(session, site, username):
             return None
     except (aiohttp.ClientError, asyncio.TimeoutError):
         return None
+
+async def check_top_site_with_retries(session, site, username, timeout=26.8, max_retries=9):
+    for attempt in range(max_retries):
+        result = await check_top_site(session, site, username, timeout)
+        if result is not None:
+            return result
+        await asyncio.sleep(0.03)
+    return None
 
 def print_banner(show_newline=True):
     keser = r"""
@@ -319,7 +327,7 @@ TOP_SOCIAL_SITES = [
     "instagram", "twitter", "tiktok", "snapchat", "hudsonrock",
     "linkedin", "pinterest", "reddit", "tumblr", "youtube user", "Imginn", "kik",
     "twitch", "discord", "telegram", "whatsapp", "vimeo", "gta", "github", "Instagram_archives",
-    "flickr", "deviantart", "vsco", "hoo.be", "onlysearch", "paypal", "linktree"
+    "flickr", "deviantart", "vsco", "hoo.be", "onlysearch", "paypal", "linktree", "streamlabs"
 ]
 
 TOP_GAMING_SITES = [
@@ -356,7 +364,7 @@ async def search_username(username, save_file=None, search_all=False, print_summ
             ]
         with stats(len(sites_to_check)) as stats_checking:
             if top_sites:
-                tasks = [check_top_site(session, site, username) for site in sites_to_check]
+                tasks = [check_top_site_with_retries(session, site, username, timeout) for site in sites_to_check]
             else:
                 tasks = [check_username_with_retries(session, site, username, timeout) for site in sites_to_check]
 
