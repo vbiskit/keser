@@ -260,12 +260,14 @@ def print_banner(show_newline=True):
  | |/ / | {_  { {__  | {_  | {}  }
  | |\ \ | {__ .-._} }| {__ | .-. \
  `-' `-'`----'`----' `----'`-' `-'"""
-    print(f"{pink(keser)}")
-    print(f"{purple(' By BisKit | Version 1.0.3')}")
-    print(f"{purple ( ' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')}")
-    print(f"{pink ( ' :  keser --help                      :')}")
-    print(f"{pink( ' :  https://github.com/vbiskit/keser  :')}")
-    print(f"{purple ( ' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')}{'\n' if show_newline else ''}")
+    print(pink(keser))
+    print(purple(' By BisKit | Version 1.0.3'))
+    print(purple(' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~'))
+    print(pink(' :  keser --help                      :'))
+    print(pink(' :  https://github.com/vbiskit/keser  :'))
+    print(purple(' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~'))
+    
+    print(f"\033[93m[!]\033[0m] Timeout Argument Won't Work With -top Argument ok?{'\n' if show_newline else ''}")
 
 def setup_argparse():
     class CustomHelpFormatter(argparse.HelpFormatter):
