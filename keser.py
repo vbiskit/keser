@@ -272,17 +272,17 @@ Arguments:
   -bd name,name2
   --timeout is for very fast searches, use <13.6> Recommend (For Fast Internets Only) don't use timeout if you have slow wifi the default is enough to catch tiktok all the sites.
 Usage:
-   python3 keser.py <example> -sf example.txt
-   python3 keser.py <example> for just links
-   python3 keser.py keser -bf usernames.txt
-   python3 keser.py keser <example> -all
-   python3 keser.py keser -bd example.txt
-   python3 keser.py keser example -all -sf some.txt
-   python3 keser.py keser -bf name,name2
-   python3 keser.py keser -bd name,name2
-   python3 keser.py keser <example> -top
-   python3 keser.py keser <example> --timeout 5
-   python3 keser.py keser <example> -bf name,name2 --timeout 5"""
+   keser <example> -sf example.txt
+   keser <example> for just links
+   keser -bf usernames.txt
+   keser <example> -all
+   keser -bd example.txt
+   keser example -all -sf some.txt
+   keser -bf name,name2
+   keser -bd name,name2
+   keser <example> -top
+   keser <example> --timeout 5
+   keser <example> -bf name,name2 --timeout 5"""
 
             return help_text
 
