@@ -52,7 +52,9 @@ class stats:
             self.running = False
         if hasattr(self, 'dots_thread'):
             self.dots_thread.join()
-        dots = "." * self.dot_count
-        dots = dots.ljust(3)  
         percentage = int(self.current * 100 / self.total)
-        print(f"\033[38;2;255;255;255msearching{dots} \033[90m(\033[38;2;255;255;255m{self.current}/{self.total}\033[90m) \033[90m[\033[38;2;255;255;255m{int(self.current * 100 / self.total)}%\033[90m]")
+        print(f"\033[38;2;255;255;255msearching... \033[90m(\033[38;2;255;255;255m{self.current}/{self.total}\033[90m) \033[90m[\033[38;2;255;255;255m{int(self.current * 100 / self.total)}%\033[90m]")
+
+    def __del__(self):
+        if not self.is_finished:
+            self.close()
