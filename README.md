@@ -32,7 +32,7 @@ if you are having problems installing go **here**
 👉 *https://github.com/vbiskit/keser?tab=readme-ov-file#-cant-install-tool-because-of-error-externally-managed-environment-fix*
 
 <a href="https://asciinema.org/a/CCbZhjkrq1OD293pQvMK1F8cd">
-<img src="https://asciinema.org/a/CCbZhjkrq1OD293pQvMK1F8cd.svg" alt="asciicast" width="1720">
+<img src="https://asciinema.org/a/CCbZhjkrq1OD293pQvMK1F8cd.svg" alt="asciicast" width="3440">
 </a>
 
 ## 📦 Installation
