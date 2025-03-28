@@ -55,4 +55,4 @@ class stats:
         dots = "." * self.dot_count
         dots = dots.ljust(3)  
         percentage = int(self.current * 100 / self.total)
-        print(f"\033[38;2;255;255;255m[\033[38;5;4mINFO\033[38;2;255;255;255m] \033[38;2;255;255;255mSearching{dots}  \033[38;5;4m(\033[38;2;255;255;255m{self.current}/{self.total}\033[38;5;4m) \033[38;5;4m[\033[38;2;255;255;255m{percentage}%\033[38;5;4m]")
+        print(f"\033[38;2;255;255;255mSearching{dots} \033[90m(\033[38;2;255;255;255m{self.current}/{self.total}\033[90m) \033[90m[\033[38;2;255;255;255m{int(self.current * 100 / self.total)}%\033[90m]")
