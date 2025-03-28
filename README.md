@@ -31,8 +31,8 @@ Fastest **Username** Search 0 False Positives Find Your Friends or Anyone on The
 if you are having problems installing go **here**
 👉 *https://github.com/vbiskit/keser?tab=readme-ov-file#-cant-install-tool-because-of-error-externally-managed-environment-fix*
 
-<a href="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO">
-<img src="https://asciinema.org/a/QT4BlnwpZMOHnn6L8y5O8m5BO.svg" alt="asciicast" width="1280">
+<a href="https://asciinema.org/a/87WB84zEz2wdkz869zrRtKwFt">
+<img src="https://asciinema.org/a/87WB84zEz2wdkz869zrRtKwFt.svg" alt="asciicast" width="1280">
 </a>
 
 ## 📦 Installation
