@@ -37,7 +37,7 @@ class stats:
                     dots = "." * self.dot_count
                     dots = dots.ljust(3)  
                     print("\033[K", end="")  
-                    print(f"\033[38;2;255;255;255mSearching{dots} \033[90m(\033[38;2;255;255;255m{self.current}/{self.total}\033[90m) \033[90m[\033[38;2;255;255;255m{int(self.current * 100 / self.total)}%\033[90m]", end="\r")
+                    print(f"\033[38;2;255;255;255msearching{dots} \033[90m(\033[38;2;255;255;255m{self.current}/{self.total}\033[90m) \033[90m[\033[38;2;255;255;255m{int(self.current * 100 / self.total)}%\033[90m]", end="\r")
                     sys.stdout.flush()
             time.sleep(0.01)
 
