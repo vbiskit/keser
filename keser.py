@@ -527,8 +527,7 @@ def main():
         sys.exit(0)
 
     if not args.username:
-        print_banner(show_newline=False)
-        print(parser.format_help())
+        print_banner(show_newline=True)
         sys.exit(0)
 
     print_banner(show_newline=True)
