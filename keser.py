@@ -265,7 +265,7 @@ def print_banner(show_newline=True):
     print(purple(' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~'))
     print(pink(' :  keser --help                      :'))
     print(pink(' :  https://github.com/vbiskit/keser  :'))
-    print(purple(' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~\n' + ('\n' if show_newline else '')))
+    print(purple(' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~' f'{"" if not show_newline else "\n"}'))
 
 def setup_argparse():
     class CustomHelpFormatter(argparse.HelpFormatter):
